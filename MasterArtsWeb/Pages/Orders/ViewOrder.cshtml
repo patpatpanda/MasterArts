@@ -1,0 +1,49 @@
+﻿@*@page
+@model MasterArtsWeb.Pages.Orders.ViewOrderModel
+@{
+    ViewData["Title"] = "View Order";
+}
+
+<h2>View Order</h2>
+
+<form method="post" asp-page-handler="View">
+    <div class="form-group">
+        <label asp-for="OrderId">Order ID:</label>
+        <input asp-for="OrderId" class="form-control" />
+        <span asp-validation-for="OrderId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">View Order</button>
+</form>
+
+@if (Model.OrderViewModel != null)
+{
+    <div>
+        <h3>Order Details</h3>
+        <p>Order ID: @Model.OrderViewModel.Id</p>
+
+        @if (!string.IsNullOrEmpty(Model.OrderViewModel.ShipFromCompany))
+        {
+            <p>ShipFrom: @Model.OrderViewModel.ShipFromCompany, @Model.OrderViewModel.ShipFromAddress</p>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.OrderViewModel.ShipToCompany))
+        {
+            <p>ShipTo: @Model.OrderViewModel.ShipToCompany, @Model.OrderViewModel.ShipToAddress</p>
+        }
+
+
+        {
+        <p>
+            Shipment Information:
+            Number of Boxes: @Model.OrderViewModel.NumberOfBoxes,
+            Weight of Boxes: @Model.OrderViewModel.WeightOfBoxes,
+            Dimensions: L:@Model.OrderViewModel.Length,
+            W:@Model.OrderViewModel.Width,
+            H:@Model.OrderViewModel.Height
+            Pickupdate : @Model.OrderViewModel.PickUpDate
+        </p>
+        }
+    </div>
+}
+*@

@@ -1,0 +1,466 @@
+﻿@page
+@model MasterArtsWeb.Pages.ArtServicesModel
+@{
+}
+
+<body id="myS">
+
+</body>
+
+
+<form method="post" id="languageForm">
+    <div id="language-switch">
+        <button type="submit" class="l-btn">SWE/ENG</button>
+    </div>
+</form>
+
+
+<div class="service-info">
+    <div class="mysan">
+
+
+        <div style="margin-bottom: 20px;">
+            <i class="fa-sharp fa-thin fa-people-carry-box card-icon"></i>
+            <h3>
+                @if (@Model.CurrentLanguage == "sv")
+                {
+
+                    <span>Extern Transportörsnätverk</span>
+                }
+                else
+                {
+                    <span>External Carrier Network</span>
+                }
+            </h3>
+            <p>
+                @if (@Model.CurrentLanguage == "sv")
+                {
+
+                    <span>Vi utnyttjar ett omfattande nätverk av pålitliga externa transportörer, noggrant utvalda för deras pålitlighet och överensstämmelse med kvalitetstjänststandarder.</span>
+                }
+                else
+                {
+                    <span>We leverage a vast network of reputable external carriers, carefully selected for their reliability and adherence to quality service standards.</span>
+                }
+            </p>
+
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <i class="fa-solid fa-skull-cow card-icon"></i>
+            <h3>
+                @if (@Model.CurrentLanguage == "sv")
+                {
+                    <span>Flexibilitet och Skalbarhet</span>
+                }
+                else
+                {
+                    <span>Flexibility and Scalability</span>
+                }
+            </h3>
+            <p>
+                @if (@Model.CurrentLanguage == "sv")
+                {
+                    <span>Med vår modell får du fördelen av flexibilitet. Oavsett om du behöver transportera små eller stora volymer kan vårt nätverk av externa transportörer anpassa sig till dina behov och säkerställa en skalbar lösning.</span>
+                }
+                else
+                {
+                    <span>With our model, you gain the advantage of flexibility. Whether you need to transport small or large volumes, our network of external carriers can adapt to your requirements, ensuring a scalable solution.</span>
+                }
+            </p>
+
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <i class="fa-light fa-money-check-dollar card-icon"></i>
+            <h3>
+                @if (@Model.CurrentLanguage == "sv")
+                {
+                    <span>Kostnadseffektiva Lösningar</span>
+                }
+                else
+                {
+                    <span>Cost-Effective Solutions</span>
+                }
+            </h3>
+            <p>
+                @if (@Model.CurrentLanguage == "sv")
+                {
+                    <span>Genom att använda externa transportörer kan vi optimera kostnaderna och erbjuda konkurrenskraftiga priser för våra väglogistiktjänster. Detta kostnadseffektiva tillvägagångssätt möjliggör effektiv resursallokering.</span>
+                }
+                else
+                {
+                    <span>By utilizing external carriers, we can optimize costs and provide competitive pricing for our road logistics services. This cost-effective approach allows you to allocate resources efficiently.</span>
+                }
+            </p>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <i class="fa-sharp fa-thin fa-person-carry-box card-icon"></i>
+            <h3>
+                @if (@Model.CurrentLanguage == "sv")
+                {
+                    <span>Pålitliga och Tidiga Leveranser</span>
+                }
+                else
+                {
+                    <span>Reliable and Timely Deliveries</span>
+                }
+            </h3>
+            <p>
+                @if (@Model.CurrentLanguage == "sv")
+                {
+                    <span>Vår åtagande till pålitlighet innebär att du kan lita på oss för att leverera dina varor i tid. Vi samarbetar nära med vårt nätverk av transportörer för att säkerställa punktlighet och konsekvens i att uppfylla leveransdeadlines.</span>
+                }
+                else
+                {
+                    <span>Our commitment to reliability means you can trust us to deliver your goods on time. We work closely with our network of carriers to ensure punctuality and consistency in meeting delivery deadlines.</span>
+                }
+            </p>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <i class="fa-sharp fa-thin fa-vacuum-robot card-icon"></i>
+            <h3>
+                @if (@Model.CurrentLanguage == "sv")
+                {
+                    <span>Avancerad Spårning och Kommunikation</span>
+                }
+                else
+                {
+                    <span>Advanced Tracking and Communication</span>
+                }
+            </h3>
+            <p>
+                @if (@Model.CurrentLanguage == "sv")
+                {
+                    <span>Vi använder avancerade spårningssystem och kommunikationsverktyg för att hålla dig informerad om statusen för dina försändelser i realtid. Denna transparens förbättrar synligheten och möjliggör bättre beslutsfattande.</span>
+                }
+                else
+                {
+                    <span>We utilize advanced tracking systems and communication tools to keep you informed about the status of your shipments in real-time. This transparency enhances visibility and allows for better decision-making.</span>
+                }
+            </p>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <i class="fa-sharp fa-thin fa-face-saluting card-icon"></i>
+            <h3>
+                @if (@Model.CurrentLanguage == "sv")
+                {
+                    <span>Skräddarsydda Lösningar</span>
+                }
+                else
+                {
+                    <span>Customized Solutions</span>
+                }
+            </h3>
+            <p>
+                @if (@Model.CurrentLanguage == "sv")
+                {
+                    <span>Varje kund är unik, liksom deras logistikbehov. Vårt team samarbetar nära med dig för att förstå dina specifika krav, vilket gör att vi kan skräddarsy våra väglogistiklösningar för att möta dina individuella behov.</span>
+                }
+                else
+                {
+                    <span>Every client is unique, and so are their logistics needs. Our team works closely with you to understand your specific requirements, allowing us to tailor our road logistics solutions to meet your individual demands.</span>
+                }
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<div class="moby">
+    <div id="air" class="container-abbe">
+        <div class="image-container">
+            <img src="/images/d938d927-eebb-48a3-8596-18b84411f6d5.jpg" alt="Cool Image">
+        </div>
+        @if (@Model.CurrentLanguage == "sv")
+        {
+
+            <div class="header-s">FLYG</div>
+            <div class="benefits">Snabb leverans, global täckning och hög flexibilitet</div>
+            <div class="info-text">Vår flyglogistik är utformad för att möta de snabbt föränderliga kraven och globala leveranserna. Med snabba och säkra flygtransportlösningar kan vi optimera leveranstiderna och minska väntetiderna. Oavsett om du behöver skicka känsliga dokument eller mindre paket, erbjuder vi personlig eskort för att säkerställa säker leverans till världens alla hörn.</div>
+
+            <a href="/Contact" class="cta-button">KONTAKT</a>
+        }
+        else
+        {
+            <div class="header-s">AIR</div>
+            <div class="benefits">Fast delivery, global coverage, and high flexibility</div>
+            <div class="info-text">Our air logistics are designed to meet rapidly changing demands and global deliveries. With fast and secure air transport solutions, we can optimize delivery times and reduce wait times. Whether you need to send sensitive documents or smaller packages, we offer personalized escort services to ensure safe delivery to every corner of the world.</div>
+
+            <a href="/Contact" class="cta-button">CONTACT</a>
+        }
+
+
+
+
+    </div>
+
+
+    <div id="road" class="container-abbe">
+        <div class="image-container">
+            <img src="/images/nisse.jpg" alt="Cool Image">
+        </div>
+        @if (@Model.CurrentLanguage == "sv")
+        {
+
+            <div class="header-s">VÄG</div>
+            <div class="benefits">Mångsidig och skalbar lösning för att möta dina transportbehov</div>
+            <div class="info-text"> Vår väglogistiktjänst är skräddarsydd för att erbjuda flexibel och pålitlig transport på motorvägar, och det som gör oss unika är vårt unika tillvägagångssätt. Till skillnad från traditionella logistikleverantörer med sin egen fordonsflotta specialiserar vi oss på att koppla samman dig med ett nätverk av pålitliga externa transportörer.</div>
+            <a href="/Contact" class="cta-button">KONTAKT</a>
+        }
+        else
+        {
+            <div class="header-s">ROAD</div>
+            <div class="benefits">Versatile and scalable solution</div>
+            <div class="info-text">Our road logistics service is tailored to provide flexible and reliable transportation on highways, and what sets us apart is our unique approach. Unlike traditional logistics providers with their own fleet, we specialize in connecting you with a network of trusted external carriers.</div>
+            <a href="/Contact" class="cta-button">CONTACT</a>
+
+        }
+
+
+
+    </div>
+
+
+    <div id="sea" class="container-abbe">
+        <div class="image-container">
+            <img src="/images/pbåt.jpg" alt="Cool Image">
+        </div>
+        @if (@Model.CurrentLanguage == "sv")
+        {
+
+            <div class="header-s">SJÖFART</div>
+            <div class="benefits">Storskaliga transporter och förmågan att hantera stora volymer.</div>
+            <div class="info-text">Vår maritima logistik erbjuder pålitliga och effektiva lösningar för sjötransport. Med ett omfattande nätverk och erfarenhet av att hantera sjötransporter säkerställer vi smidig och kostnadseffektiv frakt av varor över hela världen.</div>
+            <a href="/Contact" class="cta-button">KONTAKT</a>
+        }
+        else
+        {
+            <div class="header-s">SEA</div>
+            <div class="benefits">Large-scale transports and the ability to handle large volumes</div>
+            <div class="info-text">
+                Our maritime logistics offers reliable and efficient solutions for sea transportation. With a comprehensive network and experience in handling maritime shipments, we ensure smooth and cost-effective freight of goods worldwide.
+            </div>
+            <a href="/Contact" class="cta-button">CONTACT</a>
+
+        }
+
+
+
+    </div>
+
+    <div id="train" class="container-abbe">
+        <div class="image-container">
+            <img src="/images/4c802d7d-b887-4fdf-ba9a-baac81079546.jpg" alt="Cool Image">
+        </div>
+        @if (@Model.CurrentLanguage == "sv")
+        {
+
+            <div class="header-s">TÅG</div>
+            <div class="benefits">Miljövänlig, Kostnadseffektiv, Stabil och Säker</div>
+            <div class="info-text"> Tåglogistik är en pålitlig och kostnadseffektiv lösning för landtransport över långa sträckor. Med vårt specialiserade tågnätverk kan vi erbjuda hållbara och miljövänliga transporter.</div>
+            <a href="/Contact" class="cta-button">KONTAKT</a>
+        }
+        else
+        {
+            <div class="header-s">TRAIN</div>
+            <div class="benefits">Environmentally friendly, Cost-effective, Stable and Safe</div>
+            <div class="info-text">
+                Train logistics is a reliable and cost-effective solution for land transport over long distances. With our specialized train network, we can offer sustainable and environmentally friendly transportation.
+            </div>
+            <a href="/Contact" class="cta-button">CONTACT</a>
+
+        }
+
+
+
+    </div>
+
+
+
+    <div id="courier" class="container-abbe">
+        <div class="image-container">
+            <img src="/images/e9ce4a77-32d2-4137-808d-637c588d84ad.jpg" alt="Cool Image">
+        </div>
+        @if (@Model.CurrentLanguage == "sv")
+        {
+
+            <div class="header-s">KURIR</div>
+            <div class="benefits">Snabba leveranser, realtids spårning och dörr-till-dörr-service</div>
+            <div class="info-text">Vår kurirlogistik erbjuder snabba och pålitliga leveranser med fokus på små paket och dokument. Med ett effektivt nätverk av kurirer kan vi säkerställa snabb och säker leverans, perfekt för brådskande sändningar.</div>
+            <a href="/Contact" class="cta-button">KONTAKT</a>
+        }
+        else
+        {
+            <div class="header-s">COURIER</div>
+            <div class="benefits">Fast deliveries, real-time tracking, and door-to-door service.</div>
+            <div class="info-text">
+                Our courier logistics offers fast and reliable deliveries focusing on small packages and documents. With an efficient network of couriers, we can ensure quick and secure delivery, perfect for urgent shipments.
+            </div>
+            <a href="/Contact" class="cta-button">CONTACT</a>
+
+        }
+
+
+
+    </div>
+
+
+
+    <div id="express" class="container-abbe">
+        <div class="image-container">
+            <img src="/images/3985a008-f5fb-4833-9b9c-b32f8df6adc2.jpg" alt="Cool Image">
+        </div>
+        @if (@Model.CurrentLanguage == "sv")
+        {
+
+            <div class="header-s">EXPRESS</div>
+            <div class="benefits">Omedelbar respons, prioriterad behandling och den högsta möjliga leveranshastigheten.</div>
+            <div class="info-text">Vår expresslogistik är utformad för att möta kraven för snabba och tidskänsliga leveranser. Med dedikerade resurser och prioriterad behandling kan vi säkerställa att dina varor når destinationen i tid.</div>
+            <a href="/Contact" class="cta-button">KONTAKT</a>
+        }
+        else
+        {
+            <div class="header-s">EXPRESS</div>
+            <div class="benefits">Immediate response, priority treatment, and the highest possible delivery speed.</div>
+            <div class="info-text">
+                Our express logistics is designed to meet the demands for fast and time-sensitive deliveries. With dedicated resources and priority handling, we can ensure your goods reach the destination on time.
+            </div>
+            <a href="/Contact" class="cta-button">CONTACT</a>
+
+        }
+
+
+
+    </div>
+</div>
+
+
+
+<div class="about-section-2" id="special">
+    <div class="text-container-2">
+        @if (@Model.CurrentLanguage == "sv")
+        {
+            <h4>On-board courier</h4>
+
+            <p>Snabb, säker och personlig eskort av mindre paket eller dokument av känslig eller brådskande natur, med garanterad leverans via flyg till världens alla hörn</p>
+            <h4>Övervakning</h4>
+            <p>Personlig övervakning av farligt eller värdefullt gods för att förhindra skadegörelse, sabotage, inbrott och stöld, både under parkering och transport</p>
+        }
+        else
+        {
+            <h4>On-board courier</h4>
+            <p>Fast, secure, and personalized escort of small packages or sensitive and urgent documents, with guaranteed delivery via air to all corners of the world</p>
+            <h4>Monitoring</h4>
+            <p>Personal monitoring of dangerous or valuable goods to prevent vandalism, sabotage, burglary, and theft, both during parking and transportation</p>
+
+        }
+        <a href="/Contact" class="cta-button">CONTACT</a>
+    </div>
+    <div class="image-container-3" style="margin-left: 15px;">
+        <img src="~/images/ae.jpg" alt="About Us Image" style="max-width: 100%; height: auto;">
+    </div>
+</div>
+
+
+
+
+
+<div>
+    <button id="totop-arrow">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+
+</div>
+
+
+@section Scripts{
+
+    <script>
+        console.log('Script is running!');
+        const arrow = document.querySelector('#totop-arrow');
+        arrow.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Button to show/hide the ratings -->
+<!-- Form to submit a new review -->
+@*@*<div class="reviews-section">
+
+
+        <!-- Form to submit a new review -->
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" asp-page-handler="AddReview">
+                    <h3>Rate Arts Logistics:</h3>
+                    <div class="star-rating">
+                        @for (int i = 5; i >= 1; i--)
+                        {
+                            <input type="radio" id="@($"star{i}")" name="NewReview.Rating" value="@i" />
+                            <label for="@($"star{i}")" title="@i stars">&#9733;</label>
+                        }
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Rating</button>
+                </form>
+            </div>*@
+@* <div class="col-md-6">
+                <!-- Button to show/hide the ratings -->
+
+
+              @*  <div id="ratingsContainer" style="display:none; margin-top: 20px;">
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <div class="card" style="width: 18rem; background-color: rgba(0, 0, 0, 0.7); margin-top: 20px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Rating: @review.Rating</h5>
+
+                                <!-- You can display other information about the review, e.g., user name, etc. -->
+                            </div>
+                        </div>
+                    }
+                </div>*@
+            </div>
+        </div>
+    </div>
+@*@section Scripts
+{
+<script>
+        function toggleRatings() {
+            var ratingsContainer = document.getElementById('ratingsContainer');
+            ratingsContainer.style.display = ratingsContainer.style.display === 'none' ? 'block' : 'none';
+        }
+</script>
+}*@

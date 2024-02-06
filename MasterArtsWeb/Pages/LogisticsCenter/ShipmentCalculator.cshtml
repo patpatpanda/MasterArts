@@ -1,0 +1,54 @@
+﻿@page
+@model MasterArtsWeb.Pages.LogisticsCenter.ShipmentCalculatorModel
+@{
+}
+<body id="myShip">
+
+</body>
+<a asp-area="" asp-page="/Orders/Create" class="btn btn-primary" style="margin-top:30px">Create Order</a>
+<a asp-area="" asp-page="/Orders/ViewOrderModel" class="btn btn-primary" style="margin-top:30px">View Order</a>
+<a asp-area="" asp-page="/LogisticsCenter/Track" class="btn btn-primary" style="margin-top:30px">Track</a>
+<h1>Shipment Calculator</h1>
+
+<div class="calculator-container">
+    <form method="post" class="shipment-form" asp-page-handler="Calculator">
+        <label for="length" class="form-label">Length (cm): </label>
+        <input type="text" id="length" name="length" class="form-input" asp-for="Length" />
+
+        <label for="width" class="form-label">Width (cm): </label>
+        <input type="text" id="width" name="width" class="form-input" asp-for="Width" />
+
+        <label for="height" class="form-label">Height (cm): </label>
+        <input type="text" id="height" name="height" class="form-input" asp-for="Height" />
+
+        <label for="actualWeight" class="form-label">Actual weight (kg): </label>
+        <input type="text" id="actualWeight" name="actualWeight" class="form-input" asp-for="ActualWeight" />
+
+        <label for="pieces" class="form-label">Pieces: </label>
+        <input type="text" id="pieces" name="pieces" class="form-input" asp-for="Pieces" />
+
+        <label for="selectedDensity" class="form-label">Select Density:</label>
+        <select id="selectedDensity" name="selectedDensity" class="form-select" asp-for="SelectedDensity">
+            <option value="1:1">1:1</option>
+            <option value="1:2">1:2</option>
+            <option value="1:3">1:3</option>
+            <option value="1:4">1:4</option>
+            <option value="1:5">1:5</option>
+            <option value="1:6">1:6</option>
+            <option value="1:7">1:7</option>
+            <option value="1:8">1:8</option>
+            <option value="1:9">1:9</option>
+            <option value="1:10">1:10</option>
+        </select>
+
+        <input type="submit" value="Calculate" class="form-submit" />
+    </form>
+    <h3 style="margin-top:50px">Shipment Calculator</h3>
+    <div class="results-container">
+        <h2 class="results-heading">Results:</h2>
+        <p class="result">Total Volume: @(Model.TotalVolume * Model.Pieces) m³</p>
+        <p class="result">Total Volume weight: @Model.TotalVolumeWeight kg</p>
+        <p class="result">Total Actual weight: @Model.TotalActualWeight kg</p>
+        <p class="result">Chargeable weight: @Model.ChargeableWeight kg</p>
+    </div>
+</div>

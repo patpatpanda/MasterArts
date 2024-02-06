@@ -1,0 +1,217 @@
+﻿@page
+@using System.Diagnostics
+@model ContactModel
+@{
+    ViewData["Title"] = "Contact";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+
+    <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 10px">@TempData["SuccessMessage"]</div>
+}
+
+
+
+<body id="myContact">
+    <!-- Your page content here -->
+</body>
+<!-- Your existing HTML code here -->
+
+
+
+<div class="language-toggle text-end">
+    <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">SWE/ENG</button>
+</div>
+
+
+
+<div class="deal-3" id="contactForm">
+    <div class="deal-2">
+
+        <form method="post" asp-page-handler="OnPost" onsubmit="return checkHoneypot()">
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label asp-for="CompanyName" class="form-label">Company Name</label>
+                    <input asp-for="CompanyName" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label asp-for="Name" class="form-label">Your Name</label>
+                    <input asp-for="Name" class="form-control" required />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-7">
+                    <label asp-for="Phone" class="form-label">Phone</label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label asp-for="Message" class="form-label">Message</label>
+                    <textarea asp-for="Message" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Message" class="text-danger" required></span>
+                </div>
+            </div>
+            <div style="display: none;" aria-hidden="true">
+                <label for="honeypot">Please leave this field empty</label>
+                <input type="text" id="honeypot" name="honeypot" />
+            </div>
+
+            <button type="submit" class="btn btn-primary custom-button" style="margin-top:15px">Send</button>
+        </form>
+
+
+        <div class="deal text-center">
+            <div class="deal-4">
+                <p>Or contact us directly at</p>
+                <div class="footer-section footer-section-right">
+                    <!-- Right content -->
+                    <p style="margin-right:55px"><i class="fa-solid fa-envelope"></i> <a href="mailto:ops@artslogistics.se">ops@artslogistics.se</a></p>
+                </div>
+
+                <p><i class="fa-solid fa-phone"></i>Phone: +46 70-549 14 14</p>
+                <img src="~/images/337739d1-9f15-400d-afe7-459b929fe0dc.jpg" alt="About Us Image" style="max-width: 60%; height: auto;">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Contact form -->
+
+
+
+
+<div id="contactFormSv" class="deal-3" style="display:none">
+
+    <!-- Contact form -->
+    <div class="deal-2">
+
+        <form method="post" asp-page-handler="OnPost" onsubmit="return checkHoneypot()">
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label asp-for="CompanyName">Företag</label>
+                    <input asp-for="CompanyName" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label asp-for="Name">Namn</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger" required></span>
+                </div>
+                <div class="form-group col-md-7">
+                    <label asp-for="Phone">Telefon</label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger" required></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label asp-for="Message">Meddelande</label>
+                    <textarea asp-for="Message" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Message" class="text-danger" required></span>
+                </div>
+            </div>
+
+
+            <div style="display: none;" aria-hidden="true">
+                <label for="honeypot">Please leave this field empty</label>
+                <input type="text" id="honeypot" name="honeypot" />
+            </div>
+
+
+
+
+            <button type="submit" class="btn btn-primary custom-button" style="margin-top:7px">Send</button>
+        </form>
+
+        <div class="deal text-center">
+            <div class="deal-4">
+                <p>Eller kontakta oss direkt på</p>
+                <div class="footer-section footer-section-right">
+                    <!-- Right content -->
+                    <p style="margin-right:55px"><i class="fa-solid fa-envelope"></i> <a href="mailto:ops@artslogistics.se">ops@artslogistics.se</a></p>
+                </div>
+
+                <p><i class="fa-solid fa-phone"></i>Telefon: +46 70-549 14 14</p>
+                <img src="~/images/337739d1-9f15-400d-afe7-459b929fe0dc.jpg" alt="About Us Image" style="max-width: 60%; height: auto;">
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+<script>
+    function toggleLanguage() {
+        var toggleBtn = document.getElementById('languageToggleBtn');
+        var contactForm = document.getElementById('contactForm');
+        var contactFormSv = document.getElementById('contactFormSv');
+
+        if (toggleBtn.innerText === 'Svenska') {
+            toggleBtn.innerText = 'English';
+            contactForm.style.display = 'none';
+            contactFormSv.style.display = 'block';
+        } else {
+            toggleBtn.innerText = 'Svenska';
+            contactForm.style.display = 'block';
+            contactFormSv.style.display = 'none';
+        }
+    }
+
+
+    setTimeout(function () {
+        var successMessage = document.getElementById("success-message");
+        successMessage.classList.remove("show");
+    }, 5000);
+
+    // Fade in the success message when the page is loaded
+    window.addEventListener("load", function () {
+        var successMessage = document.getElementById("success-message");
+        successMessage.classList.add("show");
+    });
+    function checkHoneypot() {
+        var honeypotField = document.getElementById("honeypot");
+        if (honeypotField.value) {
+            // Honeypot-fältet har fyllts i, antag att det är en robot
+            alert("Form submission failed. Please try again.");
+            return false;
+        }
+        return true;
+    }
+
+</script>
