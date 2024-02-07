@@ -28,6 +28,19 @@ namespace MasterArtsLibrary.Services
             _httpClientFactory = httpClientFactory;
         }
 
+
+        public async Task SendOrderConfirmationEmail(string recipientEmail, Order order)
+        {
+            // Konstruera e-postmeddelandet
+            var subject = "Order Confirmation";
+            var htmlMessage = $"Thank you for your order! Order ID";
+
+            // Skicka e-postmeddelandet
+            await _order.SendEmailOrderAsync(recipientEmail, subject, htmlMessage);
+
+        }
+
+
         public async Task<Order> GetOrderViewModelAsync(int orderId)
         {
             var apiUrl = _configuration.GetSection("ApiUrl").Value;
@@ -60,7 +73,7 @@ namespace MasterArtsLibrary.Services
                     order = Order;
                 }
             }
-
+            
 
             //public async Task CreateOrderInApi(Order order)
             //{
@@ -115,9 +128,9 @@ namespace MasterArtsLibrary.Services
             //}
 
 
-           
 
-        
+
+
 
         }
     }

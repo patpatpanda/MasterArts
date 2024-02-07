@@ -44,8 +44,9 @@ namespace MasterArtsWeb.Pages.Orders
                 // Skapa order i API
                 await _orderService.CreateOrderInApi(Order);
 
-                // Skicka e-post till kunden
-               
+                var recipientEmail = Order.Consignee.ConsigneeEmail;  // Anpassa detta baserat på hur du sparar kundens e-postadress i Order-modellen
+                await _orderService.SendOrderConfirmationEmail(recipientEmail, Order);
+
                 TempData["SuccessMessage"] = "Your order has been sent";
                 return RedirectToPage("/Orders/CreateOrder");
             }
