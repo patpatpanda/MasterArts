@@ -1,0 +1,95 @@
+﻿@page
+@using MasterArtsLibrary.Models;
+@model MasterArtsWeb.Pages.Orders.CreateOrderModel;
+
+<!-- CreateOrderModel.cshtml -->
+@if (TempData["SuccessMessage"] != null)
+{
+
+    <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 10px">@TempData["SuccessMessage"]</div>
+}
+
+
+
+
+<div class="form-style-10">
+
+
+    <h1>Book your shipment now!<span></span></h1>
+    <form method="post">
+
+        <div class="section"><span class="s-lol">1</span>Email and Telephone</div>
+        <div class="form-section">
+
+            <div class="inner-wrap">
+
+
+
+                <label asp-for="Order.CustomerOrderNumber">Email</label>
+                <input asp-for="Order.CustomerOrderNumber" class="form-control" required />
+                <span asp-validation-for="Order.CustomerOrderNumber" class="text-danger"></span>
+                <label asp-for="Order.OrderReference">Email</label>
+                <input asp-for="Order.OrderReference" class="form-control" required />
+                <span asp-validation-for="Order.OrderReference" class="text-danger"></span>
+
+
+                <label asp-for="Order.Customer">Email</label>
+                <input asp-for="Order.Customer" class="form-control" required />
+                <span asp-validation-for="Order.Customer" class="text-danger"></span>
+                
+                
+
+
+            </div>
+
+        <button type="submit" class="btn btn-primary">Create Order</button>
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+
+
+<script>
+    function toggleLanguage() {
+        var toggleBtn = document.getElementById('languageToggleBtn');
+        var contactForm = document.getElementById('contactForm');
+        var contactFormSv = document.getElementById('contactFormSv');
+
+        if (toggleBtn.innerText === 'Svenska') {
+            toggleBtn.innerText = 'English';
+            contactForm.style.display = 'none';
+            contactFormSv.style.display = 'block';
+        } else {
+            toggleBtn.innerText = 'Svenska';
+            contactForm.style.display = 'block';
+            contactFormSv.style.display = 'none';
+        }
+    }
+
+
+    setTimeout(function () {
+        var successMessage = document.getElementById("success-message");
+        successMessage.classList.remove("show");
+    }, 5000);
+
+    // Fade in the success message when the page is loaded
+    window.addEventListener("load", function () {
+        var successMessage = document.getElementById("success-message");
+        successMessage.classList.add("show");
+    });
+    function checkHoneypot() {
+        var honeypotField = document.getElementById("honeypot");
+        if (honeypotField.value) {
+            // Honeypot-fältet har fyllts i, antag att det är en robot
+            alert("Form submission failed. Please try again.");
+            return false;
+        }
+        return true;
+    }
+
+</script>
