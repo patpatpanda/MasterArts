@@ -21,22 +21,25 @@
 
 <form method="post" class="form">
     <div class="form-style-10">
+       
         <div class="form-container">
-            <label asp-for="Order.CustomerOrderNumber">Kundordernummer</label>
-            <input asp-for="Order.CustomerOrderNumber" class="form-control" required />
+            <h3>Details</h3>
+            <label asp-for="Order.CustomerOrderNumber">Customer Order Number</label>
+            <input asp-for="Order.CustomerOrderNumber" class="form-control" placeholder="Enter customer order number..." />
             <span asp-validation-for="Order.CustomerOrderNumber" class="text-danger"></span>
 
-            <label asp-for="Order.OrderReference">Orderreferens</label>
-            <input asp-for="Order.OrderReference" class="form-control" />
+            <label asp-for="Order.OrderReference">Order Reference</label>
+            <input asp-for="Order.OrderReference" class="form-control" placeholder="Enter order reference..." />
             <span asp-validation-for="Order.OrderReference" class="text-danger"></span>
 
-            <label asp-for="Order.Customer">Kund</label>
-            <input asp-for="Order.Customer" class="form-control" />
+            <label asp-for="Order.Customer">Customer</label>
+            <input asp-for="Order.Customer" class="form-control" placeholder="Enter customer..." />
             <span asp-validation-for="Order.Customer" class="text-danger"></span>
 
-            <label asp-for="Order.FreightService">Frakttjänst</label>
+
+            <label asp-for="Order.FreightService">Freight Service</label>
             <select asp-for="Order.FreightService" class="form-control">
-                <option value="">Välj frakttjänst</option>
+                <option value="">Select Freight Service</option>
                 <option value="OceanFreight">Ocean Freight</option>
                 <option value="Airfreight">Airfreight</option>
                 <option value="ExpressKurir">Express Kurir</option>
@@ -47,116 +50,118 @@
             </select>
             <span asp-validation-for="Order.FreightService" class="text-danger"></span>
 
-
-
-            <label asp-for="Order.DeliveryTimeFrom">Lastdatum</label>
+            <label asp-for="Order.DeliveryTimeFrom">Delivery Time From</label>
             <input asp-for="Order.DeliveryTimeFrom" type="datetime-local" class="form-control" />
             <span asp-validation-for="Order.DeliveryTimeFrom" class="text-danger"></span>
 
-            <label asp-for="Order.DeliveryTimeTo">Lossningsdatum</label>
+            <label asp-for="Order.DeliveryTimeTo">Delivery Time To</label>
             <input asp-for="Order.DeliveryTimeTo" type="datetime-local" class="form-control" />
             <span asp-validation-for="Order.DeliveryTimeTo" class="text-danger"></span>
 
-
-
-            <label>Lastningstid från</label>
+            <label>Pick Up Time From</label>
             <select asp-for="Order.PickUpTimeFrom" class="form-control">
                 <option value="08:00-15:00">08:00-15:00</option>
                 <option value="09:00-16:00">09:00-16:00</option>
 
-                <!-- Lägg till fler alternativ efter behov -->
+                <!-- Add more options as needed -->
             </select>
 
-            <label>Lastningstid till</label>
+            <label>Pick Up Time To</label>
             <select asp-for="Order.PickUpTimeTo" class="form-control">
                 <option value="08:00-15:00">08:00-15:00</option>
                 <option value="09:00-16:00">09:00-16:00</option>
 
-                <!-- Lägg till fler alternativ efter behov -->
+                <!-- Add more options as needed -->
             </select>
 
 
         </div>
-
+      
         <div class="form-container">
+            <h3>Consignor</h3>
             <label asp-for="Order.Consignor.ConsignorName">Consignor Name</label>
-            <input asp-for="Order.Consignor.ConsignorName" class="form-control" />
+            <input asp-for="Order.Consignor.ConsignorName" class="form-control" placeholder="Enter consignor name..." />
             <span asp-validation-for="Order.Consignor.ConsignorName" class="text-danger"></span>
 
             <label asp-for="Order.Consignor.ConsignorAddress1">Consignor Address 1</label>
-            <input asp-for="Order.Consignor.ConsignorAddress1" class="form-control" />
+            <input asp-for="Order.Consignor.ConsignorAddress1" class="form-control" placeholder="Enter consignor address 1..." />
             <span asp-validation-for="Order.Consignor.ConsignorAddress1" class="text-danger"></span>
 
             <label asp-for="Order.Consignor.ConsignorAddress2">Consignor Address 2</label>
-            <input asp-for="Order.Consignor.ConsignorAddress2" class="form-control" />
+            <input asp-for="Order.Consignor.ConsignorAddress2" class="form-control" placeholder="Enter consignor address 2..." />
             <span asp-validation-for="Order.Consignor.ConsignorAddress2" class="text-danger"></span>
 
+
             <label asp-for="Order.Consignor.ConsignorCity">Consignor City</label>
-            <input asp-for="Order.Consignor.ConsignorCity" class="form-control" />
+            <input asp-for="Order.Consignor.ConsignorCity" class="form-control" placeholder="Enter consignor city..." />
             <span asp-validation-for="Order.Consignor.ConsignorCity" class="text-danger"></span>
 
             <label asp-for="Order.Consignor.ConsignorCountry">Consignor Country</label>
-            <input asp-for="Order.Consignor.ConsignorCountry" class="form-control" />
+            <input asp-for="Order.Consignor.ConsignorCountry" class="form-control" placeholder="Enter consignor country..." />
             <span asp-validation-for="Order.Consignor.ConsignorCountry" class="text-danger"></span>
 
             <label asp-for="Order.Consignor.ConsignorZip">Consignor Zip</label>
-            <input asp-for="Order.Consignor.ConsignorZip" class="form-control" />
+            <input asp-for="Order.Consignor.ConsignorZip" class="form-control" placeholder="Enter consignor ZIP code..." />
             <span asp-validation-for="Order.Consignor.ConsignorZip" class="text-danger"></span>
 
+
             <label asp-for="Order.Consignor.ConsignorContact">Consignor Contact</label>
-            <input asp-for="Order.Consignor.ConsignorContact" class="form-control" />
+            <input asp-for="Order.Consignor.ConsignorContact" class="form-control" placeholder="Enter consignor contact name..." />
             <span asp-validation-for="Order.Consignor.ConsignorContact" class="text-danger"></span>
 
             <label asp-for="Order.Consignor.ConsignorPhone">Consignor Phone</label>
-            <input asp-for="Order.Consignor.ConsignorPhone" class="form-control" />
+            <input asp-for="Order.Consignor.ConsignorPhone" class="form-control" placeholder="Enter consignor phone number..." />
             <span asp-validation-for="Order.Consignor.ConsignorPhone" class="text-danger"></span>
 
             <label asp-for="Order.Consignor.ConsignorEmail">Consignor Email</label>
-            <input asp-for="Order.Consignor.ConsignorEmail" class="form-control" />
+            <input asp-for="Order.Consignor.ConsignorEmail" class="form-control" placeholder="Enter consignor email address..." />
             <span asp-validation-for="Order.Consignor.ConsignorEmail" class="text-danger"></span>
-        </div>
 
+        </div>
+       
         <div class="form-container">
+            <h3>Consignee</h3>
             <label asp-for="Order.Consignee.ConsigneeName">Consignee Name</label>
-            <input asp-for="Order.Consignee.ConsigneeName" class="form-control" />
+            <input asp-for="Order.Consignee.ConsigneeName" class="form-control" placeholder="Enter consignee name..." />
             <span asp-validation-for="Order.Consignee.ConsigneeName" class="text-danger"></span>
 
             <label asp-for="Order.Consignee.ConsigneeAddress1">Consignee Address 1</label>
-            <input asp-for="Order.Consignee.ConsigneeAddress1" class="form-control" />
+            <input asp-for="Order.Consignee.ConsigneeAddress1" class="form-control" placeholder="Enter consignee address line 1..." />
             <span asp-validation-for="Order.Consignee.ConsigneeAddress1" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneeAddress2">Consignee Address 2</label>
-            <input asp-for="Order.Consignee.ConsigneeAddress2" class="form-control" />
+            <label asp-for="Order.Consignee.ConsigneeAddress2">Consignee Address 2 (Optional)</label>
+            <input asp-for="Order.Consignee.ConsigneeAddress2" class="form-control" placeholder="Enter consignee address line 2..." />
             <span asp-validation-for="Order.Consignee.ConsigneeAddress2" class="text-danger"></span>
 
             <label asp-for="Order.Consignee.ConsigneeCity">Consignee City</label>
-            <input asp-for="Order.Consignee.ConsigneeCity" class="form-control" />
+            <input asp-for="Order.Consignee.ConsigneeCity" class="form-control" placeholder="Enter consignee city..." />
             <span asp-validation-for="Order.Consignee.ConsigneeCity" class="text-danger"></span>
 
             <label asp-for="Order.Consignee.ConsigneeCountry">Consignee Country</label>
-            <input asp-for="Order.Consignee.ConsigneeCountry" class="form-control" />
+            <input asp-for="Order.Consignee.ConsigneeCountry" class="form-control" placeholder="Enter consignee country..." />
             <span asp-validation-for="Order.Consignee.ConsigneeCountry" class="text-danger"></span>
 
             <label asp-for="Order.Consignee.ConsigneeZip">Consignee Zip</label>
-            <input asp-for="Order.Consignee.ConsigneeZip" class="form-control" />
+            <input asp-for="Order.Consignee.ConsigneeZip" class="form-control" placeholder="Enter consignee zip code..." />
             <span asp-validation-for="Order.Consignee.ConsigneeZip" class="text-danger"></span>
 
             <label asp-for="Order.Consignee.ConsigneeContact">Consignee Contact</label>
-            <input asp-for="Order.Consignee.ConsigneeContact" class="form-control" />
+            <input asp-for="Order.Consignee.ConsigneeContact" class="form-control" placeholder="Enter consignee contact name..." />
             <span asp-validation-for="Order.Consignee.ConsigneeContact" class="text-danger"></span>
 
             <label asp-for="Order.Consignee.ConsigneePhone">Consignee Phone</label>
-            <input asp-for="Order.Consignee.ConsigneePhone" class="form-control" />
+            <input asp-for="Order.Consignee.ConsigneePhone" class="form-control" placeholder="Enter consignee phone number..." />
             <span asp-validation-for="Order.Consignee.ConsigneePhone" class="text-danger"></span>
 
             <label asp-for="Order.Consignee.ConsigneeEmail">Consignee Email</label>
-            <input asp-for="Order.Consignee.ConsigneeEmail" class="form-control" />
+            <input asp-for="Order.Consignee.ConsigneeEmail" class="form-control" placeholder="Enter consignee email address..." />
             <span asp-validation-for="Order.Consignee.ConsigneeEmail" class="text-danger"></span>
+
         </div>
 
        
 
-        <button type="submit" class="btn btn-primary">Create Order</button>
+        <button type="submit" class="btn btn-primary" style="margin-top:20px">Create Order</button>
     </div>
 </form>
 
