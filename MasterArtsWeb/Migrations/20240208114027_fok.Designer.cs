@@ -4,6 +4,7 @@ using MasterArtsWeb;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MasterArtsWeb.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240208114027_fok")]
+    partial class fok
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,6 +194,9 @@ namespace MasterArtsWeb.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DeliveryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("DeliveryTimeFrom")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -224,6 +230,8 @@ namespace MasterArtsWeb.Migrations
                     b.HasIndex("ConsigneeId");
 
                     b.HasIndex("ConsignorId");
+
+                    b.HasIndex("DeliveryId");
 
                     b.ToTable("Orders");
                 });
@@ -444,9 +452,17 @@ namespace MasterArtsWeb.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MasterArtsLibrary.Models.Delivery", "Delivery")
+                        .WithMany()
+                        .HasForeignKey("DeliveryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Consignee");
 
                     b.Navigation("Consignor");
+
+                    b.Navigation("Delivery");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

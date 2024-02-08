@@ -9,16 +9,16 @@ namespace MasterArtsLibrary.Models
     
     public class Order
     {
-         public int Id { get; set; }
+        public int Id { get; set; }
         public string IntegrationId { get; set; }
         public string CustomerOrderNumber { get; set; }
         public string OrderReference { get; set; }
         public string Customer { get; set; }
         public string FreightService { get; set; }
-        public DateTime DeliveryTimeFrom { get; set; }
-        public DateTime DeliveryTimeTo { get; set; }
-        public DateTime PickUpTimeFrom { get; set; }
-        public DateTime PickUpTimeTo { get; set; }
+        public string DeliveryTimeFrom { get; set; } // Ändra datatypen till string
+        public string DeliveryTimeTo { get; set; }   // Ändra datatypen till string
+        public string PickUpTimeFrom { get; set; }   // Ändra datatypen till string
+        public string PickUpTimeTo { get; set; }
 
         // Avsändare (consignor) attribut
         public Consignor Consignor { get; set; }
@@ -27,7 +27,7 @@ namespace MasterArtsLibrary.Models
         public Consignee Consignee { get; set; }
 
         // Leveransinformation (delivery) attribut
-        public Delivery Delivery { get; set; }
+        
 
 
         public Order()
