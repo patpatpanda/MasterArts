@@ -12,7 +12,10 @@ namespace MasterArtsWeb
         }
 
         public DbSet<Order> Orders { get; set; }
-       
+        public DbSet<Consignee> Consignees { get; set; }
+        public DbSet<Consignor> Consignors { get; set; }
+        public DbSet<Delivery> Deliveries { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

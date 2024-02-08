@@ -6,16 +6,7 @@ using System.Threading.Tasks;
 
 namespace MasterArtsLibrary.Models
 {
-    public enum ShippingServiceName
-    {
-        OceanFreight,
-        Airfreight,
-        ExpressKurir,
-        Road,
-        Trainfreight,
-        StandardKurir,
-        Linehaul
-    }
+    
     public class Order
     {
          public int Id { get; set; }
@@ -23,7 +14,7 @@ namespace MasterArtsLibrary.Models
         public string CustomerOrderNumber { get; set; }
         public string OrderReference { get; set; }
         public string Customer { get; set; }
-        public ShippingServiceName FreightService { get; set; }
+        public string FreightService { get; set; }
         public DateTime DeliveryTimeFrom { get; set; }
         public DateTime DeliveryTimeTo { get; set; }
         public DateTime PickUpTimeFrom { get; set; }

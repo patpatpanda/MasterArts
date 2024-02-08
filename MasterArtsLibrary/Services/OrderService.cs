@@ -73,8 +73,8 @@ namespace MasterArtsLibrary.Services
                     order = Order;
                 }
             }
-            
 
+        }
             //public async Task CreateOrderInApi(Order order)
             //{
             //    var apiUrl = _configuration.GetSection("ApiUrl").Value;
@@ -134,4 +134,4 @@ namespace MasterArtsLibrary.Services
 
         }
     }
-}
+

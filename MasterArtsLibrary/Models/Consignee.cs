@@ -8,6 +8,7 @@ namespace MasterArtsLibrary.Models
 {
     public class Consignee
     {
+        public int Id { get; set; }
         public string ConsigneeName { get; set; }
         public string ConsigneeAddress1 { get; set; }
         public string ConsigneeAddress2 { get; set; }

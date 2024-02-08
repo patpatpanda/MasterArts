@@ -13,7 +13,9 @@ body, html {
     min-height: 100vh;
     color: #333;
 }
-
+#myView {
+    background: linear-gradient(45deg, #FC466B, #3F5EFB);
+}
 header {
     position: relative;
     width: 100%;

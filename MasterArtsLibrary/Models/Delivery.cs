@@ -8,6 +8,7 @@ namespace MasterArtsLibrary.Models
 {
     public class Delivery
     {
+        public int Id { get; set; }
         public string DeliveryName { get; set; }
         public string DeliveryAddress1 { get; set; }
         public string DeliveryAddress2 { get; set; }
