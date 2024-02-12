@@ -31,7 +31,7 @@ header {
     width: 100%;
     height: 500px;
     overflow: hidden;
-    background-color: #ff66b2;
+    background-color: black;
 }
 
 .form-style-10 {
@@ -403,7 +403,8 @@ go-weather {
 }
 
 #myContact header {
-    background-color: #ff66b2;
+   
+    background: Black;
     height: 400px
 }
 
@@ -416,12 +417,12 @@ go-weather {
 }
 
 #myAbout header {
-    background-color: #ff66b2;
+    background: Black;
     height: 400px;
 }
 
 #myShip header {
-    background-color: #ff66b2;
+    background: Black;
     height: 400px;
 }
 
@@ -586,7 +587,7 @@ go-weather {
     }
 
 #myS header {
-    background-color: #ff66b2;
+    background: Black;
     height: 400px;
 }
 
@@ -595,7 +596,7 @@ go-weather {
 }
 
 #myShip header {
-    background-color: #ff66b2;
+ 
     height: 400px;
 }
 
@@ -605,7 +606,7 @@ go-weather {
 
 
 #mySus header {
-    background-color: #ff66b2;
+    
     height: 400px;
 }
 
@@ -1618,7 +1619,7 @@ input {
         width: 100%;
         height: 400px;
         overflow: hidden;
-        background-color: #ff66b2;
+       
     }
 
     .moby {
