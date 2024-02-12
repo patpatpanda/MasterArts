@@ -26,8 +26,8 @@ namespace MasterArtsLibrary.Models
         // Mottagare (consignee) attribut
         public Consignee Consignee { get; set; }
 
-        // Leveransinformation (delivery) attribut
-        
+        public Goods Goods { get; set; }
+
 
 
         public Order()
