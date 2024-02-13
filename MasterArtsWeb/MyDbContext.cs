@@ -15,6 +15,8 @@ namespace MasterArtsWeb
         public DbSet<Consignee> Consignees { get; set; }
         public DbSet<Consignor> Consignors { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
+        public DbSet<Goods> Goods { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

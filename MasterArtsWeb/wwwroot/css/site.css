@@ -954,13 +954,27 @@ h3 {
         font-size: 18px;
         z-index: 1
     }
+.calculator-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-fields {
+    width: 45%;
+}
+
+.results-container {
+    width: 45%;
+}
 
 
 .calculator-container {
     display: flex;
     justify-content: space-between;
-   
-    
+    background-color: #fff;
+    background-size: cover; /* Anpassa bilden för att täcka hela bakgrunden */
+    background-repeat: no-repeat;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .shipment-form {
@@ -1005,12 +1019,12 @@ h3 {
 }
 
 .results-container {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: White;
     backdrop-filter: blur(10px);
     border-radius: 10px;
     padding: 20px;
-   
-   
+    background-size: cover; /* Anpassa bilden för att täcka hela bakgrunden */
+    background-repeat: no-repeat;
 }
 
 .results-heading {
@@ -1037,8 +1051,8 @@ h3 {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    
+   
 }
 
 .qop-1 {
