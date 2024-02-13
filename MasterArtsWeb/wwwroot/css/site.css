@@ -9,12 +9,12 @@
 body, html {
     margin: 0;
     padding: 0;
-    background-color: #fffafa;
+    background-color: #6c7a89;
     min-height: 100vh;
-    color: #333;
+    color: black;
 }
 #myView {
-    background: #FFD1DC;
+    background: #6c7a89;
 }
 #myView header{
     height:400px;
@@ -276,6 +276,18 @@ h2 {
     gap: 40px;
     padding: 20px;
     color: #333;
+}
+.valuta-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
 }
 
 
@@ -954,31 +966,33 @@ h3 {
         font-size: 18px;
         z-index: 1
     }
-.calculator-container {
-    display: flex;
-    justify-content: space-between;
-}
+
 
 .input-fields {
     width: 45%;
 }
 
-.results-container {
-    width: 45%;
-}
+
 
 
 .calculator-container {
     display: flex;
-    justify-content: space-between;
-    background-color: #fff;
-    background-size: cover; /* Anpassa bilden för att täcka hela bakgrunden */
-    background-repeat: no-repeat;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+   gap:33px
+    
+    
 }
 
 .shipment-form {
     background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Adjust the width as needed */
+}
+.shipment-form-2 {
+    background-color: black;
+    color:#fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -1019,24 +1033,26 @@ h3 {
 }
 
 .results-container {
-    background-color: White;
-    backdrop-filter: blur(10px);
+    background-color: black;
+    color: white;
+   
     border-radius: 10px;
     padding: 20px;
-    background-size: cover; /* Anpassa bilden för att täcka hela bakgrunden */
-    background-repeat: no-repeat;
+    
+    
+   
 }
 
 .results-heading {
     font-size: 24px;
     font-weight: bold;
-    color: #333; /* Färg för rubrik */
+    color: #fff; /* Färg för rubrik */
     margin-bottom: 10px;
 }
 
 .result {
     font-size: 18px;
-    color: #555; /* Färg för resultattext */
+    color: #fff; /* Färg för resultattext */
     margin-bottom: 8px;
     margin-bottom: 40px;
 }
@@ -1052,7 +1068,6 @@ h3 {
     justify-content: center;
     align-items: center;
     
-   
 }
 
 .qop-1 {
@@ -1060,7 +1075,7 @@ h3 {
     margin: 0 auto;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
+    box-shadow: 0 30px 60px rgba(0, 0, 255, 0.4);
 }
 
 .qop-3 {
@@ -1078,8 +1093,8 @@ h3 {
 }
 
 .qop-4 {
-    margin-top: 200px;
-    margin-bottom: 200px;
+    margin-top: 100px;
+    margin-bottom: 100px;
     background-color: #e6f7ec;
     box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
     padding: 20px;
@@ -1483,7 +1498,11 @@ input {
         max-width: 800px;
         width: 100%;
     }
-
+    .form-style-10 {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: 40px;
+    }
     .benefits {
         font-size: 18px;
         color: #666;
@@ -1947,17 +1966,16 @@ footer {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
     padding: 40px;
     max-width: 400px;
     width: 100%;
-   
 }
 .form-container-2 {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
     padding: 40px;
     max-width: 800px;
     width: 100%;

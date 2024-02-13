@@ -1,17 +1,22 @@
 using MasterArtsLibrary.Services;
+using MasterArtsLibrary.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 
 namespace MasterArtsWeb.Pages.LogisticsCenter
 {
-    public class ShipmentCalculatorModel : BaseModel
+    public class ShipmentCalculatorModel : PageModel
     {
 
-        public ShipmentCalculatorModel(LanguageService languageService)
-                : base(languageService)
+        public ShipmentCalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory)
+                
         {
-
+            _clientFactory = clientFactory;
+            _languageService = languageService;
         }
+
+        private readonly IHttpClientFactory _clientFactory;
         [BindProperty]
         public double Length { get; set; }
 
@@ -62,13 +67,20 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
 
         public double ChargeableWeight => TotalVolumeWeight > TotalActualWeight ? TotalVolumeWeight : TotalActualWeight;
 
-
-
-        public void OnGetCalculator()
+        public CurrencyExchangeRates CurrencyData { get; set; }
+        public string BaseCurrency { get; set; } = "SEK";
+        private readonly LanguageService _languageService;
+        public string CurrentLanguage { get; set; }
+        public async Task<IActionResult> OnGet()
         {
+            CurrentLanguage = _languageService.GetCurrentLanguage();
+            var client = _clientFactory.CreateClient();
+            var response = await client.GetStringAsync($"https://api.exchangerate-api.com/v4/latest/{BaseCurrency}");
 
+            CurrencyData = JsonConvert.DeserializeObject<CurrencyExchangeRates>(response);
+            return  Page();
         }
-        public void OnPostCalculator()
+        public void OnPost()
         {
             // Do nothing on post for now
         }
