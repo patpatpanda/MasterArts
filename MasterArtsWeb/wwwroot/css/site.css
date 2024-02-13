@@ -15,7 +15,8 @@ body, html {
     color: black;
 }
 #myView {
-    background: #6c7a89;
+    background-color: #6c7a89;
+    
 }
 #myView header{
     height:400px;
@@ -285,7 +286,7 @@ h2 {
     gap: 40px;
     padding: 20px;
     color: #fff;
-    background: rgba(255, 255, 255, 0.2);
+    background: black;
     backdrop-filter: blur(10px);
     border-radius: 10px;
     box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
