@@ -9,7 +9,8 @@
 body, html {
     margin: 0;
     padding: 0;
-    background-color: #6c7a89;
+    background-color: #fffafa;
+    
     min-height: 100vh;
     color: black;
 }
