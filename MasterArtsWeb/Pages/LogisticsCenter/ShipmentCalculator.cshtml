@@ -3,73 +3,298 @@
 @{
 }
 
+@if (TempData["SuccessMessage"] != null)
+{
 
-<body id="myView">
+    <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 10px">@TempData["SuccessMessage"]</div>
+}
+<body id="myShip">
 
 </body>
-<a asp-area="" asp-page="/Orders/CreateOrder" class="btn btn-primary" style="margin-top:30px">Create Order</a>
+
+  
+
+  <div class="calc">
+    <div class="calculator-container" style="margin-top:50px">
+
+        <form id="calculator-form" class="shipment-form-2" asp-page-handler="Calculator">
+            <label for="length" class="form-label-2" style="color:#fff">Length (cm): </label>
+            <input type="text" id="length" name="length" class="form-input" asp-for="Length" />
+
+            <label for="width" class="form-label-2" style="color:#fff">Width (cm): </label>
+            <input type="text" id="width" name="width" class="form-input" asp-for="Width" />
+
+            <label for="height" class="form-label-2" style="color:#fff">Height (cm): </label>
+            <input type="text" id="height" name="height" class="form-input" asp-for="Height" />
+
+            <label for="actualWeight" class="form-label-2" style="color:#fff">Actual weight (kg): </label>
+            <input type="text" id="actualWeight" name="actualWeight" class="form-input-2" asp-for="ActualWeight" />
+
+            <label for="pieces" class="form-label-2" style="color:#fff">Pieces: </label>
+            <input type="text" id="pieces" name="pieces" class="form-input-2" asp-for="Pieces" />
+
+            <label for="selectedDensity" class="form-label">Select Density:</label>
+            <select id="selectedDensity" name="selectedDensity" class="form-select" asp-for="SelectedDensity">
+                <option value="1:1">1:1</option>
+                <option value="1:2">1:2</option>
+                <option value="1:3">1:3</option>
+                <option value="1:4">1:4</option>
+                <option value="1:5">1:5</option>
+                <option value="1:6">1:6</option>
+                <option value="1:7">1:7</option>
+                <option value="1:8">1:8</option>
+                <option value="1:9">1:9</option>
+                <option value="1:10">1:10</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary" style="margin-top:20px">Calculate</button>
+
+            <div class="results-container">
+                <h2 class="results-heading">Results:</h2>
+                <p class="result" id="totalVolume">Total Volume: @(Model.TotalVolume * Model.Pieces) m³</p>
+                <p class="result" id="totalVolumeWeight">Total Volume weight: @Model.TotalVolumeWeight kg</p>
+                <p class="result" id="totalActualWeight">Total Actual weight: @Model.TotalActualWeight kg</p>
+                <p class="result" id="chargeableWeight">Chargeable weight: @Model.ChargeableWeight kg</p>
+            </div>
+
+        </form>
 
 
-
-<div class="calculator-container"style="margin-top:20px">
-    <form method="post" class="shipment-form-2" asp-page-handler="Calculator">
-        <label for="length" class="form-label-2" style="color:white">Length (cm): </label>
-        <input type="text" id="length" name="length" class="form-input" asp-for="Length" />
-
-        <label for="width" class="form-label-2" style="color:white">Width (cm): </label>
-        <input type="text" id="width" name="width" class="form-input" asp-for="Width" />
-
-        <label for="height" class="form-label-2" style="color:white">Height (cm): </label>
-        <input type="text" id="height" name="height" class="form-input"  asp-for="Height" />
-
-        <label for="actualWeight" class="form-label-2" style="color:white">Actual weight (kg): </label>
-        <input type="text" id="actualWeight" name="actualWeight" class="form-input-2" asp-for="ActualWeight" />
-
-        <label for="pieces" class="form-label-2" style="color:white">Pieces: </label>
-        <input type="text" id="pieces" name="pieces" class="form-input-2" asp-for="Pieces" />
-
-        <label for="selectedDensity" class="form-label">Select Density:</label>
-        <select id="selectedDensity" name="selectedDensity" class="form-select" asp-for="SelectedDensity">
-            <option value="1:1">1:1</option>
-            <option value="1:2">1:2</option>
-            <option value="1:3">1:3</option>
-            <option value="1:4">1:4</option>
-            <option value="1:5">1:5</option>
-            <option value="1:6">1:6</option>
-            <option value="1:7">1:7</option>
-            <option value="1:8">1:8</option>
-            <option value="1:9">1:9</option>
-            <option value="1:10">1:10</option>
-        </select>
-
-        <input type="submit" value="Calculate" class="form-submit" />
-    </form>
-    
-    <div class="results-container">
-        <h2 class="results-heading">Results:</h2>
-        <p class="result">Total Volume: @(Model.TotalVolume * Model.Pieces) m³</p>
-        <p class="result">Total Volume weight: @Model.TotalVolumeWeight kg</p>
-        <p class="result">Total Actual weight: @Model.TotalActualWeight kg</p>
-        <p class="result">Chargeable weight: @Model.ChargeableWeight kg</p>
-    </div>
-    <div class="valuta-3">
-        @if (Model.CurrencyData != null)
-        {
-            <p>
-                <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/USD: @Math.Round(1 / Model.CurrencyData.Rates["USD"], 2)
-            </p>
-            <p>
-                <i class="fa-sharp fa-thin fa-money-bill"></i>   SEK/EUR: @Math.Round(1 / Model.CurrencyData.Rates["EUR"], 2)
-            </p>
-            <p>
-                <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/GBP: @Math.Round(1 / Model.CurrencyData.Rates["GBP"], 2)
-            </p>
-            <p>
-                <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/DKK: @Math.Round(1 / Model.CurrencyData.Rates["DKK"], 2)
-            </p>
-            <p>
-                <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/NOK: @Math.Round(1 / Model.CurrencyData.Rates["NOK"], 2)
-            </p>
-        }
     </div>
 </div>
+    
+ 
+    
+
+
+
+
+
+<form method="post" class="form" style="margin-top:300px">
+    
+    
+    <div class="form-style-10">
+
+        <div class="form-container">
+            <h3 class="text-center" style="color:#333">Details</h3>
+            <label asp-for="Order.CustomerOrderNumber">Customer Order Number</label>
+            <input asp-for="Order.CustomerOrderNumber" class="form-control" placeholder="Enter customer order number..." />
+            <span asp-validation-for="Order.CustomerOrderNumber" class="text-danger"></span>
+
+            <label asp-for="Order.OrderReference">Order Reference</label>
+            <input asp-for="Order.OrderReference" class="form-control" placeholder="Enter order reference..." />
+            <span asp-validation-for="Order.OrderReference" class="text-danger"></span>
+
+            <label asp-for="Order.Customer">Customer</label>
+            <input asp-for="Order.Customer" class="form-control" placeholder="Enter customer..." />
+            <span asp-validation-for="Order.Customer" class="text-danger"></span>
+
+
+            <label asp-for="Order.FreightService">Freight Service</label>
+            <select asp-for="Order.FreightService" class="form-control">
+                <option value="">Select Freight Service</option>
+                <option value="OceanFreight">Ocean Freight</option>
+                <option value="Airfreight">Airfreight</option>
+                <option value="ExpressKurir">Express Kurir</option>
+                <option value="Road">Road</option>
+                <option value="Trainfreight">Trainfreight</option>
+                <option value="StandardKurir">Standard Kurir</option>
+                <option value="Linehaul">Linehaul</option>
+            </select>
+            <span asp-validation-for="Order.FreightService" class="text-danger"></span>
+
+            <label asp-for="Order.DeliveryTimeFrom">Delivery Time From</label>
+            <input asp-for="Order.DeliveryTimeFrom" type="datetime-local" class="form-control" />
+            <span asp-validation-for="Order.DeliveryTimeFrom" class="text-danger"></span>
+
+            <label asp-for="Order.DeliveryTimeTo">Delivery Time To</label>
+            <input asp-for="Order.DeliveryTimeTo" type="datetime-local" class="form-control" />
+            <span asp-validation-for="Order.DeliveryTimeTo" class="text-danger"></span>
+
+            <label>Pick Up Time From</label>
+            <select asp-for="Order.PickUpTimeFrom" class="form-control">
+                <option value="08:00-15:00">08:00-15:00</option>
+                <option value="09:00-16:00">09:00-16:00</option>
+
+                <!-- Add more options as needed -->
+            </select>
+
+            <label>Pick Up Time To</label>
+            <select asp-for="Order.PickUpTimeTo" class="form-control">
+                <option value="08:00-15:00">08:00-15:00</option>
+                <option value="09:00-16:00">09:00-16:00</option>
+
+                <!-- Add more options as needed -->
+            </select>
+
+
+        </div>
+
+        <div class="form-container">
+            <h3 class="text-center" style="color:#333">Consignor</h3>
+            <label asp-for="Order.Consignor.ConsignorName">Consignor Name</label>
+            <input asp-for="Order.Consignor.ConsignorName" class="form-control" placeholder="Enter consignor name..." />
+            <span asp-validation-for="Order.Consignor.ConsignorName" class="text-danger"></span>
+
+            <label asp-for="Order.Consignor.ConsignorAddress1">Consignor Address 1</label>
+            <input asp-for="Order.Consignor.ConsignorAddress1" class="form-control" placeholder="Enter consignor address 1..." />
+            <span asp-validation-for="Order.Consignor.ConsignorAddress1" class="text-danger"></span>
+
+            <label asp-for="Order.Consignor.ConsignorAddress2">Consignor Address 2</label>
+            <input asp-for="Order.Consignor.ConsignorAddress2" class="form-control" placeholder="Enter consignor address 2..." />
+            <span asp-validation-for="Order.Consignor.ConsignorAddress2" class="text-danger"></span>
+
+
+            <label asp-for="Order.Consignor.ConsignorCity">Consignor City</label>
+            <input asp-for="Order.Consignor.ConsignorCity" class="form-control" placeholder="Enter consignor city..." />
+            <span asp-validation-for="Order.Consignor.ConsignorCity" class="text-danger"></span>
+
+            <label asp-for="Order.Consignor.ConsignorCountry">Consignor Country</label>
+            <input asp-for="Order.Consignor.ConsignorCountry" class="form-control" placeholder="Enter consignor country..." />
+            <span asp-validation-for="Order.Consignor.ConsignorCountry" class="text-danger"></span>
+
+            <label asp-for="Order.Consignor.ConsignorZip">Consignor Zip</label>
+            <input asp-for="Order.Consignor.ConsignorZip" class="form-control" placeholder="Enter consignor ZIP code..." />
+            <span asp-validation-for="Order.Consignor.ConsignorZip" class="text-danger"></span>
+
+
+            <label asp-for="Order.Consignor.ConsignorContact">Consignor Contact</label>
+            <input asp-for="Order.Consignor.ConsignorContact" class="form-control" placeholder="Enter consignor contact name..." />
+            <span asp-validation-for="Order.Consignor.ConsignorContact" class="text-danger"></span>
+
+            <label asp-for="Order.Consignor.ConsignorPhone">Consignor Phone</label>
+            <input asp-for="Order.Consignor.ConsignorPhone" class="form-control" placeholder="Enter consignor phone number..." />
+            <span asp-validation-for="Order.Consignor.ConsignorPhone" class="text-danger"></span>
+
+            <label asp-for="Order.Consignor.ConsignorEmail">Consignor Email</label>
+            <input asp-for="Order.Consignor.ConsignorEmail" class="form-control" placeholder="Enter consignor email address..." />
+            <span asp-validation-for="Order.Consignor.ConsignorEmail" class="text-danger"></span>
+
+        </div>
+
+        <div class="form-container">
+            <h3 class="text-center" style="color:#333">Consignee</h3>
+            <label asp-for="Order.Consignee.ConsigneeName">Consignee Name</label>
+            <input asp-for="Order.Consignee.ConsigneeName" class="form-control" placeholder="Enter consignee name..." />
+            <span asp-validation-for="Order.Consignee.ConsigneeName" class="text-danger"></span>
+
+            <label asp-for="Order.Consignee.ConsigneeAddress1">Consignee Address 1</label>
+            <input asp-for="Order.Consignee.ConsigneeAddress1" class="form-control" placeholder="Enter consignee address line 1..." />
+            <span asp-validation-for="Order.Consignee.ConsigneeAddress1" class="text-danger"></span>
+
+            <label asp-for="Order.Consignee.ConsigneeAddress2">Consignee Address 2 (Optional)</label>
+            <input asp-for="Order.Consignee.ConsigneeAddress2" class="form-control" placeholder="Enter consignee address line 2..." />
+            <span asp-validation-for="Order.Consignee.ConsigneeAddress2" class="text-danger"></span>
+
+            <label asp-for="Order.Consignee.ConsigneeCity">Consignee City</label>
+            <input asp-for="Order.Consignee.ConsigneeCity" class="form-control" placeholder="Enter consignee city..." />
+            <span asp-validation-for="Order.Consignee.ConsigneeCity" class="text-danger"></span>
+
+            <label asp-for="Order.Consignee.ConsigneeCountry">Consignee Country</label>
+            <input asp-for="Order.Consignee.ConsigneeCountry" class="form-control" placeholder="Enter consignee country..." />
+            <span asp-validation-for="Order.Consignee.ConsigneeCountry" class="text-danger"></span>
+
+            <label asp-for="Order.Consignee.ConsigneeZip">Consignee Zip</label>
+            <input asp-for="Order.Consignee.ConsigneeZip" class="form-control" placeholder="Enter consignee zip code..." />
+            <span asp-validation-for="Order.Consignee.ConsigneeZip" class="text-danger"></span>
+
+            <label asp-for="Order.Consignee.ConsigneeContact">Consignee Contact</label>
+            <input asp-for="Order.Consignee.ConsigneeContact" class="form-control" placeholder="Enter consignee contact name..." />
+            <span asp-validation-for="Order.Consignee.ConsigneeContact" class="text-danger"></span>
+
+            <label asp-for="Order.Consignee.ConsigneePhone">Consignee Phone</label>
+            <input asp-for="Order.Consignee.ConsigneePhone" class="form-control" placeholder="Enter consignee phone number..." />
+            <span asp-validation-for="Order.Consignee.ConsigneePhone" class="text-danger"></span>
+
+            <label asp-for="Order.Consignee.ConsigneeEmail">Consignee Email</label>
+            <input asp-for="Order.Consignee.ConsigneeEmail" class="form-control" placeholder="Enter consignee email address..." />
+            <span asp-validation-for="Order.Consignee.ConsigneeEmail" class="text-danger"></span>
+
+        </div>
+
+
+
+        
+    </div>
+
+    <div class="container" style="margin-top:100px">
+        <div class="row">
+
+            <div class="col-md-8 offset-md-2">
+                <div class="form-container-2">
+                    <h3 class="text-center" style="color:#333">Goods</h3>
+                    <label asp-for="Order.Goods.PackageId">Package ID<span class="required">*</span></label>
+                    <input asp-for="Order.Goods.PackageId" class="form-control" placeholder="Enter package ID..." required />
+
+                    <span asp-validation-for="Order.Goods.PackageId" class="text-danger"></span>
+
+                    <label asp-for="Order.Goods.MarksNumbers">Marks Numbers<span class="required">*</span></label>
+                    <input asp-for="Order.Goods.MarksNumbers" class="form-control" placeholder="Enter marks numbers..." required />
+
+                    <span asp-validation-for="Order.Goods.MarksNumbers" class="text-danger"></span>
+
+                    <label asp-for="Order.Goods.Description">Description<span class="required">*</span></label>
+<textarea asp-for="Order.Goods.Description" class="form-control" placeholder="Enter description..." required></textarea>
+
+                    <span asp-validation-for="Order.Goods.Description" class="text-danger"></span>
+
+                    <label asp-for="Order.Goods.PackageType">Package Type<span class="required">*</span></label>
+                    <input asp-for="Order.Goods.PackageType" class="form-control" placeholder="Enter package type..." required />
+
+                    <span asp-validation-for="Order.Goods.PackageType" class="text-danger"></span>
+
+                    <label asp-for="Order.Goods.Quantity">Quantity<span class="required">*</span></label>
+                    <input asp-for="Order.Goods.Quantity" type="number" class="form-control" placeholder="Enter quantity..." required />
+
+                    <span asp-validation-for="Order.Goods.Quantity" class="text-danger"></span>
+
+                    <label asp-for="Order.Goods.Height">Height<span class="required">*</span></label>
+                    <input asp-for="Order.Goods.Height" type="number" class="form-control" placeholder="Enter height..." required />
+
+                    <span asp-validation-for="Order.Goods.Height" class="text-danger"></span>
+
+                    <label asp-for="Order.Goods.Length">Length<span class="required">*</span></label>
+                    <input asp-for="Order.Goods.Length" type="number" class="form-control" placeholder="Enter length..." required />
+
+                    <span asp-validation-for="Order.Goods.Length" class="text-danger"></span>
+
+                    <label asp-for="Order.Goods.Width">Width<span class="required">*</span></label>
+                    <input asp-for="Order.Goods.Width" type="number" class="form-control" placeholder="Enter width..." required />
+
+                    <span asp-validation-for="Order.Goods.Width" class="text-danger"></span>
+
+                    <label asp-for="Order.Goods.Volume">Volume<span class="required">*</span></label>
+                    <input asp-for="Order.Goods.Volume" type="number" class="form-control" placeholder="Enter volume..." required />
+
+                    <span asp-validation-for="Order.Goods.Volume" class="text-danger"></span>
+
+                    <label asp-for="Order.Goods.VolumeUnit">Volume Unit<span class="required">*</span></label>
+                    <input asp-for="Order.Goods.VolumeUnit" class="form-control" placeholder="Enter volume unit..." required />
+
+                    <span asp-validation-for="Order.Goods.VolumeUnit" class="text-danger"></span>
+
+                    <label asp-for="Order.Goods.GrossWeight">Gross Weight<span class="required">*</span></label>
+                    <input asp-for="Order.Goods.GrossWeight" type="number" class="form-control" placeholder="Enter gross weight..." required />
+
+                    <span asp-validation-for="Order.Goods.GrossWeight" class="text-danger"></span>
+
+                    <label asp-for="Order.Goods.NetWeight">Net Weight<span class="required">*</span></label>
+                    <input asp-for="Order.Goods.NetWeight" type="number" class="form-control" placeholder="Enter net weight..." required />
+
+                    <span asp-validation-for="Order.Goods.NetWeight" class="text-danger"></span>
+
+                    <label asp-for="Order.Goods.Remarks">Remarks</label>
+                    <input asp-for="Order.Goods.Remarks" class="form-control" placeholder="Enter remarks..." />
+                    
+                    <span asp-validation-for="Order.Goods.Remarks" class="text-danger"></span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn-large text-center" style="margin-top:20px">Create Order</button>
+</form>
+
+
+
+

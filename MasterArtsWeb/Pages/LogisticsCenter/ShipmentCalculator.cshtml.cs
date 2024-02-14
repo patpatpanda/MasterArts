@@ -1,3 +1,4 @@
+using MasterArtsLibrary.Models;
 using MasterArtsLibrary.Services;
 using MasterArtsLibrary.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -9,12 +10,17 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
     public class ShipmentCalculatorModel : PageModel
     {
 
-        public ShipmentCalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory)
+        public ShipmentCalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory,OrderService orderService)
                 
         {
             _clientFactory = clientFactory;
             _languageService = languageService;
+            _orderService = orderService;
         }
+        private readonly OrderService _orderService;
+        [BindProperty]
+        public Order Order { get; set; }
+       
 
         private readonly IHttpClientFactory _clientFactory;
         [BindProperty]
@@ -80,9 +86,26 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             CurrencyData = JsonConvert.DeserializeObject<CurrencyExchangeRates>(response);
             return  Page();
         }
-        public void OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
-            // Do nothing on post for now
+            CurrentLanguage = _languageService.ToggleLanguage();
+            ViewData["Language"] = CurrentLanguage;
+            
+            if (ModelState.IsValid)
+            {
+
+                // Skapa order i API
+                await _orderService.CreateOrderInApi(Order);
+
+                var recipientEmail = Order.Consignor.ConsignorEmail;
+                await _orderService.SendOrderConfirmationEmail(recipientEmail, Order);
+
+                TempData["SuccessMessage"] = "Your order has been sent";
+                return RedirectToPage("/Orders/CreateOrder");
+            }
+
+            return Page();
+           
         }
         private double ExtractDensityRatio(string selectedDensity)
         {

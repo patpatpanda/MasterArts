@@ -25,7 +25,7 @@
 
 
 
-<p style="font-size:2.5em" class="text-center">LOGISTICS MADE EASIER THAN EVER</p>
+<h1 class="slogan">LOGISTICS MADE <span class="highlight">EASIER THAN EVER</span></h1>
 <div>
 
     <div class="kajsa">
@@ -744,7 +744,26 @@
     </div>
 
 </div>
-
+<div class="valuta-3">
+    @if (Model.CurrencyData != null)
+    {
+        <p>
+            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/USD: @Math.Round(1 / Model.CurrencyData.Rates["USD"], 2)
+        </p>
+        <p>
+            <i class="fa-sharp fa-thin fa-money-bill"></i>   SEK/EUR: @Math.Round(1 / Model.CurrencyData.Rates["EUR"], 2)
+        </p>
+        <p>
+            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/GBP: @Math.Round(1 / Model.CurrencyData.Rates["GBP"], 2)
+        </p>
+        <p>
+            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/DKK: @Math.Round(1 / Model.CurrencyData.Rates["DKK"], 2)
+        </p>
+        <p>
+            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/NOK: @Math.Round(1 / Model.CurrencyData.Rates["NOK"], 2)
+        </p>
+    }
+</div>
 
 
 

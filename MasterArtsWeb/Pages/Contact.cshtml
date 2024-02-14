@@ -32,7 +32,7 @@
         <form method="post" asp-page-handler="OnPost" onsubmit="return checkHoneypot()">
             <div class="form-row">
                 <div class="form-group col-md-7">
-                    <label asp-for="CompanyName" class="form-label">Company Name</label>
+                    <label asp-for="CompanyName" class="form-label"style="color:#fff">Company Name</label>
                     <input asp-for="CompanyName" class="form-control" />
 
                 </div>
@@ -41,12 +41,12 @@
 
             <div class="form-row">
                 <div class="form-group col-md-7">
-                    <label asp-for="Name" class="form-label">Your Name</label>
+                    <label asp-for="Name" class="form-label" style="color:#fff">Your Name</label>
                     <input asp-for="Name" class="form-control" required />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-7">
-                    <label asp-for="Phone" class="form-label">Phone</label>
+                    <label asp-for="Phone" class="form-label" style="color:#fff">Phone</label>
                     <input asp-for="Phone" class="form-control" />
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
@@ -54,7 +54,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-7">
-                    <label asp-for="Email" class="form-label">Email</label>
+                    <label asp-for="Email" class="form-label" style="color:#fff">Email</label>
                     <input asp-for="Email" class="form-control" required />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
@@ -62,7 +62,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-7">
-                    <label asp-for="Message" class="form-label">Message</label>
+                    <label asp-for="Message" class="form-label" style="color:#fff">Message</label>
                     <textarea asp-for="Message" class="form-control" rows="4"></textarea>
                     <span asp-validation-for="Message" class="text-danger" required></span>
                 </div>
@@ -97,7 +97,7 @@
 
 
 
-<div id="contactFormSv" class="deal-3" style="display:none; background-color:#333">
+<div id="contactFormSv" class="deal-3" style="display:none">
 
     <!-- Contact form -->
     <div class="deal-2">
@@ -114,12 +114,12 @@
 
             <div class="form-row">
                 <div class="form-group col-md-7">
-                    <label asp-for="Name">Namn</label>
+                    <label asp-for="Name" style="color:#fff">Namn</label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger" required></span>
                 </div>
                 <div class="form-group col-md-7">
-                    <label asp-for="Phone">Telefon</label>
+                    <label asp-for="Phone" style="color:#fff">Telefon</label>
                     <input asp-for="Phone" class="form-control" />
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
@@ -127,7 +127,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-7">
-                    <label asp-for="Email"></label>
+                    <label asp-for="Email" style="color:#fff"></label>
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger" required></span>
                 </div>
@@ -135,7 +135,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-7">
-                    <label asp-for="Message">Meddelande</label>
+                    <label asp-for="Message" style="color:#fff">Meddelande</label>
                     <textarea asp-for="Message" class="form-control" rows="4"></textarea>
                     <span asp-validation-for="Message" class="text-danger" required></span>
                 </div>

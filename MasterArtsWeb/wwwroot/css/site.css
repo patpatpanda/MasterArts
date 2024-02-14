@@ -10,12 +10,13 @@ body, html {
     margin: 0;
     padding: 0;
     background-color: #fffafa;
-    
     min-height: 100vh;
     color: black;
 }
 #myView {
-    background: #333;
+    background: #fffafa;
+    margin: 0;
+    padding: 0;
 }
 #myView header{
     height:400px;
@@ -280,16 +281,13 @@ h2 {
 }
 .valuta-3 {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-   height:60px;
-   padding:10px;
+    justify-content:center;
+    align-items:center;
+    gap: 30px;
+    height: 200px;
+    padding: 10px;
     color: #fff;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
+  background:  #333333
 }
 
 
@@ -336,7 +334,7 @@ go-weather {
     border-radius: 10px;
     padding: 50px;
     text-align: center;
-    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     width: 100%;
     margin-top: 50px;
     margin: 45px;
@@ -436,8 +434,12 @@ go-weather {
 }
 
 #myShip header {
-    background: Black;
+    background: #080F1A;
     height: 400px;
+}
+#myShip {
+    background-color: #fffafa;
+    
 }
 
 #myShip video {
@@ -774,7 +776,7 @@ gol-2 {
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .about {
@@ -894,7 +896,19 @@ h3 {
     margin-bottom: 10px; /* Justera nedre marginalen efter behov */
 }
 
+.slogan {
+    font-size: 2em;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
 
+.highlight {
+    color: pink; /* eller vilken färg du föredrar */
+    font-weight: bold;
+}
 
 
 .deal {
@@ -982,26 +996,22 @@ h3 {
 
 .calculator-container {
     display: flex;
-    
-   gap:33px
-    
-    
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    gap: 33px;
+   
 }
 
-.shipment-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px; /* Adjust the width as needed */
-}
+
 .shipment-form-2 {
-    background-color: black;
-    color:#fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px; /* Adjust the width as needed */
+    background-color: #95a5a6; /* Mörkare grafitgrått */
+
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 40px;
+    width: 500px;
 }
 
 .form-label {
@@ -1038,26 +1048,20 @@ h3 {
 }
 
 .results-container {
-    background-color: black;
-    color: white;
-   
-    border-radius: 10px;
-    padding: 20px;
-    
-    
-   
+   background: #fff;
+   padding:20px
 }
 
 .results-heading {
     font-size: 24px;
     font-weight: bold;
-    color: #fff; /* Färg för rubrik */
+    color: #333; /* Färg för rubrik */
     margin-bottom: 10px;
 }
 
 .result {
     font-size: 18px;
-    color: #fff; /* Färg för resultattext */
+    color: #333; /* Färg för resultattext */
     margin-bottom: 8px;
     margin-bottom: 40px;
 }
@@ -1080,7 +1084,7 @@ h3 {
     margin: 0 auto;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 30px 60px rgba(0, 0, 255, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .qop-3 {
@@ -1102,7 +1106,7 @@ h3 {
     margin-bottom: 100px;
     background-color: #e6f7ec;
     box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
-    padding: 20px;
+    padding: 30px;
 }
 
 .about-section {
@@ -1967,20 +1971,19 @@ footer {
     }
 
 }
+
+
 .form-container {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    background-color: #e0f2f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
     padding: 40px;
     max-width: 400px;
-    width: 100%;
 }
 .form-container-2 {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    background-color: #e0f2f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
     padding: 40px;
     max-width: 800px;
     width: 100%;
@@ -1997,7 +2000,7 @@ footer {
 
     .form-container h2 {
         margin-top: 0;
-        color: #fff;
+        color: #333;
         text-align: center;
 
     }
@@ -2009,7 +2012,7 @@ footer {
 label {
     display: block;
     margin-bottom: 5px;
-    color: #fff;
+    color: #333;
    
 }
 
@@ -2042,3 +2045,71 @@ select {
 .text-danger {
     color: #dc3545;
 }
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid 5px black
+}
+
+
+
+.form-label-2 {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-input {
+    width: 150px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-input-2 {
+    width: 150px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-select {
+    width: 160px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+
+.btn-large {
+    background-color: #ffcccc; /* Ljusrosa */
+    color: #fff; /* Vit text */
+    border: solid 1px black;
+    padding: 20px 40px; /* Storlek på knappen */
+    border-radius: 10px; /* Rundade hörn */
+    font-size: 22px; /* Storlek på text */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smidig övergång för bakgrundsfärg */
+}
+
+    .btn-large:hover {
+        background-color: #ff9999; /* Mörkare rosa vid hover */
+    }
