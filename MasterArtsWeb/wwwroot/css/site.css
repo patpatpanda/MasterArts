@@ -38,8 +38,9 @@ header {
 
 .form-style-10 {
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
+    grid-template-columns:1fr 1fr;
     margin-top:40px;
+    gap:20px;
     
 }
 
@@ -71,7 +72,15 @@ h2-p {
     margin-top: 200px;
     box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
 }
-
+.go-to-calculator-btn {
+    background-color: #007bff; /* Blå färg, kan ändras efter önskemål */
+    color: #fff; /* Vit text */
+    padding: 10px 20px; /* Lite utrymme runt texten */
+    border: none; /* Ingen ram */
+    border-radius: 5px; /* Runda kanter */
+    cursor: pointer; /* Visar att knappen är klickbar */
+    margin-top: 20px;
+}
 #myOrder footer {
     height: 350px;
 }
@@ -1022,14 +1031,7 @@ h3 {
     width: 500px;
 }
 
-.form-label {
-    display: block;
-    margin-bottom: 8px;
 
-}
-.form-label-2{
-    color:black
-}
 
 
 .form-input, .form-select {
@@ -2063,10 +2065,7 @@ select {
 
 
 
-.form-label-2 {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
+
 
 .form-input {
     width: 150px;
