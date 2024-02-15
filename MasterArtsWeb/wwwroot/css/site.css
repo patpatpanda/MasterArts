@@ -437,11 +437,19 @@ go-weather {
     background: #080F1A;
     height: 400px;
 }
-#myShip {
-    background-color: #fffafa;
-    
+#myShip .shipment {
+    display: block;
+   
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 4em
 }
-
+.shipment{
+    display:none;
+}
 #myShip video {
     display: none
 }
@@ -1005,7 +1013,7 @@ h3 {
 
 
 .shipment-form-2 {
-    background-color: #95a5a6; /* Mörkare grafitgrått */
+    background-color: mediumpurple; /* Mörkare grafitgrått */
 
 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);

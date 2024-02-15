@@ -79,6 +79,9 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         public string CurrentLanguage { get; set; }
         public async Task<IActionResult> OnGet()
         {
+            var countries = await _orderService.GetAllCountries();
+            ViewData["Countries"] = countries;
+
             CurrentLanguage = _languageService.GetCurrentLanguage();
             var client = _clientFactory.CreateClient();
             var response = await client.GetStringAsync($"https://api.exchangerate-api.com/v4/latest/{BaseCurrency}");
@@ -88,6 +91,8 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         }
         public async Task<IActionResult> OnPostAsync()
         {
+            var countries = await _orderService.GetAllCountries();
+            ViewData["Countries"] = countries;
             CurrentLanguage = _languageService.ToggleLanguage();
             ViewData["Language"] = CurrentLanguage;
             

@@ -12,10 +12,12 @@
 
 </body>
 
-  
+<div class="language-toggle text-end">
+    <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">SWE/ENG</button>
+</div>
 
-  <div class="calc">
-    <div class="calculator-container" style="margin-top:50px">
+
+<div class="calculator-container" id="contactForm" style="margin-top:50px">
 
         <form id="calculator-form" class="shipment-form-2" asp-page-handler="Calculator">
             <label for="length" class="form-label-2" style="color:#fff">Length (cm): </label>
@@ -61,16 +63,61 @@
 
 
     </div>
+
+
+
+<div class="calculator-container" id="contactFormSv" style="margin-top:50px;display:none">
+
+    <form id="calculator-form" class="shipment-form-2" asp-page-handler="Calculator">
+        <label for="length" class="form-label-2" style="color:#fff">Längd (cm): </label>
+        <input type="text" id="length" name="length" class="form-input" asp-for="Length" />
+
+        <label for="width" class="form-label-2" style="color:#fff">Bredd (cm): </label>
+        <input type="text" id="width" name="width" class="form-input" asp-for="Width" />
+
+        <label for="height" class="form-label-2" style="color:#fff">Höjd (cm): </label>
+        <input type="text" id="height" name="height" class="form-input" asp-for="Height" />
+
+        <label for="actualWeight" class="form-label-2" style="color:#fff">Actual weight (kg): </label>
+        <input type="text" id="actualWeight" name="actualWeight" class="form-input-2" asp-for="ActualWeight" />
+
+        <label for="pieces" class="form-label-2" style="color:#fff">Enheter: </label>
+        <input type="text" id="pieces" name="pieces" class="form-input-2" asp-for="Pieces" />
+
+        <label for="selectedDensity" class="form-label">Select Density:</label>
+        <select id="selectedDensity" name="selectedDensity" class="form-select" asp-for="SelectedDensity">
+            <option value="1:1">1:1</option>
+            <option value="1:2">1:2</option>
+            <option value="1:3">1:3</option>
+            <option value="1:4">1:4</option>
+            <option value="1:5">1:5</option>
+            <option value="1:6">1:6</option>
+            <option value="1:7">1:7</option>
+            <option value="1:8">1:8</option>
+            <option value="1:9">1:9</option>
+            <option value="1:10">1:10</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary" style="margin-top:20px">Calculate</button>
+
+        <div class="results-container">
+            <h2 class="results-heading">Results:</h2>
+            <p class="result" id="totalVolume">Total Volym: @(Model.TotalVolume * Model.Pieces) m³</p>
+            <p class="result" id="totalVolumeWeight">Total Volym vikt: @Model.TotalVolumeWeight kg</p>
+            <p class="result" id="totalActualWeight">Total faktiskt vikt: @Model.TotalActualWeight kg</p>
+            <p class="result" id="chargeableWeight">Debiterbar vikt: @Model.ChargeableWeight kg</p>
+        </div>
+
+    </form>
+
+
 </div>
-    
- 
-    
 
 
 
 
 
-<form method="post" class="form" style="margin-top:300px">
+<form method="post" class="form"  style="margin-top:300px">
     
     
     <div class="form-style-10">
@@ -149,9 +196,12 @@
             <input asp-for="Order.Consignor.ConsignorCity" class="form-control" placeholder="Enter consignor city..." />
             <span asp-validation-for="Order.Consignor.ConsignorCity" class="text-danger"></span>
 
-            <label asp-for="Order.Consignor.ConsignorCountry">Consignor Country</label>
-            <input asp-for="Order.Consignor.ConsignorCountry" class="form-control" placeholder="Enter consignor country..." />
-            <span asp-validation-for="Order.Consignor.ConsignorCountry" class="text-danger"></span>
+
+            <label asp-for="Order.Consignor.ConsignorCountry">Consignee Country</label>
+            <select asp-for="Order.Consignor.ConsignorCountry" asp-items="@(new SelectList((IEnumerable<string>)ViewData["Countries"]))" class="form-control">
+                <option value="">Select country...</option>
+            </select>
+            <span asp-validation-for="Order.Consignee.ConsigneeCountry" class="text-danger"></span>
 
             <label asp-for="Order.Consignor.ConsignorZip">Consignor Zip</label>
             <input asp-for="Order.Consignor.ConsignorZip" class="form-control" placeholder="Enter consignor ZIP code..." />
@@ -191,8 +241,21 @@
             <span asp-validation-for="Order.Consignee.ConsigneeCity" class="text-danger"></span>
 
             <label asp-for="Order.Consignee.ConsigneeCountry">Consignee Country</label>
-            <input asp-for="Order.Consignee.ConsigneeCountry" class="form-control" placeholder="Enter consignee country..." />
+            <select asp-for="Order.Consignee.ConsigneeCountry" class="form-control">
+                <option value="">Select country...</option>
+                @if (ViewData["Countries"] != null)
+                {
+                    foreach (var country in (IEnumerable<string>)ViewData["Countries"])
+                    {
+                        <option value="@country">@country</option>
+                    }
+                }
+            </select>
             <span asp-validation-for="Order.Consignee.ConsigneeCountry" class="text-danger"></span>
+
+
+
+
 
             <label asp-for="Order.Consignee.ConsigneeZip">Consignee Zip</label>
             <input asp-for="Order.Consignee.ConsigneeZip" class="form-control" placeholder="Enter consignee zip code..." />
@@ -224,62 +287,62 @@
                 <div class="form-container-2">
                     <h3 class="text-center" style="color:#333">Goods</h3>
                     <label asp-for="Order.Goods.PackageId">Package ID<span class="required">*</span></label>
-                    <input asp-for="Order.Goods.PackageId" class="form-control" placeholder="Enter package ID..." required />
+                    <input asp-for="Order.Goods.PackageId" class="form-control" placeholder="Enter package ID..." />
 
                     <span asp-validation-for="Order.Goods.PackageId" class="text-danger"></span>
 
                     <label asp-for="Order.Goods.MarksNumbers">Marks Numbers<span class="required">*</span></label>
-                    <input asp-for="Order.Goods.MarksNumbers" class="form-control" placeholder="Enter marks numbers..." required />
+                    <input asp-for="Order.Goods.MarksNumbers" class="form-control" placeholder="Enter marks numbers..."  />
 
                     <span asp-validation-for="Order.Goods.MarksNumbers" class="text-danger"></span>
 
                     <label asp-for="Order.Goods.Description">Description<span class="required">*</span></label>
-<textarea asp-for="Order.Goods.Description" class="form-control" placeholder="Enter description..." required></textarea>
+<textarea asp-for="Order.Goods.Description" class="form-control" placeholder="Enter description..." ></textarea>
 
                     <span asp-validation-for="Order.Goods.Description" class="text-danger"></span>
 
                     <label asp-for="Order.Goods.PackageType">Package Type<span class="required">*</span></label>
-                    <input asp-for="Order.Goods.PackageType" class="form-control" placeholder="Enter package type..." required />
+                    <input asp-for="Order.Goods.PackageType" class="form-control" placeholder="Enter package type..."  />
 
                     <span asp-validation-for="Order.Goods.PackageType" class="text-danger"></span>
 
                     <label asp-for="Order.Goods.Quantity">Quantity<span class="required">*</span></label>
-                    <input asp-for="Order.Goods.Quantity" type="number" class="form-control" placeholder="Enter quantity..." required />
+                    <input asp-for="Order.Goods.Quantity" type="number" class="form-control" placeholder="Enter quantity..." />
 
                     <span asp-validation-for="Order.Goods.Quantity" class="text-danger"></span>
 
                     <label asp-for="Order.Goods.Height">Height<span class="required">*</span></label>
-                    <input asp-for="Order.Goods.Height" type="number" class="form-control" placeholder="Enter height..." required />
+                    <input asp-for="Order.Goods.Height" type="number" class="form-control" placeholder="Enter height..."  />
 
                     <span asp-validation-for="Order.Goods.Height" class="text-danger"></span>
 
                     <label asp-for="Order.Goods.Length">Length<span class="required">*</span></label>
-                    <input asp-for="Order.Goods.Length" type="number" class="form-control" placeholder="Enter length..." required />
+                    <input asp-for="Order.Goods.Length" type="number" class="form-control" placeholder="Enter length..." />
 
                     <span asp-validation-for="Order.Goods.Length" class="text-danger"></span>
 
                     <label asp-for="Order.Goods.Width">Width<span class="required">*</span></label>
-                    <input asp-for="Order.Goods.Width" type="number" class="form-control" placeholder="Enter width..." required />
+                    <input asp-for="Order.Goods.Width" type="number" class="form-control" placeholder="Enter width..." />
 
                     <span asp-validation-for="Order.Goods.Width" class="text-danger"></span>
 
                     <label asp-for="Order.Goods.Volume">Volume<span class="required">*</span></label>
-                    <input asp-for="Order.Goods.Volume" type="number" class="form-control" placeholder="Enter volume..." required />
+                    <input asp-for="Order.Goods.Volume" type="number" class="form-control" placeholder="Enter volume..."  />
 
                     <span asp-validation-for="Order.Goods.Volume" class="text-danger"></span>
 
                     <label asp-for="Order.Goods.VolumeUnit">Volume Unit<span class="required">*</span></label>
-                    <input asp-for="Order.Goods.VolumeUnit" class="form-control" placeholder="Enter volume unit..." required />
+                    <input asp-for="Order.Goods.VolumeUnit" class="form-control" placeholder="Enter volume unit..." />
 
                     <span asp-validation-for="Order.Goods.VolumeUnit" class="text-danger"></span>
 
                     <label asp-for="Order.Goods.GrossWeight">Gross Weight<span class="required">*</span></label>
-                    <input asp-for="Order.Goods.GrossWeight" type="number" class="form-control" placeholder="Enter gross weight..." required />
+                    <input asp-for="Order.Goods.GrossWeight" type="number" class="form-control" placeholder="Enter gross weight..."  />
 
                     <span asp-validation-for="Order.Goods.GrossWeight" class="text-danger"></span>
 
                     <label asp-for="Order.Goods.NetWeight">Net Weight<span class="required">*</span></label>
-                    <input asp-for="Order.Goods.NetWeight" type="number" class="form-control" placeholder="Enter net weight..." required />
+                    <input asp-for="Order.Goods.NetWeight" type="number" class="form-control" placeholder="Enter net weight..."  />
 
                     <span asp-validation-for="Order.Goods.NetWeight" class="text-danger"></span>
 
@@ -297,4 +360,51 @@
 
 
 
+   
 
+
+
+
+
+
+
+
+<script>
+    function toggleLanguage() {
+        var toggleBtn = document.getElementById('languageToggleBtn');
+        var contactForm = document.getElementById('contactForm');
+        var contactFormSv = document.getElementById('contactFormSv');
+
+        if (toggleBtn.innerText === 'Svenska') {
+            toggleBtn.innerText = 'English';
+            contactForm.style.display = 'none';
+            contactFormSv.style.display = 'block';
+        } else {
+            toggleBtn.innerText = 'Svenska';
+            contactForm.style.display = 'block';
+            contactFormSv.style.display = 'none';
+        }
+    }
+
+
+    setTimeout(function () {
+        var successMessage = document.getElementById("success-message");
+        successMessage.classList.remove("show");
+    }, 5000);
+
+    // Fade in the success message when the page is loaded
+    window.addEventListener("load", function () {
+        var successMessage = document.getElementById("success-message");
+        successMessage.classList.add("show");
+    });
+    function checkHoneypot() {
+        var honeypotField = document.getElementById("honeypot");
+        if (honeypotField.value) {
+            // Honeypot-fältet har fyllts i, antag att det är en robot
+            alert("Form submission failed. Please try again.");
+            return false;
+        }
+        return true;
+    }
+
+</script>
