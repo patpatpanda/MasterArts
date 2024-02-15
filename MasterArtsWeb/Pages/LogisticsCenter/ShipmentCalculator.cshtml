@@ -513,9 +513,21 @@
 
 </div>
 
+<div>
+    <button id="totop-arrow">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
+
+</div>
 
 <script>
+
+    const arrow = document.querySelector('#totop-arrow');
+    arrow.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
     function toggleLanguage() {
         var toggleBtn = document.getElementById('languageToggleBtn');
         var contactForm = document.getElementById('contactForm');

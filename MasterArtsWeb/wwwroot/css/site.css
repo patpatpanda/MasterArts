@@ -1506,7 +1506,9 @@ input {
     .s-lol {
         display: none;
     }
-
+    .navbar-nav .nav-link .customer-text {
+        font-size: 16px; /* Ange önskad storlek */
+    }
     .container-abbe {
         margin-left: 1px;
         background-color: #fff;
