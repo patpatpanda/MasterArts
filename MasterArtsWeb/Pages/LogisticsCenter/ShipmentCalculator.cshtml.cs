@@ -4,9 +4,11 @@ using MasterArtsLibrary.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MasterArtsWeb.Pages.LogisticsCenter
 {
+    [Authorize]
     public class ShipmentCalculatorModel : PageModel
     {
 

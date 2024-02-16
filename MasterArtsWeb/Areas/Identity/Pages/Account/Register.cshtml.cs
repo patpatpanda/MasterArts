@@ -21,6 +21,7 @@ using Microsoft.Extensions.Logging;
 
 namespace MasterArtsWeb.Areas.Identity.Pages.Account
 {
+    [Authorize(Policy = "AllowSpecificUser")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;

@@ -8,6 +8,18 @@
 
     <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 10px">@TempData["SuccessMessage"]</div>
 }
+@{
+    ViewData["Title"] = "Shipment";
+}
+<Authorize>
+    <li class="nav-item">
+        <a class="nav-link text-light" asp-area="" asp-page="/LogisticsCenter/ShipmentCalculator">
+            <p class="customer-text">Shipment</p>
+        </a>
+    </li>
+
+
+
 <body id="myShip">
 
 </body>

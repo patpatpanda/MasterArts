@@ -1,7 +1,7 @@
-﻿using MasterArtsLibrary.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MasterArtsLibrary.Models;
 
 namespace MasterArtsWeb
 {
@@ -17,18 +17,12 @@ namespace MasterArtsWeb
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<Goods> Goods { get; set; }
 
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             // Definiera primärnyckel för IdentityUserLogin<string>
             modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(p => new { p.LoginProvider, p.ProviderKey });
-
-
-           
         }
-
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using MasterArtsLibrary.ViewModels
-@inject MasterArtsLibrary.Services.LanguageService LanguageService
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,76 +55,72 @@
                     <ul class="navbar-nav order-first ms-auto" style="border-bottom:solid 3px white">
 
 
+                        <!-- I layoutfilen -->
+                        <li class="nav-item">
+                            @if (User.Identity.Name == "nils-emil1337@hotmail.se")
+                            {
+                                <a class="nav-link text-light" href="https://localhost:7041/Identity/Account/Register">Register</a>
+                            }
+                            
+                        </li>
+
+
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Index">
                                 <p class="customer-text">
-                                    @if (@Model.CurrentLanguage == "sv")
-                                    {
-                                    <p class="customer-text"> Hem </p>
+                                   
+                                   
+                                    
 
 
-                                    }
-                                    else
-                                    {
+                                   
                                     <p class="customer-text"> Home </p>
-                                    }
+                                    
 
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/ArtServices">
-                                @if (@Model.CurrentLanguage == "sv")
-                                {
-                                    <p class="customer-text"> Tjänster </p>
-
-
-                                }
-                                else
-                                {
+                                
+                              
                                     <p class="customer-text"> Services </p>
-                                }
+                                
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/About">
-                                @if (@Model.CurrentLanguage == "sv")
-                                {
-                                    <p class="customer-text"> Om Oss </p>
+                               
+                                   
 
 
-                                }
-                                else
-                                {
                                     <p class="customer-text"> About Us </p>
-                                }
+                                
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Contact">
-                                @if (@Model.CurrentLanguage == "sv")
-                                {
-                                    <p class="customer-text"> Kontakt </p>
+                               
+                                   
 
 
-                                }
-                                else
-                                {
+                               
+                                
                                     <p class="customer-text"> Contact </p>
-                                }
+                                
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/LogisticsCenter/ShipmentCalculator">
-                                @if (@Model.CurrentLanguage == "sv")
-                                {
+                               
+                              
                                     <p class="customer-text"> Shipment</p>
 
 
-                                }
-                                else
-                                {
-                                    <p class="customer-text"> Shipment</p>
-                                }
+                                
+                              
+                                
+                                    
+                                
                             </a>
                         </li>
 
@@ -135,7 +131,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" href="https://cissuite.cargoit.se/arts/portal/login">
                                 <i class="fa-sharp fa-thin fa-lock"></i> <!-- Här är ikonen -->
-                                <p class="customer-text">Login</p>
+                                
                             </a>
                         </li>
                     </ul>
@@ -146,11 +142,8 @@
 
 
 
-                    <ul class="navbar-nav login">
-                        <li class="nav-item">
-
-                        </li>
-                    </ul>
+                    
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -199,221 +192,157 @@
 
             <div class="fot-1">
                 <p style="color:hotpink">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
+                   
+                   
+                    
+                    
                         <span>ARTS</span>
-                    }
-                    else
-                    {
-                        <span>ARTS</span>
-                    }
+                   
                 </p>
                 <p>
                     <a href="/Index" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-                            <span>Start</span>
-                        }
-                        else
-                        {
+                       
+                      
                             <span>Home</span>
-                        }
+                        
                     </a>
                 </p>
                 <p>
                     <a href="/About#sus" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-                            <span>Hållbarhet</span>
-                        }
-                        else
-                        {
+                       
+                           
+                        
+                      
+                        
                             <span>Sustainability</span>
-                        }
+                        
                     </a>
                 </p>
                 <p>
                     <a href="/About" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-                            <span>Om oss</span>
-                        }
-                        else
-                        {
+                        
+                       
+                       
                             <span>About</span>
-                        }
+                       
                     </a>
                 </p>
                 <p>
                     <a href="/ShipmentCalculator" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-                            <span>Fraktkalkylator</span>
-                        }
-                        else
-                        {
+                        
                             <span>Shipment Calculator</span>
-                        }
+                        
                     </a>
                 </p>
             </div>
 
             <div class="fot-1">
                 <p style="color:hotpink">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
+                 
                         <span>Våra tjänster</span>
-                    }
-                    else
-                    {
+                   
+                    
                         <span>Our services</span>
-                    }
+                    
                 </p>
                 <p>
                     <a href="/ArtServices#air" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
+                      
+                        
                             <span>Luft, väg</span>
-                        }
-                        else
-                        {
+                        
+                        
+                        
                             <span>Air, road</span>
-                        }
+                        
                     </a>
                 </p>
                 <p>
                     <a href="/ArtServices#sea" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-                            <span>Sjö, tåg</span>
-                        }
-                        else
-                        {
+                       
+                        
+                     
+                        
+                        
                             <span>Sea, train</span>
-                        }
+                        
                     </a>
                 </p>
                 <p>
                     <a href="/ArtServices#courier" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-                            <span>Bud, express</span>
-                        }
-                        else
-                        {
+                        
                             <span>Courier, express</span>
-                        }
+                        
                     </a>
                 </p>
                 <p>
                     <a href="/ArtServices#special" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-                            <span>Anpassade tjänster</span>
-                        }
-                        else
-                        {
+                        
                             <span>Customized services</span>
-                        }
+                        
                     </a>
                 </p>
             </div>
 
             <div class="fot-1">
                 <p style="color:hotpink">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-                        <span>Kontakt</span>
-                    }
-                    else
-                    {
+                    
                         <span>Contact</span>
-                    }
+                    
                 </p>
                 <p>
                     <a href="/Contact" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-                            <span>Kontakta oss</span>
-                        }
-                        else
-                        {
+                      
                             <span>Contact us</span>
-                        }
+                        
                     </a>
                 </p>
                 <p>
                     <a href="/ArtServices#sea" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
+                       
                             <span>Facebook</span>
-                        }
-                        else
-                        {
-                            <span>Facebook</span>
-                        }
+                        
                     </a>
                 </p>
                 <p>
                     <a href="/ArtServices#courier" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
+                        
+                        
+                        
                             <span>Instagram</span>
-                        }
-                        else
-                        {
-                            <span>Instagram</span>
-                        }
+                        
                     </a>
                 </p>
                 <p>
                     <a href="/ArtServices#special" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
+                       
                             <span>LinkedIn</span>
-                        }
-                        else
-                        {
-                            <span>LinkedIn</span>
-                        }
+                        
                     </a>
                 </p>
             </div>
 
             <div class="fot-1">
                 <p style="color:hotpink">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-                        <span>Annat</span>
-                    }
-                    else
-                    {
+                  
                         <span>Other</span>
-                    }
+                    
                 </p>
                 <p>
                     <a href="/About#nsab" class="kite">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-                            <span>Fraktvillkor</span>
-                        }
-                        else
-                        {
+                        
+                        
                             <span>Shipping terms</span>
-                        }
+                        
                     </a>
                 </p>
             </div>
             <div class="fot-1">
                 <p style="color:hotpink">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-                        <span>Du hittar oss här</span>
-                    }
-                    else
-                    {
+                   
+                    
                         <span>You find us here</span>
-                    }
+                    
 
                 </p>
                 <p class="kite">ARTS logistics</p>
