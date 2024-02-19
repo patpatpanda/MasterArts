@@ -2122,3 +2122,7 @@ select {
     .btn-large:hover {
         background-color: #ff9999; /* Mörkare rosa vid hover */
     }
+.form {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
