@@ -26,55 +26,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
 
         private readonly IHttpClientFactory _clientFactory;
         [BindProperty]
-        public double Length { get; set; }
-
-        [BindProperty]
-        public double Width { get; set; }
-
-        [BindProperty]
-        public double Height { get; set; }
-
-        [BindProperty]
-        public double ActualWeight { get; set; }
-
-        [BindProperty]
-        public int Pieces { get; set; }
-
-        [BindProperty]
-        public string SelectedDensity { get; set; }
-
-        public double TotalVolume => Length * Width * Height / 1000000;
-
-        public double VolumeWeightPerPiece => TotalVolume * 1000 / Pieces;
-
-        // Uppdaterad beräkning av TotalVolumeWeight utan att konvertera till kubikmeter
-        public double TotalVolumeWeight
-        {
-            get
-            {
-                double densityRatio = ExtractDensityRatio(SelectedDensity);
-                if (densityRatio > 0)
-                {
-                    // Använd valt densitetsförhållande i beräkningen, multiplicera med 1000 och avrunda till en decimal
-                    return Math.Round(TotalVolume * densityRatio * Pieces * 1000, 1);
-                }
-                else
-                {
-                    // Använd den befintliga logiken om inget valt densitetsförhållande, multiplicera med 1000 och avrunda till en decimal
-                    return Math.Round(Length * Width * Height * Pieces * 1000 / 6, 1);
-                }
-            }
-        }
-
-        // Formatera TotalVolumeWeight med en decimalpunkt
-        public string FormattedTotalVolumeWeight => TotalVolumeWeight.ToString("F1");
-
-
-
-        public double TotalActualWeight => ActualWeight * Pieces;
-
-        public double ChargeableWeight => TotalVolumeWeight > TotalActualWeight ? TotalVolumeWeight : TotalActualWeight;
-
+       
         public CurrencyExchangeRates CurrencyData { get; set; }
         public string BaseCurrency { get; set; } = "SEK";
         private readonly LanguageService _languageService;
@@ -97,23 +49,35 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             ViewData["Countries"] = countries;
             CurrentLanguage = _languageService.ToggleLanguage();
             ViewData["Language"] = CurrentLanguage;
-            
+
             if (ModelState.IsValid)
             {
-
-                // Skapa order i API
+                
+                // Om modellen är giltig, fortsätt med att skapa order i API
                 await _orderService.CreateOrderInApi(Order);
-
                 var recipientEmail = Order.Consignor.ConsignorEmail;
                 await _orderService.SendOrderConfirmationEmail(recipientEmail, Order);
 
                 TempData["SuccessMessage"] = "Your order has been sent";
-                return RedirectToPage("/Orders/CreateOrder");
+                return RedirectToPage("/LogisticsCenter/ShipmentCalculator");
             }
+            else
+            {
+                // Om modellen är ogiltig, logga valideringsfel och återvänd till sidan
+                foreach (var entry in ModelState.Values)
+                {
+                    foreach (var error in entry.Errors)
+                    {
+                        // Logga eller hantera valideringsfel här
+                        Console.WriteLine($"Validation error: {error.ErrorMessage}");
+                    }
+                }
 
-            return Page();
-           
+                return Page();
+            }
         }
+
+
         private double ExtractDensityRatio(string selectedDensity)
         {
             double ratio = 0.0;

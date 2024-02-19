@@ -31,4 +31,8 @@
     <ProjectReference Include="..\MasterArtsLibrary\MasterArtsLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Orders\" />
+  </ItemGroup>
+
 </Project>
