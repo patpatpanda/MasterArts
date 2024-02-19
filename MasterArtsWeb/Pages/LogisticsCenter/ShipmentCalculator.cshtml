@@ -2,15 +2,13 @@
 @model MasterArtsWeb.Pages.LogisticsCenter.ShipmentCalculatorModel
 @{
 }
-@{
-    ViewData["Title"] = "Shipment";
-}
+
 
 
 <Authorize>
     <li class="nav-item">
         <a class="nav-link text-light" asp-area="" asp-page="/LogisticsCenter/ShipmentCalculator">
-            <p class="customer-text">Shipment</p>
+            
         </a>
     </li>
 
@@ -19,6 +17,14 @@
 
         <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 10px">@TempData["SuccessMessage"]</div>
     }
+    <div style="margin-top:50px;">
+         <a asp-page="/LogisticsCenter/Calculator" class="btn-large">Gå till Calculator</a>
+    </div>
+
+   
+
+
+
 
 <body id="myShip">
 
@@ -454,9 +460,10 @@
 
 
     </div>
-                
-        
-    <button type="submit" class="btn-large text-center" style="margin-top:20px">Skicka Order</button>
+
+
+        <button type="submit" class="btn-large text-center" style="margin-top:20px" id="OrderSubmitButton" name="OrderSubmitButton">Skicka Order</button>
+
 </form>
 
 
@@ -476,6 +483,15 @@
 
 
 
+   
+
+    <div>
+        <button id="totop-arrow">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+
+
+    </div>
 
 
 

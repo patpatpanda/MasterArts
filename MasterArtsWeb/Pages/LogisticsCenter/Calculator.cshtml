@@ -1,0 +1,56 @@
+﻿@page
+@model MasterArtsWeb.Pages.LogisticsCenter.CalculatorModel
+@{
+}
+
+<body id="myCalc">
+
+</body>
+
+<div class="calculator-container" id="mr-calc" style="margin-top:70px">
+
+    <form id="calculator-form" class="shipment-form-2" asp-page-handler="Calculator">
+        <label for="length" class="form-label-2" style="color:#333">Length (cm): </label>
+        <input type="text" id="length" name="length" class="form-input" asp-for="Length" />
+
+        <label for="width" class="form-label-2" style="color:#333">Width (cm): </label>
+        <input type="text" id="width" name="width" class="form-input" asp-for="Width" />
+
+        <label for="height" class="form-label-2" style="color:#333">Height (cm): </label>
+        <input type="text" id="height" name="height" class="form-input" asp-for="Height" />
+
+        <label for="actualWeight" class="form-label-2" style="color:#333">Actual weight (kg): </label>
+        <input type="text" id="actualWeight" name="actualWeight" class="form-input-2" asp-for="ActualWeight" />
+
+        <label for="pieces" class="form-label-2" style="color:#333">Pieces: </label>
+        <input type="text" id="pieces" name="pieces" class="form-input-2" asp-for="Pieces" />
+
+        <label for="selectedDensity" class="form-label">Select Density:</label>
+        <select id="selectedDensity" name="selectedDensity" class="form-select" asp-for="SelectedDensity">
+            <option value="1:6">1:6</option>
+            <option value="1:1">1:1</option>
+            <option value="1:2">1:2</option>
+            <option value="1:3">1:3</option>
+            <option value="1:4">1:4</option>
+            <option value="1:5">1:5</option>
+            <option value="1:6">1:6</option>
+            <option value="1:7">1:7</option>
+            <option value="1:8">1:8</option>
+            <option value="1:9">1:9</option>
+            <option value="1:10">1:10</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary" style="margin-top:20px">Calculate</button>
+
+        <div class="results-container">
+            <h2 class="results-heading">Results:</h2>
+            <p class="result" id="totalVolume">Total Volume: @(Model.TotalVolume * Model.Pieces) m³</p>
+            <p class="result" id="totalVolumeWeight">Total Volume weight: @Model.TotalVolumeWeight kg</p>
+            <p class="result" id="totalActualWeight">Total Actual weight: @Model.TotalActualWeight kg</p>
+            <p class="result" id="chargeableWeight">Chargeable weight: @Model.ChargeableWeight kg</p>
+        </div>
+
+    </form>
+
+
+</div>

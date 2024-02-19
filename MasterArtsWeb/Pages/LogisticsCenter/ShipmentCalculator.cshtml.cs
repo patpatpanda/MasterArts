@@ -53,7 +53,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             if (ModelState.IsValid)
             {
                 
-                // Om modellen är giltig, fortsätt med att skapa order i API
+                
                 await _orderService.CreateOrderInApi(Order);
                 var recipientEmail = Order.Consignor.ConsignorEmail;
                 await _orderService.SendOrderConfirmationEmail(recipientEmail, Order);

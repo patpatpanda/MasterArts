@@ -37,11 +37,15 @@ header {
 }
 
 .form-style-10 {
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    margin-top:40px;
-    gap:20px;
-    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 40px;
+    gap: 20px;
+    background-color: rgba(255, 255, 255, 0.2); /* Genomskinlig vit färg */
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Vit kant */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
+    opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
 }
 
    
@@ -628,8 +632,16 @@ go-weather {
     display: none
 }
 
-
-
+#myShip header {
+    background: Black;
+    height: 400px;
+}
+#myShip {
+    background-color: #000; /* Mörk bakgrundsfärg */
+    background-image: radial-gradient(circle, #0ff, #000); /* Stjärnor och galaxer */
+    background-size: cover;
+    background-attachment: fixed;
+}
 #myS video {
     display: none
 }
@@ -1017,13 +1029,19 @@ h3 {
    
 }
 
+#myCalc {
+    background-color: #000; /* Mörk bakgrundsfärg */
+    background-image: radial-gradient(circle, #0ff, #000); /* Stjärnor och galaxer */
+    background-size: cover;
+    background-attachment: fixed;
+}
 
 .shipment-form-2 {
-    background-color: mediumpurple; /* Mörkare grafitgrått */
-
-
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2); /* Genomskinlig vit färg */
     border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Vit kant */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
+    opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
     padding: 40px;
     width: 500px;
 }
@@ -1055,8 +1073,10 @@ h3 {
 }
 
 .results-container {
-   background: #fff;
-   padding:20px
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    color: #333;
 }
 
 .results-heading {
@@ -1983,28 +2003,33 @@ footer {
 
 
 .form-container {
-    background-color: #e0f2f1;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2); /* Genomskinlig vit färg */
     border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Vit kant */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
+    opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
     padding: 40px;
-    max-width: 400px;
+    max-width: 800px;
 }
 .form-container-2 {
-    background-color: #e0f2f1;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.8); /* Genomskinlig vit färg */
     border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Vit kant */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
+    opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
     padding: 40px;
     max-width: 800px;
-    width: 100%;
+    
 }
 .form-container-3 {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.2); /* Genomskinlig vit färg */
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Vit kant */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
+    opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
     padding: 40px;
     max-width: 800px;
-    width: 100%;
+   
 }
 
     .form-container h2 {
@@ -2120,6 +2145,5 @@ select {
         background-color: #ff9999; /* Mörkare rosa vid hover */
     }
 .form {
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+   
 }
