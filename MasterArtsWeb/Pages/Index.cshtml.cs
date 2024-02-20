@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using YourNamespace;
 
 namespace MasterArtsWeb.Pages
 {
@@ -13,11 +14,13 @@ namespace MasterArtsWeb.Pages
     {
         private readonly LanguageService _languageService;
         private readonly IHttpClientFactory _clientFactory;
+        private readonly ForexService _forexService;
 
-        public IndexModel(LanguageService languageService, IHttpClientFactory clientFactory)
+        public IndexModel(LanguageService languageService, IHttpClientFactory clientFactory, ForexService forex)
         {
             _languageService = languageService;
             _clientFactory = clientFactory;
+            _forexService = forex;
         }
 
         public bool IsDayTime { get; private set; }
@@ -29,6 +32,7 @@ namespace MasterArtsWeb.Pages
 
         public async Task<IActionResult> OnGetAsync()
         {
+            
             CurrentLanguage = _languageService.GetCurrentLanguage();
             ViewData["Language"] = CurrentLanguage;
 

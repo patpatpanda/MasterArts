@@ -638,7 +638,7 @@ go-weather {
 }
 #myShip {
     background-color: #000; /* Mörk bakgrundsfärg */
-    background-image: radial-gradient(circle, #0ff, #000); /* Stjärnor och galaxer */
+    background-image: radial-gradient(circle, #000,#0ff); /* Stjärnor och galaxer */
     background-size: cover;
     background-attachment: fixed;
 }

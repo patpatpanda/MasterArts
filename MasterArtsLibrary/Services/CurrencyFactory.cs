@@ -56,22 +56,7 @@ namespace MasterArtsLibrary.Services
 
 
 
-        public static string CalculatePercentageChange(decimal oldRate, decimal newRate)
-        {
-            decimal percentageChange = ((newRate - oldRate) / oldRate) * 100;
-            if (percentageChange > 0)
-            {
-                return $"<span style='color: green;'>(+{Math.Round(percentageChange, 2)}%)</span>";
-            }
-            else if (percentageChange < 0)
-            {
-                return $"<span style='color: red;'>({Math.Round(percentageChange, 2)}%)</span>";
-            }
-            else
-            {
-                return $"<span>(+{Math.Round(percentageChange, 2)}%)</span>";
-            }
-        }
+       
 
     }
 }
