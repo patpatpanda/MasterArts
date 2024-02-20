@@ -11,5 +11,6 @@ namespace MasterArtsLibrary.ViewModels
         public string? BaseCurrency { get; set; }
         public string? TargetCurrency { get; set; }
         public decimal? Rate { get; set; }
+        public Dictionary<string, decimal> Rates { get; set; }
     }
 }

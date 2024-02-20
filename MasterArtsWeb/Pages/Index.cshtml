@@ -694,7 +694,6 @@
 
 
 
-
             <div class="circle-container">
                 <a href="/About#s-3" class="lol">
                 @if (@Model.CurrentLanguage == "sv")
@@ -715,26 +714,67 @@
 
 </div>
 <div class="valuta-3">
-    @if (Model.CurrencyData != null)
+    @if (Model.CurrencyData != null && Model.ExchangeRate != null)
     {
         <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/USD: @Math.Round(1 / Model.CurrencyData.Rates["USD"], 2)
+            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/USD: @Math.Round(1 / Model.CurrencyData.Rates["USD"], 2)
+            @if (Model.ExchangeRate.Rates != null && Model.ExchangeRate.Rates.ContainsKey("USD"))
+            {
+                @Html.Raw(CalculatePercentageChange(Model.ExchangeRate.Rates["USD"], Model.CurrencyData.Rates["USD"]))
+            }
         </p>
         <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i>   SEK/EUR: @Math.Round(1 / Model.CurrencyData.Rates["EUR"], 2)
+            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/EUR: @Math.Round(1 / Model.CurrencyData.Rates["EUR"], 2)
+            @if (Model.ExchangeRate.Rates != null && Model.ExchangeRate.Rates.ContainsKey("EUR"))
+            {
+                @Html.Raw(CalculatePercentageChange(Model.ExchangeRate.Rates["EUR"], Model.CurrencyData.Rates["EUR"]))
+            }
         </p>
         <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/GBP: @Math.Round(1 / Model.CurrencyData.Rates["GBP"], 2)
-        </p>
-        <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/DKK: @Math.Round(1 / Model.CurrencyData.Rates["DKK"], 2)
+            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/DKK: @Math.Round(1 / Model.CurrencyData.Rates["DKK"], 2)
+            @if (Model.ExchangeRate.Rates != null && Model.ExchangeRate.Rates.ContainsKey("DKK"))
+            {
+                @Html.Raw(CalculatePercentageChange(Model.ExchangeRate.Rates["DKK"], Model.CurrencyData.Rates["DKK"]))
+            }
         </p>
         <p>
             <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/NOK: @Math.Round(1 / Model.CurrencyData.Rates["NOK"], 2)
+            @if (Model.ExchangeRate.Rates != null && Model.ExchangeRate.Rates.ContainsKey("NOK"))
+            {
+                @Html.Raw(CalculatePercentageChange(Model.ExchangeRate.Rates["NOK"], Model.CurrencyData.Rates["NOK"]))
+            }
         </p>
     }
 </div>
 
+@functions {
+    public string CalculatePercentageChange(decimal oldRate, decimal newRate)
+    {
+        decimal percentageChange = ((newRate - oldRate) / oldRate) * 100;
+        string color = "";
+
+        if (percentageChange > 0)
+        {
+            color = "green";
+        }
+        else if (percentageChange < 0)
+        {
+            color = "red";
+        }
+        else
+        {
+            
+            return "";
+        }
+
+        
+        string html = $"<span style='color: {color};'>(+{Math.Round(percentageChange, 2)}%)</span>";
+        return html;
+    }
+
+
+
+}
 
 
 

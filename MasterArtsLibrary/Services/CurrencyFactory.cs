@@ -1,8 +1,6 @@
 ﻿using MasterArtsLibrary.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -16,36 +14,64 @@ namespace MasterArtsLibrary.Services
         {
             _httpClient = httpClient;
         }
+
         public async Task<ExchangeRateModel> GetExchangeRateAsync(string baseCurrency, string targetCurrency)
         {
-            var apiUrl = $"https://api.exchangerate-api.com/v4/latest/{baseCurrency}";
-            var response = await _httpClient.GetAsync(apiUrl);
-            response.EnsureSuccessStatusCode();
-            var jsonResponse = await response.Content.ReadAsStringAsync();
-            var exchangeRateData = JsonSerializer.Deserialize<ExchangeRateApiResponse>(jsonResponse);
-
-            if (exchangeRateData.Rates != null && exchangeRateData.Rates.ContainsKey(targetCurrency))
+            try
             {
-                var exchangeRate = exchangeRateData.Rates[targetCurrency];
+                var apiUrl = $"https://api.exchangerate-api.com/v4/latest/{baseCurrency}";
+                var response = await _httpClient.GetAsync(apiUrl);
+                response.EnsureSuccessStatusCode();
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var exchangeRateData = JsonSerializer.Deserialize<ExchangeRateApiResponse>(jsonResponse);
 
-
-                return new ExchangeRateModel
+                if (exchangeRateData.Rates != null && exchangeRateData.Rates.ContainsKey(targetCurrency))
                 {
-                    BaseCurrency = baseCurrency,
-                    TargetCurrency = targetCurrency,
-                    Rate = exchangeRate
-                };
-            }
-            else
-            {
-                // Valutakoden "USD" finns inte i responsen, logga det och hantera det
-                Console.WriteLine($"Exchange rate for {targetCurrency} not found in response: {jsonResponse}");
+                    var exchangeRate = exchangeRateData.Rates[targetCurrency];
 
-                // Alternativt kan du använda något standardvärde eller returnera null
+                    return new ExchangeRateModel
+                    {
+                        BaseCurrency = baseCurrency,
+                        TargetCurrency = targetCurrency,
+                        Rate = exchangeRate
+                    };
+                }
+                else
+                {
+                    Console.WriteLine($"Exchange rate for {targetCurrency} not found in response: {jsonResponse}");
+                    return null;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Error getting exchange rate data: {ex.Message}");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An unexpected error occurred: {ex.Message}");
                 return null;
             }
         }
 
+
+
+        public static string CalculatePercentageChange(decimal oldRate, decimal newRate)
+        {
+            decimal percentageChange = ((newRate - oldRate) / oldRate) * 100;
+            if (percentageChange > 0)
+            {
+                return $"<span style='color: green;'>(+{Math.Round(percentageChange, 2)}%)</span>";
+            }
+            else if (percentageChange < 0)
+            {
+                return $"<span style='color: red;'>({Math.Round(percentageChange, 2)}%)</span>";
+            }
+            else
+            {
+                return $"<span>(+{Math.Round(percentageChange, 2)}%)</span>";
+            }
+        }
 
     }
 }
