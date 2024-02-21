@@ -1,91 +1,81 @@
 using MasterArtsLibrary.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MasterArtsWeb.Pages.LogisticsCenter
 {
     public class CalculatorModel : PageModel
     {
-        public CalculatorModel(LanguageService languageService)
-
-        {
-           
-            _languageService = languageService;
-           
-        }
         private readonly LanguageService _languageService;
         private readonly IHttpClientFactory _clientFactory;
-        [BindProperty]
-        public double Length { get; set; }
 
-        [BindProperty]
-        public double Width { get; set; }
-
-        [BindProperty]
-        public double Height { get; set; }
-
-        [BindProperty]
-        public double ActualWeight { get; set; }
-
-        [BindProperty]
-        public int Pieces { get; set; }
-
-        [BindProperty]
-        public string SelectedDensity { get; set; }
-
-        public double TotalVolume => Length * Width * Height / 1000000;
-
-        public double VolumeWeightPerPiece => TotalVolume * 1000 / Pieces;
-
-        // Uppdaterad beräkning av TotalVolumeWeight utan att konvertera till kubikmeter
-        public double TotalVolumeWeight
+        public CalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory)
         {
-            get
-            {
-                double densityRatio = ExtractDensityRatio(SelectedDensity);
-                if (densityRatio > 0)
-                {
-                    // Använd valt densitetsförhållande i beräkningen, multiplicera med 1000 och avrunda till en decimal
-                    return Math.Round(TotalVolume * densityRatio * Pieces * 1000, 1);
-                }
-                else
-                {
-                    // Använd den befintliga logiken om inget valt densitetsförhållande, multiplicera med 1000 och avrunda till en decimal
-                    return Math.Round(Length * Width * Height * Pieces * 1000 / 6, 1);
-                }
-            }
+            _languageService = languageService;
+            _clientFactory = clientFactory;
         }
 
-        // Formatera TotalVolumeWeight med en decimalpunkt
-        public string FormattedTotalVolumeWeight => TotalVolumeWeight.ToString("F1");
+        [BindProperty]
+        public List<ShipmentItem> Items { get; set; } = new List<ShipmentItem>();
 
-
-
-        public double TotalActualWeight => ActualWeight * Pieces;
-
-        public double ChargeableWeight => TotalVolumeWeight > TotalActualWeight ? TotalVolumeWeight : TotalActualWeight;
         public string CurrentLanguage { get; set; }
+
+        public double TotalVolume => Items.Sum(item => item.Volume * item.Pieces);
+
+        public double TotalActualWeight => Items.Sum(item => item.ActualWeight * item.Pieces);
+
+        public double TotalVolumeWeight => Items.Sum(item => item.VolumeWeight * item.Pieces);
+
+        public double ChargeableWeight => Math.Max(TotalVolumeWeight, TotalActualWeight);
+
         public void OnGet()
         {
             CurrentLanguage = _languageService.GetCurrentLanguage();
         }
-        public void  OnPost()
+
+        public void OnPost()
         {
             CurrentLanguage = _languageService.ToggleLanguage();
             ViewData["Language"] = CurrentLanguage;
+
+            // Om du behöver hantera data från POST-begäran, kan du göra det här
+            // Exempel: Spara data, logga, eller utföra ytterligare beräkningar
         }
-        private double ExtractDensityRatio(string selectedDensity)
+    }
+}
+
+public class ShipmentItem
+{
+    public double Length { get; set; }
+    public double Width { get; set; }
+    public double Height { get; set; }
+    public double ActualWeight { get; set; }
+    public int Pieces { get; set; }
+    public string SelectedDensity { get; set; }
+    public double Volume => Length * Width * Height / 1000000;
+
+    public double VolumeWeight
+    {
+        get
         {
-            double ratio = 0.0;
-            if (!string.IsNullOrEmpty(selectedDensity))
-            {
-                string[] parts = selectedDensity.Split(':');
-                if (parts.Length == 2 && double.TryParse(parts[0], out double numerator) && double.TryParse(parts[1], out double denominator))
-                {
-                    ratio = numerator / denominator;
-                }
-            }
-            return ratio;
+            double densityRatio = ExtractDensityRatio(SelectedDensity);
+            return Volume * densityRatio * 1000;
         }
+    }
+
+    private double ExtractDensityRatio(string selectedDensity)
+    {
+        double ratio = 0.0;
+        if (!string.IsNullOrEmpty(selectedDensity))
+        {
+            string[] parts = selectedDensity.Split(':');
+            if (parts.Length == 2 && double.TryParse(parts[0], out double numerator) && double.TryParse(parts[1], out double denominator))
+            {
+                ratio = numerator / denominator;
+            }
+        }
+        return ratio;
     }
 }

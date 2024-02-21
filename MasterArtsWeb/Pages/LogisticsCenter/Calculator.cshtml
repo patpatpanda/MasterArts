@@ -1,56 +1,112 @@
 ﻿@page
 @model MasterArtsWeb.Pages.LogisticsCenter.CalculatorModel
-@{
-}
 
 <body id="myCalc">
 
+    <div class="calculator-container" id="mr-calc" style="margin-top:70px">
+        <form id="calculator-form" class="shipment-form-2">
+            <div id="density-selection">
+                <label>Select Density:</label>
+                <select id="selectedDensity" onchange="updateResults()">
+                    <option value="1:6">1:6</option>
+                    <option value="1:1">1:1</option>
+                    <!-- Lägg till fler densitetsalternativ här -->
+                </select>
+            </div>
+            <div id="items-container">
+                <!-- Objekt kommer att läggas till här -->
+            </div>
+            
+            <button type="button" class="btn btn-secondary" onclick="addItem()">Add Item</button>
+
+            <div class="results-container">
+                <p id="totalVolume">Total Volume: 0 m³</p>
+                <p id="totalVolumeWeight">Total Volume Weight: 0 kg</p>
+                <p id="totalActualWeight">Total Actual Weight: 0 kg</p>
+                <p id="chargeableWeight">Chargeable Weight: 0 kg</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Funktion för att lägga till ett nytt objekt
+        function addItem() {
+            var container = document.getElementById("items-container");
+            var index = container.children.length;
+
+            var div = document.createElement("div");
+            div.className = "shipment-item";
+            div.innerHTML = `
+                    <label>Length (cm):</label>
+                    <input type="text" name="Items[${index}].Length" onchange="updateResults()" />
+
+                    <label>Width (cm):</label>
+                    <input type="text" name="Items[${index}].Width" onchange="updateResults()" />
+
+                    <label>Height (cm):</label>
+                    <input type="text" name="Items[${index}].Height" onchange="updateResults()" />
+
+                    <label>Actual weight (kg):</label>
+                    <input type="text" name="Items[${index}].ActualWeight" onchange="updateResults()" />
+
+                    <label>Pieces:</label>
+                    <input type="number" name="Items[${index}].Pieces" onchange="updateResults()" />
+                `;
+
+            container.appendChild(div);
+        }
+
+        // Funktion för att uppdatera resultaten baserat på inmatningar och densitet
+        function updateResults() {
+            var items = document.querySelectorAll('.shipment-item');
+            var totalVolume = 0, totalActualWeight = 0, totalVolumeWeight = 0;
+
+            var selectedDensityValue = document.getElementById('selectedDensity').value;
+            var densityRatio = extractDensityRatio(selectedDensityValue);
+
+            items.forEach(function (item) {
+                var length = parseFloat(item.querySelector('input[name*=".Length"]').value) || 0;
+                var width = parseFloat(item.querySelector('input[name*=".Width"]').value) || 0;
+                var height = parseFloat(item.querySelector('input[name*=".Height"]').value) || 0;
+                var actualWeight = parseFloat(item.querySelector('input[name*=".ActualWeight"]').value) || 0;
+                var pieces = parseInt(item.querySelector('input[name*=".Pieces"]').value) || 1;
+
+                var volume = (length * width * height) / 1000000;
+                var volumeWeight = volume * densityRatio * 1000;
+
+                totalVolume += volume * pieces;
+                totalActualWeight += actualWeight * pieces;
+                totalVolumeWeight += volumeWeight * pieces;
+            });
+
+            var chargeableWeight = Math.max(totalVolumeWeight, totalActualWeight);
+
+            document.getElementById('totalVolume').innerText = 'Total Volume: ' + totalVolume.toFixed(2) + ' m³';
+            document.getElementById('totalVolumeWeight').innerText = 'Total Volume Weight: ' + totalVolumeWeight.toFixed(2) + ' kg';
+            document.getElementById('totalActualWeight').innerText = 'Total Actual Weight: ' + totalActualWeight.toFixed(2) + ' kg';
+            document.getElementById('chargeableWeight').innerText = 'Chargeable Weight: ' + chargeableWeight.toFixed(2) + ' kg';
+        }
+
+        // Hjälpfunktion för att extrahera och omvandla densitetsförhållandet
+        function extractDensityRatio(selectedDensity) {
+            var ratio = 0.0;
+            if (selectedDensity) {
+                var parts = selectedDensity.split(':');
+                if (parts.length === 2) {
+                    var numerator = parseFloat(parts[0]);
+                    var denominator = parseFloat(parts[1]);
+                    if (!isNaN(numerator) && !isNaN(denominator) && denominator !== 0) {
+                        ratio = numerator / denominator;
+                    }
+                }
+            }
+            return ratio;
+        }
+    </script>
+
+
+    
+
+
+
 </body>
-
-<div class="calculator-container" id="mr-calc" style="margin-top:70px">
-
-    <form id="calculator-form" class="shipment-form-2" asp-page-handler="Calculator">
-        <label for="length" class="form-label-2" style="color:#333">Length (cm): </label>
-        <input type="text" id="length" name="length" class="form-input" asp-for="Length" />
-
-        <label for="width" class="form-label-2" style="color:#333">Width (cm): </label>
-        <input type="text" id="width" name="width" class="form-input" asp-for="Width" />
-
-        <label for="height" class="form-label-2" style="color:#333">Height (cm): </label>
-        <input type="text" id="height" name="height" class="form-input" asp-for="Height" />
-
-        <label for="actualWeight" class="form-label-2" style="color:#333">Actual weight (kg): </label>
-        <input type="text" id="actualWeight" name="actualWeight" class="form-input-2" asp-for="ActualWeight" />
-
-        <label for="pieces" class="form-label-2" style="color:#333">Pieces: </label>
-        <input type="text" id="pieces" name="pieces" class="form-input-2" asp-for="Pieces" />
-
-        <label for="selectedDensity" class="form-label">Select Density:</label>
-        <select id="selectedDensity" name="selectedDensity" class="form-select" asp-for="SelectedDensity">
-            <option value="1:6">1:6</option>
-            <option value="1:1">1:1</option>
-            <option value="1:2">1:2</option>
-            <option value="1:3">1:3</option>
-            <option value="1:4">1:4</option>
-            <option value="1:5">1:5</option>
-            <option value="1:6">1:6</option>
-            <option value="1:7">1:7</option>
-            <option value="1:8">1:8</option>
-            <option value="1:9">1:9</option>
-            <option value="1:10">1:10</option>
-        </select>
-
-        <button type="submit" class="btn btn-primary" style="margin-top:20px">Calculate</button>
-
-        <div class="results-container">
-            <h2 class="results-heading">Results:</h2>
-            <p class="result" id="totalVolume">Total Volume: @(Model.TotalVolume * Model.Pieces) m³</p>
-            <p class="result" id="totalVolumeWeight">Total Volume weight: @Model.TotalVolumeWeight kg</p>
-            <p class="result" id="totalActualWeight">Total Actual weight: @Model.TotalActualWeight kg</p>
-            <p class="result" id="chargeableWeight">Chargeable weight: @Model.ChargeableWeight kg</p>
-        </div>
-
-    </form>
-
-
-</div>
