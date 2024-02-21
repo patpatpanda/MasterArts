@@ -41,11 +41,7 @@ header {
     grid-template-columns: 1fr 1fr;
     margin-top: 40px;
     gap: 20px;
-    background-color: rgba(255, 255, 255, 0.2); /* Genomskinlig vit färg */
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Vit kant */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
-    opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
+   
 }
 
    
@@ -638,7 +634,7 @@ go-weather {
 }
 #myShip {
     background-color: #000; /* Mörk bakgrundsfärg */
-    background-image: radial-gradient(circle, #0ff, #000); /* Stjärnor och galaxer */
+    background-image: radial-gradient( #fff, #fffafa); /* Stjärnor och galaxer */
     background-size: cover;
     background-attachment: fixed;
 }
@@ -2003,41 +1999,18 @@ footer {
 
 
 .form-container {
-    background-color: rgba(255, 255, 255, 0.2); /* Genomskinlig vit färg */
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Vit kant */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
-    opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
+    background-color: #E8E8E8;
     padding: 40px;
     max-width: 800px;
 }
 .form-container-2 {
-    background-color: rgba(255, 255, 255, 0.8); /* Genomskinlig vit färg */
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Vit kant */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
-    opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
+    background-color: #E8E8E8;
     padding: 40px;
     max-width: 800px;
-    
 }
-.form-container-3 {
-    background-color: rgba(255, 255, 255, 0.2); /* Genomskinlig vit färg */
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Vit kant */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
-    opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
-    padding: 40px;
-    max-width: 800px;
+
+
    
-}
-
-    .form-container h2 {
-        margin-top: 0;
-        color: #333;
-        text-align: center;
-
-    }
 
 .form-group {
     margin-bottom: 20px;
@@ -2145,5 +2118,7 @@ select {
         background-color: #ff9999; /* Mörkare rosa vid hover */
     }
 .form {
-   
+    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
+    background-color: #fff;
+    padding: 10px;
 }
