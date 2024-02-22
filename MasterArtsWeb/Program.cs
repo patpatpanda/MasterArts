@@ -17,8 +17,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<LanguageService>();
-builder.Services.AddSingleton<CurrencyFactory>();
+
 builder.Services.AddScoped<OrderService>();
+
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IOrderEmailSender, EmailSender>();
 builder.Services.AddTransient<DataInitializer>();
@@ -46,7 +47,11 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
-
+using (var scope = app.Services.CreateScope())
+{
+    var initializer = scope.ServiceProvider.GetService<DataInitializer>();
+    initializer.SeedData();
+}
 
 if (!app.Environment.IsDevelopment())
 {

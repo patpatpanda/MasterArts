@@ -42,11 +42,11 @@ namespace MasterArtsWeb.Pages
 
             var client = _clientFactory.CreateClient();
 
-            // Hämta valutakursdata
+           
             var currencyResponse = await client.GetStringAsync($"https://api.exchangerate-api.com/v4/latest/{BaseCurrency}");
             CurrencyData = JsonConvert.DeserializeObject<CurrencyExchangeRates>(currencyResponse);
 
-            // Hämta växelkursdata
+            
             var exchangeRateResponse = await client.GetStringAsync($"https://api.exchangerate-api.com/v4/latest/{BaseCurrency}");
             ExchangeRate = JsonConvert.DeserializeObject<ExchangeRateModel>(exchangeRateResponse);
 

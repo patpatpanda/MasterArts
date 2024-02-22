@@ -16,7 +16,7 @@ namespace MasterArtsWeb
         public DbSet<Consignor> Consignors { get; set; }
         
         public DbSet<Goods> Goods { get; set; }
-
+        public DbSet<CurrencyRate> Rates { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace MasterArtsWeb.Migrations
+namespace MasterArtsLibrary.Migrations
 {
     [DbContext(typeof(MyDbContext))]
     partial class MyDbContextModelSnapshot : ModelSnapshot
@@ -134,8 +134,8 @@ namespace MasterArtsWeb.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Rate")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Rate")
+                        .HasColumnType("float");
 
                     b.Property<string>("TargetCurrency")
                         .IsRequired()
