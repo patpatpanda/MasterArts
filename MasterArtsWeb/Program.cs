@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using MasterArtsWeb;
 using MasterArtsWeb.Data;
 using MasterArtsWeb.Pages;
-using YourNamespace;
+
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -24,7 +24,6 @@ builder.Services.AddScoped<IOrderEmailSender, EmailSender>();
 builder.Services.AddTransient<DataInitializer>();
 builder.Services.AddHttpClient();
 builder.Services.AddTransient<IUser, UserFactory>();
-builder.Services.AddScoped<ForexService>();
 
 
 builder.Services.AddScoped<UserManager<IdentityUser>>();
@@ -47,11 +46,7 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var initializer = scope.ServiceProvider.GetService<DataInitializer>();
-    initializer.SeedData();
-}
+
 
 if (!app.Environment.IsDevelopment())
 {
