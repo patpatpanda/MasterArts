@@ -20,8 +20,8 @@ namespace MasterArtsLibrary.Services
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             var client = new SendGridClient(SendGridSecret);
-            var from = new EmailAddress("emil.arrenius@student.kyh.se", "Kund");
-            var to = new EmailAddress("nils-emil1337@hotmail.se");
+            var from = new EmailAddress("emil.arrenius@student.kyh.se", "Kontaktformulär från kund");
+            var to = new EmailAddress(email); // Mottagarens e-postadress
 
             var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);
 
@@ -32,10 +32,11 @@ namespace MasterArtsLibrary.Services
                 throw new InvalidOperationException($"Failed to send email. StatusCode: {response.StatusCode}");
             }
         }
+
         public async Task SendEmailOrderAsync(string recipientEmail, string subject, string htmlMessage)
         {
             var client = new SendGridClient(SendGridSecret);
-            var from = new EmailAddress("emil.arrenius@student.kyh.se", "Kund");
+            var from = new EmailAddress("emil.arrenius@student.kyh.se", "ARTS");
             var to = new EmailAddress(recipientEmail);  // Använd den angivna mottagarens e-postadress
 
             var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);

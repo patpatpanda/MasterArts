@@ -40,8 +40,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             CurrentLanguage = _languageService.ToggleLanguage();
             ViewData["Language"] = CurrentLanguage;
 
-            // Om du behöver hantera data från POST-begäran, kan du göra det här
-            // Exempel: Spara data, logga, eller utföra ytterligare beräkningar
+           
         }
     }
 }

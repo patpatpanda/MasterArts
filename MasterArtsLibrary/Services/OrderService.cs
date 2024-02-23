@@ -4,6 +4,7 @@ using MasterArtsLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -237,12 +238,51 @@ namespace MasterArtsLibrary.Services
         {
             // Konstruera e-postmeddelandet
             var subject = "Order Confirmation";
-            var htmlMessage = $"Thank you for your order! Order ID";
+            var htmlMessage = $@"
+        <html>
+        <head>
+           <style>
+                .container {{
+                    font-family: Arial, sans-serif;
+                    background-color: #f4f4f4;
+                    padding: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }}
+                .header {{
+                    background-color: #007bff;
+                    color: white;
+                    padding: 10px;
+                    border-radius: 10px 10px 0 0;
+                    text-align: center;
+                }}
+                .content p {{
+                    color: #333;
+                }}
+            </style>
+        </head>
+        <body>
+            <div class='email-container'>
+                <div class='header'>
+                    <h1>Orderbekräftelse</h1>
+                </div>
+                <div class='content'>
+                    <p>Tack för din beställning!</p>
+                    <p>Order ID: {order.Id}</p>
+                    
+                    <!-- Lägg till mer orderinformation här om det behövs -->
+                </div>
+                <div class='footer'>
+                    <p>Om du har frågor, vänligen kontakta oss på ops@artslogistics.se eller ring +46 70-549 14 14</p>
+                </div>
+            </div>
+        </body>
+        </html>";
 
             // Skicka e-postmeddelandet
             await _order.SendEmailOrderAsync(recipientEmail, subject, htmlMessage);
-
         }
+
 
         public Task<List<string>> GetAllCountries()
         {
