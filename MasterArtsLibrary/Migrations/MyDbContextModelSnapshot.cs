@@ -119,7 +119,7 @@ namespace MasterArtsLibrary.Migrations
                     b.ToTable("Consignors");
                 });
 
-            modelBuilder.Entity("MasterArtsLibrary.Models.CurrencyRate", b =>
+            modelBuilder.Entity("MasterArtsLibrary.Models.ExchangeRate", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -128,22 +128,17 @@ namespace MasterArtsLibrary.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BaseCurrency")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Rate")
-                        .HasColumnType("float");
+                    b.Property<decimal?>("Rate")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("TargetCurrency")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Rates");
+                    b.ToTable("CurrencyRates");
                 });
 
             modelBuilder.Entity("MasterArtsLibrary.Models.Goods", b =>
@@ -199,6 +194,28 @@ namespace MasterArtsLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Goods");
+                });
+
+            modelBuilder.Entity("MasterArtsLibrary.Models.MrRate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Base")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Provider")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rates");
                 });
 
             modelBuilder.Entity("MasterArtsLibrary.Models.Order", b =>

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MasterArtsLibrary.Migrations
 {
     /// <inheritdoc />
-    public partial class lolhej : Migration
+    public partial class lol : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -93,6 +93,21 @@ namespace MasterArtsLibrary.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CurrencyRates",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BaseCurrency = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TargetCurrency = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Rate = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CurrencyRates", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Goods",
                 columns: table => new
                 {
@@ -124,9 +139,8 @@ namespace MasterArtsLibrary.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BaseCurrency = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TargetCurrency = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Rate = table.Column<double>(type: "float", nullable: false),
+                    Provider = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Base = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -354,6 +368,9 @@ namespace MasterArtsLibrary.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "CurrencyRates");
 
             migrationBuilder.DropTable(
                 name: "Orders");

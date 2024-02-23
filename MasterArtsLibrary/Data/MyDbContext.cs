@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MasterArtsLibrary.Models;
+using MasterArtsLibrary.ViewModels;
 
 namespace MasterArtsWeb
 {
@@ -16,7 +17,8 @@ namespace MasterArtsWeb
         public DbSet<Consignor> Consignors { get; set; }
         
         public DbSet<Goods> Goods { get; set; }
-        public DbSet<CurrencyRate> Rates { get; set; }
+        public DbSet<ExchangeRate> CurrencyRates { get; set; }
+        public DbSet<MrRate> Rates{ get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

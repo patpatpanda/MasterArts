@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MasterArtsLibrary.ViewModels
+namespace MasterArtsLibrary.Models
 {
-    public class ExchangeRateModel
+    public class ExchangeRate
     {
         public int Id { get; set; }
         public string? BaseCurrency { get; set; }
         public string? TargetCurrency { get; set; }
         public decimal? Rate { get; set; }
-        public Dictionary<string, decimal> Rates { get; set; }
     }
 }
