@@ -788,10 +788,15 @@ gol-2 {
     .star-rating input:checked ~ label ~ label {
         color: #f8d838;
     }
-
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     /* eller annan höjd beroende på ditt layoutbehov */
+}
 .mysan {
     max-width: 600px;
-    margin: 0 auto;
+    
     font-family: Arial, sans-serif;
     margin-top: 100px;
 }
@@ -809,7 +814,7 @@ gol-2 {
     margin-top: 30px;
     background-color: #fffafa;
     padding: 50px;
-    width: 100%;
+    max-width:800px;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
