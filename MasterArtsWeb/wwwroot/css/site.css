@@ -795,7 +795,7 @@ gol-2 {
      /* eller annan höjd beroende på ditt layoutbehov */
 }
 .mysan {
-    max-width: 600px;
+    max-width: 900px;
     
     font-family: Arial, sans-serif;
     margin-top: 100px;
@@ -814,7 +814,7 @@ gol-2 {
     margin-top: 30px;
     background-color: #fffafa;
     padding: 50px;
-    max-width:800px;
+    max-width:1200px;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
@@ -960,6 +960,7 @@ h3 {
 .deal-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding:10px
 }
 
 .deal-3 {
