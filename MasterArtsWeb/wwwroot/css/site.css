@@ -513,10 +513,7 @@ go-weather {
     height: 400px;
 }
 
-#myShip header {
-    background: #080F1A;
-    height: 400px;
-}
+
 #myShip .shipment {
     display: block;
    
@@ -703,12 +700,7 @@ go-weather {
     background: Black;
     height: 400px;
 }
-#myShip {
-    background-color: #000; /* Mörk bakgrundsfärg */
-    background-image: radial-gradient( #fff, #fffafa); /* Stjärnor och galaxer */
-    background-size: cover;
-    background-attachment: fixed;
-}
+
 #myS video {
     display: none
 }
@@ -793,7 +785,7 @@ go-weather {
 }
 
 #myContact {
-    background: #333;
+    background: #000;
 }
 
 video {
@@ -1108,16 +1100,20 @@ h3 {
     background-size: cover;
     background-attachment: fixed;
 }
+    #myCalc header{
+        height:400px;
+        background: black;
+    }
 
-.shipment-form-2 {
-    background-color: rgba(255, 255, 255, 0.2); /* Genomskinlig vit färg */
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Vit kant */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
-    opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
-    padding: 40px;
-    width: 500px;
-}
+    .shipment-form-2 {
+        background-color: rgba(255, 255, 255, 0.2); /* Genomskinlig vit färg */
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.5); /* Vit kant */
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
+        opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
+        padding: 40px;
+        width: 500px;
+    }
 
 
 

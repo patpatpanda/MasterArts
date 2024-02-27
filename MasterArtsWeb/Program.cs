@@ -32,27 +32,12 @@ builder.Services.AddScoped<UserManager<IdentityUser>>();
 
 // Registrera SeedDataService
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("AllowSpecificUser", policy =>
-    {
-        policy.RequireAuthenticatedUser();
-        policy.RequireAssertion(context =>
-        {
-            // Här kontrollerar du om den aktuella inloggade användaren är "nils-emil1337@hotmail.se"
-            return context.User.Identity.Name == "nils-emil1337@hotmail.se";
-        });
-    });
-});
+
 
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var initializer = scope.ServiceProvider.GetService<DataInitializer>();
-    initializer.SeedData();
-}
+
 
 if (!app.Environment.IsDevelopment())
 {
