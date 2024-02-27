@@ -784,10 +784,48 @@ go-weather {
     font-size: 1.5em;
 }
 
-#myContact {
-    background: #000;
+#myContact .game {
+    
+    display:none
+}
+#myShip .game {
+    display: none
+}
+#myS .game {
+    display: none
+}
+#myCalc .game {
+    display: none
+}
+#myAbout .game {
+    display: none
 }
 
+
+
+
+#my .game {
+    display: none
+}
+#myContact .game {
+    display: none
+}
+#myContact{
+    background: black
+}
+#myContact .team {
+    display:block
+}
+
+    #myAbout .team {
+        display: block
+    }
+    #myS .team {
+        display: block
+    }
+    #myShip .team {
+        display: block
+    }
 video {
     position: absolute;
     top: 0;
@@ -1434,7 +1472,9 @@ input {
     display: grid;
     grid-template-columns: 1fr 1fr
 }
-
+.team{
+    display:none
+}
 
 .tyst {
     font-size: 4em;
@@ -1588,7 +1628,12 @@ input {
         text-transform: uppercase; /* Gör texten till versaler */
         margin-bottom: 20px;
     }
-
+    .team{
+        display:block
+    }
+    .game{
+        display:none
+    }
     .s-lol {
         display: none;
     }
