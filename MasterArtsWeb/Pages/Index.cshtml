@@ -851,46 +851,22 @@
 
 </div>
 <div class="valuta-3">
-    @if (Model.CurrencyData != null && Model.ExchangeRate != null)
+    @if (Model.CurrencyData != null)
     {
-        <!-- SEK/USD -->
         <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/USD: @Math.Round(1 / Model.CurrencyData.Rates["USD"], 2)
-            @if (Model.ExchangeRate.Rates != null && Model.ExchangeRate.Rates.ContainsKey("USD"))
-            {
-                var changeUSD = Model.CalculatePercentageChange(Model.CurrencyData.Rates["USD"], Model.ExchangeRate.Rates["USD"]);
-                <span class="@((changeUSD >= 0) ? "positive-change" : "negative-change")">@changeUSD.ToString("0.00")%</span>
-            }
+            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/USD: @Math.Round(1 / Model.CurrencyData.Rates["USD"], 2)
         </p>
-
-        <!-- SEK/EUR -->
         <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/EUR: @Math.Round(1 / Model.CurrencyData.Rates["EUR"], 2)
-            @if (Model.ExchangeRate.Rates != null && Model.ExchangeRate.Rates.ContainsKey("EUR"))
-            {
-                var changeEUR = Model.CalculatePercentageChange(Model.CurrencyData.Rates["EUR"], Model.ExchangeRate.Rates["EUR"]);
-                <span class="@((changeEUR >= 0) ? "positive-change" : "negative-change")">@changeEUR.ToString("0.00")%</span>
-            }
+            <i class="fa-sharp fa-thin fa-money-bill"></i>   SEK/EUR: @Math.Round(1 / Model.CurrencyData.Rates["EUR"], 2)
         </p>
-
-        <!-- SEK/DKK -->
         <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/DKK: @Math.Round(1 / Model.CurrencyData.Rates["DKK"], 2)
-            @if (Model.ExchangeRate.Rates != null && Model.ExchangeRate.Rates.ContainsKey("DKK"))
-            {
-                var changeDKK = Model.CalculatePercentageChange(Model.CurrencyData.Rates["DKK"], Model.ExchangeRate.Rates["DKK"]);
-                <span class="@((changeDKK >= 0) ? "positive-change" : "negative-change")">@changeDKK.ToString("0.00")%</span>
-            }
+            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/GBP: @Math.Round(1 / Model.CurrencyData.Rates["GBP"], 2)
         </p>
-
-        <!-- SEK/NOK -->
+        <p>
+            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/DKK: @Math.Round(1 / Model.CurrencyData.Rates["DKK"], 2)
+        </p>
         <p>
             <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/NOK: @Math.Round(1 / Model.CurrencyData.Rates["NOK"], 2)
-            @if (Model.ExchangeRate.Rates != null && Model.ExchangeRate.Rates.ContainsKey("NOK"))
-            {
-                var changeNOK = Model.CalculatePercentageChange(Model.CurrencyData.Rates["NOK"], Model.ExchangeRate.Rates["NOK"]);
-                <span class="@((changeNOK >= 0) ? "positive-change" : "negative-change")">@changeNOK.ToString("0.00")%</span>
-            }
         </p>
     }
 </div>

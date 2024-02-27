@@ -26,15 +26,24 @@ body, html {
     display:none;
 }
 
+.dark-transparent-bg {
+    background-color: rgba(0, 0, 0, 0.5); /* Svart med 50% genomskinlighet */
+    border-bottom: solid 3px white; /* Behåller din befintliga stil för gränsen */
+}
 
 
 header {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 1000px;
     overflow: hidden;
     background-color: black;
+    background-image: url('/images/apink.webp'); /* Byt ut 'path/to/your/image.jpg' mot sökvägen till din bild */
+    background-size: cover; /* Täcker hela bredden och höjden av header, kan justeras beroende på dina behov */
+    background-position: center; /* Centrerar bilden i headern */
+    background-repeat: no-repeat; /* Gör så att bilden inte upprepas */
 }
+
 
 .form-style-10 {
     display: grid;
@@ -144,14 +153,60 @@ h2-p {
     margin-top: 50px;
     gap: 10px;
 }
+.text-with-image-overlay {
+    position: relative;
+    padding-top: 300px; /* Justera detta värde baserat på din bilds höjd */
+}
 
+    .text-with-image-overlay img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; /* Justera bredden efter behov */
+        height: 300px; /* Justera höjden efter behov */
+        object-fit: cover; /* Se till att bilden täcker området väl */
+    }
+
+.content {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5); /* Ger en mörk, genomskinlig bakgrund till texten */
+    color: white; /* Vit textfärg */
+    padding: 20px;
+}
+
+.services-list ul {
+    list-style-type: none; /* Tar bort standard punktmarkeringar */
+    padding: 0;
+    margin: 0;
+}
+.services-list{
+    margin-top:1px;
+}
+.services-list li {
+    margin-bottom: 10px; /* Skapar utrymme mellan listpunkter */
+    padding-left: 20px; /* Ger lite utrymme till vänster för att skapa en indrag-effekt */
+    position: relative; /* Nödvändigt för att positionera dekorationer eller ikoner korrekt */
+}
+
+    .services-list li::before {
+        content: '•'; /* Lägger till en anpassad punktmarkering */
+        color: #007bff; /* Anpassad färg för punktmarkering, exempelvis blå */
+        font-size: 20px; /* Större storlek på punktmarkeringen */
+        position: absolute; /* Positionerar markeringen relativt till list-item */
+        left: 0; /* Justerar positionen till vänsterkanten */
+        top: 0; /* Justerar positionen till toppen av texten */
+    }
+
+.services-list strong {
+    color: #333; /* Mörkare färg för titlarna för kontrast och läsbarhet */
+}
 
 .fren {
-    background-image: url('/images/fren.png');
+    background-image: url('/images/cc378cee-5500-49a3-82a1-bb438a14dfad.webp');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 800px;
-    height: 800px;
+    width: 500px;
+    height: 500px;
     border-radius: 20%
 }
 
