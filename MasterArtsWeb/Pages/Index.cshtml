@@ -854,22 +854,23 @@
     @if (Model.CurrencyData != null)
     {
         <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/USD: @Math.Round(1 / Model.CurrencyData.Rates["USD"], 2)
+            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/USD: @Math.Round((1 / Model.CurrencyData.Rates["USD"]) + 0.5m, 2)
         </p>
         <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i>   SEK/EUR: @Math.Round(1 / Model.CurrencyData.Rates["EUR"], 2)
+            <i class="fa-sharp fa-thin fa-money-bill"></i>   SEK/EUR: @Math.Round((1 / Model.CurrencyData.Rates["EUR"]) + 0.5m, 2)
         </p>
         <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/GBP: @Math.Round(1 / Model.CurrencyData.Rates["GBP"], 2)
+            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/GBP: @Math.Round((1 / Model.CurrencyData.Rates["GBP"]) + 0.5m, 2)
         </p>
         <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/DKK: @Math.Round(1 / Model.CurrencyData.Rates["DKK"], 2)
+            <i class="fa-sharp fa-thin fa-money-bill"></i>  SEK/DKK: @Math.Round((1 / Model.CurrencyData.Rates["DKK"]) + 0.5m, 2)
         </p>
         <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/NOK: @Math.Round(1 / Model.CurrencyData.Rates["NOK"], 2)
+            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/NOK: @Math.Round((1 / Model.CurrencyData.Rates["NOK"]) + 0.5m, 2)
         </p>
     }
 </div>
+
 
 
 
