@@ -34,6 +34,37 @@
     <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">SWE/ENG</button>
 </div>
 
+    <div class="valuta-3">
+    @if (Model.CurrencyData?.Rates != null)
+    {
+        decimal usdRate, eurRate, gbpRate, dkkRate, nokRate;
+        bool hasUsd = Model.CurrencyData.Rates.TryGetValue("USD", out usdRate);
+        bool hasEur = Model.CurrencyData.Rates.TryGetValue("EUR", out eurRate);
+        bool hasGbp = Model.CurrencyData.Rates.TryGetValue("GBP", out gbpRate);
+        bool hasDkk = Model.CurrencyData.Rates.TryGetValue("DKK", out dkkRate);
+        bool hasNok = Model.CurrencyData.Rates.TryGetValue("NOK", out nokRate);
+
+        <p>
+            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/USD: @if (hasUsd) { @Math.Round((1 / usdRate) + 0.5m, 2) } else { <text>N/A</text> }
+        </p>
+        <p>
+            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/EUR: @if (hasEur) { @Math.Round((1 / eurRate) + 0.5m, 2) } else { <text>N/A</text> }
+        </p>
+        <p>
+            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/GBP: @if (hasGbp) { @Math.Round((1 / gbpRate) + 0.5m, 2) } else { <text>N/A</text> }
+        </p>
+        <p>
+            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/DKK: @if (hasDkk) { @Math.Round((1 / dkkRate) + 0.5m, 2) } else { <text>N/A</text> }
+        </p>
+        <p>
+            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/NOK: @if (hasNok) { @Math.Round((1 / nokRate) + 0.5m, 2) } else { <text>N/A</text> }
+        </p>
+    }
+    else
+    {
+        <p>Valutainformation är inte tillgänglig.</p>
+    }
+</div>
 
 
 
@@ -47,15 +78,15 @@
         <input asp-for="Order.CustomerOrderNumber" class="form-control" placeholder="Ex: ABC123" />
         <span asp-validation-for="Order.CustomerOrderNumber" class="text-danger"></span>
 
-        <label asp-for="Order.OrderReference">Order Reference</label>
+                <label asp-for="Order.OrderReference">Order Reference<span class="required">*</span></label>
         <input asp-for="Order.OrderReference" class="form-control" placeholder="Ex: REF123" />
         <span asp-validation-for="Order.OrderReference" class="text-danger"></span>
 
-        <label asp-for="Order.Customer">Customer</label>
+                <label asp-for="Order.Customer">Customer<span class="required">*</span></label>
         <input asp-for="Order.Customer" class="form-control" placeholder="Ex: John Doe" />
         <span asp-validation-for="Order.Customer" class="text-danger"></span>
 
-        <label asp-for="Order.FreightService">Freight Service</label>
+                <label asp-for="Order.FreightService">Freight Service<span class="required">*</span></label>
         <select asp-for="Order.FreightService" class="form-control">
             <option value="">Select Freight Service</option>
             <option value="OceanFreight">Ocean Freight</option>
@@ -68,11 +99,11 @@
         </select>
         <span asp-validation-for="Order.FreightService" class="text-danger"></span>
 
-        <label asp-for="Order.DeliveryTimeFrom">Delivery Time From</label>
+                <label asp-for="Order.DeliveryTimeFrom">Delivery Time From<span class="required">*</span></label>
         <input asp-for="Order.DeliveryTimeFrom" type="datetime-local" class="form-control" />
         <span asp-validation-for="Order.DeliveryTimeFrom" class="text-danger"></span>
 
-        <label asp-for="Order.DeliveryTimeTo">Delivery Time To</label>
+                <label asp-for="Order.DeliveryTimeTo">Delivery Time To<span class="required">*</span></label>
         <input asp-for="Order.DeliveryTimeTo" type="datetime-local" class="form-control" />
         <span asp-validation-for="Order.DeliveryTimeTo" class="text-danger"></span>
 

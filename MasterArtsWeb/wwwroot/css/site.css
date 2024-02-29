@@ -2451,3 +2451,23 @@ select {
     .form-button:hover {
         background-color: #004494;
     }
+.valuta-info h2 {
+    color: #333;
+    font-size: 24px;
+}
+
+.valuta-info p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.valuta-3 p {
+    font-size: 14px;
+    color: #444;
+}
+
+.fa-money-bill {
+    margin-right: 5px;
+    color: green;
+}
