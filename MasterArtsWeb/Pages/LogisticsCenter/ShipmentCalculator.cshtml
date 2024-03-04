@@ -74,7 +74,7 @@
    <div class="form-style-10">
     <div class="form-container-2">
         <h3 class="text-center" style="color:#333">Details</h3>
-        <label asp-for="Order.CustomerOrderNumber">Customer Order Number</label>
+                <label asp-for="Order.CustomerOrderNumber">Customer Order Number<span class="required">*</span></label>
         <input asp-for="Order.CustomerOrderNumber" class="form-control" placeholder="Ex: ABC123" />
         <span asp-validation-for="Order.CustomerOrderNumber" class="text-danger"></span>
 
@@ -107,14 +107,14 @@
         <input asp-for="Order.DeliveryTimeTo" type="datetime-local" class="form-control" />
         <span asp-validation-for="Order.DeliveryTimeTo" class="text-danger"></span>
 
-        <label>Pick Up Time From</label>
+                <label>Pick Up Time From<span class="required">*</span></label>
         <select asp-for="Order.PickUpTimeFrom" class="form-control">
             <option value="08:00-15:00">08:00-15:00</option>
             <option value="09:00-16:00">09:00-16:00</option>
             <!-- Lägg till fler alternativ vid behov -->
         </select>
 
-        <label>Pick Up Time To</label>
+                <label>Pick Up Time To<span class="required">*</span></label>
         <select asp-for="Order.PickUpTimeTo" class="form-control">
             <option value="08:00-15:00">08:00-15:00</option>
             <option value="09:00-16:00">09:00-16:00</option>
@@ -165,9 +165,19 @@
             <input asp-for="Order.Goods.Volume" type="number" class="form-control" placeholder="Ex: 900 (in cubic cm)" />
             <span asp-validation-for="Order.Goods.Volume" class="text-danger"></span>
 
-            <label asp-for="Order.Goods.VolumeUnit">VolumeUnit<span class="required">*</span></label>
-            <input asp-for="Order.Goods.VolumeUnit" class="form-control" placeholder="Ex: Cubic cm" />
-            <span asp-validation-for="Order.Goods.VolumeUnit" class="text-danger"></span>
+                <label asp-for="Order.Goods.VolumeUnit">Volume Unit<span class="required">*</span></label>
+                <select asp-for="Order.Goods.VolumeUnit" class="form-control">
+                    <option value="">Select a unit</option>
+                    <option value="CBM">Cubic Meter (CBM)</option>
+                    <option value="CFT">Cubic Feet (CFT)</option>
+                    <option value="L">Liter (L)</option>
+                    <option value="Gallon">Gallon (US/Imperial)</option>
+                    <option value="In³">Cubic Inches (In³)</option>
+                   
+                </select>
+                <span asp-validation-for="Order.Goods.VolumeUnit" class="text-danger"></span>
+
+
 
             <label asp-for="Order.Goods.GrossWeight">GrossWeight<span class="required">*</span></label>
             <input asp-for="Order.Goods.GrossWeight" type="number" class="form-control" placeholder="Ex: 15 (in kg)" />
@@ -267,7 +277,7 @@
             <span asp-validation-for="Order.Consignee.ConsigneeContact" class="text-danger"></span>
 
             <label asp-for="Order.Consignee.ConsigneePhone">Consignee Phone</label>
-            <input asp-for="Order.Consignee.ConsigneePhone" class="form-control" placeholder="Ex: +1 (123) 456-7890" />
+            <input asp-for="Order.Consignee.ConsigneePhone" class="form-control" placeholder="Ex: 070235456" />
             <span asp-validation-for="Order.Consignee.ConsigneePhone" class="text-danger"></span>
 
             <label asp-for="Order.Consignee.ConsigneeEmail">Consignee Email</label>
@@ -380,9 +390,18 @@
     <input asp-for="Order.Goods.Volume" type="number" class="form-control" placeholder="Exempel: 60000" />
     <span asp-validation-for="Order.Goods.Volume" class="text-danger"></span>
 
-    <label asp-for="Order.Goods.VolumeUnit">Volymenhet<span class="required">*</span></label>
-    <input asp-for="Order.Goods.VolumeUnit" class="form-control" placeholder="Exempel: cm³" />
-    <span asp-validation-for="Order.Goods.VolumeUnit" class="text-danger"></span>
+                <label asp-for="Order.Goods.VolumeUnit">VolumeUnit<span class="required">*</span></label>
+                <select asp-for="Order.Goods.VolumeUnit" class="form-control">
+                    <option value="">Välj en enhet</option>
+                    <option value="CBM">Kubikmeter (CBM)</option>
+                    <option value="CFT">Kubikfot (CFT)</option>
+                    <option value="L">Liter (L)</option>
+                    <option value="Gallon">Gallon (US/Imperial)</option>
+                    <option value="In³">Kubiktum (In³)</option>
+                    
+                </select>
+                <span asp-validation-for="Order.Goods.VolumeUnit" class="text-danger"></span>
+
 
     <label asp-for="Order.Goods.GrossWeight">Bruttovikt(kg)<span class="required">*</span></label>
     <input asp-for="Order.Goods.GrossWeight" type="number" class="form-control" placeholder="Exempel: 20" />

@@ -156,7 +156,7 @@ h2-p {
 }
 .text-with-image-overlay {
     position: relative;
-    padding-top: 300px; /* Justera detta värde baserat på din bilds höjd */
+    padding-top: 430px; /* Justera detta värde baserat på din bilds höjd */
 }
 
     .text-with-image-overlay img {
@@ -164,7 +164,7 @@ h2-p {
         top: 0;
         left: 0;
         width: 100%; /* Justera bredden efter behov */
-        height: 300px; /* Justera höjden efter behov */
+        height: 430px; /* Justera höjden efter behov */
         object-fit: cover; /* Se till att bilden täcker området väl */
     }
 
@@ -1603,6 +1603,7 @@ input {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 35px;
+    margin-top:140px;
 }
 
 .footer-section {
@@ -1935,7 +1936,14 @@ input {
         order: 1;
         margin-bottom: 15px;
     }
+    .deal-2 {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 
+    .deal {
+        margin-top: 30px;
+    }
     .section {
         display: flex;
         flex-direction: column;
@@ -2134,14 +2142,7 @@ footer {
         transition: background-color 0.5s ease;
     }
 
-    .deal-2 {
-        display: grid;
-        grid-template-columns: 1fr;
-    }
-
-    .deal {
-        margin-top: 30px;
-    }
+    
 
 }
 
@@ -2470,4 +2471,9 @@ select {
 .fa-money-bill {
     margin-right: 5px;
     color: green;
+}
+@media (min-width: 2000px) {
+    header {
+        height: 1400px
+    }
 }
