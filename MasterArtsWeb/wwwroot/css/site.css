@@ -9,23 +9,25 @@
 body, html {
     margin: 0;
     padding: 0;
-    background-color: #fffafa;
-    
+    background-color: white;
     min-height: 100vh;
     color: black;
 }
+
 #myView {
     background: #fffafa;
     margin: 0;
     padding: 0;
 }
-#myView header{
-    height:400px;
-    background-color:black;
-}
-#myView video{
-    display:none;
-}
+
+    #myView header {
+        height: 400px;
+        background-color: black;
+    }
+
+    #myView video {
+        display: none;
+    }
 
 .dark-transparent-bg {
     background-color: rgba(0, 0, 0, 0.5); /* Svart med 50% genomskinlighet */
@@ -35,40 +37,38 @@ body, html {
 
 header {
     position: relative;
+    z-index: 1;
+    background-image: url('/images/bj.webp');
+    height: 600px; /* Eller önskad höjd */
     width: 100%;
-    height: 1000px;
-    overflow: hidden;
-    background-color: black;
-    background-image: url('/images/apink.webp'); /* Byt ut 'path/to/your/image.jpg' mot sökvägen till din bild */
-    background-size: cover; /* Täcker hela bredden och höjden av header, kan justeras beroende på dina behov */
-    background-position: center; /* Centrerar bilden i headern */
-    background-repeat: no-repeat; /* Gör så att bilden inte upprepas */
 }
-
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2); /* Semi-transparent svart överlager */
+    z-index: -1;
+}
 
 .form-style-10 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 40px;
     gap: 20px;
-   
 }
 
-   
+
 
 .container-m {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
-.header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
+
+
 
 .content {
     margin-top: 20px;
@@ -77,6 +77,7 @@ header {
     .content p {
         line-height: 1.6;
     }
+
 .grid-m {
     text-align: center;
 }
@@ -92,11 +93,12 @@ h2-p {
 
 .bla {
     background-color: #e6f7ec;
-    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
+   
     bottom: 0;
     margin-top: 200px;
-    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
+   
 }
+
 .go-to-calculator-btn {
     background-color: #007bff; /* Blå färg, kan ändras efter önskemål */
     color: #fff; /* Vit text */
@@ -106,6 +108,7 @@ h2-p {
     cursor: pointer; /* Visar att knappen är klickbar */
     margin-top: 20px;
 }
+
 #myOrder footer {
     height: 350px;
 }
@@ -154,6 +157,7 @@ h2-p {
     margin-top: 50px;
     gap: 10px;
 }
+
 .text-with-image-overlay {
     position: relative;
     padding-top: 430px; /* Justera detta värde baserat på din bilds höjd */
@@ -180,27 +184,29 @@ h2-p {
     padding: 0;
     margin: 0;
 }
-.services-list{
-    margin-top:1px;
-}
-.services-list li {
-    margin-bottom: 10px; /* Skapar utrymme mellan listpunkter */
-    padding-left: 20px; /* Ger lite utrymme till vänster för att skapa en indrag-effekt */
-    position: relative; /* Nödvändigt för att positionera dekorationer eller ikoner korrekt */
+
+.services-list {
+    margin-top: 1px;
 }
 
-    .services-list li::before {
-        content: '•'; /* Lägger till en anpassad punktmarkering */
-        color: #007bff; /* Anpassad färg för punktmarkering, exempelvis blå */
-        font-size: 20px; /* Större storlek på punktmarkeringen */
-        position: absolute; /* Positionerar markeringen relativt till list-item */
-        left: 0; /* Justerar positionen till vänsterkanten */
-        top: 0; /* Justerar positionen till toppen av texten */
+    .services-list li {
+        margin-bottom: 10px; /* Skapar utrymme mellan listpunkter */
+        padding-left: 20px; /* Ger lite utrymme till vänster för att skapa en indrag-effekt */
+        position: relative; /* Nödvändigt för att positionera dekorationer eller ikoner korrekt */
     }
 
-.services-list strong {
-    color: #333; /* Mörkare färg för titlarna för kontrast och läsbarhet */
-}
+        .services-list li::before {
+            content: '•'; /* Lägger till en anpassad punktmarkering */
+            color: #007bff; /* Anpassad färg för punktmarkering, exempelvis blå */
+            font-size: 20px; /* Större storlek på punktmarkeringen */
+            position: absolute; /* Positionerar markeringen relativt till list-item */
+            left: 0; /* Justerar positionen till vänsterkanten */
+            top: 0; /* Justerar positionen till toppen av texten */
+        }
+
+    .services-list strong {
+        color: #333; /* Mörkare färg för titlarna för kontrast och läsbarhet */
+    }
 
 .fren {
     background-image: url('/images/cc378cee-5500-49a3-82a1-bb438a14dfad.webp');
@@ -359,15 +365,16 @@ h2 {
     padding: 20px;
     color: #333;
 }
+
 .valuta-3 {
     display: flex;
-    justify-content:center;
-    align-items:center;
+    justify-content: center;
+    align-items: center;
     gap: 30px;
     height: 200px;
     padding: 10px;
     color: #fff;
-  background:  #333333
+    background: #333333
 }
 
 
@@ -495,7 +502,6 @@ go-weather {
 }
 
 #myContact header {
-   
     background: Black;
     height: 400px
 }
@@ -516,7 +522,6 @@ go-weather {
 
 #myShip .shipment {
     display: block;
-   
     color: white;
     display: flex;
     justify-content: center;
@@ -524,9 +529,11 @@ go-weather {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 4em
 }
-.shipment{
-    display:none;
+
+.shipment {
+    display: none;
 }
+
 #myShip video {
     display: none
 }
@@ -544,9 +551,11 @@ go-weather {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 4em
 }
-.book{
-    display:none;
+
+.book {
+    display: none;
 }
+
 #myView .book {
     display: block;
     color: white;
@@ -556,6 +565,7 @@ go-weather {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 4em
 }
+
 #myContact .contact {
     display: block;
     color: white;
@@ -644,7 +654,8 @@ go-weather {
     color: white; /* Mörk textfärg */
     font-size: 2.5em;
     margin-top: 100px;
-    margin-left: 100px
+    margin-left: 100px;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 
@@ -707,7 +718,6 @@ go-weather {
 
 
 #mySus header {
-    
     height: 400px;
 }
 
@@ -785,18 +795,21 @@ go-weather {
 }
 
 #myContact .game {
-    
-    display:none
+    display: none
 }
+
 #myShip .game {
     display: none
 }
+
 #myS .game {
     display: none
 }
+
 #myCalc .game {
     display: none
 }
+
 #myAbout .game {
     display: none
 }
@@ -807,25 +820,31 @@ go-weather {
 #my .game {
     display: none
 }
+
 #myContact .game {
     display: none
 }
+
 #myContact {
     background-image: url('/images/02c62f5c-2369-4648-b585-e8cd00b80c96.webp');
 }
-#myContact .team {
-    display:block
+
+    #myContact .team {
+        display: block
+    }
+
+#myAbout .team {
+    display: block
 }
 
-    #myAbout .team {
-        display: block
-    }
-    #myS .team {
-        display: block
-    }
-    #myShip .team {
-        display: block
-    }
+#myS .team {
+    display: block
+}
+
+#myShip .team {
+    display: block
+}
+
 video {
     position: absolute;
     top: 0;
@@ -874,15 +893,16 @@ gol-2 {
     .star-rating input:checked ~ label ~ label {
         color: #f8d838;
     }
+
 .center-container {
     display: flex;
     justify-content: center;
     align-items: center;
-     /* eller annan höjd beroende på ditt layoutbehov */
+    /* eller annan höjd beroende på ditt layoutbehov */
 }
+
 .mysan {
     max-width: 900px;
-    
     font-family: Arial, sans-serif;
     margin-top: 100px;
 }
@@ -900,7 +920,7 @@ gol-2 {
     margin-top: 30px;
     background-color: #fffafa;
     padding: 50px;
-    max-width:1200px;
+    max-width: 1200px;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
@@ -1046,7 +1066,7 @@ h3 {
 .deal-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding:10px
+    padding: 10px
 }
 
 .deal-3 {
@@ -1135,7 +1155,6 @@ h3 {
     align-items: center;
     color: #333;
     gap: 33px;
-   
 }
 
 #myCalc {
@@ -1144,20 +1163,21 @@ h3 {
     background-size: cover;
     background-attachment: fixed;
 }
-    #myCalc header{
-        height:400px;
+
+    #myCalc header {
+        height: 400px;
         background: black;
     }
 
-    .shipment-form-2 {
-        background-color: rgba(255, 255, 255, 0.2); /* Genomskinlig vit färg */
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.5); /* Vit kant */
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
-        opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
-        padding: 40px;
-        width: 500px;
-    }
+.shipment-form-2 {
+    background-color: rgba(255, 255, 255, 0.2); /* Genomskinlig vit färg */
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Vit kant */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
+    opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
+    padding: 40px;
+    width: 500px;
+}
 
 
 
@@ -1170,7 +1190,8 @@ h3 {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-.form-input  {
+
+.form-input {
     width: 100%;
     padding: 8px;
     margin-bottom: 16px;
@@ -1216,7 +1237,6 @@ h3 {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    
 }
 
 .qop-1 {
@@ -1224,7 +1244,7 @@ h3 {
     margin: 0 auto;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+   
 }
 
 .qop-3 {
@@ -1245,7 +1265,7 @@ h3 {
     margin-top: 100px;
     margin-bottom: 100px;
     background-color: #e6f7ec;
-    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     padding: 30px;
 }
 
@@ -1478,8 +1498,9 @@ input {
     display: grid;
     grid-template-columns: 1fr 1fr
 }
-.team{
-    display:none
+
+.team {
+    display: none
 }
 
 .tyst {
@@ -1603,12 +1624,13 @@ input {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 35px;
-    margin-top:140px;
+    margin-top: 140px;
 }
 
 .footer-section {
     margin-left: 50px;
 }
+
 .form-section-container {
     display: flex;
 }
@@ -1635,18 +1657,23 @@ input {
         text-transform: uppercase; /* Gör texten till versaler */
         margin-bottom: 20px;
     }
-    .team{
-        display:block
+
+    .team {
+        display: block
     }
-    .game{
-        display:none
+
+    .game {
+        display: none
     }
+
     .s-lol {
         display: none;
     }
+
     .navbar-nav .nav-link .customer-text {
         font-size: 16px; /* Ange önskad storlek */
     }
+
     .container-abbe {
         margin-left: 1px;
         background-color: #fff;
@@ -1657,11 +1684,13 @@ input {
         max-width: 800px;
         width: 100%;
     }
+
     .form-style-10 {
         display: grid;
         grid-template-columns: 1fr;
         margin-top: 40px;
     }
+
     .benefits {
         font-size: 18px;
         color: #666;
@@ -1832,7 +1861,6 @@ input {
         width: 100%;
         height: 400px;
         overflow: hidden;
-       
     }
 
     .moby {
@@ -1876,7 +1904,9 @@ input {
     .description {
         display: none
     }
-
+    header {
+        background-image: url('/images/apink.webp');
+    }
     .larger-text {
         font-size: 18px; /* Minska textstorleken för mindre skärmar */
         line-height: 1.3; /* Anpassa radhöjden för mindre skärmar */
@@ -1936,6 +1966,7 @@ input {
         order: 1;
         margin-bottom: 15px;
     }
+
     .deal-2 {
         display: grid;
         grid-template-columns: 1fr;
@@ -1944,6 +1975,7 @@ input {
     .deal {
         margin-top: 30px;
     }
+
     .section {
         display: flex;
         flex-direction: column;
@@ -1983,7 +2015,7 @@ input {
 }
 
 
- 
+
 @media screen and (max-width: 400px) {
     .content h2 {
         margin-top: 200px;
@@ -2141,9 +2173,6 @@ footer {
         text-align: center;
         transition: background-color 0.5s ease;
     }
-
-    
-
 }
 
 
@@ -2151,19 +2180,16 @@ footer {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-   
-   
 }
+
 .form-container-2 {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    
-   
 }
 
 
-   
+
 
 .form-group {
     margin-bottom: 20px;
@@ -2173,7 +2199,6 @@ label {
     display: block;
     margin-bottom: 5px;
     color: #333;
-   
 }
 
 input[type="text"],
@@ -2198,13 +2223,14 @@ select {
 
 
 
-    .btn-primary:hover {
-        background-color: #0056b3;
-    }
+.btn-primary:hover {
+    background-color: #0056b3;
+}
 
 .text-danger {
     color: #dc3545;
 }
+
 .calculator-container {
     display: flex;
     flex-direction: column;
@@ -2270,11 +2296,13 @@ select {
     .btn-large:hover {
         background-color: #ff9999; /* Mörkare rosa vid hover */
     }
+
 .form {
     box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
     background-color: #fff;
     padding: 10px;
 }
+
 .about-section-2 {
     display: flex;
     flex-wrap: wrap;
@@ -2339,6 +2367,7 @@ select {
     color: #28a745; /* Green color for the money bill icon for easy identification */
     font-size: 1.2rem; /* Slightly larger size for the icon */
 }
+
 .bla {
     background-image: radial-gradient(circle, #ff99cc, #ff66a3);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, readable font */
@@ -2390,6 +2419,7 @@ select {
     display: block; /* Allows the link to fill the container */
     height: 100%; /* Ensures the link fills the container for clickable area */
 }
+
 .form {
     max-width: 1200px; /* Anpassa bredden efter behov */
     margin: 50px auto; /* Centrerar formen på sidan */
@@ -2400,10 +2430,9 @@ select {
     box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
 }
 
+
 .form-style-10 .form-container-2 {
     padding: 20px;
-    
-    
 }
 
 /* Stil för rubriker */
@@ -2452,6 +2481,7 @@ select {
     .form-button:hover {
         background-color: #004494;
     }
+
 .valuta-info h2 {
     color: #333;
     font-size: 24px;
@@ -2472,8 +2502,9 @@ select {
     margin-right: 5px;
     color: green;
 }
+
 @media (min-width: 2000px) {
     header {
-        height: 1400px
+        height: 900px
     }
 }

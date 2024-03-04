@@ -1,4 +1,4 @@
-﻿@using MasterArtsLibrary.ViewModels
+﻿﻿@using MasterArtsLibrary.ViewModels
 
 
 
@@ -25,102 +25,102 @@
     @RenderSection("Styles", required: false)
 </head>
 <body>
-    
-
-        <div class="game" style="background:black">
 
 
-        
-
-
-
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-
-                    <!-- I layoutfilen -->
-                    <li class="nav-item">
-                        @if (User.Identity.Name == "nils-emil1337@hotmail.se")
-                        {
-                            <a class="nav-link text-light" href="https://localhost:7041/Identity/Account/Register">Register</a>
-                        }
-
-                    </li>
-
-
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-page="/Index">
-                            <p class="customer-text">
+    <div class="game" style="background:black">
 
 
 
 
 
 
-                            <p class="customer-text"> Home </p>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-page="/ArtServices">
+            <!-- I layoutfilen -->
+            <li class="nav-item">
+                @if (User.Identity.Name == "nils-emil1337@hotmail.se")
+                {
+                    <a class="nav-link text-light" href="https://localhost:7041/Identity/Account/Register">Register</a>
+                }
+
+            </li>
 
 
-                            <p class="customer-text"> Services </p>
-
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-page="/About">
-
-
-
-
-                            <p class="customer-text"> About Us </p>
-
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-page="/Contact">
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-page="/Index">
+                    <p class="customer-text">
 
 
 
 
 
 
-                            <p class="customer-text"> Contact </p>
-
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-page="/LogisticsCenter/ShipmentCalculator">
+                    <p class="customer-text"> Home </p>
 
 
-                            <p class="customer-text"> Shipment</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-page="/ArtServices">
+
+
+                    <p class="customer-text"> Services </p>
+
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-page="/About">
 
 
 
 
-                        </a>
-                    </li>
+                    <p class="customer-text"> About Us </p>
+
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-page="/Contact">
 
 
 
 
-                </ul>
 
 
-                <partial name="_LoginPartial" />
-            
-        
-    </nav>
+                    <p class="customer-text"> Contact </p>
+
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-page="/LogisticsCenter/ShipmentCalculator">
+
+
+                    <p class="customer-text"> Shipment</p>
+
+
+
+
+                </a>
+            </li>
+
+
+
+
+        </ul>
+
+
+        <partial name="_LoginPartial" />
+
+
+        </nav>
 
     </div>
     <header>
 
         @*<video autoplay muted loop>
-            <source src="~/images/ARTS VID2.mp4" type="video/mp4">
+        <source src="~/images/ARTS VID2.mp4" type="video/mp4">
 
-            Your browser does not support the video tag.
+        Your browser does not support the video tag.
         </video>*@
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light navbar-dark mb-3" style="border: none;">
@@ -139,83 +139,74 @@
                     </button>
                 </div>
             </div>
-                <div class="team">
-                    <div class="navbar-collapse collapse justify-content-between" style="border-top: none; border-bottom: none;">
+            <div class="team">
+                <div class="navbar-collapse collapse justify-content-between" style="border-top: none; border-bottom: none;">
 
 
 
 
-                        <ul class="navbar-nav order-first ms-auto dark-transparent-bgz" style="border-bottom:solid 3px white">
+                    <ul class="navbar-nav order-first ms-auto dark-transparent-bgz" style="border-bottom:solid 3px white">
 
 
-                            <!-- I layoutfilen -->
-                            <li class="nav-item">
-                                @if (User.Identity.Name == "nils-emil1337@hotmail.se")
-                                {
-                                    <a class="nav-link text-light" href="https://localhost:7041/Identity/Account/Register">Register</a>
-                                }
+                        <!-- I layoutfilen -->
+                        <li class="nav-item">
+                            @if (User.Identity.Name == "nils-emil1337@hotmail.se")
+                            {
+                                <a class="nav-link text-light" href="https://localhost:7041/Identity/Account/Register">Register</a>
+                            }
 
-                            </li>
-
-
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/Index">
-                                    <p class="customer-text">
+                        </li>
 
 
-
-
-
-
-                                    <p class="customer-text"> Home </p>
-
-
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/ArtServices">
-
-
-                                    <p class="customer-text"> Services </p>
-
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/About">
-
-
-
-
-                                    <p class="customer-text"> About Us </p>
-
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/Contact">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Index">
+                                <p class="customer-text">
 
 
 
 
 
 
-                                    <p class="customer-text"> Contact </p>
-
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/LogisticsCenter/ShipmentCalculator">
+                                <p class="customer-text"> Home </p>
 
 
-                                    <p class="customer-text"> Shipment</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/ArtServices">
+
+
+                                <p class="customer-text"> Services </p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/About">
+
+
+
+
+                                <p class="customer-text"> About Us </p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Contact">
 
 
 
 
 
 
+                                <p class="customer-text"> Contact </p>
 
-                                </a>
-                            </li>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/LogisticsCenter/ShipmentCalculator">
+
+
+                                <p class="customer-text"> Shipment</p>
 
 
 
@@ -223,18 +214,27 @@
 
 
 
+                            </a>
+                        </li>
 
 
 
 
 
-                            <partial name="_LoginPartial" />
-                    </div>
+
+
+
+
+
+
+
+                        <partial name="_LoginPartial" />
                 </div>
+            </div>
         </nav>
-               
-       
-                
+
+
+
         <div class="shipment">
 
             <h2 style="font-size: 0.7em">SHIPMENT</h2>
@@ -269,7 +269,7 @@
             @RenderBody()
         </main>
     </div>
-    
+
     <footer>
 
 
@@ -280,157 +280,157 @@
 
             <div class="fot-1">
                 <p style="color:hotpink">
-                   
-                   
-                    
-                    
-                        <span>ARTS</span>
-                   
+
+
+
+
+                    <span>ARTS</span>
+
                 </p>
                 <p>
                     <a href="/Index" class="kite">
-                       
-                      
-                            <span>Home</span>
-                        
+
+
+                        <span>Home</span>
+
                     </a>
                 </p>
                 <p>
                     <a href="/About#sus" class="kite">
-                       
-                           
-                        
-                      
-                        
-                            <span>Sustainability</span>
-                        
+
+
+
+
+
+                        <span>Sustainability</span>
+
                     </a>
                 </p>
                 <p>
                     <a href="/About" class="kite">
-                        
-                       
-                       
-                            <span>About</span>
-                       
+
+
+
+                        <span>About</span>
+
                     </a>
                 </p>
                 <p>
                     <a href="/ShipmentCalculator" class="kite">
-                        
-                            <span>Shipment Calculator</span>
-                        
+
+                        <span>Shipment Calculator</span>
+
                     </a>
                 </p>
             </div>
 
             <div class="fot-1">
                 <p style="color:hotpink">
-                 
-                        <span>Våra tjänster</span>
-                   
-                    
-                        <span>Our services</span>
-                    
+
+                    <span>Våra tjänster</span>
+
+
+                    <span>Our services</span>
+
                 </p>
                 <p>
                     <a href="/ArtServices#air" class="kite">
-                      
-                        
-                            <span>Luft, väg</span>
-                        
-                        
-                        
-                            <span>Air, road</span>
-                        
+
+
+                        <span>Luft, väg</span>
+
+
+
+                        <span>Air, road</span>
+
                     </a>
                 </p>
                 <p>
                     <a href="/ArtServices#sea" class="kite">
-                       
-                        
-                     
-                        
-                        
-                            <span>Sea, train</span>
-                        
+
+
+
+
+
+                        <span>Sea, train</span>
+
                     </a>
                 </p>
                 <p>
                     <a href="/ArtServices#courier" class="kite">
-                        
-                            <span>Courier, express</span>
-                        
+
+                        <span>Courier, express</span>
+
                     </a>
                 </p>
                 <p>
                     <a href="/ArtServices#special" class="kite">
-                        
-                            <span>Customized services</span>
-                        
+
+                        <span>Customized services</span>
+
                     </a>
                 </p>
             </div>
 
             <div class="fot-1">
                 <p style="color:hotpink">
-                    
-                        <span>Contact</span>
-                    
+
+                    <span>Contact</span>
+
                 </p>
                 <p>
                     <a href="/Contact" class="kite">
-                      
-                            <span>Contact us</span>
-                        
+
+                        <span>Contact us</span>
+
                     </a>
                 </p>
                 <p>
                     <a href="/ArtServices#sea" class="kite">
-                       
-                            <span>Facebook</span>
-                        
+
+                        <span>Facebook</span>
+
                     </a>
                 </p>
                 <p>
                     <a href="/ArtServices#courier" class="kite">
-                        
-                        
-                        
-                            <span>Instagram</span>
-                        
+
+
+
+                        <span>Instagram</span>
+
                     </a>
                 </p>
                 <p>
                     <a href="/ArtServices#special" class="kite">
-                       
-                            <span>LinkedIn</span>
-                        
+
+                        <span>LinkedIn</span>
+
                     </a>
                 </p>
             </div>
 
             <div class="fot-1">
                 <p style="color:hotpink">
-                  
-                        <span>Other</span>
-                    
+
+                    <span>Other</span>
+
                 </p>
                 <p>
                     <a href="/About#nsab" class="kite">
-                        
-                        
-                            <span>Shipping terms</span>
-                        
+
+
+                        <span>Shipping terms</span>
+
                     </a>
                 </p>
             </div>
             <div class="fot-1">
                 <p style="color:hotpink">
-                   
-                    
-                        <span>You find us here</span>
-                    
+
+
+                    <span>You find us here</span>
+
 
                 </p>
                 <p class="kite">ARTS logistics</p>
