@@ -27,238 +27,155 @@
 <body>
 
 
-    <div class="game" style="background:black">
-
-
-
-
-
-
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-
-            <!-- I layoutfilen -->
-            <li class="nav-item">
-                @if (User.Identity.Name == "nils-emil1337@hotmail.se")
-                {
-                    <a class="nav-link text-light" href="https://localhost:7041/Identity/Account/Register">Register</a>
-                }
-
-            </li>
-
-
-            <li class="nav-item">
-                <a class="nav-link text-light" asp-area="" asp-page="/Index">
-                    <p class="customer-text">
-
-
-
-
-
-
-                    <p class="customer-text"> Home </p>
-
-
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" asp-area="" asp-page="/ArtServices">
-
-
-                    <p class="customer-text"> Services </p>
-
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" asp-area="" asp-page="/About">
-
-
-
-
-                    <p class="customer-text"> About Us </p>
-
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" asp-area="" asp-page="/Contact">
-
-
-
-
-
-
-                    <p class="customer-text"> Contact </p>
-
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" asp-area="" asp-page="/LogisticsCenter/ShipmentCalculator">
-
-
-                    <p class="customer-text"> Shipment</p>
-
-
-
-
-                </a>
-            </li>
-
-
-
-
-        </ul>
-
-
-        <partial name="_LoginPartial" />
-
-
-        </nav>
-
-    </div>
+   
     <header>
+        <div class="background-image-container">
+            @*<video autoplay muted loop>
+            <source src="~/images/ARTS VID2.mp4" type="video/mp4">
 
-        @*<video autoplay muted loop>
-        <source src="~/images/ARTS VID2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </video>*@
 
-        Your browser does not support the video tag.
-        </video>*@
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light navbar-dark mb-3" style="border: none;">
+                <div class="mr-arts order-sm-first text-center" style="margin-left:12px">
+                    <div class="word">
+                    </div>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light navbar-dark mb-3" style="border: none;">
-            <div class="mr-arts order-sm-first text-center" style="margin-left:12px">
-                <div class="word">
+
                 </div>
 
+                <div class="custom-container">
+                    <div class="ml-auto">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </div>
+                
+                    <div class="navbar-collapse collapse justify-content-between" style="border-top: none; border-bottom: none;">
+
+
+
+
+                        <ul class="navbar-nav order-first ms-auto dark-transparent-bgz" style="border-bottom:solid 3px white">
+
+
+                            <!-- I layoutfilen -->
+                            <li class="nav-item">
+                                @if (User.Identity.Name == "nils-emil1337@hotmail.se")
+                                {
+                                    <a class="nav-link text-light" href="https://localhost:7041/Identity/Account/Register">Register</a>
+                                }
+
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-page="/Index">
+                                    <p class="customer-text">
+
+
+
+
+
+
+                                    <p class="customer-text"> Home </p>
+
+
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-page="/ArtServices">
+
+
+                                    <p class="customer-text"> Services </p>
+
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-page="/About">
+
+
+
+
+                                    <p class="customer-text"> About Us </p>
+
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-page="/Contact">
+
+
+
+
+
+
+                                    <p class="customer-text"> Contact </p>
+
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-page="/LogisticsCenter/ShipmentCalculator">
+
+
+                                    <p class="customer-text"> Shipment</p>
+
+
+
+
+
+
+
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+                            <partial name="_LoginPartial" />
+                    </div>
+                
+            </nav>
+
+
+
+            <div class="shipment">
+
+                <h2 style="font-size: 0.7em">SHIPMENT</h2>
+            </div>
+            <div class="contact">
+
+                <h2 style="font-size: 0.7em">CONTACT</h2>
+            </div>
+            <div class="services">
+                <h2 style="font-size: 0.7em">SERVICES</h2>
+
+            </div>
+            <div class="about-2">
+                <h2 style="font-size: 0.7em">ABOUT</h2>
+
+            </div>
+            <div class="book">
+                <h2 style="font-size: 0.7em">CREATE ORDER</h2>
 
             </div>
 
-            <div class="custom-container">
-                <div class="ml-auto">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-            </div>
-            <div class="team">
-                <div class="navbar-collapse collapse justify-content-between" style="border-top: none; border-bottom: none;">
 
 
-
-
-                    <ul class="navbar-nav order-first ms-auto dark-transparent-bgz" style="border-bottom:solid 3px white">
-
-
-                        <!-- I layoutfilen -->
-                        <li class="nav-item">
-                            @if (User.Identity.Name == "nils-emil1337@hotmail.se")
-                            {
-                                <a class="nav-link text-light" href="https://localhost:7041/Identity/Account/Register">Register</a>
-                            }
-
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Index">
-                                <p class="customer-text">
-
-
-
-
-
-
-                                <p class="customer-text"> Home </p>
-
-
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/ArtServices">
-
-
-                                <p class="customer-text"> Services </p>
-
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/About">
-
-
-
-
-                                <p class="customer-text"> About Us </p>
-
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Contact">
-
-
-
-
-
-
-                                <p class="customer-text"> Contact </p>
-
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/LogisticsCenter/ShipmentCalculator">
-
-
-                                <p class="customer-text"> Shipment</p>
-
-
-
-
-
-
-
-                            </a>
-                        </li>
-
-
-
-
-
-
-
-
-
-
-
-
-                        <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-
-
-
-        <div class="shipment">
-
-            <h2 style="font-size: 0.7em">SHIPMENT</h2>
-        </div>
-        <div class="contact">
-
-            <h2 style="font-size: 0.7em">CONTACT</h2>
-        </div>
-        <div class="services">
-            <h2 style="font-size: 0.7em">SERVICES</h2>
-
-        </div>
-        <div class="about-2">
-            <h2 style="font-size: 0.7em">ABOUT</h2>
-
-        </div>
-        <div class="book">
-            <h2 style="font-size: 0.7em">CREATE ORDER</h2>
+            @RenderSection("Navbar", required: false)
 
         </div>
 
-
-
-        @RenderSection("Navbar", required: false)
+       
     </header>
 
 

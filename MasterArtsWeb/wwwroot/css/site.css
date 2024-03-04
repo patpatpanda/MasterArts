@@ -37,21 +37,16 @@ body, html {
 
 header {
     position: relative;
-    z-index: 1;
-    background-image: url('/images/bj.webp');
-    height: 600px; /* Eller önskad höjd */
     width: 100%;
+    height: 500px;
+    color:#fff;
+    background:black;
+   
+    
 }
-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.2); /* Semi-transparent svart överlager */
-    z-index: -1;
-}
+
+
+
 
 .form-style-10 {
     display: grid;
@@ -501,10 +496,6 @@ go-weather {
     display: none;
 }
 
-#myContact header {
-    background: Black;
-    height: 400px
-}
 
 #myContact video {
     display: none
@@ -2504,7 +2495,5 @@ select {
 }
 
 @media (min-width: 2000px) {
-    header {
-        height: 900px
-    }
+   
 }
