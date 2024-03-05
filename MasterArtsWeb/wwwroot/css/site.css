@@ -11,8 +11,11 @@ html, body {
     padding: 0;
     width: 100%;
     overflow-x: hidden; /* Förhindrar eventuell horisontell rullning */
+    background-color: #fafafa
 }
-
+#myShip {
+    
+}
 
 #myView {
     background: #fffafa;
@@ -101,7 +104,9 @@ h2-p {
     margin-top: 200px;
    
 }
-
+.word{
+    display: none;
+}
 .go-to-calculator-btn {
     background-color: #007bff; /* Blå färg, kan ändras efter önskemål */
     color: #fff; /* Vit text */
@@ -825,7 +830,7 @@ go-weather {
 }
 
 #myContact {
-    background-image: url('/images/02c62f5c-2369-4648-b585-e8cd00b80c96.webp');
+    
 }
 
     #myContact .team {
@@ -1069,10 +1074,8 @@ h3 {
 }
 
 .deal-3 {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
+    background: #1A1A1A;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -1139,13 +1142,7 @@ h3 {
     width: 45%;
 }
 
-#myShip {
-    background-color: #000; /* Mörk bakgrundsfärg */
-    background-image: radial-gradient(circle, #f0f0f0, #ffffff);
-    /* Stjärnor och galaxer */
-    background-size: cover;
-    background-attachment: fixed;
-}
+
 
 
 .calculator-container {
@@ -1156,12 +1153,7 @@ h3 {
     gap: 33px;
 }
 
-#myCalc {
-    background-image: radial-gradient(circle, #ff99cc, #ff66a3);
-    /* Stjärnor och galaxer */
-    background-size: cover;
-    background-attachment: fixed;
-}
+
 
     #myCalc header {
         height: 400px;
@@ -1169,11 +1161,8 @@ h3 {
     }
 
 .shipment-form-2 {
-    background-color: rgba(255, 255, 255, 0.2); /* Genomskinlig vit färg */
+    background-color: lightblue; /* Genomskinlig vit färg */
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Vit kant */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Vit skugga */
-    opacity: 0.8; /* Justera genomskinligheten efter önskad effekt */
     padding: 40px;
     width: 500px;
 }
@@ -1530,7 +1519,7 @@ input {
     border-radius: 8px;
     padding: 20px;
     background-color: #E8E8E8;
-    box-shadow: 30px 45px 60px rgba(255, 105, 180, 0.2);
+    box-shadow: rgba(0, 0, 0, 0.6);
 }
 
 
@@ -1538,7 +1527,7 @@ input {
     width: 18rem;
     margin: 10px;
     background-color: #E8E8E8;
-    box-shadow: 30px 45px 60px rgba(255, 105, 180, 0.2);
+    box-shadow:  rgba(0, 0, 0, 0.6);
 }
 
 .card-icon {
@@ -1691,7 +1680,7 @@ input {
     .form-style-10 {
         display: grid;
         grid-template-columns: 1fr;
-        margin-top: 40px;
+        margin-top: 80px;
     }
 
     .benefits {
@@ -2178,17 +2167,9 @@ footer {
 }
 
 
-.form-container {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-}
 
-.form-container-2 {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-}
+
+
 
 
 
@@ -2238,7 +2219,8 @@ select {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-bottom: solid 5px black
+    border-bottom: solid 5px black;
+    color:white;
 }
 
 
@@ -2287,7 +2269,7 @@ select {
 .btn-large {
     background-color: #ffcccc; /* Ljusrosa */
     color: #333; /* Vit text */
-    border: solid 1px black;
+   
     padding: 20px 40px; /* Storlek på knappen */
     border-radius: 10px; /* Rundade hörn */
     font-size: 22px; /* Storlek på text */
@@ -2300,7 +2282,7 @@ select {
     }
 
 .form {
-    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     padding: 10px;
 }
@@ -2422,16 +2404,11 @@ select {
     height: 100%; /* Ensures the link fills the container for clickable area */
 }
 
-.form {
-    max-width: 1200px; /* Anpassa bredden efter behov */
-    margin: 50px auto; /* Centrerar formen på sidan */
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
-}
 
+.form-container-2{
+    background-color:honeydew;
+
+}
 
 .form-style-10 .form-container-2 {
     padding: 20px;
@@ -2454,7 +2431,11 @@ select {
     border-radius: 4px;
     box-sizing: border-box; /* Gör så att padding inte lägger till bredden */
 }
-
+.form {
+    padding: 60px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 /* Stil för etiketter */
 .form label {
     display: block;
@@ -2522,7 +2503,7 @@ select {
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.5); /* Semi-transparent svart överlager */
+        background: rgba(0, 0, 0, 0.3); /* Semi-transparent svart överlager */
         z-index: -1;
     }
 .baby {
@@ -2559,7 +2540,7 @@ select {
     margin-top: 900px;
     background: rgba(255, 255, 255, 0.2); /* Lägger till en lätt genomskinlig vit bakgrund */
     border-radius: 10px; /* Runda hörnen lite */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Lägger till en mjuk skugga runtom för djup */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Lägger till en mjuk skugga runtom för djup */
     backdrop-filter: blur(10px); /* Detta är nyckeln till glasmorfism, det suddar bakgrunden */
     -webkit-backdrop-filter: blur(10px); /* För Safari */
     height: 100px;
@@ -2568,12 +2549,14 @@ select {
 .mpm {
     margin-top: 40px;
     font-size: 24px; /* Ställer in storleken på texten */
-    font-weight: bold; /* Gör texten fet */
-    
+   
+    color: #ccc;
+
     font-family: Arial, sans-serif; /* Anger typsnitt */
 }
 
-@media (min-width: 2000px) {
+
+@media (min-width: 1500px) {
     .background-image-container {
         position: relative;
         z-index: 1;
@@ -2583,6 +2566,10 @@ select {
         background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
         background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
         background-repeat: no-repeat; /* Förhindrar att bilden upprepas */
+        
+    }
+    .word{
+        display:block;
     }
 }
 @media (min-width: 2300px) {
