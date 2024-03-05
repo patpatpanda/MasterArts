@@ -6,13 +6,13 @@
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-body, html {
+html, body {
     margin: 0;
     padding: 0;
-    background-color: white;
-    min-height: 100vh;
-    color: black;
+    width: 100%;
+    overflow-x: hidden; /* Förhindrar eventuell horisontell rullning */
 }
+
 
 #myView {
     background: #fffafa;
@@ -34,15 +34,23 @@ body, html {
     border-bottom: solid 3px white; /* Behåller din befintliga stil för gränsen */
 }
 
+#myIndex header{
+    display:none
+}
+#myIndex {
+    
+
+
+   
+}
+
 
 header {
     position: relative;
     width: 100%;
     height: 400px;
-    color:#fff;
-    background:black;
-   
-    
+    color: #fff;
+    background: black;
 }
 
 
@@ -1648,7 +1656,9 @@ input {
         text-transform: uppercase; /* Gör texten till versaler */
         margin-bottom: 20px;
     }
-
+    .background-image-container{
+        display:none
+    }
     .team {
         display: block
     }
@@ -1675,7 +1685,9 @@ input {
         max-width: 800px;
         width: 100%;
     }
-
+    #myIndex header {
+        display: block
+    }
     .form-style-10 {
         display: grid;
         grid-template-columns: 1fr;
@@ -1849,9 +1861,10 @@ input {
 
     header {
         position: relative;
-        width: 100%;
-        height: 400px;
         overflow: hidden;
+        background-image: url('/images/apink.webp');
+        background-size: cover; /* Ser till att bilden täcker hela elementet */
+        background-position: center; /* Centrerar bilden i elementet */
     }
 
     .moby {
@@ -1895,9 +1908,7 @@ input {
     .description {
         display: none
     }
-    header {
-        background-image: url('/images/apink.webp');
-    }
+   
     .larger-text {
         font-size: 18px; /* Minska textstorleken för mindre skärmar */
         line-height: 1.3; /* Anpassa radhöjden för mindre skärmar */
@@ -2493,7 +2504,96 @@ select {
     margin-right: 5px;
     color: green;
 }
+.background-image-container {
+    position: relative;
+    z-index: 1;
+    background-image: url('/images/man.webp');
+    height: 100vh; /* Eller önskad höjd */
+    width: 100%;
+    background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
+    background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
+    background-repeat: no-repeat; /* Förhindrar att bilden upprepas */
+}
+
+    .background-image-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5); /* Semi-transparent svart överlager */
+        z-index: -1;
+    }
+.baby {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+   
+    color: white;
+    z-index: 1;
+    height: 300px;
+    width: 500px;
+    background: rgba(255, 255, 255, 0.2); /* Lägger till en lätt genomskinlig vit bakgrund */
+    border-radius: 10px; /* Runda hörnen lite */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Lägger till en mjuk skugga runtom för djup */
+    backdrop-filter: blur(10px); /* Detta är nyckeln till glasmorfism, det suddar bakgrunden */
+    -webkit-backdrop-filter: blur(10px); /* För Safari */
+}
+.veta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+   
+}
+.centered-text {
+    /* Stil för din centralt placerade text */
+    position: absolute; /* Använd denna om flex inte är tillräckligt för ditt specifika fall */
+    z-index: 2; /* Se till att den ligger över andra element */
+    color: white; /* Exempel på textfärg */
+    font-size: 24px; /* Exempel på textstorlek */
+    margin-top: 900px;
+    background: rgba(255, 255, 255, 0.2); /* Lägger till en lätt genomskinlig vit bakgrund */
+    border-radius: 10px; /* Runda hörnen lite */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Lägger till en mjuk skugga runtom för djup */
+    backdrop-filter: blur(10px); /* Detta är nyckeln till glasmorfism, det suddar bakgrunden */
+    -webkit-backdrop-filter: blur(10px); /* För Safari */
+    height: 100px;
+    width: 600px;
+}
+.mpm {
+    margin-top: 40px;
+    font-size: 24px; /* Ställer in storleken på texten */
+    font-weight: bold; /* Gör texten fet */
+    
+    font-family: Arial, sans-serif; /* Anger typsnitt */
+}
 
 @media (min-width: 2000px) {
-   
+    .background-image-container {
+        position: relative;
+        z-index: 1;
+        background-image: url('/images/man.webp');
+        height: 1200px; /* Eller önskad höjd */
+        width: 100%;
+        background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
+        background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
+        background-repeat: no-repeat; /* Förhindrar att bilden upprepas */
+    }
+}
+@media (min-width: 2300px) {
+    .background-image-container {
+        position: relative;
+        z-index: 1;
+        background-image: url('/images/man.webp');
+        height: 1500px; /* Eller önskad höjd */
+        width: 100%;
+        background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
+        background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
+        background-repeat: no-repeat; /* Förhindrar att bilden upprepas */
+    }
 }
