@@ -108,32 +108,6 @@ namespace MasterArtsLibrary.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Goods",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PackageId = table.Column<int>(type: "int", nullable: false),
-                    MarksNumbers = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    PackageType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VolumetricWeight = table.Column<double>(type: "float", nullable: false),
-                    NetWeight = table.Column<double>(type: "float", nullable: false),
-                    Length = table.Column<double>(type: "float", nullable: false),
-                    Height = table.Column<double>(type: "float", nullable: false),
-                    Width = table.Column<double>(type: "float", nullable: false),
-                    Volume = table.Column<double>(type: "float", nullable: false),
-                    VolumeUnit = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GrossWeight = table.Column<double>(type: "float", nullable: false),
-                    Remarks = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Goods", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Rates",
                 columns: table => new
                 {
@@ -255,6 +229,26 @@ namespace MasterArtsLibrary.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Customers_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
@@ -267,11 +261,8 @@ namespace MasterArtsLibrary.Migrations
                     FreightService = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DeliveryTimeFrom = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DeliveryTimeTo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PickUpTimeFrom = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PickUpTimeTo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ConsignorId = table.Column<int>(type: "int", nullable: false),
-                    ConsigneeId = table.Column<int>(type: "int", nullable: false),
-                    GoodsId = table.Column<int>(type: "int", nullable: false)
+                    ConsigneeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -288,12 +279,38 @@ namespace MasterArtsLibrary.Migrations
                         principalTable: "Consignors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Goods",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PackageId = table.Column<int>(type: "int", nullable: false),
+                    MarksNumbers = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    PackageType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VolumetricWeight = table.Column<double>(type: "float", nullable: false),
+                    NetWeight = table.Column<double>(type: "float", nullable: false),
+                    Length = table.Column<double>(type: "float", nullable: false),
+                    Height = table.Column<double>(type: "float", nullable: false),
+                    Width = table.Column<double>(type: "float", nullable: false),
+                    Volume = table.Column<double>(type: "float", nullable: false),
+                    VolumeUnit = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GrossWeight = table.Column<double>(type: "float", nullable: false),
+                    Remarks = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrderId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Goods", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Goods_GoodsId",
-                        column: x => x.GoodsId,
-                        principalTable: "Goods",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Goods_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -336,6 +353,16 @@ namespace MasterArtsLibrary.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Customers_UserId",
+                table: "Customers",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Goods_OrderId",
+                table: "Goods",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_ConsigneeId",
                 table: "Orders",
                 column: "ConsigneeId");
@@ -344,11 +371,6 @@ namespace MasterArtsLibrary.Migrations
                 name: "IX_Orders_ConsignorId",
                 table: "Orders",
                 column: "ConsignorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_GoodsId",
-                table: "Orders",
-                column: "GoodsId");
         }
 
         /// <inheritdoc />
@@ -373,7 +395,10 @@ namespace MasterArtsLibrary.Migrations
                 name: "CurrencyRates");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Goods");
 
             migrationBuilder.DropTable(
                 name: "Rates");
@@ -385,13 +410,13 @@ namespace MasterArtsLibrary.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
                 name: "Consignees");
 
             migrationBuilder.DropTable(
                 name: "Consignors");
-
-            migrationBuilder.DropTable(
-                name: "Goods");
         }
     }
 }

@@ -119,6 +119,29 @@ namespace MasterArtsLibrary.Migrations
                     b.ToTable("Consignors");
                 });
 
+            modelBuilder.Entity("MasterArtsLibrary.Models.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CustomerNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("MasterArtsLibrary.Models.ExchangeRate", b =>
                 {
                     b.Property<int>("Id")
@@ -167,6 +190,9 @@ namespace MasterArtsLibrary.Migrations
                     b.Property<double>("NetWeight")
                         .HasColumnType("float");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<int>("PackageId")
                         .HasColumnType("int");
 
@@ -192,6 +218,8 @@ namespace MasterArtsLibrary.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Goods");
                 });
@@ -252,9 +280,6 @@ namespace MasterArtsLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GoodsId")
-                        .HasColumnType("int");
-
                     b.Property<string>("IntegrationId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -263,21 +288,11 @@ namespace MasterArtsLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PickUpTimeFrom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PickUpTimeTo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ConsigneeId");
 
                     b.HasIndex("ConsignorId");
-
-                    b.HasIndex("GoodsId");
 
                     b.ToTable("Orders");
                 });
@@ -484,6 +499,24 @@ namespace MasterArtsLibrary.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("MasterArtsLibrary.Models.Customer", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MasterArtsLibrary.Models.Goods", b =>
+                {
+                    b.HasOne("MasterArtsLibrary.Models.Order", null)
+                        .WithMany("Goods")
+                        .HasForeignKey("OrderId");
+                });
+
             modelBuilder.Entity("MasterArtsLibrary.Models.Order", b =>
                 {
                     b.HasOne("MasterArtsLibrary.Models.Consignee", "Consignee")
@@ -498,17 +531,9 @@ namespace MasterArtsLibrary.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MasterArtsLibrary.Models.Goods", "Goods")
-                        .WithMany()
-                        .HasForeignKey("GoodsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Consignee");
 
                     b.Navigation("Consignor");
-
-                    b.Navigation("Goods");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -560,6 +585,11 @@ namespace MasterArtsLibrary.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MasterArtsLibrary.Models.Order", b =>
+                {
+                    b.Navigation("Goods");
                 });
 #pragma warning restore 612, 618
         }

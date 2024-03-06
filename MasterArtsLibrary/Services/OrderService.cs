@@ -2,10 +2,12 @@
 using MasterArtsLibrary.Models;
 using MasterArtsLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
@@ -20,6 +22,7 @@ namespace MasterArtsLibrary.Services
         private readonly IConfiguration _configuration;
         private readonly IOrderEmailSender _order;
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ILogger<OrderService> _logger;
         public Order Order { get; set; }
 
 
@@ -225,12 +228,11 @@ namespace MasterArtsLibrary.Services
 };
 
 
-        public OrderService(HttpClient httpClient, IHttpClientFactory httpClientFactory, IConfiguration configuration, IOrderEmailSender orderEmailSender)
+        public OrderService(IHttpClientFactory httpClientFactory, IConfiguration configuration, ILogger<OrderService> logger)
         {
-            _httpClient = httpClient;
-            _configuration = configuration;
-            _order = orderEmailSender;
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
+            _logger = logger;
         }
 
 
@@ -316,72 +318,79 @@ namespace MasterArtsLibrary.Services
             return null;
         }
 
-        public async Task CreateOrderInApi(Order order)
-        {
-            var apiUrl = _configuration.GetSection("ApiUrl").Value;
-
-            using (var httpClient = _httpClientFactory.CreateClient())
-            {
-                var response = await httpClient.PostAsJsonAsync($"https://localhost:7009/api/OrderApi", order);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    order = Order;
-                }
-            }
-
-        }
         //public async Task CreateOrderInApi(Order order)
         //{
         //    var apiUrl = _configuration.GetSection("ApiUrl").Value;
-        //    var clientId = _configuration.GetSection("ClientId").Value;
-        //    var clientSecret = _configuration.GetSection("ClientSecret").Value;
-        //    var username = clientId;
-        //    var password = clientSecret;
 
-        //    // Skapa en HttpClient
         //    using (var httpClient = _httpClientFactory.CreateClient())
         //    {
-        //        // Skapa en Base64-kodad sträng av klientidentifiering och klienthemlighet
-        //        var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}"));
+        //        var response = await httpClient.PostAsJsonAsync($"https://localhost:7009/api/OrderApi", order);
 
-        //        // Autentisera din applikation med OAuth2
-        //        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-
-        //        // Skapa en dictionary för att innehålla uppgifter för token-förfrågan
-        //        var tokenRequestData = new Dictionary<string, string>
-        //    {
-        //        { "grant_type", "password" },
-        //        { "username", username },
-        //        { "password", password }
-        //    };
-
-        //        // Skicka POST-förfrågan till Token Endpoint för att få en åtkomsttoken
-        //        var tokenResponse = await httpClient.PostAsync("https://cis.cargoit.se/auth/oauth/token", new FormUrlEncodedContent(tokenRequestData));
-        //        tokenResponse.EnsureSuccessStatusCode(); // Kasta ett undantag om förfrågan inte lyckas
-
-        //        // Läs och tolka svaret från servern
-        //        var tokenResponseBody = await tokenResponse.Content.ReadAsStringAsync();
-        //        var tokenData = JsonSerializer.Deserialize<Dictionary<string, string>>(tokenResponseBody);
-        //        var accessToken = tokenData["access_token"];
-
-        //        // Använd åtkomsttokenet för att göra en begäran till API-et
-        //        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-        //        var orderResponse = await httpClient.PostAsJsonAsync(apiUrl, order);
-
-        //        // Hantera svar från API-et enligt behov
-        //        if (orderResponse.IsSuccessStatusCode)
+        //        if (!response.IsSuccessStatusCode)
         //        {
-        //            // Order skapades framgångsrikt
-        //            var createdOrder = await orderResponse.Content.ReadFromJsonAsync<Order>();
-        //        }
-        //        else
-        //        {
-        //            // Det uppstod ett fel när order skapades
-        //            // Hantera felet här
+        //            order = Order;
         //        }
         //    }
+
         //}
+        public async Task CreateOrderInApi(Order order)
+        {
+            var apiUrl = _configuration.GetSection("CISApi:ApiUrl").Value;
+            var clientId = _configuration.GetSection("CISApi:ClientId").Value;
+            var clientSecret = _configuration.GetSection("CISApi:ClientSecret").Value;
+            var username = _configuration.GetSection("CISApi:Username").Value;
+            var password = _configuration.GetSection("CISApi:Password").Value;
+
+            using (var httpClient = _httpClientFactory.CreateClient())
+            {
+                var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}"));
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+
+                var tokenRequestData = new Dictionary<string, string>
+            {
+                { "grant_type", "password" },
+                { "username", username },
+                { "password", password }
+            };
+
+                HttpResponseMessage tokenResponse;
+                try
+                {
+                    tokenResponse = await httpClient.PostAsync($"{_configuration.GetSection("CISApi:TokenEndpoint").Value}", new FormUrlEncodedContent(tokenRequestData));
+                }
+                catch (HttpRequestException e)
+                {
+                    _logger.LogError($"Fel vid anslutning till token endpoint: {e.Message}");
+                    return;
+                }
+
+                if (!tokenResponse.IsSuccessStatusCode)
+                {
+                    var errorContent = await tokenResponse.Content.ReadAsStringAsync();
+                    _logger.LogError($"Tokenförfrågan misslyckades med statuskod {tokenResponse.StatusCode} och felmeddelande: {errorContent}");
+                    return;
+                }
+
+                var tokenResponseBody = await tokenResponse.Content.ReadAsStringAsync();
+                var tokenData = JsonSerializer.Deserialize<TokenResponse>(tokenResponseBody, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                var accessToken = tokenData?.Access_token;
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                var orderResponse = await httpClient.PutAsJsonAsync(apiUrl + "order", order); // Se till att URL:en är korrekt
+
+                if (orderResponse.IsSuccessStatusCode)
+                {
+                    _logger.LogInformation($"Order skapades lyckat med statuskod {orderResponse.StatusCode}.");
+                    // Här kan du hantera den skapade ordern vidare om så önskas
+                }
+                else
+                {
+                    var errorContent = await orderResponse.Content.ReadAsStringAsync();
+                    _logger.LogError($"Skapande av order misslyckades med statuskod {orderResponse.StatusCode} och felmeddelande: {errorContent}");
+                }
+            }
+        }
+
 
 
 
@@ -389,5 +398,5 @@ namespace MasterArtsLibrary.Services
 
 
     }
-    }
+}
 

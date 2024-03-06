@@ -10,7 +10,7 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow-x: hidden; /* Förhindrar eventuell horisontell rullning */
+    
     background-color: #fafafa
 }
 #myShip {
@@ -42,7 +42,7 @@ html, body {
 }
 #myIndex {
     
-
+    top:0
 
    
 }
@@ -2269,12 +2269,13 @@ select {
 .btn-large {
     background-color: #ffcccc; /* Ljusrosa */
     color: #333; /* Vit text */
-   
+
     padding: 20px 40px; /* Storlek på knappen */
     border-radius: 10px; /* Rundade hörn */
     font-size: 22px; /* Storlek på text */
-    cursor: pointer;
+
     transition: background-color 0.3s ease; /* Smidig övergång för bakgrundsfärg */
+    text-decoration: none;
 }
 
     .btn-large:hover {
@@ -2333,7 +2334,7 @@ select {
     border-radius: 8px; /* Adds rounded corners for a softer look */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     padding: 20px; /* Adds padding for spacing inside the container */
-    max-width: 600px; /* Limits the width of the container for better readability */
+    max-width: 800px; /* Limits the width of the container for better readability */
     margin: 20px auto; /* Centers the container */
 }
 

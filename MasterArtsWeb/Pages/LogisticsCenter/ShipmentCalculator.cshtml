@@ -33,38 +33,102 @@
 <div class="language-toggle text-end">
     <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">SWE/ENG</button>
 </div>
+<p>Kundnummer: @Model.CustomerNumber</p>
 
     <div class="valuta-3">
-    @if (Model.CurrencyData?.Rates != null)
-    {
-        decimal usdRate, eurRate, gbpRate, dkkRate, nokRate;
-        bool hasUsd = Model.CurrencyData.Rates.TryGetValue("USD", out usdRate);
-        bool hasEur = Model.CurrencyData.Rates.TryGetValue("EUR", out eurRate);
-        bool hasGbp = Model.CurrencyData.Rates.TryGetValue("GBP", out gbpRate);
-        bool hasDkk = Model.CurrencyData.Rates.TryGetValue("DKK", out dkkRate);
-        bool hasNok = Model.CurrencyData.Rates.TryGetValue("NOK", out nokRate);
+        <style>
+            .valuta-3 {
+                font-family: Arial, sans-serif;
+                color: #333;
+            }
 
-        <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/USD: @if (hasUsd) { @Math.Round((1 / usdRate) + 0.5m, 2) } else { <text>N/A</text> }
-        </p>
-        <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/EUR: @if (hasEur) { @Math.Round((1 / eurRate) + 0.5m, 2) } else { <text>N/A</text> }
-        </p>
-        <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/GBP: @if (hasGbp) { @Math.Round((1 / gbpRate) + 0.5m, 2) } else { <text>N/A</text> }
-        </p>
-        <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/DKK: @if (hasDkk) { @Math.Round((1 / dkkRate) + 0.5m, 2) } else { <text>N/A</text> }
-        </p>
-        <p>
-            <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/NOK: @if (hasNok) { @Math.Round((1 / nokRate) + 0.5m, 2) } else { <text>N/A</text> }
-        </p>
-    }
-    else
-    {
-        <p>Valutainformation är inte tillgänglig.</p>
-    }
-</div>
+                .valuta-3 h2 {
+                    color: #333;
+                    font-size: 1.5em;
+                }
+
+                .valuta-3 p {
+                    margin: 10px 0;
+                    font-size: 1em;
+                }
+
+            .fa-money-bill {
+                color: #28a745;
+                margin-right: 5px;
+            }
+
+            .na-text {
+                color: #999;
+            }
+        </style>
+
+        <h2>Current exchange rates with our markup</h2>
+        @if (Model.CurrencyData?.Rates != null)
+        {
+            decimal usdRate, eurRate, gbpRate, dkkRate, nokRate;
+            bool hasUsd = Model.CurrencyData.Rates.TryGetValue("USD", out usdRate);
+            bool hasEur = Model.CurrencyData.Rates.TryGetValue("EUR", out eurRate);
+            bool hasGbp = Model.CurrencyData.Rates.TryGetValue("GBP", out gbpRate);
+            bool hasDkk = Model.CurrencyData.Rates.TryGetValue("DKK", out dkkRate);
+            bool hasNok = Model.CurrencyData.Rates.TryGetValue("NOK", out nokRate);
+
+            <p>
+                <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/USD: @if (hasUsd)
+                {
+                    @Math.Round((1 / usdRate) + 0.5m, 2)
+                }
+                else
+                {
+                    <span class="na-text">N/A</span>
+                }
+            </p>
+            <p>
+                <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/EUR: @if (hasEur)
+                {
+                    @Math.Round((1 / eurRate) + 0.5m, 2)
+                }
+                else
+                {
+                    <span class="na-text">N/A</span>
+                }
+            </p>
+            <p>
+                <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/GBP: @if (hasGbp)
+                {
+                    @Math.Round((1 / gbpRate) + 0.5m, 2)
+                }
+                else
+                {
+                    <span class="na-text">N/A</span>
+                }
+            </p>
+            <p>
+                <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/DKK: @if (hasDkk)
+                {
+                    @Math.Round((1 / dkkRate) + 0.5m, 2)
+                }
+                else
+                {
+                    <span class="na-text">N/A</span>
+                }
+            </p>
+            <p>
+                <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/NOK: @if (hasNok)
+                {
+                    @Math.Round((1 / nokRate) + 0.5m, 2)
+                }
+                else
+                {
+                    <span class="na-text">N/A</span>
+                }
+            </p>
+        }
+        else
+        {
+            <p>Valutainformation är inte tillgänglig.</p>
+        }
+    </div>
+
 
 
 
@@ -91,10 +155,10 @@
             <option value="">Select Freight Service</option>
             <option value="OceanFreight">Ocean Freight</option>
             <option value="Airfreight">Airfreight</option>
-            <option value="ExpressKurir">Express Kurir</option>
+            <option value="Express Kurir">Express Kurir</option>
             <option value="Road">Road</option>
             <option value="Trainfreight">Trainfreight</option>
-            <option value="StandardKurir">Standard Kurir</option>
+            <option value="Standard Kurir">Standard Kurir</option>
             <option value="Linehaul">Linehaul</option>
         </select>
         <span asp-validation-for="Order.FreightService" class="text-danger"></span>
@@ -106,7 +170,7 @@
                 <label asp-for="Order.DeliveryTimeTo">Delivery Time To<span class="required">*</span></label>
         <input asp-for="Order.DeliveryTimeTo" type="datetime-local" class="form-control" />
         <span asp-validation-for="Order.DeliveryTimeTo" class="text-danger"></span>
-
+@*
                 <label>Pick Up Time From<span class="required">*</span></label>
         <select asp-for="Order.PickUpTimeFrom" class="form-control">
             <option value="08:00-15:00">08:00-15:00</option>
@@ -119,78 +183,79 @@
             <option value="08:00-15:00">08:00-15:00</option>
             <option value="09:00-16:00">09:00-16:00</option>
             <!-- Lägg till fler alternativ vid behov -->
-        </select>
+        </select>*@
     </div>
 
 
+        </div>
 
 
 
-
-        <div class="form-container-2">
+       <div class="form-container-2">
             <h3 class="text-center" style="color:#333">Goods</h3>
-            <label asp-for="Order.Goods.PackageId">Package ID<span class="required">*</span></label>
-            <input asp-for="Order.Goods.PackageId" class="form-control" placeholder="Ex: ABC123" />
-            <span asp-validation-for="Order.Goods.PackageId" class="text-danger"></span>
+                @for (int i = 0; i < Model.Order.Goods.Count; i++)
+                {
+                    <label asp-for="Goods[@i].PackageId">Package ID<span class="required">*</span></label>
+                    <input asp-for="Goods[@i].PackageId" class="form-control" placeholder="Ex: ABC123" />
+                    <span asp-validation-for="Goods[@i].PackageId" class="text-danger"></span>
 
-            <label asp-for="Order.Goods.MarksNumbers">Marks Numbers<span class="required">*</span></label>
-            <input asp-for="Order.Goods.MarksNumbers" class="form-control" placeholder="Ex: MN12345" />
-            <span asp-validation-for="Order.Goods.MarksNumbers" class="text-danger"></span>
+                    <label asp-for="Goods[@i].MarksNumbers">Marks Numbers<span class="required">*</span></label>
+                    <input asp-for="Goods[@i].MarksNumbers" class="form-control" placeholder="Ex: MN12345" />
+                    <span asp-validation-for="Goods[@i].MarksNumbers" class="text-danger"></span>
+              
 
-            <label asp-for="Order.Goods.Description">Description<span class="required">*</span></label>
-            <textarea asp-for="Order.Goods.Description" class="form-control" placeholder="Ex: Electronics, fragile items, etc..."></textarea>
-            <span asp-validation-for="Order.Goods.Description" class="text-danger"></span>
 
-            <label asp-for="Order.Goods.PackageType">Package Type<span class="required">*</span></label>
-            <input asp-for="Order.Goods.PackageType" class="form-control" placeholder="Ex: Box, Crate, Pallet, etc..." />
-            <span asp-validation-for="Order.Goods.PackageType" class="text-danger"></span>
+                <label asp-for="Order.Goods[@i].Description">Description<span class="required">*</span></label>
+                <textarea asp-for="Order.Goods[@i].Description" class="form-control" placeholder="Ex: Electronics, fragile items, etc..."></textarea>
+                <span asp-validation-for="Order.Goods[@i].Description" class="text-danger"></span>
 
-            <label asp-for="Order.Goods.Quantity">Quantity<span class="required">*</span></label>
-            <input asp-for="Order.Goods.Quantity" type="number" class="form-control" placeholder="Ex: 10" />
-            <span asp-validation-for="Order.Goods.Quantity" class="text-danger"></span>
+                <label asp-for="Order.Goods[@i].PackageType">Package Type<span class="required">*</span></label>
+                <input asp-for="Order.Goods[@i].PackageType" class="form-control" placeholder="Ex: Box, Crate, Pallet, etc..." />
+                <span asp-validation-for="Order.Goods[@i].PackageType" class="text-danger"></span>
 
-            <label asp-for="Order.Goods.Height">Height<span class="required">*</span></label>
-            <input asp-for="Order.Goods.Height" type="number" class="form-control" placeholder="Ex: 20 (in cm)" />
-            <span asp-validation-for="Order.Goods.Height" class="text-danger"></span>
+                <label asp-for="Order.Goods[@i].Quantity">Quantity<span class="required">*</span></label>
+                <input asp-for="Order.Goods[@i].Quantity" type="number" class="form-control" placeholder="Ex: 10" />
+                <span asp-validation-for="Order.Goods[@i].Quantity" class="text-danger"></span>
 
-            <label asp-for="Order.Goods.Length">Length<span class="required">*</span></label>
-            <input asp-for="Order.Goods.Length" type="number" class="form-control" placeholder="Ex: 30 (in cm)" />
-            <span asp-validation-for="Order.Goods.Length" class="text-danger"></span>
+                <label asp-for="Order.Goods[@i].Height">Height<span class="required">*</span></label>
+                <input asp-for="Order.Goods[@i].Height" type="number" class="form-control" placeholder="Ex: 20 (in cm)" />
+                <span asp-validation-for="Order.Goods[@i].Height" class="text-danger"></span>
 
-            <label asp-for="Order.Goods.Width">Width<span class="required">*</span></label>
-            <input asp-for="Order.Goods.Width" type="number" class="form-control" placeholder="Ex: 15 (in cm)" />
-            <span asp-validation-for="Order.Goods.Width" class="text-danger"></span>
+                <label asp-for="Order.Goods[@i].Length">Length<span class="required">*</span></label>
+                <input asp-for="Order.Goods[@i].Length" type="number" class="form-control" placeholder="Ex: 30 (in cm)" />
+                <span asp-validation-for="Order.Goods[@i].Length" class="text-danger"></span>
 
-            <label asp-for="Order.Goods.Volume">Volume<span class="required">*</span></label>
-            <input asp-for="Order.Goods.Volume" type="number" class="form-control" placeholder="Ex: 900 (in cubic cm)" />
-            <span asp-validation-for="Order.Goods.Volume" class="text-danger"></span>
+                <label asp-for="Order.Goods[@i].Width">Width<span class="required">*</span></label>
+                <input asp-for="Order.Goods[@i].Width" type="number" class="form-control" placeholder="Ex: 15 (in cm)" />
+                <span asp-validation-for="Order.Goods[@i].Width" class="text-danger"></span>
 
-                <label asp-for="Order.Goods.VolumeUnit">Volume Unit<span class="required">*</span></label>
-                <select asp-for="Order.Goods.VolumeUnit" class="form-control">
+                <label asp-for="Order.Goods[@i].Volume">Volume<span class="required">*</span></label>
+                <input asp-for="Order.Goods[@i].Volume" type="number" class="form-control" placeholder="Ex: 900 (in cubic cm)" />
+                <span asp-validation-for="Order.Goods[@i].Volume" class="text-danger"></span>
+
+                <label asp-for="Order.Goods[@i].VolumeUnit">Volume Unit<span class="required">*</span></label>
+                <select asp-for="Order.Goods[@i].VolumeUnit" class="form-control">
                     <option value="">Select a unit</option>
                     <option value="CBM">Cubic Meter (CBM)</option>
                     <option value="CFT">Cubic Feet (CFT)</option>
                     <option value="L">Liter (L)</option>
                     <option value="Gallon">Gallon (US/Imperial)</option>
                     <option value="In³">Cubic Inches (In³)</option>
-                   
                 </select>
-                <span asp-validation-for="Order.Goods.VolumeUnit" class="text-danger"></span>
+                <span asp-validation-for="Order.Goods[@i].VolumeUnit" class="text-danger"></span>
 
+                <label asp-for="Order.Goods[@i].GrossWeight">Gross Weight<span class="required">*</span></label>
+                <input asp-for="Order.Goods[@i].GrossWeight" type="number" class="form-control" placeholder="Ex: 15 (in kg)" />
+                <span asp-validation-for="Order.Goods[@i].GrossWeight" class="text-danger"></span>
 
+                <label asp-for="Order.Goods[@i].NetWeight">Net Weight<span class="required">*</span></label>
+                <input asp-for="Order.Goods[@i].NetWeight" type="number" class="form-control" placeholder="Ex: 12 (in kg)" />
+                <span asp-validation-for="Order.Goods[@i].NetWeight" class="text-danger"></span>
 
-            <label asp-for="Order.Goods.GrossWeight">GrossWeight<span class="required">*</span></label>
-            <input asp-for="Order.Goods.GrossWeight" type="number" class="form-control" placeholder="Ex: 15 (in kg)" />
-            <span asp-validation-for="Order.Goods.GrossWeight" class="text-danger"></span>
-
-            <label asp-for="Order.Goods.NetWeight">NetWeight<span class="required">*</span></label>
-            <input asp-for="Order.Goods.NetWeight" type="number" class="form-control" placeholder="Ex: 12 (in kg)" />
-            <span asp-validation-for="Order.Goods.NetWeight" class="text-danger"></span>
-
-            <label asp-for="Order.Goods.Remarks">Remarks</label>
-            <input asp-for="Order.Goods.Remarks" class="form-control" placeholder="Ex: Fragile, Handle with care, etc..." />
-            <span asp-validation-for="Order.Goods.Remarks" class="text-danger"></span>
-           
+                <label asp-for="Order.Goods[@i].Remarks">Remarks</label>
+                <input asp-for="Order.Goods[@i].Remarks" class="form-control" placeholder="Ex: Fragile, Handle with care, etc..." />
+                <span asp-validation-for="Order.Goods[@i].Remarks" class="text-danger"></span>
+                }
         </div>
     </div>
 
@@ -199,90 +264,90 @@
 
         <div class="form-container-2">
             <h3 class="text-center" style="color:#333">Consignor</h3>
-            <label asp-for="Order.Consignor.ConsignorName">Consignor Name</label>
-            <input asp-for="Order.Consignor.ConsignorName" class="form-control" placeholder="Ex: John Doe" />
-            <span asp-validation-for="Order.Consignor.ConsignorName" class="text-danger"></span>
+            <label asp-for="Order.ConsignorName">Consignor Name</label>
+            <input asp-for="Order.ConsignorName" class="form-control" placeholder="Ex: John Doe" />
+            <span asp-validation-for="Order.ConsignorName" class="text-danger"></span>
 
-            <label asp-for="Order.Consignor.ConsignorAddress1">Consignor Address 1</label>
-            <input asp-for="Order.Consignor.ConsignorAddress1" class="form-control" placeholder="Ex: 123 Main St" />
-            <span asp-validation-for="Order.Consignor.ConsignorAddress1" class="text-danger"></span>
+            <label asp-for="Order.ConsignorAddress1">Consignor Address 1</label>
+            <input asp-for="Order.ConsignorAddress1" class="form-control" placeholder="Ex: 123 Main St" />
+            <span asp-validation-for="Order.ConsignorAddress1" class="text-danger"></span>
 
-            <label asp-for="Order.Consignor.ConsignorAddress2">Consignor Address 2</label>
-            <input asp-for="Order.Consignor.ConsignorAddress2" class="form-control" placeholder="Ex: Suite 100" />
-            <span asp-validation-for="Order.Consignor.ConsignorAddress2" class="text-danger"></span>
-
-
-            <label asp-for="Order.Consignor.ConsignorCity">Consignor City</label>
-            <input asp-for="Order.Consignor.ConsignorCity" class="form-control" placeholder="Ex: New York" />
-            <span asp-validation-for="Order.Consignor.ConsignorCity" class="text-danger"></span>
+            <label asp-for="Order.ConsignorAddress2">Consignor Address 2</label>
+            <input asp-for="Order.ConsignorAddress2" class="form-control" placeholder="Ex: Suite 100" />
+            <span asp-validation-for="Order.ConsignorAddress2" class="text-danger"></span>
 
 
-            <label asp-for="Order.Consignor.ConsignorCountry">Consignor Country</label>
-            <select asp-for="Order.Consignor.ConsignorCountry" asp-items="@(new SelectList((IEnumerable<string>)ViewData["Countries"]))" class="form-control">
+            <label asp-for="Order.ConsignorCity">Consignor City</label>
+            <input asp-for="Order.ConsignorCity" class="form-control" placeholder="Ex: New York" />
+            <span asp-validation-for="Order.ConsignorCity" class="text-danger"></span>
+
+@*@*
+            <label asp-for="Order.ConsignorCountry">Consignor Country</label>
+            <select asp-for="Order.ConsignorCountry" asp-items="@(new SelectList((IEnumerable<string>)ViewData["Countries"]))" class="form-control">
                 <option value="">Select country...</option>
                 <!-- Add country options dynamically if needed -->
             </select>
-            <span asp-validation-for="Order.Consignor.ConsignorCountry" class="text-danger"></span>
+            <span asp-validation-for="Order.ConsignorCountry" class="text-danger"></span>*@
 
-            <label asp-for="Order.Consignor.ConsignorZip">Consignor Zip</label>
-            <input asp-for="Order.Consignor.ConsignorZip" class="form-control" placeholder="Ex: 12345" />
-            <span asp-validation-for="Order.Consignor.ConsignorZip" class="text-danger"></span>
+            <label asp-for="Order.ConsignorZip">Consignor Zip</label>
+            <input asp-for="Order.ConsignorZip" class="form-control" placeholder="Ex: 12345" />
+            <span asp-validation-for="Order.ConsignorZip" class="text-danger"></span>
 
 
-            <label asp-for="Order.Consignor.ConsignorContact">Consignor Contact</label>
-            <input asp-for="Order.Consignor.ConsignorContact" class="form-control" placeholder="Ex: Jane Smith" />
-            <span asp-validation-for="Order.Consignor.ConsignorContact" class="text-danger"></span>
+            <label asp-for="Order.ConsignorContact">Consignor Contact</label>
+            <input asp-for="Order.ConsignorContact" class="form-control" placeholder="Ex: Jane Smith" />
+            <span asp-validation-for="Order.ConsignorContact" class="text-danger"></span>
 
-            <label asp-for="Order.Consignor.ConsignorPhone">Consignor Phone</label>
-            <input asp-for="Order.Consignor.ConsignorPhone" class="form-control" placeholder="Ex: +1 (123) 456-7890" />
-            <span asp-validation-for="Order.Consignor.ConsignorPhone" class="text-danger"></span>
+            <label asp-for="Order.ConsignorPhone">Consignor Phone</label>
+            <input asp-for="Order.ConsignorPhone" class="form-control" placeholder="Ex: +1 (123) 456-7890" />
+            <span asp-validation-for="Order.ConsignorPhone" class="text-danger"></span>
 
-            <label asp-for="Order.Consignor.ConsignorEmail">Consignor Email</label>
-            <input asp-for="Order.Consignor.ConsignorEmail" class="form-control" placeholder="Ex: john.doe@example.com" />
-            <span asp-validation-for="Order.Consignor.ConsignorEmail" class="text-danger"></span>
+            <label asp-for="Order.ConsignorEmail">Consignor Email</label>
+            <input asp-for="Order.ConsignorEmail" class="form-control" placeholder="Ex: john.doe@example.com" />
+            <span asp-validation-for="Order.ConsignorEmail" class="text-danger"></span>
         </div>
 
 
         <div class="form-container-2">
             <h3 class="text-center" style="color:#333">Consignee</h3>
-            <label asp-for="Order.Consignee.ConsigneeName">Consignee Name</label>
-            <input asp-for="Order.Consignee.ConsigneeName" class="form-control" placeholder="Ex: Jane Doe" />
-            <span asp-validation-for="Order.Consignee.ConsigneeName" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeName">Consignee Name</label>
+            <input asp-for="Order.ConsigneeName" class="form-control" placeholder="Ex: Jane Doe" />
+            <span asp-validation-for="Order.ConsigneeName" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneeAddress1">Consignee Address 1</label>
-            <input asp-for="Order.Consignee.ConsigneeAddress1" class="form-control" placeholder="Ex: 456 Elm St" />
-            <span asp-validation-for="Order.Consignee.ConsigneeAddress1" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeAddress1">Consignee Address 1</label>
+            <input asp-for="Order.ConsigneeAddress1" class="form-control" placeholder="Ex: 456 Elm St" />
+            <span asp-validation-for="Order.ConsigneeAddress1" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneeAddress2">Consignee Address 2 (Optional)</label>
-            <input asp-for="Order.Consignee.ConsigneeAddress2" class="form-control" placeholder="Ex: Apartment 202" />
-            <span asp-validation-for="Order.Consignee.ConsigneeAddress2" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeAddress2">Consignee Address 2 (Optional)</label>
+            <input asp-for="Order.ConsigneeAddress2" class="form-control" placeholder="Ex: Apartment 202" />
+            <span asp-validation-for="Order.ConsigneeAddress2" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneeCity">Consignee City</label>
-            <input asp-for="Order.Consignee.ConsigneeCity" class="form-control" placeholder="Ex: Los Angeles" />
-            <span asp-validation-for="Order.Consignee.ConsigneeCity" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeCity">Consignee City</label>
+            <input asp-for="Order.ConsigneeCity" class="form-control" placeholder="Ex: Los Angeles" />
+            <span asp-validation-for="Order.ConsigneeCity" class="text-danger"></span>
 
-                <label asp-for="Order.Consignee.ConsigneeCountry">Consignor Country</label>
-                <select asp-for="Order.Consignee.ConsigneeCountry" asp-items="@(new SelectList((IEnumerable<string>)ViewData["Countries"]))" class="form-control">
+               @* <label asp-for="Order.ConsigneeCountry">Consignor Country</label>
+                <select asp-for="Order.ConsigneeCountry" asp-items="@(new SelectList((IEnumerable<string>)ViewData["Countries"]))" class="form-control">
                     <option value="">Select country...</option>
                     <!-- Add country options dynamically if needed -->
                 </select>
-                <span asp-validation-for="Order.Consignee.ConsigneeCountry" class="text-danger"></span>
+                <span asp-validation-for="Order.ConsigneeCountry" class="text-danger"></span>*@
 
-            <label asp-for="Order.Consignee.ConsigneeZip">Consignee Zip</label>
-            <input asp-for="Order.Consignee.ConsigneeZip" class="form-control" placeholder="Ex: 12345" />
-            <span asp-validation-for="Order.Consignee.ConsigneeZip" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeZip">Consignee Zip</label>
+            <input asp-for="Order.ConsigneeZip" class="form-control" placeholder="Ex: 12345" />
+            <span asp-validation-for="Order.ConsigneeZip" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneeContact">Consignee Contact</label>
-            <input asp-for="Order.Consignee.ConsigneeContact" class="form-control" placeholder="Ex: John Smith" />
-            <span asp-validation-for="Order.Consignee.ConsigneeContact" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeContact">Consignee Contact</label>
+            <input asp-for="Order.ConsigneeContact" class="form-control" placeholder="Ex: John Smith" />
+            <span asp-validation-for="Order.ConsigneeContact" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneePhone">Consignee Phone</label>
-            <input asp-for="Order.Consignee.ConsigneePhone" class="form-control" placeholder="Ex: 070235456" />
-            <span asp-validation-for="Order.Consignee.ConsigneePhone" class="text-danger"></span>
+            <label asp-for="Order.ConsigneePhone">Consignee Phone</label>
+            <input asp-for="Order.ConsigneePhone" class="form-control" placeholder="Ex: 070235456" />
+            <span asp-validation-for="Order.ConsigneePhone" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneeEmail">Consignee Email</label>
-            <input asp-for="Order.Consignee.ConsigneeEmail" class="form-control" placeholder="Ex: jane.doe@example.com" />
-            <span asp-validation-for="Order.Consignee.ConsigneeEmail" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeEmail">Consignee Email</label>
+            <input asp-for="Order.ConsigneeEmail" class="form-control" placeholder="Ex: jane.doe@example.com" />
+            <span asp-validation-for="Order.ConsigneeEmail" class="text-danger"></span>
         </div>
 
     </div>
@@ -334,7 +399,7 @@
             <input asp-for="Order.DeliveryTimeTo" type="datetime-local" class="form-control" />
             <span asp-validation-for="Order.DeliveryTimeTo" class="text-danger"></span>
 
-            <label>Lastningstidfönster</label>
+         @*   <label>Lastningstidfönster</label>
             <select asp-for="Order.PickUpTimeFrom" class="form-control">
                 <option value="08:00-15:00">08:00-15:00</option>
                 <option value="09:00-16:00">09:00-16:00</option>
@@ -347,136 +412,140 @@
                 <option value="09:00-16:00">09:00-16:00</option>
                 <!-- Lägg till fler alternativ om det behövs -->
             </select>
-        </div>
-    
+        </div>*@
 
 
 
-       <div class="form-container-2">
-    <h3 class="text-center" style="color:#333">Gods</h3>
-    <label asp-for="Order.Goods.PackageId">Kolli-ID<span class="required">*</span></label>
-    <input asp-for="Order.Goods.PackageId" class="form-control" placeholder="Exempel: 123456" />
-    <span asp-validation-for="Order.Goods.PackageId" class="text-danger"></span>
 
-    <label asp-for="Order.Goods.MarksNumbers">Godsmärkning<span class="required">*</span></label>
-    <input asp-for="Order.Goods.MarksNumbers" class="form-control" placeholder="Exempel: ABC123" />
-    <span asp-validation-for="Order.Goods.MarksNumbers" class="text-danger"></span>
+                <div class="form-container-2">
+                    <h3 class="text-center" style="color:#333">Goods</h3>
+                    @for (int i = 0; i < Model.Order.Goods.Count; i++)
+                    {
+                        <label asp-for="Goods[@i].PackageId">Package ID<span class="required">*</span></label>
+                        <input asp-for="Goods[@i].PackageId" class="form-control" placeholder="Ex: ABC123" />
+                        <span asp-validation-for="Goods[@i].PackageId" class="text-danger"></span>
 
-    <label asp-for="Order.Goods.Description">Beskrivning<span class="required">*</span></label>
-    <textarea asp-for="Order.Goods.Description" class="form-control" placeholder="Exempel: Elektronikvaror" ></textarea>
-    <span asp-validation-for="Order.Goods.Description" class="text-danger"></span>
-
-    <label asp-for="Order.Goods.PackageType">Kollin<span class="required">*</span></label>
-    <input asp-for="Order.Goods.PackageType" class="form-control" placeholder="Exempel: Pall" />
-    <span asp-validation-for="Order.Goods.PackageType" class="text-danger"></span>
-
-    <label asp-for="Order.Goods.Quantity">Kvantitet<span class="required">*</span></label>
-    <input asp-for="Order.Goods.Quantity" type="number" class="form-control" placeholder="Exempel: 5" />
-    <span asp-validation-for="Order.Goods.Quantity" class="text-danger"></span>
-
-    <label asp-for="Order.Goods.Height">Höjd(cm)<span class="required">*</span></label>
-    <input asp-for="Order.Goods.Height" type="number" class="form-control" placeholder="Exempel: 30" />
-    <span asp-validation-for="Order.Goods.Height" class="text-danger"></span>
-
-    <label asp-for="Order.Goods.Length">Längd(cm)<span class="required">*</span></label>
-    <input asp-for="Order.Goods.Length" type="number" class="form-control" placeholder="Exempel: 50" />
-    <span asp-validation-for="Order.Goods.Length" class="text-danger"></span>
-
-    <label asp-for="Order.Goods.Width">Bredd(cm)<span class="required">*</span></label>
-    <input asp-for="Order.Goods.Width" type="number" class="form-control" placeholder="Exempel: 40" />
-    <span asp-validation-for="Order.Goods.Width" class="text-danger"></span>
-
-    <label asp-for="Order.Goods.Volume">Volym<span class="required">*</span></label>
-    <input asp-for="Order.Goods.Volume" type="number" class="form-control" placeholder="Exempel: 60000" />
-    <span asp-validation-for="Order.Goods.Volume" class="text-danger"></span>
-
-                <label asp-for="Order.Goods.VolumeUnit">VolumeUnit<span class="required">*</span></label>
-                <select asp-for="Order.Goods.VolumeUnit" class="form-control">
-                    <option value="">Välj en enhet</option>
-                    <option value="CBM">Kubikmeter (CBM)</option>
-                    <option value="CFT">Kubikfot (CFT)</option>
-                    <option value="L">Liter (L)</option>
-                    <option value="Gallon">Gallon (US/Imperial)</option>
-                    <option value="In³">Kubiktum (In³)</option>
-                    
-                </select>
-                <span asp-validation-for="Order.Goods.VolumeUnit" class="text-danger"></span>
+                        <label asp-for="Goods[@i].MarksNumbers">Marks Numbers<span class="required">*</span></label>
+                        <input asp-for="Goods[@i].MarksNumbers" class="form-control" placeholder="Ex: MN12345" />
+                        <span asp-validation-for="Goods[@i].MarksNumbers" class="text-danger"></span>
 
 
-    <label asp-for="Order.Goods.GrossWeight">Bruttovikt(kg)<span class="required">*</span></label>
-    <input asp-for="Order.Goods.GrossWeight" type="number" class="form-control" placeholder="Exempel: 20" />
-    <span asp-validation-for="Order.Goods.GrossWeight" class="text-danger"></span>
 
-    <label asp-for="Order.Goods.NetWeight">Nettovikt(kg)<span class="required">*</span></label>
-    <input asp-for="Order.Goods.NetWeight" type="number" class="form-control" placeholder="Exempel: 15" />
-    <span asp-validation-for="Order.Goods.NetWeight" class="text-danger"></span>
+                        <label asp-for="Order.Goods[@i].Description">Description<span class="required">*</span></label>
+                        <textarea asp-for="Order.Goods[@i].Description" class="form-control" placeholder="Ex: Electronics, fragile items, etc..."></textarea>
+                        <span asp-validation-for="Order.Goods[@i].Description" class="text-danger"></span>
 
-    <label asp-for="Order.Goods.Remarks">Anmärkningar</label>
-    <input asp-for="Order.Goods.Remarks" class="form-control" placeholder="Exempel: Fragile" />
-    <span asp-validation-for="Order.Goods.Remarks" class="text-danger"></span>
-</div>
+                        <label asp-for="Order.Goods[@i].PackageType">Package Type<span class="required">*</span></label>
+                        <input asp-for="Order.Goods[@i].PackageType" class="form-control" placeholder="Ex: Box, Crate, Pallet, etc..." />
+                        <span asp-validation-for="Order.Goods[@i].PackageType" class="text-danger"></span>
+
+                        <label asp-for="Order.Goods[@i].Quantity">Quantity<span class="required">*</span></label>
+                        <input asp-for="Order.Goods[@i].Quantity" type="number" class="form-control" placeholder="Ex: 10" />
+                        <span asp-validation-for="Order.Goods[@i].Quantity" class="text-danger"></span>
+
+                        <label asp-for="Order.Goods[@i].Height">Height<span class="required">*</span></label>
+                        <input asp-for="Order.Goods[@i].Height" type="number" class="form-control" placeholder="Ex: 20 (in cm)" />
+                        <span asp-validation-for="Order.Goods[@i].Height" class="text-danger"></span>
+
+                        <label asp-for="Order.Goods[@i].Length">Length<span class="required">*</span></label>
+                        <input asp-for="Order.Goods[@i].Length" type="number" class="form-control" placeholder="Ex: 30 (in cm)" />
+                        <span asp-validation-for="Order.Goods[@i].Length" class="text-danger"></span>
+
+                        <label asp-for="Order.Goods[@i].Width">Width<span class="required">*</span></label>
+                        <input asp-for="Order.Goods[@i].Width" type="number" class="form-control" placeholder="Ex: 15 (in cm)" />
+                        <span asp-validation-for="Order.Goods[@i].Width" class="text-danger"></span>
+
+                        <label asp-for="Order.Goods[@i].Volume">Volume<span class="required">*</span></label>
+                        <input asp-for="Order.Goods[@i].Volume" type="number" class="form-control" placeholder="Ex: 900 (in cubic cm)" />
+                        <span asp-validation-for="Order.Goods[@i].Volume" class="text-danger"></span>
+
+                        <label asp-for="Order.Goods[@i].VolumeUnit">Volume Unit<span class="required">*</span></label>
+                        <select asp-for="Order.Goods[@i].VolumeUnit" class="form-control">
+                            <option value="">Select a unit</option>
+                            <option value="CBM">Cubic Meter (CBM)</option>
+                            <option value="CFT">Cubic Feet (CFT)</option>
+                            <option value="L">Liter (L)</option>
+                            <option value="Gallon">Gallon (US/Imperial)</option>
+                            <option value="In³">Cubic Inches (In³)</option>
+                        </select>
+                        <span asp-validation-for="Order.Goods[@i].VolumeUnit" class="text-danger"></span>
+
+                        <label asp-for="Order.Goods[@i].GrossWeight">Gross Weight<span class="required">*</span></label>
+                        <input asp-for="Order.Goods[@i].GrossWeight" type="number" class="form-control" placeholder="Ex: 15 (in kg)" />
+                        <span asp-validation-for="Order.Goods[@i].GrossWeight" class="text-danger"></span>
+
+                        <label asp-for="Order.Goods[@i].NetWeight">Net Weight<span class="required">*</span></label>
+                        <input asp-for="Order.Goods[@i].NetWeight" type="number" class="form-control" placeholder="Ex: 12 (in kg)" />
+                        <span asp-validation-for="Order.Goods[@i].NetWeight" class="text-danger"></span>
+
+                        <label asp-for="Order.Goods[@i].Remarks">Remarks</label>
+                        <input asp-for="Order.Goods[@i].Remarks" class="form-control" placeholder="Ex: Fragile, Handle with care, etc..." />
+                        <span asp-validation-for="Order.Goods[@i].Remarks" class="text-danger"></span>
+                    }
+                </div>
+            </div>
         <div class="form-container-2">
             <h3 class="text-center" style="color:#333">Avsändare</h3>
-            <label asp-for="Order.Consignor.ConsignorName">Namn</label>
-            <input asp-for="Order.Consignor.ConsignorName" class="form-control" placeholder="Exempel: Jane Doe" />
-            <span asp-validation-for="Order.Consignor.ConsignorName" class="text-danger"></span>
+            <label asp-for="Order.ConsignorName">Namn</label>
+            <input asp-for="Order.ConsignorName" class="form-control" placeholder="Exempel: Jane Doe" />
+            <span asp-validation-for="Order.ConsignorName" class="text-danger"></span>
 
-            <label asp-for="Order.Consignor.ConsignorAddress1">Adressrad 1</label>
-            <input asp-for="Order.Consignor.ConsignorAddress1" class="form-control" placeholder="Exempel: 456 Elm Street" />
-            <span asp-validation-for="Order.Consignor.ConsignorAddress1" class="text-danger"></span>
+            <label asp-for="Order.ConsignorAddress1">Adressrad 1</label>
+            <input asp-for="Order.ConsignorAddress1" class="form-control" placeholder="Exempel: 456 Elm Street" />
+            <span asp-validation-for="Order.ConsignorAddress1" class="text-danger"></span>
 
-            <label asp-for="Order.Consignor.ConsignorAddress2">Adressrad 2</label>
-            <input asp-for="Order.Consignor.ConsignorAddress2" class="form-control" placeholder="Exempel: Suite 100" />
-            <span asp-validation-for="Order.Consignor.ConsignorAddress2" class="text-danger"></span>
+            <label asp-for="Order.ConsignorAddress2">Adressrad 2</label>
+            <input asp-for="Order.ConsignorAddress2" class="form-control" placeholder="Exempel: Suite 100" />
+            <span asp-validation-for="Order.ConsignorAddress2" class="text-danger"></span>
 
-            <label asp-for="Order.Consignor.ConsignorCity">Stad</label>
-            <input asp-for="Order.Consignor.ConsignorCity" class="form-control" placeholder="Exempel: Los Angeles" />
-            <span asp-validation-for="Order.Consignor.ConsignorCity" class="text-danger"></span>
+            <label asp-for="Order.ConsignorCity">Stad</label>
+            <input asp-for="Order.ConsignorCity" class="form-control" placeholder="Exempel: Los Angeles" />
+            <span asp-validation-for="Order.ConsignorCity" class="text-danger"></span>
 
-            <label asp-for="Order.Consignor.ConsignorCountry">Land</label>
-            <select asp-for="Order.Consignor.ConsignorCountry" asp-items="@(new SelectList((IEnumerable<string>)ViewData["Countries"]))" class="form-control">
+           @*@* <label asp-for="Order.ConsignorCountry">Land</label>
+            <select asp-for="Order.ConsignorCountry" asp-items="@(new SelectList((IEnumerable<string>)ViewData["Countries"]))" class="form-control">
                 <option value="">Välj land...</option>
             </select>
-            <span asp-validation-for="Order.Consignee.ConsigneeCountry" class="text-danger"></span>
+            <span asp-validation-for="Order.ConsigneeCountry" class="text-danger"></span>*@
 
-            <label asp-for="Order.Consignor.ConsignorZip">Postnummer</label>
-            <input asp-for="Order.Consignor.ConsignorZip" class="form-control" placeholder="Exempel: 90001" />
-            <span asp-validation-for="Order.Consignor.ConsignorZip" class="text-danger"></span>
+            <label asp-for="Order.ConsignorZip">Postnummer</label>
+            <input asp-for="Order.ConsignorZip" class="form-control" placeholder="Exempel: 90001" />
+            <span asp-validation-for="Order.ConsignorZip" class="text-danger"></span>
 
-            <label asp-for="Order.Consignor.ConsignorContact">Kontakt</label>
-            <input asp-for="Order.Consignor.ConsignorContact" class="form-control" placeholder="Exempel: John Smith" />
-            <span asp-validation-for="Order.Consignor.ConsignorContact" class="text-danger"></span>
+            <label asp-for="Order.ConsignorContact">Kontakt</label>
+            <input asp-for="Order.ConsignorContact" class="form-control" placeholder="Exempel: John Smith" />
+            <span asp-validation-for="Order.ConsignorContact" class="text-danger"></span>
 
-            <label asp-for="Order.Consignor.ConsignorPhone">Tel.</label>
-            <input asp-for="Order.Consignor.ConsignorPhone" class="form-control" placeholder="Exempel: +1 (555) 987-6543" />
-            <span asp-validation-for="Order.Consignor.ConsignorPhone" class="text-danger"></span>
+            <label asp-for="Order.ConsignorPhone">Tel.</label>
+            <input asp-for="Order.ConsignorPhone" class="form-control" placeholder="Exempel: +1 (555) 987-6543" />
+            <span asp-validation-for="Order.ConsignorPhone" class="text-danger"></span>
 
-            <label asp-for="Order.Consignor.ConsignorEmail">Email</label>
-            <input asp-for="Order.Consignor.ConsignorEmail" class="form-control" placeholder="Exempel: jane@example.com" />
-            <span asp-validation-for="Order.Consignor.ConsignorEmail" class="text-danger"></span>
+            <label asp-for="Order.ConsignorEmail">Email</label>
+            <input asp-for="Order.ConsignorEmail" class="form-control" placeholder="Exempel: jane@example.com" />
+            <span asp-validation-for="Order.ConsignorEmail" class="text-danger"></span>
         </div>
 
 
         <div class="form-container-2">
             <h3 class="text-center" style="color:#333">Mottagare</h3>
-            <label asp-for="Order.Consignee.ConsigneeName">Namn</label>
-            <input asp-for="Order.Consignee.ConsigneeName" class="form-control" placeholder="Exempel: John Doe" />
-            <span asp-validation-for="Order.Consignee.ConsigneeName" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeName">Namn</label>
+            <input asp-for="Order.ConsigneeName" class="form-control" placeholder="Exempel: John Doe" />
+            <span asp-validation-for="Order.ConsigneeName" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneeAddress1">Adressrad 1</label>
-            <input asp-for="Order.Consignee.ConsigneeAddress1" class="form-control" placeholder="Exempel: 123 Main Street" />
-            <span asp-validation-for="Order.Consignee.ConsigneeAddress1" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeAddress1">Adressrad 1</label>
+            <input asp-for="Order.ConsigneeAddress1" class="form-control" placeholder="Exempel: 123 Main Street" />
+            <span asp-validation-for="Order.ConsigneeAddress1" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneeAddress2">Adressrad 2</label>
-            <input asp-for="Order.Consignee.ConsigneeAddress2" class="form-control" placeholder="Exempel: Apartment 2B" />
-            <span asp-validation-for="Order.Consignee.ConsigneeAddress2" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeAddress2">Adressrad 2</label>
+            <input asp-for="Order.ConsigneeAddress2" class="form-control" placeholder="Exempel: Apartment 2B" />
+            <span asp-validation-for="Order.ConsigneeAddress2" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneeCity">Stad</label>
-            <input asp-for="Order.Consignee.ConsigneeCity" class="form-control" placeholder="Exempel: New York City" />
-            <span asp-validation-for="Order.Consignee.ConsigneeCity" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeCity">Stad</label>
+            <input asp-for="Order.ConsigneeCity" class="form-control" placeholder="Exempel: New York City" />
+            <span asp-validation-for="Order.ConsigneeCity" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneeCountry">Land</label>
-            <select asp-for="Order.Consignee.ConsigneeCountry" class="form-control">
+            @*@*<label asp-for="Order.ConsigneeCountry">Land</label>
+            <select asp-for="Order.ConsigneeCountry" class="form-control">
                 <option value="">Välj land...</option>
                 @if (ViewData["Countries"] != null)
                 {
@@ -486,23 +555,23 @@
                     }
                 }
             </select>
-            <span asp-validation-for="Order.Consignee.ConsigneeCountry" class="text-danger"></span>
+            <span asp-validation-for="Order.ConsigneeCountry" class="text-danger"></span>*@
 
-            <label asp-for="Order.Consignee.ConsigneeZip">Postnummer</label>
-            <input asp-for="Order.Consignee.ConsigneeZip" class="form-control" placeholder="Exempel: 10001" />
-            <span asp-validation-for="Order.Consignee.ConsigneeZip" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeZip">Postnummer</label>
+            <input asp-for="Order.ConsigneeZip" class="form-control" placeholder="Exempel: 10001" />
+            <span asp-validation-for="Order.ConsigneeZip" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneeContact">Kontakt</label>
-            <input asp-for="Order.Consignee.ConsigneeContact" class="form-control" placeholder="Exempel: Jane Doe" />
-            <span asp-validation-for="Order.Consignee.ConsigneeContact" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeContact">Kontakt</label>
+            <input asp-for="Order.ConsigneeContact" class="form-control" placeholder="Exempel: Jane Doe" />
+            <span asp-validation-for="Order.ConsigneeContact" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneePhone">Tel.</label>
-            <input asp-for="Order.Consignee.ConsigneePhone" class="form-control" placeholder="Exempel: +1 (555) 123-4567" />
-            <span asp-validation-for="Order.Consignee.ConsigneePhone" class="text-danger"></span>
+            <label asp-for="Order.ConsigneePhone">Tel.</label>
+            <input asp-for="Order.ConsigneePhone" class="form-control" placeholder="Exempel: +1 (555) 123-4567" />
+            <span asp-validation-for="Order.ConsigneePhone" class="text-danger"></span>
 
-            <label asp-for="Order.Consignee.ConsigneeEmail">Email</label>
-            <input asp-for="Order.Consignee.ConsigneeEmail" class="form-control" placeholder="Exempel: john@example.com" />
-            <span asp-validation-for="Order.Consignee.ConsigneeEmail" class="text-danger"></span>
+            <label asp-for="Order.ConsigneeEmail">Email</label>
+            <input asp-for="Order.ConsigneeEmail" class="form-control" placeholder="Exempel: john@example.com" />
+            <span asp-validation-for="Order.ConsigneeEmail" class="text-danger"></span>
         </div>
 
 

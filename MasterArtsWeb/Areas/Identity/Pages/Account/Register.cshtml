@@ -27,6 +27,13 @@
                 <label asp-for="Input.ConfirmPassword">Confirm Password</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
+            <!-- I din Register.cshtml-fil -->
+            <div class="form-group">
+                <label asp-for="Input.CustomerNumber"></label>
+                <input asp-for="Input.CustomerNumber" class="form-control" />
+                <span asp-validation-for="Input.CustomerNumber" class="text-danger"></span>
+            </div>
+
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>
     </div>

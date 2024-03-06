@@ -1,25 +1,24 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using MasterArtsLibrary.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MasterArtsLibrary.Models;
-using MasterArtsLibrary.ViewModels;
 
-namespace MasterArtsWeb
+namespace MasterArtsWeb.Data
 {
-    public class MyDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-        
+
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<Consignee> Consignees { get; set; }
         public DbSet<Consignor> Consignors { get; set; }
-         public DbSet<Customer> Customers { get; set; }
+
         public DbSet<Goods> Goods { get; set; }
         public DbSet<ExchangeRate> CurrencyRates { get; set; }
-        public DbSet<MrRate> Rates{ get; set; }
+        public DbSet<MrRate> Rates { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
