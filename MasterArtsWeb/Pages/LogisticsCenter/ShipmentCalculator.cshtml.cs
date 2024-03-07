@@ -14,7 +14,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
     public class ShipmentCalculatorModel : PageModel
     {
 
-        public ShipmentCalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory,OrderService orderService, UserManager<IdentityUser> userManager,MyDbContext context)
+        public ShipmentCalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory,OrderService orderService, UserManager<IdentityUser> userManager,MyDbContext context, ILogger<ShipmentCalculatorModel> logger)
                 
         {
             _clientFactory = clientFactory;
@@ -22,9 +22,11 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             _orderService = orderService;
             _userManager = userManager;
             _context = context;
+            _logger = logger;
         }
         private readonly UserManager<IdentityUser> _userManager;
         private readonly OrderService _orderService;
+        private readonly ILogger<ShipmentCalculatorModel> _logger;
         [BindProperty]
         public Order Order { get; set; } = new Order();
         private readonly MyDbContext _context;
@@ -40,15 +42,9 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         public string CustomerNumber { get; set; }
         public async Task<IActionResult> OnGet()
         {
-            if (Order == null)
-            {
-                Order = new Order();
-            }
-
             if (Order.Goods == null || !Order.Goods.Any())
             {
-                // Lägg till en tom Goods-instans så att det finns något att binda till i vyn
-                Order.Goods.Add(new Goods());
+                Order.Goods.Add(new Goods()); // Lägg till en tom 'Goods' för att visa ett första fält
             }
             var userId = _userManager.GetUserId(User);
             CustomerNumber = await GetCustomerNumberAsync(userId);
@@ -65,6 +61,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         }
         public async Task<IActionResult> OnPostAsync()
         {
+            _logger.LogInformation($"Order received: {JsonConvert.SerializeObject(Order)}");
             if (Order.Goods == null)
             {
                 Order.Goods = new List<Goods>(); // Initialisera om den är null
@@ -76,8 +73,8 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
 
             if (ModelState.IsValid)
             {
-                
-                
+                _logger.LogInformation($"Order received: {JsonConvert.SerializeObject(Order)}");
+
                 await _orderService.CreateOrderInApi(Order);
                 //var recipientEmail = Order.Consignor.ConsignorEmail;
                 //await _orderService.SendOrderConfirmationEmail(recipientEmail, Order);

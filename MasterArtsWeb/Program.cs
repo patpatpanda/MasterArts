@@ -21,6 +21,7 @@ builder.Services.AddSingleton<LanguageService>();
 
 builder.Services.AddScoped<OrderService>();
 
+
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IOrderEmailSender, EmailSender>();
 builder.Services.AddTransient<DataInitializer>();

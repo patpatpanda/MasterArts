@@ -17,8 +17,8 @@ namespace MasterArtsLibrary.Models
         public string Customer { get; set; }
         public string FreightService { get; set; }
         public string DeliveryTimeFrom { get; set; } // Ändra datatypen till string
-        public string DeliveryTimeTo { get; set; }   // Ändra datatypen till string
-
+        public string DeliveryTimeTo { get; set; }
+        public string TermsOfDelivery { get; set; }
 
         // Avsändare (consignor) attribut
         public string ConsignorName { get; set; }
