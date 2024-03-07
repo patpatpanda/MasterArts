@@ -62,10 +62,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         public async Task<IActionResult> OnPostAsync()
         {
             _logger.LogInformation($"Order received: {JsonConvert.SerializeObject(Order)}");
-            if (Order.Goods == null)
-            {
-                Order.Goods = new List<Goods>(); // Initialisera om den är null
-            }
+            
             var countries = await _orderService.GetAllCountries();
             ViewData["Countries"] = countries;
             CurrentLanguage = _languageService.ToggleLanguage();

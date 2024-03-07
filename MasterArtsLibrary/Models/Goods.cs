@@ -14,7 +14,7 @@ namespace MasterArtsLibrary.Models
         public string? Description { get; set; }
         public int Quantity { get; set; }
 
-        public string? PackageType { get; set; }
+        public string PackageType { get; set; }
         public double? VolumetricWeight { get; set; }
         public double? NetWeight { get; set; }
         public double Length { get; set; }

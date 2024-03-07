@@ -318,78 +318,78 @@ namespace MasterArtsLibrary.Services
             return null;
         }
 
-        public async Task CreateOrderInApi(Order order)
-        {
-            var apiUrl = _configuration.GetSection("ApiUrl").Value;
-
-            using (var httpClient = _httpClientFactory.CreateClient())
-            {
-                var response = await httpClient.PostAsJsonAsync($"https://localhost:7009/api/OrderApi", order);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    order = Order;
-                }
-            }
-
-        }
         //public async Task CreateOrderInApi(Order order)
         //{
-        //    var apiUrl = _configuration.GetSection("CISApi:ApiUrl").Value;
-        //    var clientId = _configuration.GetSection("CISApi:ClientId").Value;
-        //    var clientSecret = _configuration.GetSection("CISApi:ClientSecret").Value;
-        //    var username = _configuration.GetSection("CISApi:Username").Value;
-        //    var password = _configuration.GetSection("CISApi:Password").Value;
+        //    var apiUrl = _configuration.GetSection("ApiUrl").Value;
 
         //    using (var httpClient = _httpClientFactory.CreateClient())
         //    {
-        //        var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}"));
-        //        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+        //        var response = await httpClient.PostAsJsonAsync($"https://localhost:7009/api/OrderApi", order);
 
-        //        var tokenRequestData = new Dictionary<string, string>
-        //    {
-        //        { "grant_type", "password" },
-        //        { "username", username },
-        //        { "password", password }
-        //    };
-
-        //        HttpResponseMessage tokenResponse;
-        //        try
+        //        if (!response.IsSuccessStatusCode)
         //        {
-        //            tokenResponse = await httpClient.PostAsync($"{_configuration.GetSection("CISApi:TokenEndpoint").Value}", new FormUrlEncodedContent(tokenRequestData));
-        //        }
-        //        catch (HttpRequestException e)
-        //        {
-        //            _logger.LogError($"Fel vid anslutning till token endpoint: {e.Message}");
-        //            return;
-        //        }
-
-        //        if (!tokenResponse.IsSuccessStatusCode)
-        //        {
-        //            var errorContent = await tokenResponse.Content.ReadAsStringAsync();
-        //            _logger.LogError($"Tokenförfrågan misslyckades med statuskod {tokenResponse.StatusCode} och felmeddelande: {errorContent}");
-        //            return;
-        //        }
-
-        //        var tokenResponseBody = await tokenResponse.Content.ReadAsStringAsync();
-        //        var tokenData = JsonSerializer.Deserialize<TokenResponse>(tokenResponseBody, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-        //        var accessToken = tokenData?.Access_token;
-
-        //        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-        //        var orderResponse = await httpClient.PutAsJsonAsync(apiUrl + "order", order); // Se till att URL:en är korrekt
-
-        //        if (orderResponse.IsSuccessStatusCode)
-        //        {
-        //            _logger.LogInformation($"Order skapades lyckat med statuskod {orderResponse.StatusCode}.");
-        //            // Här kan du hantera den skapade ordern vidare om så önskas
-        //        }
-        //        else
-        //        {
-        //            var errorContent = await orderResponse.Content.ReadAsStringAsync();
-        //            _logger.LogError($"Skapande av order misslyckades med statuskod {orderResponse.StatusCode} och felmeddelande: {errorContent}");
+        //            order = Order;
         //        }
         //    }
+
         //}
+        public async Task CreateOrderInApi(Order order)
+        {
+            var apiUrl = _configuration.GetSection("CISApi:ApiUrl").Value;
+            var clientId = _configuration.GetSection("CISApi:ClientId").Value;
+            var clientSecret = _configuration.GetSection("CISApi:ClientSecret").Value;
+            var username = _configuration.GetSection("CISApi:Username").Value;
+            var password = _configuration.GetSection("CISApi:Password").Value;
+
+            using (var httpClient = _httpClientFactory.CreateClient())
+            {
+                var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}"));
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+
+                var tokenRequestData = new Dictionary<string, string>
+            {
+                { "grant_type", "password" },
+                { "username", username },
+                { "password", password }
+            };
+
+                HttpResponseMessage tokenResponse;
+                try
+                {
+                    tokenResponse = await httpClient.PostAsync($"{_configuration.GetSection("CISApi:TokenEndpoint").Value}", new FormUrlEncodedContent(tokenRequestData));
+                }
+                catch (HttpRequestException e)
+                {
+                    _logger.LogError($"Fel vid anslutning till token endpoint: {e.Message}");
+                    return;
+                }
+
+                if (!tokenResponse.IsSuccessStatusCode)
+                {
+                    var errorContent = await tokenResponse.Content.ReadAsStringAsync();
+                    _logger.LogError($"Tokenförfrågan misslyckades med statuskod {tokenResponse.StatusCode} och felmeddelande: {errorContent}");
+                    return;
+                }
+
+                var tokenResponseBody = await tokenResponse.Content.ReadAsStringAsync();
+                var tokenData = JsonSerializer.Deserialize<TokenResponse>(tokenResponseBody, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                var accessToken = tokenData?.Access_token;
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                var orderResponse = await httpClient.PutAsJsonAsync(apiUrl + "order", order); // Se till att URL:en är korrekt
+
+                if (orderResponse.IsSuccessStatusCode)
+                {
+                    _logger.LogInformation($"Order skapades lyckat med statuskod {orderResponse.StatusCode}.");
+                    // Här kan du hantera den skapade ordern vidare om så önskas
+                }
+                else
+                {
+                    var errorContent = await orderResponse.Content.ReadAsStringAsync();
+                    _logger.LogError($"Skapande av order misslyckades med statuskod {orderResponse.StatusCode} och felmeddelande: {errorContent}");
+                }
+            }
+        }
 
 
 
