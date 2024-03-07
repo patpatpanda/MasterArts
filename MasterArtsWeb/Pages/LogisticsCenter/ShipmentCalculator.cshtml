@@ -387,9 +387,7 @@
     <div class="form-style-10">
         <div class="form-container-2">
             <h3 class="text-center" style="color:#333">Detaljer</h3>
-            <label asp-for="Order.CustomerOrderNumber">Kundordernummer</label>
-            <input asp-for="Order.CustomerOrderNumber" class="form-control" placeholder="Exempel: ABC123" />
-            <span asp-validation-for="Order.CustomerOrderNumber" class="text-danger"></span>
+            
 
             <label asp-for="Order.OrderReference">Orderreferens</label>
             <input asp-for="Order.OrderReference" class="form-control" placeholder="Exempel: REF123" />
@@ -419,7 +417,9 @@
             <label asp-for="Order.DeliveryTimeTo">Lossningsdatum</label>
             <input asp-for="Order.DeliveryTimeTo" type="datetime-local" class="form-control" />
             <span asp-validation-for="Order.DeliveryTimeTo" class="text-danger"></span>
-
+                <label asp-for="Order.CustomerOrderNumber">Customer Order Number</label>
+                <input asp-for="Order.CustomerOrderNumber" class="form-control" placeholder="Ex: ABC123" />
+                <span asp-validation-for="Order.CustomerOrderNumber" class="text-danger"></span>
          @*   <label>Lastningstidfönster</label>
             <select asp-for="Order.PickUpTimeFrom" class="form-control">
                 <option value="08:00-15:00">08:00-15:00</option>
