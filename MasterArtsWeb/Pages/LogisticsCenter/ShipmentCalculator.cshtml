@@ -193,7 +193,16 @@
                 <span asp-validation-for="Order.CustomerOrderNumber" class="text-danger"></span>
 
 
-
+                <label asp-for="Order.OrderType">Order Type<span class="required">*</span></label>
+                <select asp-for="Order.OrderType" class="form-control">
+                    <option value="">Select OrderType</option>
+                    <option value="Export">Export</option>
+                    <option value="Import">Import</option>
+                    <option value="Inrikes">Inrikes</option>
+                    <option value="Tullhantering">Tullhantering</option>
+                    
+                </select>
+                <span asp-validation-for="Order.OrderType" class="text-danger"></span>
 
                 
 
@@ -475,9 +484,9 @@
             </select>
             <span asp-validation-for="Order.FreightService" class="text-danger"></span>
 
-            <label asp-for="Order.DeliveryTimeFrom">Lastdatum</label>
-            <input asp-for="Order.DeliveryTimeFrom"  class="form-control" />
-            <span asp-validation-for="Order.DeliveryTimeFrom" class="text-danger"></span>
+            <label asp-for="Order.PickUpTimeFrom">Lastdatum</label>
+            <input asp-for="Order.PickUpTimeFrom"  class="form-control" />
+            <span asp-validation-for="Order.PickUpTimeFrom" class="text-danger"></span>
 
             <label asp-for="Order.DeliveryTimeTo">Lossningsdatum</label>
             <input asp-for="Order.DeliveryTimeTo"  class="form-control" />
@@ -487,7 +496,16 @@
                 <input asp-for="Order.CustomerOrderNumber" class="form-control" placeholder="Ex: ABC123" />
                 <span asp-validation-for="Order.CustomerOrderNumber" class="text-danger"></span>
 
+                <label asp-for="Order.OrderType">Ordertyp<span class="required">*</span></label>
+                <select asp-for="Order.OrderType" class="form-control">
+                    <option value="">Välj Ordertyp</option>
+                    <option value="Export">Export</option>
+                    <option value="Import">Import</option>
+                    <option value="Inrikes">Inrikes</option>
+                    <option value="Tullhantering">Tullhantering</option>
 
+                </select>
+                <span asp-validation-for="Order.OrderType" class="text-danger"></span>
 
                 <label asp-for="@Model.Order.TransportModeCode">Transportläge</label>
                 <select asp-for="@Model.Order.TransportModeCode" class="form-control">

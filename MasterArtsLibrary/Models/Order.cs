@@ -17,7 +17,7 @@ namespace MasterArtsLibrary.Models
         public string? OrderReference { get; set; }
       
         public string Customer { get; set; }
-       
+        public string OrderType { get; set; }
         public string FreightService { get; set; }
         
         public string? DeliveryTimeFrom { get; set; }
