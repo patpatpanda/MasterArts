@@ -9,12 +9,11 @@
 html, body {
     margin: 0;
     padding: 0;
-    width: 100%;
-    
-    background-color: #fafafa
+    overflow-x: hidden;
+    background-color: #333940; /* En djup kolgrå ton */
 }
 #myShip {
-    
+    background-color: aliceblue;
 }
 
 #myView {
@@ -40,12 +39,15 @@ html, body {
 #myIndex header{
     display:none
 }
-#myIndex {
+#myIndex .container {
     
-    top:0
+
+
+    max-width: 100%
+} 
 
    
-}
+
 
 
 header {
@@ -69,7 +71,7 @@ header {
 
 
 .container-m {
-    max-width: 800px;
+    
     margin: 0 auto;
     padding: 20px;
 }
@@ -303,6 +305,7 @@ h2-p {
     margin: 20px;
     border-radius: 10px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+
 }
 
 .container-lg {
@@ -346,7 +349,7 @@ h2 {
 
 
 .image-container img-3 {
-    max-width: 100%;
+   
     height: auto;
     border-radius: 10px;
 }
@@ -906,7 +909,7 @@ gol-2 {
 }
 
 .mysan {
-    max-width: 900px;
+    max-width: 1000px;
     font-family: Arial, sans-serif;
     margin-top: 100px;
 }
@@ -924,7 +927,7 @@ gol-2 {
     margin-top: 30px;
     background-color: #fffafa;
     padding: 50px;
-    max-width: 1200px;
+    max-width: 1600px;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
@@ -1242,9 +1245,9 @@ h3 {
     align-items: center;
     max-width: 800px;
     margin: 0 auto;
-    color: #333;
+    color: #fff;
     text-align: center;
-    padding: 20px;
+    padding: 24px;
     border-radius: 10px;
     line-height: 1.5;
 }
@@ -1252,7 +1255,7 @@ h3 {
 .qop-4 {
     margin-top: 100px;
     margin-bottom: 100px;
-    background-color: #e6f7ec;
+    background-color: #E57399;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     padding: 30px;
 }
@@ -1647,6 +1650,9 @@ input {
     }
     .background-image-container{
         display:none
+    }
+    .navbar-collapse.collapse {
+        background-color: rgba(0, 0, 0, 0.5); /* Ljussvart med viss transparens */
     }
     .team {
         display: block
@@ -2486,27 +2492,7 @@ select {
     margin-right: 5px;
     color: green;
 }
-.background-image-container {
-    position: relative;
-    z-index: 1;
-    background-image: url('/images/man.webp');
-    height: 100vh; /* Eller önskad höjd */
-    width: 100%;
-    background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
-    background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
-    background-repeat: no-repeat; /* Förhindrar att bilden upprepas */
-}
 
-    .background-image-container::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.3); /* Semi-transparent svart överlager */
-        z-index: -1;
-    }
 .baby {
     
     display: flex;
@@ -2532,6 +2518,17 @@ select {
 
    
 }
+.background-image-container {
+    position: relative;
+    z-index: 1;
+    background-image: url('/images/aae.webp');
+    height: 700px; /* Eller önskad höjd */
+    width: 100%;
+    background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
+    background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
+    background-repeat: no-repeat; /* Förhindrar att bilden upprepas */
+    
+}
 .centered-text {
     /* Stil för din centralt placerade text */
     position: absolute; /* Använd denna om flex inte är tillräckligt för ditt specifika fall */
@@ -2555,33 +2552,67 @@ select {
 
     font-family: Arial, sans-serif; /* Anger typsnitt */
 }
+.container{
+    max-width:1400px;
+}
 
 
-@media (min-width: 1500px) {
-    .background-image-container {
-        position: relative;
-        z-index: 1;
-        background-image: url('/images/man.webp');
-        height: 1200px; /* Eller önskad höjd */
-        width: 100%;
-        background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
-        background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
-        background-repeat: no-repeat; /* Förhindrar att bilden upprepas */
-        
+/* Baslayout och typografi */
+.qop-4 {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px; /* Anpassar bredden */
+    background: linear-gradient(120deg, #f6d6e9, #f9c6d9, #facde9);
+    background-size: 200% 200%;
+    animation: GradientShift 10s ease infinite;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    color: #5D3B66
+}
+
+.qop-3 h2 {
+    color: #5D3B66; /* Mörkare rosa för kontrast */
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px #f6d6e9;
+}
+
+.qop-3 p, .qop-3 span {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: justify;
+    color: #5D3B66
+}
+
+/* Animerad gradientbakgrund */
+@keyframes GradientShift {
+    0% {
+        background-position: 0% 50%;
     }
-    .word{
-        display:block;
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
     }
 }
-@media (min-width: 2300px) {
-    .background-image-container {
-        position: relative;
-        z-index: 1;
-        background-image: url('/images/man.webp');
-        height: 1500px; /* Eller önskad höjd */
-        width: 100%;
-        background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
-        background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
-        background-repeat: no-repeat; /* Förhindrar att bilden upprepas */
+
+/* Responsiv design */
+@media (max-width: 768px) {
+    .qop-4 {
+        padding: 15px;
+        font-size: 0.9rem;
     }
+
+    .qop-3 h2 {
+        font-size: 2rem;
+    }
+}
+.asdf{
+    background-color:aliceblue;
+    width :100%;
+    height:700px;
+    margin-top:200px
 }
