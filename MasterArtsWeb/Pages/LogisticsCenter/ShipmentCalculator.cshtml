@@ -33,9 +33,9 @@
 <div class="language-toggle text-end">
     <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">SWE/ENG</button>
 </div>
-<p> Kundnummer: @Model.CustomerNumber</p>
+<p>Kundnummer: @Model.CustomerNumber</p>
 
-    @*div class="valuta-3">
+    @*<div class="valuta-3">
         <style>
             .valuta-3 {
                 font-family: Arial, sans-serif;
@@ -180,9 +180,9 @@
         </select>
         <span asp-validation-for="Order.FreightService" class="text-danger"></span>
 
-                <label asp-for="Order.DeliveryTimeFrom">Delivery Time From<span class="required">*</span></label>
-                <input asp-for="Order.DeliveryTimeFrom" type="datetime-local" class="form-control" />
-                <span asp-validation-for="Order.DeliveryTimeFrom" class="text-danger"></span>
+                <label asp-for="Order.PickUpTimeFrom">Delivery Time From<span class="required">*</span></label>
+                <input asp-for="Order.PickUpTimeFrom" type="datetime-local" class="form-control" />
+                <span asp-validation-for="Order.PickUpTimeFrom" class="text-danger"></span>
 
                 <label asp-for="Order.DeliveryTimeTo">Delivery Time To<span class="required">*</span></label>
                 <input asp-for="Order.DeliveryTimeTo" type="datetime-local" class="form-control" />

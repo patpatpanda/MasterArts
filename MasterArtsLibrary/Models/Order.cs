@@ -20,7 +20,8 @@ namespace MasterArtsLibrary.Models
        
         public string FreightService { get; set; }
         
-        public string DeliveryTimeFrom { get; set; }
+        public string? DeliveryTimeFrom { get; set; }
+        public string PickUpTimeFrom { get; set; }
 
         public int TransportModeCode { get; set; }
         public string DeliveryTimeTo { get; set; }
