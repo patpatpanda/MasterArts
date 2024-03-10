@@ -34,7 +34,7 @@
 
 
 
-<div>
+<div class="gos">
 
     <div class="kajsa">
 
@@ -289,10 +289,35 @@
                     </p>
                 </div>
             </a>
+
         </div>
 
 
-
+        <div class="card">
+            <a href="/ArtServices#special" class="card-link" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
+                <i class="fa-thin fa-wand-magic-sparkles card-icon"></i>
+                <h4 class="card-title" style="color: black;">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Anpassade tjänster</span>
+                    }
+                    else
+                    {
+                        <span>Customized services</span>
+                    }
+                </h4>
+                <p class="card-text" style="color: black;">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>För viktigare leveranser</span>
+                    }
+                    else
+                    {
+                        <span>For more critical deliveries</span>
+                    }
+                </p>
+            </a>
+        </div>
 
 
     </div>
@@ -301,6 +326,10 @@
 </div>
 
 	
+
+
+
+
 
 
 
@@ -583,31 +612,7 @@
 
 </div>
 
-<div class="card-big">
-    <a href="/ArtServices#special" class="card-link" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-        <i class="fa-thin fa-wand-magic-sparkles card-icon"></i>
-        <h4 class="card-title" style="color: black;">
-            @if (@Model.CurrentLanguage == "sv")
-            {
-                <span>Anpassade tjänster</span>
-            }
-            else
-            {
-                <span>Customized services</span>
-            }
-        </h4>
-        <p class="card-text" style="color: black;">
-            @if (@Model.CurrentLanguage == "sv")
-            {
-                <span>För viktigare leveranser</span>
-            }
-            else
-            {
-                <span>For more critical deliveries</span>
-            }
-        </p>
-    </a>
-</div>
+
 <div class="asdf">
         <div class="qop-4">
             <div class="qop-3">

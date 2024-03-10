@@ -1527,10 +1527,7 @@ input {
 
 
 .card {
-    width: 18rem;
-    margin: 10px;
-    background-color: #E8E8E8;
-    box-shadow:  rgba(0, 0, 0, 0.6);
+   
 }
 
 .card-icon {
@@ -1562,6 +1559,7 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 
@@ -1695,7 +1693,10 @@ input {
     .team {
         display: block
     }
-
+    
+    .gos{
+        display:none
+    }
     .game {
         display: none
     }
@@ -2450,43 +2451,16 @@ select {
 }
 
 
-.form-container-2{
-    background-color:honeydew;
-
-}
 
 .form-style-10 .form-container-2 {
     padding: 20px;
 }
 
 /* Stil för rubriker */
-.form h3 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    text-align: center;
-    color: #333;
-}
 
-/* Stil för formulärelement */
-.form-control {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Gör så att padding inte lägger till bredden */
-}
-.form {
-    padding: 60px;
-    background: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+
 /* Stil för etiketter */
-.form label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-}
+
 
 /* Stil för valideringsmeddelanden */
 .text-danger {
@@ -2681,4 +2655,126 @@ select {
     width :100%;
     
     margin-top:200px
+}
+.gos {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    padding:30px;
+    border-radius:20px;
+    
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.card {
+    width: 18rem;
+    margin: 10px;
+   
+   
+    background-color: rgba(255, 255, 255, 0.8); /* Ger korten en semi-transparent bakgrund */
+    margin: 10px; /* Ger utrymme runt korten */
+    border-radius: 10px; /* Rundade hörn på korten */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Lägger till en subtil skugga för djup */
+}
+
+.card-icon {
+    font-size: 48px; /* Justerar storleken på ikonen */
+    color: #23a6d5; /* Ger ikonen en färg som matchar en av gradientfärgerna */
+}
+
+.card-title, .card-text {
+    color: #333; /* Mörk textfärg för läsbarhet mot den ljusare kortbakgrunden */
+}
+/* Bakgrund och formulär container styling */
+.form-container-2 {
+    background: linear-gradient(145deg, #6D5BBA, #8D58BF); /* En mjuk gradient från lila till en djupare lila */
+    padding: 40px;
+    border-radius: 12px; /* Rundade hörn */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Lägg till en subtil skugga för djup */
+    max-width: 600px; /* Maxbredd för formuläret */
+    margin: 40px auto; /* Centrera och ge lite utrymme ovanför och under */
+    color: #FFFFFF; /* Vit textfärg för kontrast mot den mörka bakgrunden */
+}
+
+    /* Formulärtitel */
+    .form-container-2 h3 {
+        margin-bottom: 20px; /* Ger utrymme under rubriken */
+        text-align: center; /* Centrerar texten */
+        font-weight: bold;
+    }
+
+/* Formulärfält styling */
+.form-control {
+    background-color: #FFFFFF; /* Vit bakgrundsfärg för inputfält */
+    border: 1px solid #DDD; /* Subtil grå kant */
+    border-radius: 8px; /* Rundade hörn på fälten */
+    padding: 10px 15px; /* Padding för att göra fältet större och lättare att interagera med */
+    margin-bottom: 15px; /* Ger utrymme mellan varje fält */
+    width: 100%; /* Får fälten att expandera och fylla containerbredden */
+    box-sizing: border-box; /* Ser till att padding och border inte lägger till extra bredd */
+}
+
+/* Felmeddelande styling */
+.text-danger {
+    color: #FF3860; /* En stark röd färg för att indikera fel */
+}
+
+/* Förbättra tillgängligheten och visuell feedback */
+.form-control:focus {
+    border-color: #8D58BF; /* Ljusare lila när fältet är fokuserat */
+    box-shadow: 0 0 8px rgba(141, 88, 191, 0.2); /* Lägg till en lila skuggglöd för att indikera fokus */
+    outline: none; /* Ta bort standardfokus outline */
+}
+
+.form-container-2 label{
+    color:#fff
+}
+/* Anpassa knappar och länkar inom formuläret */
+
+.form {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+    color: #ffffff; /* Vit textfärg */
+}
+.customer-number {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern typsnitt */
+    color: #4A90E2; /* Ljusblå textfärg för att stå ut */
+    background-color: #f0f4f8; /* Ljus bakgrund för att lyfta fram texten */
+    padding: 10px 15px; /* Padding för att skapa utrymme runt texten */
+    border-radius: 5px; /* Rundade hörn för en mjukare look */
+    border: 1px solid #d1dce5; /* Ljus grå kant för att definiera området */
+    display: inline-block; /* Gör att bakgrunden bara omsluter texten */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Lägger till en subtil skugga för djup */
+    margin: 10px 0; /* Ger lite utrymme ovan och under */
+    font-size: 18px; /* Större textstorlek för att göra numret mer läsbart */
+    font-weight: bold; /* Gör texten fet för att den ska sticka ut mer */
+    text-shadow: 1px 1px 0px #ffffff; /* Lägger till en subtil textskugga för djup */
+}
+
+    /* Hovereffekt */
+    .customer-number:hover {
+        color: #ffffff; /* Vit text på hover */
+        background-color: #4A90E2; /* Mörkare blå bakgrund på hover */
+        border-color: #4A90E2; /* Mörkare blå kant för att matcha bakgrunden */
+        cursor: pointer; /* Ändrar muspekaren för att indikera klickbarhet */
+        box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15); /* Starkare skugga för hovereffekt */
+    }
+.nav-link {
+    color: #FFFFFF; /* Vit text */
+    text-shadow: 0 0 8px #FFFFFF; /* Vit "glöd" runt texten */
 }
