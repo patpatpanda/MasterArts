@@ -47,6 +47,16 @@ html, body {
 header {
     position: relative;
     z-index: 1;
+    background: #121212;
+    height: 140px;
+    width: 100%;
+    background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
+    background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
+    background-repeat: no-repeat; /* hindrar att bilden upprepas */
+}
+.kalle {
+    position: relative;
+    
     background-image: url('/images/aae.webp');
     height: 700px;
     width: 100%;
@@ -54,8 +64,13 @@ header {
     background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
     background-repeat: no-repeat; /* hindrar att bilden upprepas */
 }
-
-header::before {
+.adam {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Adjust the height as needed */
+}
+.kalle::before {
     content: "";
     position: absolute;
     top: 0;
@@ -65,17 +80,12 @@ header::before {
     background: rgba(0, 0, 0, 0.3); /* Semi-transparent svart överlager */
     z-index: -1;
 }
-}
 
 
 
 
-.form-style-10 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 40px;
-    gap: 20px;
-}
+
+
 
 
 
@@ -1654,8 +1664,10 @@ input {
     justify-content: center;
     align-items: center;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 4em
+    font-size: 4em;
+    margin-top:120px
 }
+
 #ser .services {
     display: block;
     color: white;
@@ -1748,10 +1760,22 @@ input {
     }
 
     .card {
-        height: 130px;
+        height: 170px;
         width: 130px;
+        background: rgba(255, 255, 255, 0.2); /* Semi-transparent vit bakgrund */
+        border-radius: 15px; /* Rundade hörn */
+         /* Utrymme inuti kortet */
+        margin: 7px 0; /* Avstånd mellan korten */
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Skugga för att lägga till djup */
+        backdrop-filter: blur(4px); /* Frostat glas-effekt */
+        border: 1px solid rgba(255, 255, 255, 0.18); 
     }
-
+    .card-title{
+        font-size:14px
+    }
+    .kalle{
+        display:none
+    }
     .word {
         margin-top: 100px;
         margin-left: 20px
@@ -1793,10 +1817,10 @@ input {
         display: none
     }
 
-
+    
 
     .end-icon {
-        font-size: 2em;
+        font-size: 1em;
         margin: 8px;
         transition: color 0.5s; /* Adding transition for a smooth color change */
         color: #fff
@@ -2656,12 +2680,14 @@ select {
     
     margin-top:200px
 }
-.gos {
-    background: linear-gradient(-45deg, #121212, #2C2C2C, #434343, #5B5B5B);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    padding: 30px;
-    border-radius: 20px;
+ .card {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent vit bakgrund */
+    border-radius: 15px; /* Rundade hörn */
+    padding: 20px; /* Utrymme inuti kortet */
+    margin: 15px 0; /* Avstånd mellan korten */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Skugga för att lägga till djup */
+    backdrop-filter: blur(4px); /* Frostat glas-effekt */
+    border: 1px solid rgba(255, 255, 255, 0.18); /* Subtil vit kant för att definiera kortets kanter */
 }
 
 @keyframes gradientBG {
@@ -2683,10 +2709,10 @@ select {
     margin: 10px;
    
    
-    background-color: rgba(255, 255, 255, 0.8); /* Ger korten en semi-transparent bakgrund */
+     /* Ger korten en semi-transparent bakgrund */
     margin: 10px; /* Ger utrymme runt korten */
     border-radius: 10px; /* Rundade hörn på korten */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Lägger till en subtil skugga för djup */
+     /* Lägger till en subtil skugga för djup */
 }
 
 .card-icon {
@@ -2695,7 +2721,7 @@ select {
 }
 
 .card-title, .card-text {
-    color: black; /* Mörk textfärg för läsbarhet mot den ljusare kortbakgrunden */
+    color: #fff; /* Mörk textfärg för läsbarhet mot den ljusare kortbakgrunden */
 }
 /* Bakgrund och formulär container styling */
 .form-container-2 {
@@ -2775,6 +2801,7 @@ select {
         box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15); /* Starkare skugga för hovereffekt */
     }
 .nav-link {
-    color: #FFFFFF; /* Vit text */
-    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8); /* Lägg till en mörk skugga runt texten */
+    color: white;
+    
+    
 }
