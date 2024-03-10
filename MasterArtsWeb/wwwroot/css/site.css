@@ -10,7 +10,7 @@ html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: #333940; /* En djup kolgrå ton */
+    background-color: #121212; /* En djup kolgrå ton */
 }
 #myShip {
     background-color: aliceblue;
@@ -2657,7 +2657,7 @@ select {
     margin-top:200px
 }
 .gos {
-    background: linear-gradient(-45deg, #121212, #2C2C2C, #434343, #8B3E58, #5B5B5B);
+    background: linear-gradient(-45deg, #121212, #2C2C2C, #434343, #5B5B5B);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     padding: 30px;
@@ -2695,11 +2695,12 @@ select {
 }
 
 .card-title, .card-text {
-    color: #333; /* Mörk textfärg för läsbarhet mot den ljusare kortbakgrunden */
+    color: black; /* Mörk textfärg för läsbarhet mot den ljusare kortbakgrunden */
 }
 /* Bakgrund och formulär container styling */
 .form-container-2 {
-    background: linear-gradient(145deg, #6D5BBA, #8D58BF); /* En mjuk gradient från lila till en djupare lila */
+    background: linear-gradient(145deg, #9E8FB2, #A9A9D9);
+    /* En mjuk gradient från lila till en djupare lila */
     padding: 40px;
     border-radius: 12px; /* Rundade hörn */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Lägg till en subtil skugga för djup */
@@ -2775,5 +2776,5 @@ select {
     }
 .nav-link {
     color: #FFFFFF; /* Vit text */
-    text-shadow: 0 0 8px #FFFFFF; /* Vit "glöd" runt texten */
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8); /* Lägg till en mörk skugga runt texten */
 }
