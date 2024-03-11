@@ -318,7 +318,7 @@ h2-p {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #fff;
+    background-color: #333;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
@@ -431,7 +431,7 @@ go-weather {
 .header-s {
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: #fff;
     margin-bottom: 10px;
 }
 
@@ -444,30 +444,9 @@ go-weather {
     margin-bottom: 20px;
 }
 
-.container-abbe {
-    left: 0;
-    background-color: white;
-    border-radius: 10px;
-    padding: 50px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    margin-top: 50px;
-    margin: 45px;
-}
+ 
 
-.container-abbe-3 {
-    left: 0;
-    background-color: rgba(1 4, 0, 0.3);
-    color: #fff;
-    border-radius: 10px;
-    padding: 50px;
-    text-align: center;
-    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
-    width: 100%;
-    margin-top: 50px;
-    margin: 45px;
-}
+
 
 
 
@@ -588,14 +567,15 @@ go-weather {
     font-size: 4em
 }
 
-#myContact .contact {
-    display: block;
-    color: white;
+.contact {
+    margin-top: 100px;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 4em
+    font-family:  'Arial Narrow Bold', sans-serif;
+    font-size: 4em;
+    border-bottom:solid 2px #333;
 }
 
 .card {
@@ -646,9 +626,7 @@ go-weather {
 }
 
 
-.contact {
-    display: none
-}
+
 
 
 
@@ -921,6 +899,7 @@ gol-2 {
     max-width: 1000px;
     font-family: Arial, sans-serif;
     margin-top: 100px;
+    color:#fff;
 }
 
 .end-icon {
@@ -934,7 +913,7 @@ gol-2 {
 
 .service-info {
     margin-top: 30px;
-    background-color: #fffafa;
+    background-color: #2c3e50;
     padding: 50px;
     max-width: 1600px;
     padding: 20px;
@@ -1054,11 +1033,7 @@ h1 {
     margin-bottom: 15px; /* Justera nedre marginalen efter behov */
 }
 
-h3 {
-    font-size: 2em;
-    color: #333; /* Ändra färgen efter behov */
-    margin-bottom: 10px; /* Justera nedre marginalen efter behov */
-}
+
 
 .slogan {
     font-size: 2em;
@@ -1086,7 +1061,7 @@ h3 {
 }
 
 .deal-3 {
-    background: #1A1A1A;
+    background-color: #2c3e50;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -1536,9 +1511,7 @@ input {
 }
 
 
-.card {
-   
-}
+
 
 .card-icon {
     font-size: 48px;
@@ -1548,7 +1521,7 @@ input {
 
 .card:hover {
     transition: 0.5s;
-    background-color: #333;
+    background-color: black;
 }
 
 .card-big:hover {
@@ -1561,7 +1534,7 @@ input {
 }
 
 .card-title {
-    font-family: 'Times New Roman', Garamond, serif;
+    
 }
 
 
@@ -1657,17 +1630,7 @@ input {
 #ship {
     background-color: aliceblue;
 }
-#con .contact {
-    display: block;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 4em;
-    margin-top:120px;
-   
-}
+
 
 #ser .services {
     display: block;
@@ -1683,6 +1646,16 @@ input {
     gap: 50px;
     margin-left: auto;
 }
+
+.container-abbe {
+    margin-left: 1px;
+    background-color: #2c3e50;
+    border-radius: 10px;
+    padding: 50px;
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
 .fot-5{
     display:none
 }
@@ -1694,6 +1667,16 @@ input {
     align-items: center;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 4em
+}
+.benefits {
+    font-size: 18px;
+    color: #ffff;
+    margin-bottom: 20px;
+}
+.info-text {
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 30px;
 }
 @media screen and (max-width: 768px) {
 
@@ -1739,16 +1722,7 @@ input {
         font-size: 16px; /* Ange önskad storlek */
     }
 
-    .container-abbe {
-        margin-left: 1px;
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 50px;
-        text-align: center;
-        box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
-        max-width: 800px;
-        width: 100%;
-    }
+   
     
     .form-style-10 {
         display: grid;
@@ -1758,7 +1732,7 @@ input {
 
     .benefits {
         font-size: 18px;
-        color: #666;
+        color: #ffff;
         margin-bottom: 20px;
     }
 
@@ -1773,21 +1747,11 @@ input {
 
     .info-text {
         font-size: 20px;
-        color: #444;
+        color: #ffffff;
         margin-bottom: 30px;
     }
 
-    .card {
-        height: 170px;
-        width: 130px;
-        background: rgba(255, 255, 255, 0.2); /* Semi-transparent vit bakgrund */
-        border-radius: 15px; /* Rundade hörn */
-         /* Utrymme inuti kortet */
-        margin: 7px 0; /* Avstånd mellan korten */
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Skugga för att lägga till djup */
-        backdrop-filter: blur(4px); /* Frostat glas-effekt */
-        border: 1px solid rgba(255, 255, 255, 0.18); 
-    }
+   
     .card-title{
         font-size:14px
     }
@@ -2240,9 +2204,45 @@ footer {
         text-align: center;
         transition: background-color 0.5s ease;
     }
+   
 }
 
 
+
+@media screen and (min-width: 2400px) {
+    
+
+    .kalle {
+        position: relative;
+        background-image: url('/images/aae.webp');
+        height: 1200px;
+        width: 100%;
+        background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
+        background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
+        background-repeat: no-repeat; /* hindrar att bilden upprepas */
+    }
+}
+
+@media screen and (max-width: 2000px) {
+    .about-section-2 {
+        display: grid;
+        grid-template-columns: 1fr
+    }
+
+
+
+    .about-section {
+        display: grid;
+        grid-template-columns: 1fr
+    }
+
+    .nav-item {
+        margin: 0 23px;
+        font-size: 0.6em;
+        text-align: center;
+        transition: background-color 0.5s ease;
+    }
+}
 
 
 
@@ -2370,7 +2370,8 @@ select {
     align-items: center;
     justify-content: space-between;
     padding: 40px;
-    background-color: #f5f5f5;
+    background-color: #2c3e50;
+    color:#fff;
 }
 
 .text-container-2 {
@@ -2385,14 +2386,14 @@ select {
 
 /* Styling the headings */
 .text-container-2 h2 {
-    color: #003366; /* Dark blue color */
+    color: #fff; /* Dark blue color */
     font-size: 2.5rem;
     margin-bottom: 20px;
 }
 
 /* Styling the paragraphs */
 .text-container-2 p {
-    color: #333; /* Dark gray color */
+    color: #fff; /* Dark gray color */
     line-height: 1.6;
     margin-bottom: 20px;
 }
@@ -2682,18 +2683,25 @@ select {
     }
 }
 .asdf {
-    background-color: #C3B1E1;
-    width :100%;
-    margin-top: 200px
+    background-color: #2c3e50;
+    width: 100%;
+    margin-top: 200px;
+    padding: 50px;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
- .card {
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent vit bakgrund */
+.card {
+    height: 170px;
+    width: 130px;
+    background-color: #2c3e50; /* Semi-transparent vit bakgrund */
     border-radius: 15px; /* Rundade hörn */
-    padding: 20px; /* Utrymme inuti kortet */
-    margin: 15px 0; /* Avstånd mellan korten */
+    /* Utrymme inuti kortet */
+    margin: 7px 0; /* Avstånd mellan korten */
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Skugga för att lägga till djup */
     backdrop-filter: blur(4px); /* Frostat glas-effekt */
-    border: 1px solid rgba(255, 255, 255, 0.18); /* Subtil vit kant för att definiera kortets kanter */
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 @keyframes gradientBG {
@@ -2728,6 +2736,7 @@ select {
 
 .card-title, .card-text {
     color: #fff; /* Mörk textfärg för läsbarhet mot den ljusare kortbakgrunden */
+
 }
 /* Bakgrund och formulär container styling */
 .form-container-2 {

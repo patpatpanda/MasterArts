@@ -8,31 +8,11 @@
 
 
 
-
-    
-    
-   
-
-    
-      
-       
-            
-        
-
-    
-
-
 <form method="post" id="languageForm">
     <div id="language-switch">
         <button type="submit" class="l-btn">SWE/ENG</button>
     </div>
 </form>
-
-
-
-
-
-
 
 
 
@@ -117,47 +97,6 @@
             </a>
         </div>
 
-
-        <div class="card">
-            <a href="/ArtServices#sea" class="card-link" stlye=" text-decoration: none;">
-                <div class="card-body text-center">
-                    <i class="fa-sharp fa-thin fa-ship card-icon"></i>
-                    <h5 class="card-title">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                SJÖFART
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                SEA
-                            </span>
-                        }
-                    </h5>
-                    <p class="card-text">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                Hjälper er med full container sändning
-
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                Assisting you with full container shipment
-                            </span>
-                        }
-                    </p>
-                </div>
-            </a>
-        </div>
-
-
     <div class="card">
         <a href="/ArtServices#train" class="card-link" stlye=" text-decoration: none;">
             <div class="card-body text-center">
@@ -199,13 +138,51 @@
         </a>
     </div>
 
+        
 
+    
 
 </div>
-
     <div class="kajsa">
 
+        <div class="card">
+            <a href="/ArtServices#sea" class="card-link" stlye=" text-decoration: none;">
+                <div class="card-body text-center">
+                    <i class="fa-sharp fa-thin fa-ship card-icon"></i>
+                    <h5 class="card-title">
+                        @if (@Model.CurrentLanguage == "sv")
+                        {
 
+                            <span>
+                                SJÖFART
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                SEA
+                            </span>
+                        }
+                    </h5>
+                    <p class="card-text">
+                        @if (@Model.CurrentLanguage == "sv")
+                        {
+
+                            <span>
+                                Hjälper er med full container sändning
+
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                Assisting you with full container shipment
+                            </span>
+                        }
+                    </p>
+                </div>
+            </a>
+        </div>
        
 
         <div class="card">
@@ -346,87 +323,6 @@
 
 <div class="kajsa-2">
 
-
-
-    <div class="card">
-        <a href="/ArtServices#road" class="card-link" stlye=" text-decoration: none;">
-            <div class="card-body text-center">
-
-                <i class="fa-sharp fa-thin fa-truck-front card-icon"></i>
-                <h5 class="card-title">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-                        <span>VÄG</span>
-                    }
-                    else
-                    {
-                        <span>ROAD</span>
-                    }
-                </h5>
-                <p class="card-text">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-                        <span>
-                            Hjälper er med lastbilsservice <br>
-
-                        </span>
-                    }
-                    else
-                    {
-                        <span>
-                            Assisting you with truckservice <br>
-
-                        </span>
-                    }
-                </p>
-
-            </div>
-        </a>
-    </div>
-
-
-
-
-    <div class="card">
-        <a href="/ArtServices#sea" class="card-link" stlye=" text-decoration: none;">
-            <div class="card-body text-center">
-                <i class="fa-sharp fa-thin fa-ship card-icon"></i>
-                <h5 class="card-title">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-
-                        <span>
-                            SJÖFART
-                        </span>
-                    }
-                    else
-                    {
-                        <span>
-                            SEA
-                        </span>
-                    }
-                </h5>
-                <p class="card-text">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-
-                        <span>
-                            Hjälper er med full container sändning
-
-                        </span>
-                    }
-                    else
-                    {
-                        <span>
-                            Assisting you with full container shipment
-                        </span>
-                    }
-                </p>
-            </div>
-        </a>
-    </div>
-</div>
-<div class="kajsa-2">
     <div class="card">
         <a href="/ArtServices#air" class="card-link" stlye=" text-decoration: none;">
             <div class="card-body text-center">
@@ -469,48 +365,126 @@
     </div>
 
     <div class="card">
-        <a href="/ArtServices#train" class="card-link" stlye=" text-decoration: none;">
+        <a href="/ArtServices#road" class="card-link" stlye=" text-decoration: none;">
             <div class="card-body text-center">
-                <i class="fa-sharp fa-thin fa-train card-icon"></i>
+
+                <i class="fa-sharp fa-thin fa-truck-front card-icon"></i>
                 <h5 class="card-title">
                     @if (@Model.CurrentLanguage == "sv")
                     {
-
-                        <span>
-                            TÅG
-                        </span>
+                        <span>VÄG</span>
                     }
                     else
                     {
-                        <span>
-                            TRAIN
-                        </span>
+                        <span>ROAD</span>
                     }
                 </h5>
                 <p class="card-text">
                     @if (@Model.CurrentLanguage == "sv")
                     {
-
                         <span>
-                            Hjälper er med järnvägstransport<br>
-
+                            Hjälper er med lastbilsservice <br>
 
                         </span>
                     }
                     else
                     {
                         <span>
-                            Assisting you with railway shipment<br>
+                            Assisting you with truckservice <br>
 
                         </span>
                     }
                 </p>
+
             </div>
         </a>
     </div>
-
-
 </div>
+    <div class="kajsa-2">
+
+        <div class="card">
+            <a href="/ArtServices#train" class="card-link" stlye=" text-decoration: none;">
+                <div class="card-body text-center">
+                    <i class="fa-sharp fa-thin fa-train card-icon"></i>
+                    <h5 class="card-title">
+                        @if (@Model.CurrentLanguage == "sv")
+                        {
+
+                            <span>
+                                TÅG
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                TRAIN
+                            </span>
+                        }
+                    </h5>
+                    <p class="card-text">
+                        @if (@Model.CurrentLanguage == "sv")
+                        {
+
+                            <span>
+                                Hjälper er med järnvägstransport<br>
+
+
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                Assisting you with railway shipment<br>
+
+                            </span>
+                        }
+                    </p>
+                </div>
+            </a>
+        </div>
+
+        <div class="card">
+            <a href="/ArtServices#sea" class="card-link" stlye=" text-decoration: none;">
+                <div class="card-body text-center">
+                    <i class="fa-sharp fa-thin fa-ship card-icon"></i>
+                    <h5 class="card-title">
+                        @if (@Model.CurrentLanguage == "sv")
+                        {
+
+                            <span>
+                                SJÖFART
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                SEA
+                            </span>
+                        }
+                    </h5>
+                    <p class="card-text">
+                        @if (@Model.CurrentLanguage == "sv")
+                        {
+
+                            <span>
+                                Hjälper er med full container sändning
+
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                Assisting you with full container shipment
+                            </span>
+                        }
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+  
+    
 
 
 

@@ -9,6 +9,16 @@
 
 
 <body id="bod"></body>
+<h3 class="contact" id="contact-id">
+    @if (@Model.CurrentLanguage == "sv")
+    {
+       <span>OM OSS</span>
+    }
+    else
+    {
+        <span>ABOUT</span>
+    }
+</h3>
 
 <form method="post" id="languageForm">
     <div id="language-switch">
@@ -20,21 +30,21 @@
 
 
 
-<div class="about-section-2">
-    <div class="text-container-2">
+<div class="about-section-2" style="background-color:#2c3e50">
+    <div class="text-container-2" style="color:#fff">
         @if (@Model.CurrentLanguage == "sv")
         {
-            <h2>Upptäck konsten av logistik med oss</h2>
+            <h2 style ="color:#fff">Upptäck konsten av logistik med oss</h2>
 
-            <p>Välkommen till ARTS - navet för innovativa och skräddarsydda logistiklösningar som omdefinierar sättet du tänker kring frakt och transport. Hos Arts flyttar vi inte bara varor; vi dirigera en symfoni av sömlösa, effektiva och anpassade logistikupplevelser.</p>
-            <p>Vår resa började med en enkel vision: att revolutionera logistikbranschen genom att erbjuda mer än bara transporttjänster. Vi är din strategiska partner, din problem lösare och din betrodda rådgivare i logistikens värld. Oavsett storleken på ditt företag eller komplexiteten i dina fraktbehov är Arts här för att förenkla och lyfta din logistikresa.</p>
+            <p style="color:#fff">Välkommen till ARTS - navet för innovativa och skräddarsydda logistiklösningar som omdefinierar sättet du tänker kring frakt och transport. Hos Arts flyttar vi inte bara varor; vi dirigera en symfoni av sömlösa, effektiva och anpassade logistikupplevelser.</p>
+            <p style="color:#fff">Vår resa började med en enkel vision: att revolutionera logistikbranschen genom att erbjuda mer än bara transporttjänster. Vi är din strategiska partner, din problem lösare och din betrodda rådgivare i logistikens värld. Oavsett storleken på ditt företag eller komplexiteten i dina fraktbehov är Arts här för att förenkla och lyfta din logistikresa.</p>
         }
         else
         {
-            <h2>Discover the Art of Logistics with Us</h2>
-            <p>Welcome to ARTS – the hub of innovative and bespoke logistics solutions that redefine the way you think about shipping and transportation. At Arts, we don't just move goods; we orchestrate a symphony of seamless, efficient, and customized logistics experiences.</p>
+            <h2 style="color:#fff">Discover the Art of Logistics with Us</h2>
+            <p style="color:#fff">Welcome to ARTS – the hub of innovative and bespoke logistics solutions that redefine the way you think about shipping and transportation. At Arts, we don't just move goods; we orchestrate a symphony of seamless, efficient, and customized logistics experiences.</p>
 
-            <p>Our journey began with a simple vision: to revolutionize the logistics industry by offering more than just transportation services. We are your strategic partner, your problem solver, and your trusted advisor in the world of logistics. No matter the size of your business or the complexity of your shipping needs, Arts is here to simplify and elevate your logistics journey.</p>
+            <p style="color:#fff">Our journey began with a simple vision: to revolutionize the logistics industry by offering more than just transportation services. We are your strategic partner, your problem solver, and your trusted advisor in the world of logistics. No matter the size of your business or the complexity of your shipping needs, Arts is here to simplify and elevate your logistics journey.</p>
         }
     </div>
     <div class="image-container-3" style="margin-left: 15px;">
@@ -42,61 +52,61 @@
     </div>
 </div>
 
-<div class="section" id="s-1">
+<div class="section" id="s-1" style="margin-top:200px;background-color:#2c3e50">
     <img src="~/images/_4090813b-c10b-4852-bc6a-a3140f8ce8a6.jpg" alt="Placeholder Image" />
     <div>
         @if (@Model.CurrentLanguage == "sv")
         {
-            <h3>Skräddarsydd Service Excellence</h3>
-            <p>Välj ett samarbete där vi proaktivt tar itu med dina specifika utmaningar med självständighet och precision. Förlita dig på att dina leveranser kommer att få den personliga uppmärksamhet de förtjänar, eftersom våra experter konsekvent använder riskminimeringsstrategier och noggrant planerar för optimala leveranser.</p>
+            <h3 style="color:#fff">Skräddarsydd Service Excellence</h3>
+            <p style="color:#fff">Välj ett samarbete där vi proaktivt tar itu med dina specifika utmaningar med självständighet och precision. Förlita dig på att dina leveranser kommer att få den personliga uppmärksamhet de förtjänar, eftersom våra experter konsekvent använder riskminimeringsstrategier och noggrant planerar för optimala leveranser.</p>
         }
         else
         {
-            <h3>Customized Service Excellence</h3>
-            <p>Opt for a collaborative partnership where we proactively address your specific challenges with independence and precision. Trust that your shipments will receive the personalized attention they deserve, as our experts consistently employ risk mitigation strategies and meticulously plan for optimal deliveries.</p>
+            <h3 style="color:#fff">Customized Service Excellence</h3>
+            <p style="color:#fff">Opt for a collaborative partnership where we proactively address your specific challenges with independence and precision. Trust that your shipments will receive the personalized attention they deserve, as our experts consistently employ risk mitigation strategies and meticulously plan for optimal deliveries.</p>
         }
     </div>
 </div>
 
 
-<div class="section" id="s-2">
+<div class="section" id="s-2" style="margin-top:50px;background-color:#2c3e50">
     <img src="/images/_67798c83-4988-4cb1-b8d6-2b319fe28a0a.jpg" alt="Placeholder Image" />
     <div>
         @if (@Model.CurrentLanguage == "sv")
         {
-            <h3>Global Räckvidd med en Lokal Touch</h3>
-            <p>Lås upp kraften i vårt omfattande globala nätverk bestående av toppklassiga fraktpartners. Vi förstår dina unika behov, och våra dedikerade fraktspecialister kommer att optimera fraktrutter, hantera tullförhandsklarering och se till att du hålls informerad under hela processen.</p>
+            <h3 style="color:#fff">Global Räckvidd med en Lokal Touch</h3>
+            <p style="color:#fff">Lås upp kraften i vårt omfattande globala nätverk bestående av toppklassiga fraktpartners. Vi förstår dina unika behov, och våra dedikerade fraktspecialister kommer att optimera fraktrutter, hantera tullförhandsklarering och se till att du hålls informerad under hela processen.</p>
         }
         else
         {
-            <h3>Global Reach with a Local Touch</h3>
-            <p>Unlock the power of our expansive global network comprising top-tier shipping partners. We comprehend your unique needs, and our dedicated shipping specialists will streamline shipment routes, handle customs pre-clearance, and ensure you stay informed throughout the entire process.</p>
+            <h3 style="color:#fff">Global Reach with a Local Touch</h3>
+            <p style="color:#fff">Unlock the power of our expansive global network comprising top-tier shipping partners. We comprehend your unique needs, and our dedicated shipping specialists will streamline shipment routes, handle customs pre-clearance, and ensure you stay informed throughout the entire process.</p>
         }
     </div>
 </div>
 
 
-<div class="section" id="s-3">
+<div class="section" id="s-3" style="margin-top:50px;background-color:#2c3e50">
     <img src="/images/_e3fc13d8-6bd7-4a07-8b7d-97970cff1268.jpg" alt="Placeholder Image" />
     <div>
         @if (@Model.CurrentLanguage == "sv")
         {
-            <h3>Punktliga Leveranser Varje Gång</h3>
-            <p>Vi utmärker oss i hanteringen av tidskritiska leveranser och uppfyller utmanande deadlines. Genom att dra nytta av vår omfattande erfarenhet och självständiga strategi källar vi konsekvent de snabbaste och mest pålitliga lösningarna, vilket säkerställer att vi alltid är ett steg före. Välj ARTS för en sömlös och pålitlig fraktupplevelse skräddarsydd efter ditt företags behov.</p>
+            <h3 style="color:#fff">Punktliga Leveranser Varje Gång</h3>
+            <p style="color:#fff">Vi utmärker oss i hanteringen av tidskritiska leveranser och uppfyller utmanande deadlines. Genom att dra nytta av vår omfattande erfarenhet och självständiga strategi källar vi konsekvent de snabbaste och mest pålitliga lösningarna, vilket säkerställer att vi alltid är ett steg före. Välj ARTS för en sömlös och pålitlig fraktupplevelse skräddarsydd efter ditt företags behov.</p>
         }
         else
         {
-            <h3>Punctual Deliveries Every Time</h3>
-            <p>We excel in managing time-sensitive deliveries and meeting challenging deadlines. Leveraging our extensive experience and independent approach, we consistently source the fastest and most reliable solutions, ensuring we are always one step ahead. Choose ARTS for a seamless and reliable shipping experience tailored to your business requirements.</p>
+            <h3 style="color:#fff">Punctual Deliveries Every Time</h3>
+            <p style="color:#fff">We excel in managing time-sensitive deliveries and meeting challenging deadlines. Leveraging our extensive experience and independent approach, we consistently source the fastest and most reliable solutions, ensuring we are always one step ahead. Choose ARTS for a seamless and reliable shipping experience tailored to your business requirements.</p>
         }
     </div>
 </div>
 
-<div class="about-section-2" id="sus" style="margin-top:200px">
+<div class="about-section-2 " id="sus" style="margin-top:200px;background-color:#2c3e50">
     <div class="text-container-2">
         @if (@Model.CurrentLanguage == "sv")
         {
-            <p>
+            <p style="color:#fff">
                 På ARTS går vårt åtagande för hållbarhet hand i hand med vår passion för logistik. Vi inser att den intrikata dansen av leveranskedjehantering måste harmonisera med den känsliga balansen i vår miljö. Genom att omfamna ansvaret att göra en positiv påverkan har vi sömlöst integrerat miljövänliga metoder i vår verksamhet.
 
                 Som starka förespråkare för en grönare framtid väljer vi noggrant partners som delar vår hängivenhet till miljövård. Våra logistiklösningar handlar inte bara om effektivitet och precision; de är också ett vittnesbörd om vårt oföränderliga åtagande att minimera vår koldioxidavtryck. Från att optimera transportrutter till att använda miljövänlig förpackning är varje steg vi tar ett steg mot en hållbar framtid.
@@ -108,7 +118,7 @@
         }
         else
         {
-            <p>
+            <p style="color:#fff">
                 At ARTS, our commitment to sustainability goes hand in hand with our passion for logistics. We recognize that the intricate dance of supply chain management must harmonize with the delicate balance of our environment. Embracing the responsibility to make a positive impact, we have seamlessly integrated eco-friendly practices into our operations.
 
                 As staunch advocates for a greener future, we meticulously select partners who share our dedication to environmental stewardship. Our logistics solutions are not just about efficiency and precision; they are also a testament to our unwavering commitment to minimize our carbon footprint. From optimizing transportation routes to employing eco-conscious packaging, every step we take is a step towards a sustainable tomorrow.
@@ -118,22 +128,22 @@
                 Join us in our journey towards a more sustainable future. Let's create a world where seamless logistics coexists harmoniously with a thriving environment. At ARTS, we don't just deliver goods; we deliver a promise to safeguard our planet for generations to come."
             </p>
         }
-    </div>
+    </div >
     <div class="image-container-3" style="margin-left: 15px;">
         <img src="~/images/33919fc9-34bb-4026-b955-fc1ae4900007.jpg" alt="About Us Image" style="max-width: 100%; height: auto;">
     </div>
 </div>
 
 
-<div class="about-section-2" id="nsab">
+<div class="about-section-2" id="nsab" style="background-color:#2c3e50;color:#fff">
     <div class="text-container-2">
         @if (@Model.CurrentLanguage == "sv")
         {
 
-            <h2>Vi kör under NSAB 2015</h2>
+            <h2 style="color:#fff">Vi kör under NSAB 2015</h2>
 
 
-            <p>
+            <p style="color:#fff">
                 Alla uppdrag utförs i enlighet med Nordiska Speditörsförbundets Allmänna Bestämmelser (NSAB 2015). Bestämmelserna begränsar speditörens ansvar som kontraktspart i avtalet enligt §3 B för förlust, försämring eller skada av/på gods till SDR 8,33 per kilo vid försening upp till fraktens belopp och för alla andra förluster till SDR 100 000 för varje uppdrag (§21). Speditörens ansvar som mellanhand enligt § 3 C är begränsad till SDR 50 000 för varje uppdrag och totalt för en och samma händelse till SDR 500 000 (§24).
 
                 Vid lagring är speditörens samlade ansvar för skada vid ett och samma tillfälle begränsat till SDR 500 000 (§25)
@@ -143,9 +153,9 @@
         }
         else
         {
-            <h2>We operate under NSAB 2015</h2>
+            <h2 style="color:#fff">We operate under NSAB 2015</h2>
 
-            <p>
+            <p style="color:#fff">
                 All assignments are carried out in accordance with the General Conditions of the Nordic Association of Freight Forwarders (NSAB 2015). The conditions limit the forwarder's liability as a contracting party in the agreement according to §3 B for loss, deterioration, or damage to/from goods to SDR 8.33 per kilogram in case of delay up to the amount of the freight and for all other losses to SDR 100,000 for each assignment (§21). The forwarder's liability as an intermediary according to §3 C is limited to SDR 50,000 for each assignment and a total of SDR 500,000 for the same event (§24).
 
                 In the case of storage, the forwarder's overall liability for damage at one and the same occasion is limited to SDR 500,000 (§25).
