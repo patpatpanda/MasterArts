@@ -36,7 +36,7 @@ namespace MasterArtsLibrary.Models
         public string ConsignorCity { get; set; }
         //public string ConsignorCountry { get; set; }
         public string ConsignorZip { get; set; }
-        public string ConsignorContact { get; set; }
+        public string? ConsignorContact { get; set; }
         public string ConsignorPhone { get; set; }
         public string ConsignorEmail { get; set; }
 

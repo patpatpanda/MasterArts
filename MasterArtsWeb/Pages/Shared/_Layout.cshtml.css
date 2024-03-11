@@ -41,15 +41,7 @@ button.accept-policy {
     line-height: inherit;
 }
 
-footer {
-    background-color: black;
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 35px;
-}
+
 
 .p-mail a {
     text-decoration: none; /* Ta bort understrykningen från länken */
@@ -85,17 +77,11 @@ footer {
     color: pink;
 }
 
-.kite {
-    font-size: 18px;
-    color: white;
-}
 
 
-.fot {
-    display: flex;
-    gap: 50px;
-    margin-left: auto;
-}
+
+
+
 
 .mr-arts-2 {
     background-image: url('/images/joel.png');
@@ -105,23 +91,4 @@ footer {
     height: 200px;
 }
 
-.fot-1 {
-    margin-top: 100px;
-}
 
-@media screen and (max-width: 768px) {
-    .kite {
-        font-size: 18px;
-        color: white;
-    }
-
-    
-    .fot {
-        display: flex;
-        gap: 7px;
-    }
-
-    .mr-arts-2 {
-        display: none
-    }
-}

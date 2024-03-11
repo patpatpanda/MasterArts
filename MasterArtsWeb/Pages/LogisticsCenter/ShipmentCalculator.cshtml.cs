@@ -48,7 +48,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             }
             var userId = _userManager.GetUserId(User);
             CustomerNumber = await GetCustomerNumberAsync(userId);
-
+            Order.Customer = CustomerNumber;
             var countries = await _orderService.GetAllCountries();
             ViewData["Countries"] = countries;
 

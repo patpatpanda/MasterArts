@@ -7,12 +7,8 @@
 
 </body>
 
-<Authorize>
-    <li class="nav-item">
-        <a class="nav-link text-light" asp-area="" asp-page="/LogisticsCenter/ShipmentCalculator">
-            
-        </a>
-    </li>
+
+    
 
     @if (TempData["SuccessMessage"] != null)
     {
@@ -142,15 +138,18 @@
     <div class="form-container-2">
         <h3 class="text-center" style="color:#fff">Details</h3>
            
-
+@*
                 <label asp-for="Order.OrderReference">Order reference</label>
         <input asp-for="Order.OrderReference" class="form-control"  />
-        <span asp-validation-for="Order.OrderReference" class="text-danger"></span>
+        <span asp-validation-for="Order.OrderReference" class="text-danger"></span>*@
 
-                <label asp-for="Order.Customer">Customer Number<span class="required">*</span></label>
-        <input asp-for="Order.Customer" class="form-control"  />
-        <span asp-validation-for="Order.Customer" class="text-danger"></span>
-                <label asp-for="Order.TermsOfDelivery">Terms of Delivery</label>
+            <label asp-for="Order.Customer">Customer Number<span class="required">*</span></label>
+            <input asp-for="Order.Customer" class="form-control" />
+            <span asp-validation-for="Order.Customer" class="text-danger"></span>
+
+               
+        
+        <label asp-for="Order.TermsOfDelivery">Terms of Delivery</label>
                 <select asp-for="Order.TermsOfDelivery" class="form-control">
                     <option value="">Select Terms of Delivery</option>
                     <option value="0001 EXW">0001 EXW</option>
@@ -447,9 +446,9 @@
             <h3 class="text-center" style="color:#fff">Detaljer</h3>
             
 
-            <label asp-for="Order.OrderReference">Orderreferens</label>
+            @*@*<label asp-for="Order.OrderReference">Orderreferens</label>
             <input asp-for="Order.OrderReference" class="form-control" placeholder="Exempel: REF123" />
-            <span asp-validation-for="Order.OrderReference" class="text-danger"></span>
+            <span asp-validation-for="Order.OrderReference" class="text-danger"></span>*@
 
             <label asp-for="Order.Customer">Kund</label>
             <input asp-for="Order.Customer" class="form-control" placeholder="Exempel: John Doe" />
