@@ -60,25 +60,19 @@ header {
 }
 .kalle {
     position: relative;
-    
-    background-image: url('/images/aae.webp');
-    height: 700px;
+    background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
+    height: 1000px;
     width: 100%;
     background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
     background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
     background-repeat: no-repeat; /* hindrar att bilden upprepas */
+    
+    
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    color: #5D3B66;
 }
 
-.kalle::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3); /* Semi-transparent svart överlager */
-    z-index: -1;
-}
 
 
 
@@ -578,10 +572,7 @@ go-weather {
     border-bottom:solid 2px #333;
 }
 
-.card {
-    height: 180px;
-    width: 100px;
-}
+
 
 .about-section-2 {
     display: flex;
@@ -1063,9 +1054,12 @@ h1 {
 .deal-3 {
     background-color: #2c3e50;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius:10px
 }
 
-
+.deal-4{
+    font-size:2em
+}
 
 .a {
     display: flex;
@@ -1649,7 +1643,7 @@ input {
 
 .container-abbe {
     margin-left: 1px;
-    background-color: #2c3e50;
+    background-color: #333333;
     border-radius: 10px;
     padding: 50px;
     text-align: center;
@@ -1679,7 +1673,10 @@ input {
     margin-bottom: 30px;
 }
 @media screen and (max-width: 768px) {
-
+    .card {
+        height: 150px;
+        width: 100px;
+    }
 
     .fot{
         display:none
@@ -1869,13 +1866,7 @@ input {
 
 
 
-    .customer-text {
-        margin: auto;
-        color: white; /* Mörk textfärg */
-        font-size: 1em;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    }
-
+    
     .index-container-2 {
         display: none
     }
@@ -2370,7 +2361,7 @@ select {
     align-items: center;
     justify-content: space-between;
     padding: 40px;
-    background-color: #2c3e50;
+    background-color: #333;
     color:#fff;
 }
 
@@ -2683,7 +2674,7 @@ select {
     }
 }
 .asdf {
-    background-color: #2c3e50;
+    background-color: #C3B1E1;
     width: 100%;
     margin-top: 200px;
     padding: 50px;
@@ -2695,7 +2686,7 @@ select {
 .card {
     height: 170px;
     width: 130px;
-    background-color: #2c3e50; /* Semi-transparent vit bakgrund */
+    background-color: #333; /* Semi-transparent vit bakgrund */
     border-radius: 15px; /* Rundade hörn */
     /* Utrymme inuti kortet */
     margin: 7px 0; /* Avstånd mellan korten */
