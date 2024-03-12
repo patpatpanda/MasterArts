@@ -902,7 +902,7 @@ gol-2 {
     margin-top: 30px;
     background-color: #2c3e50;
     padding: 50px;
-    max-width: 1600px;
+    max-width: 100%;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
@@ -1637,6 +1637,16 @@ input {
     gap: 50px;
     margin-left: auto;
 }
+.asdf {
+    background-color: #C3B1E1;
+    width: 100%;
+    margin-top: 200px;
+    padding: 50px;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
 
 .container-abbe {
     margin-left: 1px;
@@ -1668,7 +1678,27 @@ input {
         height: 150px;
         width: 100px;
     }
-    
+    .service-info {
+        margin-top: 30px;
+        background-color: #2c3e50;
+        padding: 50px;
+        width:400px;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+    .asdf {
+        
+        width: 400px;
+        height: 1100px;
+        padding: 50px;
+        width: 400px;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
     .fot{
         display:none
     }
@@ -2638,20 +2668,9 @@ select {
     .qop-3 h2 {
         font-size: 2rem;
     }
-    .asdf{
-        height:900px
-    }
+    
 }
-.asdf {
-    background-color: #C3B1E1;
-    width: 100%;
-    margin-top: 200px;
-    padding: 50px;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
+
 .card {
     height: 170px;
     width: 130px;
