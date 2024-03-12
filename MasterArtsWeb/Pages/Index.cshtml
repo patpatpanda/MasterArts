@@ -138,7 +138,44 @@
         </a>
     </div>
 
-        
+    <div class="card">
+        <a href="/ArtServices#sea" class="card-link" stlye=" text-decoration: none;">
+            <div class="card-body text-center">
+                <i class="fa-sharp fa-thin fa-ship card-icon"></i>
+                <h5 class="card-title">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+
+                        <span>
+                            SJÖFART
+                        </span>
+                    }
+                    else
+                    {
+                        <span>
+                            SEA
+                        </span>
+                    }
+                </h5>
+                <p class="card-text">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+
+                        <span>
+                            Hjälper er med full container sändning
+
+                        </span>
+                    }
+                    else
+                    {
+                        <span>
+                            Assisting you with full container shipment
+                        </span>
+                    }
+                </p>
+            </div>
+        </a>
+    </div>
 
     
 
@@ -154,13 +191,13 @@
                         {
 
                             <span>
-                                SJÖFART
+                            Projektlogistik
                             </span>
                         }
                         else
                         {
                             <span>
-                                SEA
+                               Projectlogistics
                             </span>
                         }
                     </h5>
@@ -169,14 +206,14 @@
                         {
 
                             <span>
-                                Hjälper er med full container sändning
+                                Hjälper er projektlogistik
 
                             </span>
                         }
                         else
                         {
                             <span>
-                                Assisting you with full container shipment
+                                Assisting you with projectlogistics
                             </span>
                         }
                     </p>
@@ -272,7 +309,7 @@
 
         <div class="card">
             <a href="/ArtServices#special" class="card-link" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-                <i class="fa-thin fa-wand-magic-sparkles card-icon"></i>
+                <i class="fa-thin fa-wand-magic-sparkles card-icon" style="margin-top:12px"></i>
                 <h4 class="card-title">
                     @if (@Model.CurrentLanguage == "sv")
                     {
@@ -582,7 +619,71 @@
 
 
     </div>
+    <div class="kajsa-2">
+        <div class="card">
+            <a href="/ArtServices#sea" class="card-link" stlye=" text-decoration: none;">
+                <div class="card-body text-center">
+                    <i class="fa-sharp fa-thin fa-ship card-icon"></i>
+                    <h5 class="card-title">
+                        @if (@Model.CurrentLanguage == "sv")
+                        {
 
+                            <span>
+                                Projektlogistik
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                Projectlogistics
+                            </span>
+                        }
+                    </h5>
+                    <p class="card-text">
+                        @if (@Model.CurrentLanguage == "sv")
+                        {
+
+                            <span>
+                                Hjälper er projektlogistik
+
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                Assisting you with projectlogistics
+                            </span>
+                        }
+                    </p>
+                </div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="/ArtServices#special" class="card-link" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
+                <i class="fa-thin fa-wand-magic-sparkles card-icon"></i>
+                <h4 class="card-title">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Anpassade tjänster</span>
+                    }
+                    else
+                    {
+                        <span>Customized services</span>
+                    }
+                </h4>
+                <p class="card-text">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>För viktigare leveranser</span>
+                    }
+                    else
+                    {
+                        <span>For more critical deliveries</span>
+                    }
+                </p>
+            </a>
+        </div>
+    </div>
 
 </div>
 

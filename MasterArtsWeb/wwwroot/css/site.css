@@ -2691,7 +2691,8 @@ select {
 
 .card-icon {
     font-size: 48px; /* Justerar storleken på ikonen */
-    color: #23a6d5; /* Ger ikonen en färg som matchar en av gradientfärgerna */
+    color: #23a6d5;
+    /* Ger ikonen en färg som matchar en av gradientfärgerna */
 }
 
 .card-title, .card-text {
@@ -2921,5 +2922,11 @@ select {
 
     .mobile-only {
         display: block;
+    }
+    .card-icon {
+        font-size: 48px; /* Justerar storleken på ikonen */
+        color: #23a6d5;
+        margin-top:25px
+        /* Ger ikonen en färg som matchar en av gradientfärgerna */
     }
 }

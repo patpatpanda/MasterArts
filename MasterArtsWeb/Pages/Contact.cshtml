@@ -4,170 +4,171 @@
 @{
     ViewData["Title"] = "Contact";
 }
-
-@if (TempData["SuccessMessage"] != null)
-{
-
-    <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 10px">@TempData["SuccessMessage"]</div>
-}
-
-
-
 <body id="myContact">
+    <h3 class="contact" id="contact-id">
+        CONTACT
+    </h3>
+    @if (TempData["SuccessMessage"] != null)
+    {
 
+        <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 50px">@TempData["SuccessMessage"]</div>
+    }
+
+
+    <div style="margin-top:50px;">
+        <a asp-page="/LogisticsCenter/Calculator" class="btn-large">ShipmentCalculator</a>
+    </div>
+
+
+
+
+
+    <div class="language-toggle text-end">
+        <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">SWE/ENG</button>
+    </div>
+    <div class="deal-3" id="contactForm">
+        <div class="deal-2">
+
+            <form method="post" asp-page-handler="OnPost" onsubmit="return checkHoneypot()">
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label asp-for="CompanyName" class="form-label" style="color:#333">Company Name</label>
+                        <input asp-for="CompanyName" class="form-control" />
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label asp-for="Name" class="form-label" style="color:#333">Your Name</label>
+                        <input asp-for="Name" class="form-control" required />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-7">
+                        <label asp-for="Phone" class="form-label" style="color:#333">Phone</label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label asp-for="Email" class="form-label" style="color:#333">Email</label>
+                        <input asp-for="Email" class="form-control" required />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label asp-for="Message" class="form-label" style="color:#333">Message</label>
+                        <textarea asp-for="Message" class="form-control" rows="4"></textarea>
+                        <span asp-validation-for="Message" class="text-danger" required></span>
+                    </div>
+                </div>
+                <div style="display: none;" aria-hidden="true">
+                    <label for="honeypot">Please leave this field empty</label>
+                    <input type="text" id="honeypot" name="honeypot" />
+                </div>
+
+                <button type="submit" class="cta-button custom-button" style="margin-top:15px">Send</button>
+            </form>
+
+
+            <div class="deal text-center">
+                <div class="deal-4">
+                    <p>Or contact us directly at</p>
+                    <div class="footer-section footer-section-right">
+                        <!-- Right content -->
+                        <p style="margin-right:55px">
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:ops@artslogistics.se" style="color: #333; text-decoration: none;">ops@artslogistics.se</a>
+                        </p>
+
+                    </div>
+
+                    <p><i class="fa-solid fa-phone"></i> Phone: +46 70-549 14 14</p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="contactFormSv" class="deal-3" style="display:none">
+
+        <div class="deal-2">
+
+            <form method="post" asp-page-handler="OnPost" onsubmit="return checkHoneypot()">
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label asp-for="CompanyName" style="color:#333">Företag</label>
+                        <input asp-for="CompanyName" class="form-control" />
+
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label asp-for="Name" style="color:#333">Namn</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger" required></span>
+                    </div>
+                    <div class="form-group col-md-7">
+                        <label asp-for="Phone" style="color:#333">Telefon</label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label asp-for="Email" style="color:#333"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger" required></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label asp-for="Message" style="color:#333">Meddelande</label>
+                        <textarea asp-for="Message" class="form-control" rows="4"></textarea>
+                        <span asp-validation-for="Message" class="text-danger" required></span>
+                    </div>
+                </div>
+
+
+                <div style="display: none;" aria-hidden="true">
+                    <label for="honeypot">Please leave this field empty</label>
+                    <input type="text" id="honeypot" name="honeypot" />
+                </div>
+
+
+                <button type="submit" class="cta-button" style="margin-top:7px">Send</button>
+            </form>
+
+            <div class="deal text-center">
+                <div class="deal-4">
+                    <p>Eller kontakta oss direkt på</p>
+                    <div class="footer-section footer-section-right">
+                        <!-- Right content -->
+                        <p style="margin-right:55px"><i class="fa-solid fa-envelope"></i> <a href="mailto:ops@artslogistics.se">ops@artslogistics.se</a></p>
+                    </div>
+
+                    <p><i class="fa-solid fa-phone"></i> Telefon: +46 70-549 14 14</p>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 </body>
 
-<h3 class="contact" id="contact-id">
-    CONTACT
-</h3>
-
-<div class="language-toggle text-end">
-    <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">SWE/ENG</button>
-</div>
-
-
-
-<div class="deal-3" id="contactForm">
-    <div class="deal-2">
-
-        <form method="post" asp-page-handler="OnPost" onsubmit="return checkHoneypot()">
-            <div class="form-row">
-                <div class="form-group col-md-7">
-                    <label asp-for="CompanyName" class="form-label"style="color:#333">Company Name</label>
-                    <input asp-for="CompanyName" class="form-control" />
-                    <span asp-validation-for="CompanyName" class="text-danger"></span>
-                </div>
-
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-7">
-                    <label asp-for="Name" class="form-label" style="color:#333">Your Name</label>
-                    <input asp-for="Name" class="form-control" required />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-7">
-                    <label asp-for="Phone" class="form-label" style="color:#333">Phone</label>
-                    <input asp-for="Phone" class="form-control" />
-                    <span asp-validation-for="Phone" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-7">
-                    <label asp-for="Email" class="form-label" style="color:#333">Email</label>
-                    <input asp-for="Email" class="form-control" required />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-7">
-                    <label asp-for="Message" class="form-label" style="color:#333">Message</label>
-                    <textarea asp-for="Message" class="form-control" rows="4"></textarea>
-                    <span asp-validation-for="Message" class="text-danger" required></span>
-                </div>
-            </div>
-            <div style="display: none;" aria-hidden="true">
-                <label for="honeypot">Please leave this field empty</label>
-                <input type="text" id="honeypot" name="honeypot" />
-            </div>
-
-            <button type="submit" class="cta-button custom-button" style="margin-top:15px">Send</button>
-        </form>
-
-
-        <div class="deal text-center">
-            <div class="deal-4">
-                <p>Or contact us directly at</p>
-                <div class="footer-section footer-section-right">
-                    <!-- Right content -->
-                    <p style="margin-right:55px">
-                        <i class="fa-solid fa-envelope"></i>
-                        <a href="mailto:ops@artslogistics.se" style="color: #333; text-decoration: none;">ops@artslogistics.se</a>
-                    </p>
-
-                </div>
-
-                <p><i class="fa-solid fa-phone"></i> Phone: +46 70-549 14 14</p>
-                
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-<div id="contactFormSv" class="deal-3" style="display:none">
-
-    <div class="deal-2">
-
-        <form method="post" asp-page-handler="OnPost" onsubmit="return checkHoneypot()">
-            <div class="form-row">
-                <div class="form-group col-md-7">
-                    <label asp-for="CompanyName" style="color:#333">Företag</label>
-                    <input asp-for="CompanyName" class="form-control" />
-
-                </div>
-
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-7">
-                    <label asp-for="Name" style="color:#333">Namn</label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger" required></span>
-                </div>
-                <div class="form-group col-md-7">
-                    <label asp-for="Phone" style="color:#333">Telefon</label>
-                    <input asp-for="Phone" class="form-control" />
-                    <span asp-validation-for="Phone" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-7">
-                    <label asp-for="Email" style="color:#333"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger" required></span>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-7">
-                    <label asp-for="Message" style="color:#333">Meddelande</label>
-                    <textarea asp-for="Message" class="form-control" rows="4"></textarea>
-                    <span asp-validation-for="Message" class="text-danger" required></span>
-                </div>
-            </div>
-
-
-            <div style="display: none;" aria-hidden="true">
-                <label for="honeypot">Please leave this field empty</label>
-                <input type="text" id="honeypot" name="honeypot" />
-            </div>
-
-
-            <button type="submit" class="cta-button" style="margin-top:7px">Send</button>
-        </form>
-
-        <div class="deal text-center">
-            <div class="deal-4">
-                <p>Eller kontakta oss direkt på</p>
-                <div class="footer-section footer-section-right">
-                    <!-- Right content -->
-                    <p style="margin-right:55px"><i class="fa-solid fa-envelope"></i> <a href="mailto:ops@artslogistics.se">ops@artslogistics.se</a></p>
-                </div>
-
-                <p><i class="fa-solid fa-phone"></i> Telefon: +46 70-549 14 14</p>
-                
-
-            </div>
-
-        </div>
-    </div>
-
-</div>
 
 
 
