@@ -7,7 +7,9 @@
 <body id="myShip">
 
 </body>
-<h1>@ViewData["Title"]</h1>
+<h3 class="contact" id="contact-id">
+    LOGIN
+</h3>
 <div class="row">
     <div class="col-md-4">
         <section>
@@ -79,5 +81,18 @@
 </div>
 
 @section Scripts {
+    <script>
+        window.onload = function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var scrollTo = urlParams.get('scrollTo');
+            if (scrollTo) {
+                var element = document.getElementById(scrollTo);
+                if (element) {
+                    element.scrollIntoView();
+                }
+            }
+        };
+    </script>
+
     <partial name="_ValidationScriptsPartial" />
 }

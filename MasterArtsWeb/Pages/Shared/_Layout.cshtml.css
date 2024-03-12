@@ -49,19 +49,20 @@ button.accept-policy {
     font-size: 16px
 }
 
-.fa-github {
-    color: #ff66b2; /* Grundfärg */
+.fa-instagram {
+    padding: 30px;
     transition: color 0.3s ease; /* Gör övergång mjuk över 0.3 sekunder */
 }
 
 
 .fa-linkedin {
-    color: #ff66b2; /* Grundfärg */
+    
     transition: color 0.3s ease;
+    padding:30px;
 }
 
 .fa-facebook-f {
-    color: #ff66b2; /* Grundfärg */
+    padding: 30px;
     transition: color 0.3s ease;
 }
 

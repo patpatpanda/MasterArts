@@ -22,9 +22,16 @@
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-light" id="login" asp-area="Identity" asp-page="/Account/Login">
+            <a class="nav-link text-light" id="login" href="javascript:redirectToLogin()">
                 <i class="fas fa-sign-in-alt"></i> Login
             </a>
         </li>
+
     }
 </ul>
+<script>
+    function redirectToLogin() {
+        // Omdirigera och lägg till en flagga i URL:en
+        window.location.href = '/Identity/Account/Login?scrollTo=contact-id';
+    }
+</script>

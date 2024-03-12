@@ -51,24 +51,25 @@ html, body {
 header {
     position: relative;
     z-index: 1;
-    background: #121212;
+    background: rgba(0, 0, 0, 0.5); /* Svart med 50% genomskinlighet */
     height: 140px;
     width: 100%;
     background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
     background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
-    background-repeat: no-repeat; /* hindrar att bilden upprepas */
+    background-repeat: no-repeat; /* Hindrar att bilden upprepas */
 }
+
 .kalle {
     position: relative;
     background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
-    height: 1000px;
+    height: 1100px;
     width: 100%;
     background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
     background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
     background-repeat: no-repeat; /* hindrar att bilden upprepas */
     
     
-    border-radius: 15px;
+    border-radius: 0px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     color: #5D3B66;
 }
@@ -422,12 +423,7 @@ go-weather {
 
 
 
-.header-s {
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 10px;
-}
+
 
 .larger-text-5 {
     font-family: 'Helvetica', sans-serif; /* Teckensnitt */
@@ -1052,13 +1048,14 @@ h1 {
 }
 
 .deal-3 {
-    background-color: #2c3e50;
+    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    border-radius:10px
+    border-radius: 10px
 }
 
 .deal-4{
-    font-size:2em
+    font-size:2em;
+    color:#333
 }
 
 .a {
@@ -1662,22 +1659,16 @@ input {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 4em
 }
-.benefits {
-    font-size: 18px;
-    color: #ffff;
-    margin-bottom: 20px;
+.mobil{
+    display:none
 }
-.info-text {
-    font-size: 20px;
-    color: #ffffff;
-    margin-bottom: 30px;
-}
+
 @media screen and (max-width: 768px) {
     .card {
         height: 150px;
         width: 100px;
     }
-
+    
     .fot{
         display:none
     }
@@ -1727,12 +1718,7 @@ input {
         margin-top: 80px;
     }
 
-    .benefits {
-        font-size: 18px;
-        color: #ffff;
-        margin-bottom: 20px;
-    }
-
+    
     .mr-arts-2 {
         display: block;
         background-image: url('/images/joel.png');
@@ -1742,19 +1728,13 @@ input {
         height: 200px;
     }
 
-    .info-text {
-        font-size: 20px;
-        color: #ffffff;
-        margin-bottom: 30px;
-    }
+    
 
    
     .card-title{
         font-size:14px
     }
-    .kalle{
-        display:none
-    }
+     
     .word {
         margin-top: 100px;
         margin-left: 20px
@@ -1889,12 +1869,19 @@ input {
 
 
     header {
+        display:block;
         position: relative;
         overflow: hidden;
         background-image: url('/images/apink.webp');
         background-size: cover; /* Ser till att bilden täcker hela elementet */
         background-position: center; /* Centrerar bilden i elementet */
         height:500px;
+        
+    }
+    .kalle {
+        height: 1px;
+        background: pink;
+        margin-bottom: 500px
     }
 
     .moby {
@@ -1916,8 +1903,7 @@ input {
     }
 
 
-    
-
+   
     .mr-arts-2 {
         display: none
     }
@@ -2132,19 +2118,7 @@ footer {
 }
 
 
-.fa-linkedin {
-    color: #ff66b2; /* Grundfärg */
-    transition: color 0.3s ease;
-}
 
-.fa-facebook-f {
-    color: #ff66b2; /* Grundfärg */
-    transition: color 0.3s ease;
-}
-
-.fa-linkedin:hover {
-    color: pink;
-}
 
 .fa-facebook-f:hover {
     color: pink;
@@ -2205,8 +2179,8 @@ footer {
 
     .kalle {
         position: relative;
-        background-image: url('/images/aae.webp');
-        height: 1200px;
+        background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
+        height: 1400px;
         width: 100%;
         background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
         background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
@@ -2227,12 +2201,7 @@ footer {
         grid-template-columns: 1fr
     }
 
-    .nav-item {
-        margin: 0 23px;
-        font-size: 0.6em;
-        text-align: center;
-        transition: background-color 0.5s ease;
-    }
+    
 }
 
 
@@ -2686,14 +2655,14 @@ select {
 .card {
     height: 170px;
     width: 130px;
-    background-color: #333; /* Semi-transparent vit bakgrund */
+    background-color: rgba(10, 25, 47, 0.7); /* Rymdblå genomskinlig bakgrund */
     border-radius: 15px; /* Rundade hörn */
-    /* Utrymme inuti kortet */
     margin: 7px 0; /* Avstånd mellan korten */
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Skugga för att lägga till djup */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); /* Justerad skugga för att matcha den rymdblåa färgen bättre */
     backdrop-filter: blur(4px); /* Frostat glas-effekt */
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Uppdaterad border för att matcha den genomskinliga effekten */
 }
+
 
 @keyframes gradientBG {
     0% {
@@ -2815,4 +2784,142 @@ select {
 .ml-auto {
     background-color: rgba(0, 0, 0, 0.6);
     box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+.container-abbe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
+    color: #333;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    overflow: hidden;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.header-s {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.benefits {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    opacity: 0.85;
+}
+
+.info-text {
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #b8d8f5; /* Subtil blå färg för knapparna */
+    color: #2c3e50; /* Mörkblå text för kontrast */
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+    .cta-button:hover {
+        background-color: #2c3e50;
+        color: #ffffff;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.15);
+    }
+.fot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 40px 20px;
+    background-color: #2c3e50; /* Mörkblå bakgrund för foten */
+    color: white;
+}
+
+.fot-1 {
+    margin: 20px;
+    min-width: 180px;
+}
+
+    .fot-1 p, .fot-1 a {
+        color: white; /* Vit text för läsbarhet */
+        margin: 10px 0;
+        text-decoration: none;
+    }
+
+.kite {
+    transition: color 0.3s ease;
+}
+
+    .kite:hover, .fot-1 p:hover {
+        color: #f5c7b8; /* Ljusare färg vid hover */
+    }
+
+.fot-1 span, .fot-1 p {
+    font-weight: bold;
+}
+
+.fot-5 {
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #4a6fa1; /* Ljusblå linje som separator */
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.mr-arts-2 {
+    display: none; /* Döljer denna om den inte används */
+}
+
+/* Responsivitet */
+@media (max-width: 768px) {
+    .fot {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fot-1 {
+        margin: 10px 0;
+        text-align: center;
+    }
+}
+/* Döljer mobil-specifikt innehåll på desktop */
+.desktop-only {
+    display: none;
+}
+
+/* Media query för skärmar större än 768px (exempelvis för tablets och desktops) */
+@media (min-width: 769px) {
+    .desktop-only {
+        display: block; /* Visa desktop-specifikt innehåll */
+    }
+
+    .mobile-only {
+        display: none; /* Dölj mobil-specifikt innehåll */
+    }
+}
+
+/* Alternativt kan du ha en specifik query för mobil och använda "max-width" */
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
 }

@@ -30,8 +30,8 @@
 
 
 
-<div class="about-section-2" style="background-color:#2c3e50">
-    <div class="text-container-2" style="color:#fff">
+<div class="section" style="background-color:#2c3e50">
+    <div style="color:#fff">
         @if (@Model.CurrentLanguage == "sv")
         {
             <h2 style ="color:#fff">Upptäck konsten av logistik med oss</h2>
@@ -48,7 +48,7 @@
         }
     </div>
     <div class="image-container-3" style="margin-left: 15px;">
-        <img src="~/images/bf163f00-a1a7-4a74-b6d7-6aee9872336e.webp" alt="About Us Image" style="max-width: 100%; height: auto;">
+        <img src="~/images/bf163f00-a1a7-4a74-b6d7-6aee9872336e.webp">
     </div>
 </div>
 
@@ -102,41 +102,11 @@
     </div>
 </div>
 
-<div class="about-section-2 " id="sus" style="margin-top:200px;background-color:#2c3e50">
-    <div class="text-container-2">
-        @if (@Model.CurrentLanguage == "sv")
-        {
-            <p style="color:#fff">
-                På ARTS går vårt åtagande för hållbarhet hand i hand med vår passion för logistik. Vi inser att den intrikata dansen av leveranskedjehantering måste harmonisera med den känsliga balansen i vår miljö. Genom att omfamna ansvaret att göra en positiv påverkan har vi sömlöst integrerat miljövänliga metoder i vår verksamhet.
-
-                Som starka förespråkare för en grönare framtid väljer vi noggrant partners som delar vår hängivenhet till miljövård. Våra logistiklösningar handlar inte bara om effektivitet och precision; de är också ett vittnesbörd om vårt oföränderliga åtagande att minimera vår koldioxidavtryck. Från att optimera transportrutter till att använda miljövänlig förpackning är varje steg vi tar ett steg mot en hållbar framtid.
-
-                Vi är stolta över att vara i framkanten av den växande trenden mot miljömedveten logistik. Genom att välja ARTS väljer du en partner som inte bara är en mästare i logistikens konst utan också strävar efter att behärska konsten av ansvarsfulla och hållbara affärspraxis.
-
-                Bli med oss i vår resa mot en mer hållbar framtid. Låt oss skapa en värld där sömlös logistik samexisterar harmoniskt med en blomstrande miljö. På ARTS levererar vi inte bara varor; vi levererar ett löfte att skydda vår planet för kommande generationer.
-            </p>
-        }
-        else
-        {
-            <p style="color:#fff">
-                At ARTS, our commitment to sustainability goes hand in hand with our passion for logistics. We recognize that the intricate dance of supply chain management must harmonize with the delicate balance of our environment. Embracing the responsibility to make a positive impact, we have seamlessly integrated eco-friendly practices into our operations.
-
-                As staunch advocates for a greener future, we meticulously select partners who share our dedication to environmental stewardship. Our logistics solutions are not just about efficiency and precision; they are also a testament to our unwavering commitment to minimize our carbon footprint. From optimizing transportation routes to employing eco-conscious packaging, every step we take is a step towards a sustainable tomorrow.
-
-                We are proud to be at the forefront of the evolving trend towards environmentally conscious logistics. By choosing ARTS, you are choosing a partner who not only excels in the art of logistics but also strives to master the art of responsible and sustainable business practices.
-
-                Join us in our journey towards a more sustainable future. Let's create a world where seamless logistics coexists harmoniously with a thriving environment. At ARTS, we don't just deliver goods; we deliver a promise to safeguard our planet for generations to come."
-            </p>
-        }
-    </div >
-    <div class="image-container-3" style="margin-left: 15px;">
-        <img src="~/images/33919fc9-34bb-4026-b955-fc1ae4900007.jpg" alt="About Us Image" style="max-width: 100%; height: auto;">
-    </div>
-</div>
 
 
-<div class="about-section-2" id="nsab" style="background-color:#2c3e50;color:#fff">
-    <div class="text-container-2">
+
+<div class="section" id="nsab" style="background-color:#2c3e50;color:#fff">
+    <div>
         @if (@Model.CurrentLanguage == "sv")
         {
 
@@ -168,3 +138,30 @@
     </div>
 
 </div>
+
+<div>
+    <button id="totop-arrow">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+
+</div>
+
+
+
+@section Scripts{
+
+    <script>
+        console.log('Script is running!');
+        const arrow = document.querySelector('#totop-arrow');
+        arrow.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+
+       
+
+
+
+    </script>
+}
