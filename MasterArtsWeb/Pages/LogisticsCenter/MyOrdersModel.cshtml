@@ -1,0 +1,52 @@
+﻿@page
+@model MyOrdersModel
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<h3 class="contact" id="contact-id">
+    Booking
+</h3>
+@if (Model.CustomerOrders.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>Order Number</th>
+                    <th>Consignee Name</th>
+                    <th>Consignor Name</th>
+                    <th>Volume (Total)</th>
+                    <th>Net Weight (Total)</th>
+                    <th>Gross Weight (Total)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.CustomerOrders)
+                {
+                    <tr>
+                        <td>@order.CustomerOrderNumber</td>
+                        <td>@order.ConsigneeName</td>
+                        <td>@order.ConsignorName</td>
+                        <td>
+                            @order.Goods.Sum(g => g.Volume.HasValue ? g.Volume.Value : 0) m³
+                        </td>
+                        <td>
+                            @order.Goods.Sum(g => g.NetWeight.HasValue ? g.NetWeight.Value : 0) kg
+                        </td>
+                        <td>
+                            @order.Goods.Sum(g => g.GrossWeight.HasValue ? g.GrossWeight.Value : 0) kg
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        No orders found.
+    </div>
+}

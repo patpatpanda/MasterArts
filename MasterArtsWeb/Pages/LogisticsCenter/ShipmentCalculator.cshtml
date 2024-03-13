@@ -8,7 +8,7 @@
 </body>
 
 <h3 class="contact" id="contact-id">
-    Shipment
+    Booking
 </h3>
     
 
@@ -21,7 +21,11 @@
          <a asp-page="/LogisticsCenter/Calculator" class="btn-large">ShipmentCalculator</a>
     </div>
 
-   
+   <div style="margin-top:50px;">
+         <a href="/LogisticsCenter/MyOrdersModel#contact-id" class="btn btn-large btn-primary">MyBookings</a>
+
+
+    </div>
 
 
 
@@ -208,9 +212,11 @@
                 </select>
                 <span asp-validation-for="Order.OrderType" class="text-danger"></span>
 
-                
 
 
+            <label asp-for="Order.OrderReference">Reference</label>
+            <input asp-for="Order.OrderReference" class="form-control" />
+            <span asp-validation-for="Order.OrderReference" class="text-danger"></span>
 
 
                 <label asp-for="@Model.Order.TransportModeCode">Transport Mode</label>
@@ -288,9 +294,11 @@
                         <option value="PX">PX - Special packaging X</option>
                     </select>
                     <span asp-validation-for="@Model.Order.Goods[@i].PackageType" class="text-danger"></span>
-                    
 
 
+                <label asp-for="@Model.Order.Goods[@i].OrderId">Quantity<span class="required">*</span></label>
+                <input asp-for="@Model.Order.Goods[@i].OrderId" type="number" class="form-control" />
+                <span asp-validation-for="@Model.Order.Goods[@i].OrderId" class="text-danger"></span>
 
                 <label asp-for="@Model.Order.Goods[@i].Quantity">Quantity<span class="required">*</span></label>
                 <input asp-for="@Model.Order.Goods[@i].Quantity" type="number" class="form-control"  />
@@ -535,7 +543,9 @@
                 </select>
                 <span asp-validation-for="@Model.Order.TransportModeCode" class="text-danger"></span>
 
-                
+            <label asp-for="Order.OrderReference">Reference</label>
+            <input asp-for="Order.OrderReference" class="form-control" />
+            <span asp-validation-for="Order.OrderReference" class="text-danger"></span>
 
          @*   <label>Lastningstidfönster</label>
             <select asp-for="Order.PickUpTimeFrom" class="form-control">

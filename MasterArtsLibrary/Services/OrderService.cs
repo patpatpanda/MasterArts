@@ -1,6 +1,7 @@
 ﻿
 using MasterArtsLibrary.Models;
 using MasterArtsLibrary.ViewModels;
+using MasterArtsWeb;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,6 +24,7 @@ namespace MasterArtsLibrary.Services
         private readonly IOrderEmailSender _order;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger<OrderService> _logger;
+        private readonly MyDbContext _context;
         public Order Order { get; set; }
 
 
@@ -228,11 +230,12 @@ namespace MasterArtsLibrary.Services
 };
 
 
-        public OrderService(IHttpClientFactory httpClientFactory, IConfiguration configuration, ILogger<OrderService> logger)
+        public OrderService(MyDbContext context,IHttpClientFactory httpClientFactory, IConfiguration configuration, ILogger<OrderService> logger)
         {
             _httpClientFactory = httpClientFactory;
             _configuration = configuration;
             _logger = logger;
+            _context = context;
         }
 
 
@@ -318,21 +321,32 @@ namespace MasterArtsLibrary.Services
             return null;
         }
 
-        //public async Task CreateOrderInApi(Order order)
+        //public async Task<int> CreateOrderInApi(Order order)
         //{
         //    var apiUrl = _configuration.GetSection("ApiUrl").Value;
 
         //    using (var httpClient = _httpClientFactory.CreateClient())
         //    {
-        //        var response = await httpClient.PostAsJsonAsync($"https://localhost:7009/api/OrderApi", order);
+        //        var response = await httpClient.PostAsJsonAsync($"{apiUrl}/api/OrderApi", order);
 
-        //        if (!response.IsSuccessStatusCode)
+        //        if (response.IsSuccessStatusCode)
         //        {
-        //            order = Order;
+        //            // Anta att API:et returnerar det genererade OrderId som en del av svaret
+        //            // Anpassa denna del baserat på hur ditt API faktiskt returnerar data
+        //            var orderIdString = await response.Content.ReadAsStringAsync();
+        //            // Om API:et returnerar ett enkelt ID som en sträng eller ett nummer
+        //            int orderId = int.Parse(orderIdString); // Anpassa parsingen baserat på svaret
+
+        //            return orderId;
+        //        }
+        //        else
+        //        {
+        //            // Hantera fel, kanske genom att kasta ett exception eller returnera ett speciellt värde
+        //            throw new Exception("Failed to create order in API");
         //        }
         //    }
-
         //}
+
         public async Task CreateOrderInApi(Order order)
         {
             var apiUrl = _configuration.GetSection("CISApi:ApiUrl").Value;
@@ -381,6 +395,8 @@ namespace MasterArtsLibrary.Services
                 if (orderResponse.IsSuccessStatusCode)
                 {
                     _logger.LogInformation($"Order skapades lyckat med statuskod {orderResponse.StatusCode}.");
+                    _context.Orders.Add(order);
+                    _context.SaveChanges();
                     // Här kan du hantera den skapade ordern vidare om så önskas
                 }
                 else

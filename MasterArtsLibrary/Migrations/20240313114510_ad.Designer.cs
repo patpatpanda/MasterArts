@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MasterArtsLibrary.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20240306132418_lol")]
-    partial class lol
+    [Migration("20240313114510_ad")]
+    partial class ad
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,86 @@ namespace MasterArtsLibrary.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("MasterArtsLibrary.Models.Airport", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Continent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ElevationFt")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GpsCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HomeLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IataCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ident")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IsoCountry")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IsoRegion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Keywords")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LatitudeDeg")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LocalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LongitudeDeg")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Municipality")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ScheduledService")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WikipediaLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Airports");
+                });
 
             modelBuilder.Entity("MasterArtsLibrary.Models.Consignee", b =>
                 {
@@ -145,28 +225,6 @@ namespace MasterArtsLibrary.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("MasterArtsLibrary.Models.ExchangeRate", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("BaseCurrency")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("Rate")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("TargetCurrency")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CurrencyRates");
-                });
-
             modelBuilder.Entity("MasterArtsLibrary.Models.Goods", b =>
                 {
                     b.Property<int>("Id")
@@ -178,7 +236,7 @@ namespace MasterArtsLibrary.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("GrossWeight")
+                    b.Property<double?>("GrossWeight")
                         .HasColumnType("float");
 
                     b.Property<double>("Height")
@@ -190,7 +248,7 @@ namespace MasterArtsLibrary.Migrations
                     b.Property<string>("MarksNumbers")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("NetWeight")
+                    b.Property<double?>("NetWeight")
                         .HasColumnType("float");
 
                     b.Property<int?>("OrderId")
@@ -200,6 +258,7 @@ namespace MasterArtsLibrary.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PackageType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
@@ -208,13 +267,13 @@ namespace MasterArtsLibrary.Migrations
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Volume")
+                    b.Property<double?>("Volume")
                         .HasColumnType("float");
 
                     b.Property<string>("VolumeUnit")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("VolumetricWeight")
+                    b.Property<double?>("VolumetricWeight")
                         .HasColumnType("float");
 
                     b.Property<double>("Width")
@@ -227,28 +286,6 @@ namespace MasterArtsLibrary.Migrations
                     b.ToTable("Goods");
                 });
 
-            modelBuilder.Entity("MasterArtsLibrary.Models.MrRate", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Base")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Provider")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Rates");
-                });
-
             modelBuilder.Entity("MasterArtsLibrary.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -257,22 +294,75 @@ namespace MasterArtsLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ConsigneeId")
-                        .HasColumnType("int");
+                    b.Property<string>("ConsigneeAddress1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ConsignorId")
-                        .HasColumnType("int");
+                    b.Property<string>("ConsigneeAddress2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsigneeCity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsigneeContact")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsigneeEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsigneeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsigneePhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsigneeZip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsignorAddress1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsignorAddress2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsignorCity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsignorContact")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsignorEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsignorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsignorPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsignorZip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Customer")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerOrderNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DeliveryTimeFrom")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DeliveryTimeTo")
@@ -288,14 +378,23 @@ namespace MasterArtsLibrary.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OrderReference")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrderType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PickUpTimeFrom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TermsOfDelivery")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TransportModeCode")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
-
-                    b.HasIndex("ConsigneeId");
-
-                    b.HasIndex("ConsignorId");
 
                     b.ToTable("Orders");
                 });
@@ -518,25 +617,6 @@ namespace MasterArtsLibrary.Migrations
                     b.HasOne("MasterArtsLibrary.Models.Order", null)
                         .WithMany("Goods")
                         .HasForeignKey("OrderId");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.Order", b =>
-                {
-                    b.HasOne("MasterArtsLibrary.Models.Consignee", "Consignee")
-                        .WithMany()
-                        .HasForeignKey("ConsigneeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MasterArtsLibrary.Models.Consignor", "Consignor")
-                        .WithMany()
-                        .HasForeignKey("ConsignorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Consignee");
-
-                    b.Navigation("Consignor");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

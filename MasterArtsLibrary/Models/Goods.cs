@@ -9,6 +9,9 @@ namespace MasterArtsLibrary.Models
     public class Goods
     {
         public int Id { get; set; }
+        public int OrderId { get; set; }
+        // Navigation property back to Order
+        
         public int PackageId { get; set; }
         public string? MarksNumbers { get; set; }
         public string? Description { get; set; }
