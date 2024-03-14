@@ -321,31 +321,31 @@ namespace MasterArtsLibrary.Services
             return null;
         }
 
-        //public async Task<int> CreateOrderInApi(Order order)
-        //{
-        //    var apiUrl = _configuration.GetSection("ApiUrl").Value;
+        ////public async Task<int> CreateOrderInApi(Order order)
+        ////{
 
-        //    using (var httpClient = _httpClientFactory.CreateClient())
-        //    {
-        //        var response = await httpClient.PostAsJsonAsync($"{apiUrl}/api/OrderApi", order);
 
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            // Anta att API:et returnerar det genererade OrderId som en del av svaret
-        //            // Anpassa denna del baserat på hur ditt API faktiskt returnerar data
-        //            var orderIdString = await response.Content.ReadAsStringAsync();
-        //            // Om API:et returnerar ett enkelt ID som en sträng eller ett nummer
-        //            int orderId = int.Parse(orderIdString); // Anpassa parsingen baserat på svaret
+        //////    using (var httpClient = _httpClientFactory.CreateClient())
+        //////    {
+        //////        var response = await httpClient.PostAsJsonAsync($"https://localhost:7009/api/OrderApi", order);
 
-        //            return orderId;
-        //        }
-        //        else
-        //        {
-        //            // Hantera fel, kanske genom att kasta ett exception eller returnera ett speciellt värde
-        //            throw new Exception("Failed to create order in API");
-        //        }
-        //    }
-        //}
+        //////        if (response.IsSuccessStatusCode)
+        //////        {
+        //////            // Anta att API:et returnerar det genererade OrderId som en del av svaret
+        //////            // Anpassa denna del baserat på hur ditt API faktiskt returnerar data
+        //////            var orderIdString = await response.Content.ReadAsStringAsync();
+        //////            // Om API:et returnerar ett enkelt ID som en sträng eller ett nummer
+        //////            int orderId = int.Parse(orderIdString); // Anpassa parsingen baserat på svaret
+
+        //////            return orderId;
+        //////        }
+        //////        else
+        //////        {
+        //////            // Hantera fel, kanske genom att kasta ett exception eller returnera ett speciellt värde
+        //////            throw new Exception("Failed to create order in API");
+        //////        }
+        //////    }
+        //////}
 
         public async Task CreateOrderInApi(Order order)
         {

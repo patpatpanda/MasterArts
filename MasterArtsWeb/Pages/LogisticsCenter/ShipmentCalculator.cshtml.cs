@@ -31,6 +31,12 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         public Order Order { get; set; } = new Order();
         private readonly MyDbContext _context;
 
+        public PartialViewResult OnGetAddGoodsForm(int index)
+        {
+            var newGoods = new Goods(); // Initialize your Goods model
+                                        // You may set default values or adjust the model as needed here
+            return Partial("_GoodsFormPartial", newGoods);
+        }
 
         private readonly IHttpClientFactory _clientFactory;
         [BindProperty]
@@ -42,10 +48,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         public string CustomerNumber { get; set; }
         public async Task<IActionResult> OnGet()
         {
-            if (Order.Goods == null || !Order.Goods.Any())
-            {
-                Order.Goods.Add(new Goods()); // Lägg till en tom 'Goods' för att visa ett första fält
-            }
+            
             var userId = _userManager.GetUserId(User);
             CustomerNumber = await GetCustomerNumberAsync(userId);
             Order.Customer = CustomerNumber;
