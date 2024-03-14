@@ -12,7 +12,11 @@ html, body {
     overflow-x: hidden;
     background-color: aliceblue;
 }
-
+.center-container{
+    display:flex;
+    justify-content:center;
+    align-items:center
+}
 .fot {
     display: flex;
     gap: 50px;
