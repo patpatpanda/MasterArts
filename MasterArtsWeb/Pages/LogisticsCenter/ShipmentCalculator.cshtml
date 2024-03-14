@@ -37,7 +37,9 @@
 <div class="language-toggle text-end">
     <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">SWE/ENG</button>
 </div>
-    <p class="customer-number">Kundnummer: @Model.CustomerNumber</p>
+  
+
+<p class="customer-number">Kundnummer: @Model.CustomerNumber</p>
 
 
     @*<div class="valuta-3">
@@ -140,7 +142,7 @@
 <form method="post" class="form" id="contactForm" style="margin-top:100px">
     
     
-   <div class="form-style-10">
+   
     <div class="form-container-2">
         <h3 class="text-center" style="color:#fff">Details</h3>
            
@@ -651,9 +653,19 @@
                     <input asp-for="@Model.Order.Goods[@i].Remarks" class="form-control" placeholder="Ex: Fragile, Handle with care, etc..." />
                     <span asp-validation-for="@Model.Order.Goods[@i].Remarks" class="text-danger"></span>
                     }
-                </div>
+            <div id="goodsContainerSv">
             </div>
-        <div class="form-style-10">
+            <button type="button" id="addGoodsBtnSv">Lägg till fler Goods</button>
+                </div>
+        
+            </div>
+
+
+    
+      
+    
+    
+    <div class="form-style-10">
         <div class="form-container-2">
             <h3 class="text-center" style="color:#fff">Avsändare</h3>
             <label asp-for="Order.ConsignorName">Namn</label>
@@ -825,19 +837,19 @@
         newGoods.className = 'goods-item'; // For styling or future selection if needed
         newGoods.innerHTML = `
             <div class="form-group">
-                <label>Paket ID</label>
-                <input type="text" name="Order.Goods[${index}].PackageId" placeholder="Paket ID" class="form-control" />
+                <label>PackageId</label>
+                <input type="text" name="Order.Goods[${index}].PackageId"  class="form-control" />
             </div>
             <div class="form-group">
-                <label>Märknummer</label>
-                <input type="text" name="Order.Goods[${index}].MarksNumbers" placeholder="Märknummer" class="form-control" />
+                <label>Mark Numbers</label>
+                <input type="text" name="Order.Goods[${index}].MarksNumbers"  class="form-control" />
             </div>
             <div class="form-group">
-                <label>Beskrivning</label>
-                <textarea name="Order.Goods[${index}].Description" placeholder="Beskrivning" class="form-control"></textarea>
+                <label>Description</label>
+                <textarea name="Order.Goods[${index}].Description"  class="form-control"></textarea>
             </div>
             <div class="form-group">
-                <label>Pakettyp</label>
+                <label>Package Type</label>
                 <select name="Order.Goods[${index}].PackageType" class="form-control">
                     <option value="CTN">CTN - Carton</option>
                     <option value="HPX">HPX - Special packaging</option>
@@ -848,37 +860,44 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Antal</label>
-                <input type="number" name="Order.Goods[${index}].Quantity" placeholder="Antal" class="form-control" />
+                    <label>Quantity</label>
+                <input type="number" name="Order.Goods[${index}].Quantity" class="form-control" />
             </div>
             <div class="form-group">
-                <label>Vikt</label>
-                <input type="number" step="0.01" name="Order.Goods[${index}].Weight" placeholder="Vikt (kg)" class="form-control" />
+                <label>Weight</label>
+                    <input type="number" step="0.01" name="Order.Goods[${index}].Weight"  class="form-control" />
             </div>
             <div class="form-group">
-                <label>Volym</label>
-                <input type="number" step="0.01" name="Order.Goods[${index}].Volume" placeholder="Volym (m³)" class="form-control" />
+                <label>Volume</label>
+                <input type="number" step="0.01" name="Order.Goods[${index}].Volume"  class="form-control" />
             </div>
             <div class="form-group">
-                <label>Anmärkningar</label>
-                <input type="text" name="Order.Goods[${index}].Remarks" placeholder="Anmärkningar" class="form-control" />
+                    <label>Remarks</label>
+                    <input type="text" name="Order.Goods[${index}].Remarks" class="form-control" />
             </div>
                 <div class="form-group">
-                    <label>Anmärkningar</label>
-                        <input type="text" name="Order.Goods[${index}].VolumetricWeight" placeholder="Anmärkningar" class="form-control" />
+                        <label>VolumetricWeight</label>
+                        <input type="text" name="Order.Goods[${index}].VolumetricWeight"  class="form-control" />
                 </div>
                     <div class="form-group">
-                        <label>Anmärkningar</label>
-                            <input type="text" name="Order.Goods[${index}].NetWeight" placeholder="Anmärkningar" class="form-control" />
+                                <label>NetWeight</label>
+                            <input type="text" name="Order.Goods[${index}].NetWeight"  class="form-control" />
                     </div
                         </div>
                         <div class="form-group">
-                            <label>Anmärkningar</label>
-                                    <input type="text" name="Order.Goods[${index}].VolumeUnit" placeholder="Anmärkningar" class="form-control" />
+                                <label>VolumeUnit</label>
+                                         <select name="Order.Goods[${index}].VolumeUnit" class="form-control">
+                                        <option value="">Select a unit</option>
+                                <option value="CBM">Cubic Meter (CBM)</option>
+                                <option value="CFT">Cubic Feet (CFT)</option>
+                                <option value="L">Liter (L)</option>
+                                <option value="Gallon">Gallon (US/Imperial)</option>
+                                <option value="In³">Cubic Inches (In³)</option>
+                                     </select>
                         </div>
                             <div class="form-group">
-                                <label>Anmärkningar</label>
-                                            <input type="text" name="Order.Goods[${index}].GrossWeight" placeholder="Anmärkningar" class="form-control" />
+                                    <label>GrossWeight</label>
+                                            <input type="text" name="Order.Goods[${index}].GrossWeight" class="form-control" />
                             </div>
             <!-- Add any additional fields as needed -->
         `;
@@ -887,7 +906,80 @@
         document.getElementById('goodsContainer').appendChild(newGoods);
     });
 
+    document.getElementById('addGoodsBtnSv').addEventListener('click', function () {
+        var index = document.querySelectorAll('.goods-item').length; // To ensure unique names
+        var newGoods = document.createElement('div');
+        newGoods.className = 'goods-item'; // For styling or future selection if needed
+        newGoods.innerHTML = `
+                <div class="form-group">
+                    <label>Paket ID</label>
+                    <input type="text" name="Order.Goods[${index}].PackageId"  class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Märknummer</label>
+                    <input type="text" name="Order.Goods[${index}].MarksNumbers" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Beskrivning</label>
+                    <textarea name="Order.Goods[${index}].Description"  class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Pakettyp</label>
+                    <select name="Order.Goods[${index}].PackageType" class="form-control">
+                        <option value="CTN">CTN - Carton</option>
+                        <option value="HPX">HPX - Special packaging</option>
+                        <option value="KVT">KVT - Custom type</option>
+                        <option value="OTH">OTH - Other</option>
+                        <option value="PKG">PKG - Package</option>
+                        <option value="PX">PX - Special packaging X</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Antal</label>
+                    <input type="number" name="Order.Goods[${index}].Quantity"  class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Vikt (kg)</label>
+                        <input type="number" step="0.01" name="Order.Goods[${index}].Weight"  class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Volym</label>
+                    <input type="number" step="0.01" name="Order.Goods[${index}].Volume" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Anmärkningar</label>
+                        <input type="text" name="Order.Goods[${index}].Remarks"  class="form-control" />
+                </div>
+                    <div class="form-group">
+                        <label>Volymvikt</label>
+                            <input type="text" name="Order.Goods[${index}].VolumetricWeight"  class="form-control" />
+                    </div>
+                        <div class="form-group">
+                                <label>Nettovikt</label>
+                                <input type="text" name="Order.Goods[${index}].NetWeight"  class="form-control" />
+                        </div
+                            </div>
+                            <div class="form-group">
+                                    <label>Volymenhet</label>
+                                             <select name="Order.Goods[${index}].VolumeUnit" class="form-control">
+                                            <option value="">Select a unit</option>
+                                    <option value="CBM">Cubic Meter (CBM)</option>
+                                    <option value="CFT">Cubic Feet (CFT)</option>
+                                    <option value="L">Liter (L)</option>
+                                    <option value="Gallon">Gallon (US/Imperial)</option>
+                                    <option value="In³">Cubic Inches (In³)</option>
+                                         </select>
+                            </div>
+                                <div class="form-group">
+                                        <label>Bruttovikt</label>
+                                                <input type="text" name="Order.Goods[${index}].GrossWeight" class="form-control" />
+                                </div>
+                
+            `;
 
+        // Append the new goods form to the container
+        document.getElementById('goodsContainerSv').appendChild(newGoods);
+    });
 
 </script>
 

@@ -49,7 +49,7 @@ html, body {
 
 
 header {
-    position: relative;
+    position: fixed;
     z-index: 1;
     background: rgba(0, 0, 0, 0.5); /* Svart med 50% genomskinlighet */
     height: 140px;
@@ -67,6 +67,7 @@ header {
     background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
     background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
     background-repeat: no-repeat; /* hindrar att bilden upprepas */
+    margin-bottom:100px;
     
     
     border-radius: 0px;
@@ -1188,8 +1189,15 @@ h1 {
 }
 
 
+.adjusted-anchor {
+    padding-top: 150px;
+    margin-top: -150px;
+}
 
-
+.adjusted-anchor-2 {
+    padding-top: 200px;
+    margin-top: -200px;
+}
 
 
 .master-qop {
@@ -1526,6 +1534,7 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
+    
     
 }
 
