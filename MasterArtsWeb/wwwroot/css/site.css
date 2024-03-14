@@ -634,42 +634,9 @@ h1 {
 }
 
 
-.master-qop {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
 
-.qop-1 {
-    padding: 50px;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 10px;
-   
-}
 
-.qop-3 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
-    color: #fff;
-    text-align: center;
-    padding: 24px;
-    border-radius: 10px;
-    line-height: 1.5;
-}
 
-.qop-4 {
-    margin-top: 100px;
-    margin-bottom: 100px;
-    background-color: #E57399;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    padding: 30px;
-}
 
 .about-section {
     display: flex;
@@ -2488,3 +2455,64 @@ select {
     gap: 20px; /* Skapar utrymme mellan knapparna */
 }
 
+
+/* Responsive adjustments */
+.master-qop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.qop-2 {
+    max-width: 1200px; /* Limit max width for large screens */
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Add some shadow for depth */
+    overflow: hidden; /* Ensures no overflow */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.qop-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.text-with-image-overlay {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+    .text-with-image-overlay img {
+        width: 100%;
+        height: auto;
+        border-bottom: 2px solid #f0f0f0; /* Adds a slight separation */
+    }
+
+     .content {
+       
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0,0,0,0.6); /* Darker overlay for better visibility */
+        color: #fff; /* White text color */
+        padding: 20px;
+        box-sizing: border-box;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Text shadow for readability */
+    }
+
+.content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.content li {
+    margin-bottom: 10px; /* Space out list items */
+    font-size: 16px; /* Adjust font size */
+}
+
+/* Responsive adjustments */
