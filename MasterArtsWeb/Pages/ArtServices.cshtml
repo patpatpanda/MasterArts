@@ -33,6 +33,21 @@
                 <div class="text-with-image-overlay">
                     <img src="/images/cc378cee-5500-49a3-82a1-bb438a14dfad.webp">
                     <div class="content">
+
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <ul>
+                        <li><strong>Expertkonsultation:</strong> Kompetent rådgivning, grundlig riskbedömning och planering.</li>
+                        <li><strong>Omfattande riskbedömning och planering:</strong> Djupgående analys av risker och noggrann strategisk förberedelse.</li>
+                        <li><strong>Dokumentsamling:</strong> Sammanställning av nödvändiga papper och dokumentation.</li>
+                        <li><strong>Skicklig packning och hantering:</strong> Kunnig och försiktig förpackning och hantering.</li>
+                        <li><strong>Total översikt:</strong> Fullständig transparens och klarhet.</li>
+                        <li><strong>Konsoliderad faktura:</strong> En kontakt, en leverantör, en faktura.</li>
+                        <li><strong>Engagerat stöd:</strong> Engagerad hjälp och stöd.</li>
+                        </ul>
+                    }
+                    else
+                    {
                         <ul>
                             <li><strong>Expert Consultation:</strong> Competent advisory, thorough risk assessment, and planning.</li>
                             <li><strong>Comprehensive Risk Assessment and Planning:</strong> In-depth analysis of risks and meticulous strategic preparation.</li>
@@ -42,6 +57,12 @@
                             <li><strong>Consolidated Invoice:</strong> One contact, one supplier, one invoice.</li>
                             <li><strong>Devoted Support:</strong> Committed assistance and support.</li>
                         </ul>
+                    }
+
+
+
+
+                        
                     </div>
                 </div>
 

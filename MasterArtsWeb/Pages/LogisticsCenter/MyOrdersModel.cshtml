@@ -8,6 +8,9 @@
 <h3 class="contact adjusted-anchor-2" id="contact-id">
    Bookings
 </h3>
+<div style="margin-top:100px;">
+    <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
+</div>
 @if (Model.CustomerOrders.Any())
 {
     <div class="table-responsive">
@@ -17,9 +20,7 @@
                     <th>Order Number</th>
                     <th>Consignee Name</th>
                     <th>Consignor Name</th>
-                    <th>Volume (Total)</th>
-                    <th>Net Weight (Total)</th>
-                    <th>Gross Weight (Total)</th>
+                    <th>Goods Details</th> <!-- Ny kolumn för detaljerade goods-uppgifter -->
                 </tr>
             </thead>
             <tbody>
@@ -30,13 +31,14 @@
                         <td>@order.ConsigneeName</td>
                         <td>@order.ConsignorName</td>
                         <td>
-                            @order.Goods.Sum(g => g.Volume.HasValue ? g.Volume.Value : 0) m³
-                        </td>
-                        <td>
-                            @order.Goods.Sum(g => g.NetWeight.HasValue ? g.NetWeight.Value : 0) kg
-                        </td>
-                        <td>
-                            @order.Goods.Sum(g => g.GrossWeight.HasValue ? g.GrossWeight.Value : 0) kg
+                            <ul>
+                                @foreach (var good in order.Goods)
+                                {
+                                    <li>
+                                        Volume: @good.Volume m³, Net Weight: @good.NetWeight kg, Gross Weight: @good.GrossWeight kg
+                                    </li>
+                                }
+                            </ul>
                         </td>
                     </tr>
                 }
@@ -44,6 +46,7 @@
         </table>
     </div>
 }
+
 else
 {
     <div class="alert alert-warning" role="alert">

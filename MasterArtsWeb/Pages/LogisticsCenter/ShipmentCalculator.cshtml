@@ -17,15 +17,13 @@
 
         <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 10px">@TempData["SuccessMessage"]</div>
     }
-    <div style="margin-top:50px;">
-         <a asp-page="/LogisticsCenter/Calculator" class="btn-large">ShipmentCalculator</a>
-    </div>
+<div class="buttons-container" style="margin-top:50px; text-align:center;">
+    <a href="/LogisticsCenter/Calculator#contact-id" class="cta-button">Calculator</a>
+    <a href="/LogisticsCenter/MyOrdersModel#contact-id" class="cta-button">Bookings</a>
+    <p class="customer-number">Kundnummer: @Model.CustomerNumber</p>
 
-   <div style="margin-top:50px;">
-         <a href="/LogisticsCenter/MyOrdersModel#contact-id" class="btn btn-large btn-primary">MyBookings</a>
+</div>
 
-
-    </div>
 
 
 
@@ -39,7 +37,6 @@
 </div>
   
 
-<p class="customer-number">Kundnummer: @Model.CustomerNumber</p>
 
 
     @*<div class="valuta-3">
@@ -361,7 +358,7 @@
        
         
 
-    <div class="form-style-10">
+    
 
         <div class="form-container-2">
             <h3 class="text-center" style="color:#fff">Consignor</h3>
@@ -451,7 +448,7 @@
             <span asp-validation-for="Order.ConsigneeEmail" class="text-danger"></span>
         </div>
 
-    </div>
+  
 
    
 
@@ -464,7 +461,7 @@
 <form method="post" class="form" id="contactFormSv" style="margin-top:100px;display:none">
 
 
-    <div class="form-style-10">
+   
         <div class="form-container-2">
             <h3 class="text-center" style="color:#fff">Detaljer</h3>
             
@@ -658,14 +655,14 @@
             <button type="button" id="addGoodsBtnSv">Lägg till fler Goods</button>
                 </div>
         
-            </div>
+            
 
 
     
       
     
     
-    <div class="form-style-10">
+    
         <div class="form-container-2">
             <h3 class="text-center" style="color:#fff">Avsändare</h3>
             <label asp-for="Order.ConsignorName">Namn</label>
@@ -757,7 +754,7 @@
         </div>
 
 
-    </div>
+    
 
 
         <button type="submit" class="btn-large text-center" style="margin-top:20px" id="OrderSubmitButton" name="OrderSubmitButton">Skicka Order</button>

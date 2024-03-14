@@ -1,11 +1,11 @@
 ﻿@page
 @model MasterArtsWeb.Pages.LogisticsCenter.CalculatorModel
 
-<h3 class="contact" id="contact-id">
-    Calculator
+<h3 class="contact adjusted-anchor-2" id="contact-id">
+    Shipment-Calculator
 </h3>
 <div style="margin-top:100px;">
-    <a asp-page="/LogisticsCenter/ShipmentCalculator" class="cta-button">Back</a>
+    <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
 </div>
     
  <div class="calculator-container" id="mr-calc" style="margin-top:70px">
@@ -39,6 +39,8 @@
                 <p id="totalActualWeight">Total Actual Weight: 0 kg</p>
                 <p id="chargeableWeight">Chargeable Weight: 0 kg</p>
             </div>
+        <button type="button" class="btn btn-secondary" onclick="resetCalculator()">Reset Calculator</button>
+
         </form>
     </div>
 
@@ -116,6 +118,23 @@
             }
             return ratio;
         }
+
+
+    function resetCalculator() {
+        // Återställer densitetsval till det första alternativet
+        document.getElementById('selectedDensity').selectedIndex = 0;
+
+        // Rensar alla tillagda objekt
+        var container = document.getElementById("items-container");
+        container.innerHTML = '';
+
+        // Återställer resultaten till 0
+        document.getElementById('totalVolume').innerText = 'Total Volume: 0 m³';
+        document.getElementById('totalVolumeWeight').innerText = 'Total Volume Weight: 0 kg';
+        document.getElementById('totalActualWeight').innerText = 'Total Actual Weight: 0 kg';
+        document.getElementById('chargeableWeight').innerText = 'Chargeable Weight: 0 kg';
+    }
+
     </script>
 
 

@@ -110,23 +110,6 @@ header {
     text-decoration: none;
 }
 
-.cta-button {
-    background-color: #666; /* Byt ut #333 mot en gråare nyans */
-    color: #fff;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    margin-top: 8px;
-    display: inline-block; /* Lägg till display:inline-block för att knappen ska anpassa sig efter innehållet */
-}
-
-    .cta-button:hover {
-        background-color: #555;
-        color: #fff;
-        transform: scale(1.1);
-    }
 
 
 .image-container {
@@ -323,67 +306,6 @@ header {
     font-size: 2em;
 }
 
-.e {
-    display: none;
-}
-
-.content h2 {
-    margin-top: 200px;
-    color: #fff;
-    font-size: 2em;
-    position: absolute;
-    transform: translate(-50%, -50%);
-}
-
-    .content h2:nth-child(1) {
-        color: transparent;
-        -webkit-text-stroke: 2px #03a9f4;
-    }
-
-    .content h2:nth-child(2) {
-        color: #03a9f4;
-        animation: animate 4s ease-in-out infinite;
-    }
-
-
-
-#myS video {
-    display: none
-}
-
-
-
-#myS video {
-    display: none
-}
-
-
-#mySus header {
-    height: 400px;
-}
-
-#mySus video {
-    display: none
-}
-
-.content-2 h2 {
-    margin-left: 200px;
-    margin-top: 100px;
-    color: #fff;
-    font-size: 4em;
-    position: absolute;
-    transform: translate(-50%, -50%);
-}
-
-    .content-2 h2:nth-child(1) {
-        color: transparent;
-        -webkit-text-stroke: 2px #03a9f4;
-    }
-
-    .content-2 h2:nth-child(2) {
-        color: #03a9f4;
-        animation: animate 4s ease-in-out infinite;
-    }
 
 
 
@@ -398,149 +320,7 @@ header {
     }
 }
 
-.s-2 {
-    display: none
-}
 
-.larger-text {
-    font-size: 2em;
-}
-
-.kek {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.you-text {
-    font-size: 3em;
-    margin-left: 100px;
-    font-family: 'Verdana', Arial, sans-serif;
-    font-weight: bold;
-}
-
-.bottom-icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FFF;
-}
-
-
-.hej {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-}
-
-.p-mail {
-    font-size: 1.5em;
-}
-
-#myContact .game {
-    display: none
-}
-
-#myShip .game {
-    display: none
-}
-
-#myS .game {
-    display: none
-}
-
-#myCalc .game {
-    display: none
-}
-
-#myAbout .game {
-    display: none
-}
-
-
-
-
-#my .game {
-    display: none
-}
-
-#myContact .game {
-    display: none
-}
-
-#myContact {
-    
-}
-
-    #myContact .team {
-        display: block
-    }
-
-#myAbout .team {
-    display: block
-}
-
-#myS .team {
-    display: block
-}
-
-#myShip .team {
-    display: block
-}
-
-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    filter: saturate(200%) brightness(60%);
-}
-
-.larger-text-3 {
-    font-family: 'Georgia', serif;
-    font-size: 1.5em;
-    margin-top: 50px;
-    font-family: 'Comic Sans MS', Arial, sans-serif;
-}
-
-.s-2 {
-    display: none
-}
-
-gol-1 {
-    display: none
-}
-
-gol-2 {
-    display: none
-}
-
-.star-rating {
-    display: inline-block;
-}
-
-    .star-rating input {
-        display: none;
-    }
-
-    .star-rating label {
-        font-size: 2em;
-        color: #ddd;
-        cursor: pointer;
-        display: inline-block;
-    }
-
-    .star-rating input:checked ~ label,
-    .star-rating input:checked ~ label ~ label {
-        color: #f8d838;
-    }
-
-.center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* eller annan höjd beroende på ditt layoutbehov */
-}
 
 .mysan {
     max-width: 1000px;
@@ -792,12 +572,7 @@ h1 {
         background: black;
     }
 
-.shipment-form-2 {
-    background-color: lightblue;
-    border-radius: 10px;
-    padding: 40px;
-    width: 800px;
-}
+
 
 
 
@@ -849,12 +624,12 @@ h1 {
 
 
 .adjusted-anchor {
-    padding-top: 250px;
+    padding-top: 150px;
    
 }
 
 .adjusted-anchor-2 {
-    padding-top: 250px;
+    padding-top: 150px;
     
 }
 
@@ -1350,13 +1125,14 @@ input {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
 
-    .shipment-form-2 {
-        background-color: lightblue;
-        border-radius: 10px;
-        padding: 40px;
-        width: 400px;
+
+    .adjusted-anchor {
+        padding-top: 15px;
     }
 
+    .adjusted-anchor-2 {
+        padding-top: 15px;
+    }
 
     .asdf {
         
@@ -1369,16 +1145,30 @@ input {
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
-
-
-    .calculator-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border-bottom: solid 5px black;
-        color: white;
+    .table-responsive {
+        font-size: 14px;
     }
+
+    .table th, .table td {
+        padding: 10px;
+    }
+
+    
+
+    h3 {
+        font-size: 20px;
+    }
+    .cta-button {
+        display: inline-block;
+        margin: 5px;
+        padding: 6px 12px;
+        background-color: #b8d8f5; /* Subtil blå färg för knapparna */
+        color: #2c3e50; /* Mörkblå text för kontrast */
+        text-decoration: none;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+    }
+   
     .fot{
         display:none
     }
@@ -1683,14 +1473,8 @@ input {
         grid-template-columns: 1fr
     }
 
-    .fren-2 {
-        background-image: url('/images/fren2.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        width: 500px;
-        height: 500px;
-    }
-
+    
+    
     .about-section-2 {
         display: flex;
         flex-direction: column;
@@ -2020,12 +1804,23 @@ select {
     .btn-large:hover {
         background-color: #ff9999; /* Mörkare rosa vid hover */
     }
+.btn-large-2 {
+    background-color: #cccccc; /* Ljusrosa */
+    color: #333; /* Vit text */
 
-.form {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    padding: 10px;
+    padding: 20px 40px; /* Storlek på knappen */
+    border-radius: 10px; /* Rundade hörn */
+    font-size: 22px; /* Storlek på text */
+
+    transition: background-color 0.3s ease; /* Smidig övergång för bakgrundsfärg */
+    text-decoration: none;
 }
+
+    .btn-large-2:hover {
+        background-color: #ff9999; /* Mörkare rosa vid hover */
+    }
+
+
 
 .about-section-2 {
     display: flex;
@@ -2393,7 +2188,7 @@ select {
 }
 /* Bakgrund och formulär container styling */
 .form-container-2 {
-    background: linear-gradient(145deg, #9E8FB2, #A9A9D9);
+    background-color: #b8d8f5;
     /* En mjuk gradient från lila till en djupare lila */
     padding: 40px;
     border-radius: 12px; /* Rundade hörn */
@@ -2427,11 +2222,7 @@ select {
 }
 
 /* Förbättra tillgängligheten och visuell feedback */
-.form-control:focus {
-    border-color: #8D58BF; /* Ljusare lila när fältet är fokuserat */
-    box-shadow: 0 0 8px rgba(141, 88, 191, 0.2); /* Lägg till en lila skuggglöd för att indikera fokus */
-    outline: none; /* Ta bort standardfokus outline */
-}
+
 
 .form-container-2 label{
     color:#fff
@@ -2439,7 +2230,7 @@ select {
 /* Anpassa knappar och länkar inom formuläret */
 
 .form {
-    background-color: rgba(255, 255, 255, 0.5);
+    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
@@ -2622,3 +2413,78 @@ select {
         /* Ger ikonen en färg som matchar en av gradientfärgerna */
     }
 }
+/* Calculator Container Styles */
+.calculator-container {
+    max-width: 850px;
+    margin: 70px auto;
+    padding: 20px;
+    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+    /* Form and Selection Styles */
+    .calculator-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+#density-selection {
+    margin-bottom: 20px;
+}
+
+    #density-selection label {
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    #density-selection select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        background-color: white;
+    }
+
+/* Items Container Style */
+#items-container {
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+.calculator-container .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    .calculator-container .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+/* Results Container Styles */
+.results-container {
+   
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+    .results-container p {
+        margin: 10px 0;
+        font-size: 16px;
+        color: #333;
+    }
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Skapar utrymme mellan knapparna */
+}
+
