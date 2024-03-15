@@ -30,46 +30,46 @@
             <form method="post" asp-page-handler="OnPost" onsubmit="return checkHoneypot()">
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label asp-for="CompanyName" class="form-label" style="color:#333">Company Name</label>
-                        <input asp-for="CompanyName" class="form-control" />
-                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                        <label asp-for="@Model.Input.CompanyName" class="form-label" style="color:#333">Company Name</label>
+                        <input asp-for="@Model.Input.CompanyName" class="form-control" />
+                        <span asp-validation-for="@Model.Input.CompanyName" class="text-danger"></span>
                     </div>
 
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label asp-for="Name" class="form-label" style="color:#333">Your Name</label>
-                        <input asp-for="Name" class="form-control" required />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <label asp-for="@Model.Input.Name" class="form-label" style="color:#333">Your Name</label>
+                        <input asp-for="@Model.Input.Name" class="form-control" required />
+                        <span asp-validation-for="@Model.Input.Name" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-7">
-                        <label asp-for="Phone" class="form-label" style="color:#333">Phone</label>
-                        <input asp-for="Phone" class="form-control" />
-                        <span asp-validation-for="Phone" class="text-danger"></span>
+                        <label asp-for="@Model.Input.Phone" class="form-label" style="color:#333">Phone</label>
+                        <input asp-for="@Model.Input.Phone" class="form-control" />
+                        <span asp-validation-for="@Model.Input.Phone" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label asp-for="Email" class="form-label" style="color:#333">Email</label>
-                        <input asp-for="Email" class="form-control" required />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <label asp-for="@Model.Input.Email" class="form-label" style="color:#333">Email</label>
+                        <input asp-for="@Model.Input.Email" class="form-control" required />
+                        <span asp-validation-for="@Model.Input.Email" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label asp-for="Message" class="form-label" style="color:#333">Message</label>
-                        <textarea asp-for="Message" class="form-control" rows="4"></textarea>
-                        <span asp-validation-for="Message" class="text-danger" required></span>
+                        <label asp-for="@Model.Input.Message" class="form-label" style="color:#333">Message</label>
+                        <textarea asp-for="@Model.Input.Message" class="form-control" rows="4"></textarea>
+                        <span asp-validation-for="@Model.Input.Message" class="text-danger" required></span>
                     </div>
                 </div>
-                <div style="display: none;" aria-hidden="true">
-                    <label for="honeypot">Please leave this field empty</label>
+                <div class="honeypot" aria-hidden="true">
+                    <label for="honeypot">Do not fill this out if you're human</label>
                     <input type="text" id="honeypot" name="honeypot" />
                 </div>
-
+                
                 <button type="submit" class="cta-button" style="margin-top:15px">Send</button>
             </form>
 
@@ -102,8 +102,8 @@
             <form method="post" asp-page-handler="OnPost" onsubmit="return checkHoneypot()">
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label asp-for="CompanyName" style="color:#333">Företag</label>
-                        <input asp-for="CompanyName" class="form-control" />
+                        <label asp-for="@Model.Input.CompanyName" style="color:#333">Företag</label>
+                        <input asp-for="@Model.Input.CompanyName" class="form-control" />
 
                     </div>
 
@@ -111,36 +111,35 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label asp-for="Name" style="color:#333">Namn</label>
-                        <input asp-for="Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger" required></span>
+                        <label asp-for="@Model.Input.Name" style="color:#333">Namn</label>
+                        <input asp-for="@Model.Input.Name" class="form-control" />
+                        <span asp-validation-for="@Model.Input.Name" class="text-danger" required></span>
                     </div>
                     <div class="form-group col-md-7">
-                        <label asp-for="Phone" style="color:#333">Telefon</label>
-                        <input asp-for="Phone" class="form-control" />
-                        <span asp-validation-for="Phone" class="text-danger"></span>
+                        <label asp-for="@Model.Input.Phone" style="color:#333">Telefon</label>
+                        <input asp-for="@Model.Input.Phone" class="form-control" />
+                        <span asp-validation-for="@Model.Input.Phone" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label asp-for="Email" style="color:#333"></label>
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger" required></span>
+                        <label asp-for="@Model.Input.Email" style="color:#333"></label>
+                        <input asp-for="@Model.Input.Email" class="form-control" />
+                        <span asp-validation-for="@Model.Input.Email" class="text-danger" required></span>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label asp-for="Message" style="color:#333">Meddelande</label>
-                        <textarea asp-for="Message" class="form-control" rows="4"></textarea>
-                        <span asp-validation-for="Message" class="text-danger" required></span>
+                        <label asp-for="@Model.Input.Message" style="color:#333">Meddelande</label>
+                        <textarea asp-for="@Model.Input.Message" class="form-control" rows="4"></textarea>
+                        <span asp-validation-for="@Model.Input.Message" class="text-danger" required></span>
                     </div>
                 </div>
 
-
-                <div style="display: none;" aria-hidden="true">
-                    <label for="honeypot">Please leave this field empty</label>
+                <div class="honeypot" aria-hidden="true">
+                    <label for="honeypot">Do not fill this out if you're human</label>
                     <input type="text" id="honeypot" name="honeypot" />
                 </div>
 
@@ -207,5 +206,15 @@
         }
         return true;
     }
+    document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const scrollTo = urlParams.get('scrollTo');
+        if (scrollTo === 'contact') {
+            const contactSection = document.getElementById('contact-id');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
 
 </script>

@@ -1,3 +1,4 @@
+using MasterArtsLibrary.Models;
 using MasterArtsLibrary.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,22 +14,8 @@ namespace MasterArtsWeb.Pages
         public string CurrentLanguage { get; set; }
         private readonly IEmailSender _emailSender;
         private readonly LanguageService _languageService;
-        public string CompanyName { get; set; }
         [BindProperty]
-
-        public string Name { get; set; }
-
-        [BindProperty]
-        [Required(ErrorMessage = "Phone is required.")]
-        public string Phone { get; set; }
-        [BindProperty]
-        [Required(ErrorMessage = "Email is required.")]
-        [EmailAddress(ErrorMessage = "Invalid Email Address.")]
-        public string Email { get; set; }
-        [BindProperty]
-        [Required(ErrorMessage = "Message is required.")]
-        [MinLength(5, ErrorMessage = "Message must be at least 5 characters long.")]
-        public string Message { get; set; }
+        public ContactFormModel Input { get; set; }
         public ContactModel(IEmailSender emailSender, LanguageService languageService)
         {
             _emailSender = emailSender;
@@ -40,6 +27,14 @@ namespace MasterArtsWeb.Pages
         }
         public async Task<IActionResult> OnPost()
         {
+
+            if (!string.IsNullOrEmpty(Input.Honeypot))
+            {
+                // Antag att det är ett botförsök och hantera det enligt önskemål
+                // Exempelvis genom att logga försöket och returnera samma sida
+                return Page();
+            }
+            ModelState.Remove("Input.Honeypot");
             if (ModelState.IsValid)
             {
                 TempData["SuccessMessage"] = "Your message has been sent";
@@ -89,23 +84,24 @@ namespace MasterArtsWeb.Pages
 
                 // Ersätt placeholders med faktiska data
                 var htmlMessage = htmlTemplate
-                    .Replace("{{CompanyName}}", CompanyName)
-                    .Replace("{{Name}}", Name)
-                    .Replace("{{Phone}}", Phone)
-                    .Replace("{{Email}}", Email)
-                    .Replace("{{Message}}", Message);
+                    .Replace("{{CompanyName}}", Input.CompanyName)
+                    .Replace("{{Name}}", Input.Name)
+                    .Replace("{{Phone}}", Input.Phone)
+                    .Replace("{{Email}}", Input.Email)
+                    .Replace("{{Message}}", Input.Message);
 
                 // Skicka e-postmeddelandet
-                await _emailSender.SendEmailAsync(Email, subject, htmlMessage);
+                await _emailSender.SendEmailAsync(Input.Email, subject, htmlMessage);
 
                 // Logga framgångsmeddelandet för felsökningsändamål
                 Debug.WriteLine("Form submission successful");
 
-                return RedirectToPage("/Contact");
+                return RedirectToPage(new { scrollTo = "contact" });
+
             }
             // Hantera fall där ModelState inte är giltig
-           
-        
+
+
 
             else
             {

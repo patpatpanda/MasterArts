@@ -12,6 +12,12 @@ html, body {
     overflow-x: hidden;
     background-color: aliceblue;
 }
+.honeypot {
+    position: absolute;
+    left: -5000px;
+    top: 0;
+}
+
 .center-container{
     display:flex;
     justify-content:center;
@@ -263,7 +269,10 @@ header {
 
 
 
-
+.row{
+    display:flex;
+    justify-content:center
+}
 
 #language-switch {
     display: flex;

@@ -4,11 +4,18 @@ using MasterArtsLibrary.Services;
 using MasterArtsLibrary.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.CodeAnalysis.Elfie.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvReader = CsvHelper.CsvReader;
+
+// Andra 'using'-satser...
 
 
 namespace MasterArtsWeb.Pages
@@ -42,13 +49,17 @@ namespace MasterArtsWeb.Pages
 
         public async Task<IActionResult> OnGetAsync()
         {
-    //         string filePath = @"C:\Users\Nils-\OneDrive\Skrivbord\Bok2.txt.xlsx";
-    
-    
-    //var airports = ReadAirportsFromExcel(filePath);
+            //string filePath = @"C:\Users\Nils-\OneDrive\Skrivbord\airports (2).csv";
 
-    
-    //await AddAirportsAsync(airports);
+
+            //var airports = await ReadAirportsFromCsv(filePath);
+
+            
+            //await AddAirportsToDbAsync(airports, _context);
+
+
+
+
             CurrentLanguage = _languageService.GetCurrentLanguage();
             ViewData["Language"] = CurrentLanguage;
 
@@ -77,58 +88,61 @@ namespace MasterArtsWeb.Pages
             return RedirectToPage();
         }
 
-        public List<Airport> ReadAirportsFromExcel(string filePath)
-        {
-            var airports = new List<Airport>();
-            using (var workbook = new XLWorkbook(filePath))
-            {
-                var worksheet = workbook.Worksheet(1);
-                var rows = worksheet.RangeUsed().RowsUsed().Skip(1); 
+        
 
-                foreach (var row in rows)
-                {
-                    var airport = new Airport
-                    {
-                        Ident = row.Cell(2).GetValue<string>(), 
-                        Type = row.Cell(3).GetValue<string>(),
-                        Name = row.Cell(4).GetValue<string>(),
-                        LatitudeDeg = row.Cell(5).GetValue<string>(), 
-                        LongitudeDeg = row.Cell(6).GetValue<string>(), 
-                        ElevationFt = row.Cell(7).GetValue<int?>(),
-                        Continent = row.Cell(8).GetValue<string>(),
-                        IsoCountry = row.Cell(9).GetValue<string>(),
-                        IsoRegion = row.Cell(10).GetValue<string>(),
-                        Municipality = row.Cell(11).GetValue<string>(),
-                        ScheduledService = row.Cell(12).GetValue<string>(),
-                        GpsCode = row.Cell(13).GetValue<string>(),
-                        IataCode = row.Cell(14).GetValue<string>(),
-                        LocalCode = row.Cell(15).GetValue<string>(),
-                        HomeLink = row.Cell(16).GetValue<string>(),
-                        WikipediaLink = row.Cell(17).GetValue<string>(),
-                        Keywords = row.Cell(18).GetValue<string>(), // Ensure you're getting the right cell index
-                    };
+    ////    public async Task<List<Airport>> ReadAirportsFromCsv(string filePath)
+    ////    {
+    ////        var airports = new List<Airport>();
 
-                    airports.Add(airport);
-                }
-            }
-            return airports;
-        }
+    ////        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+    ////        {
+    ////            HasHeaderRecord = true, // Sätt till false om din CSV inte har en header
+    ////        };
 
-        public async Task AddAirportsAsync(List<Airport> airports)
-        {
+    ////        using (var reader = new StreamReader(filePath))
+    ////        using (var csv = new CsvReader(reader, config))
+    ////        {
+    ////            csv.Context.RegisterClassMap<AirportMap>(); // Använd denna om du har en komplex mappning
+    ////            airports = csv.GetRecords<Airport>().ToList();
+    ////        }
 
-            {
-                foreach (var airport in airports)
-                {
-                    _context.Airports.Add(airport);
-                }
-                await _context.SaveChangesAsync();
-            }
-        }
+    ////        return airports;
+    ////    }
+    ////    public async Task AddAirportsToDbAsync(List<Airport> airports, MyDbContext context)
+    ////    {
+    ////        foreach (var airport in airports)
+    ////        {
+    ////            context.Airports.Add(airport);
+    ////        }
+    ////        await context.SaveChangesAsync();
+    ////    }
+    ////}
 
+    
 
-    }
-
-
-
+}
+////public class AirportMap : ClassMap<Airport>
+////{
+////    public AirportMap()
+////    {
+////        // Map columns to properties based on your CSV structure
+////        Map(m => m.Ident).Index(1); // Kom ihåg att indexeringen börjar på 0
+////        Map(m => m.Type).Index(2);
+////        Map(m => m.Name).Index(3);
+////        Map(m => m.LatitudeDeg).Index(4);
+////        Map(m => m.LongitudeDeg).Index(5);
+////        Map(m => m.ElevationFt).Index(6);
+////        Map(m => m.Continent).Index(7);
+////        Map(m => m.IsoCountry).Index(8);
+////        Map(m => m.IsoRegion).Index(9);
+////        Map(m => m.Municipality).Index(10);
+////        Map(m => m.ScheduledService).Index(11);
+////        Map(m => m.GpsCode).Index(12);
+////        Map(m => m.IataCode).Index(13);
+////        Map(m => m.LocalCode).Index(14);
+////        Map(m => m.HomeLink).Index(15);
+////        Map(m => m.WikipediaLink).Index(16);
+////        Map(m => m.Keywords).Index(17);
+////        // Fortsätt att mappa alla nödvändiga fält ...
+////    }
 }
