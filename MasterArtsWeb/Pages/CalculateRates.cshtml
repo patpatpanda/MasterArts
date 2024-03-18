@@ -1,0 +1,21 @@
+﻿@page
+@model MasterArtsWeb.Pages.CalculateRatesModel
+@{
+}
+<form method="post">
+    <!-- Du kan lägga till input-fält här för att låta användaren fylla i request-datan -->
+    <button type="submit" class="btn btn-primary">Beräkna fraktkostnader</button>
+</form>
+
+<h2>Fraktkostnadsberäkning</h2>
+
+@if (Model.ApiResponse != null)
+{
+    <h3>Totals</h3>
+    <ul>
+        @foreach (var total in Model.ApiResponse.Totals)
+        {
+            <li>@total.Currency: @total.Sum (Kurs: @total.ExchangeRate)</li>
+        }
+    </ul>
+}

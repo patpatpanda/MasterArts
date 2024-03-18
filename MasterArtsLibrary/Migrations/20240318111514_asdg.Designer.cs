@@ -4,6 +4,7 @@ using MasterArtsWeb;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MasterArtsLibrary.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240318111514_asdg")]
+    partial class asdg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -267,6 +270,32 @@ namespace MasterArtsLibrary.Migrations
                     b.ToTable("Goods");
                 });
 
+            modelBuilder.Entity("MasterArtsLibrary.Models.Option", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Option");
+                });
+
             modelBuilder.Entity("MasterArtsLibrary.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -354,9 +383,27 @@ namespace MasterArtsLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FromCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("Imo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ImportExport")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("IntegrationId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Module")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("OptionVgm")
+                        .HasColumnType("bit");
 
                     b.Property<string>("OrderReference")
                         .HasColumnType("nvarchar(max)");
@@ -369,11 +416,23 @@ namespace MasterArtsLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RoutingCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TermsOfDelivery")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ToCode")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TransportModeCode")
                         .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -602,6 +661,13 @@ namespace MasterArtsLibrary.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MasterArtsLibrary.Models.Option", b =>
+                {
+                    b.HasOne("MasterArtsLibrary.Models.Order", null)
+                        .WithMany("Option")
+                        .HasForeignKey("OrderId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -656,6 +722,8 @@ namespace MasterArtsLibrary.Migrations
             modelBuilder.Entity("MasterArtsLibrary.Models.Order", b =>
                 {
                     b.Navigation("Goods");
+
+                    b.Navigation("Option");
                 });
 #pragma warning restore 612, 618
         }

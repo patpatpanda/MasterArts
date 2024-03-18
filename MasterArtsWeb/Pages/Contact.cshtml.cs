@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace MasterArtsWeb.Pages
 {
@@ -28,7 +29,15 @@ namespace MasterArtsWeb.Pages
         public async Task<IActionResult> OnPost()
         {
 
-            if (!string.IsNullOrEmpty(Input.Honeypot))
+            if (!string.IsNullOrEmpty(Input.Honeypot) ||
+    !IsValidEmail(Input.Email) ||
+    ContainsStopWords(Input.Message) || // Fixade parentes
+    !IsValidPhoneNumber(Input.Phone)) // Fixade syntax för metodanrop och borttagning av '= false'
+            
+                // Här kan du hantera fallet när valideringen misslyckas
+                // Till exempel, skicka tillbaka formuläret med ett felmeddelande
+            
+
             {
                 // Antag att det är ett botförsök och hantera det enligt önskemål
                 // Exempelvis genom att logga försöket och returnera samma sida
@@ -119,6 +128,45 @@ namespace MasterArtsWeb.Pages
                 return Page();
             }
         }
+        
+        
+            public static bool IsValidPhoneNumber(string phoneNumber)
+            {
+                if (string.IsNullOrWhiteSpace(phoneNumber))
+                    return false;
 
+                // Detta är ett enkelt exempel på regex som kan validera många internationella telefonnummerformat
+                // Det tillåter valfritt antal inledande plustecken följt av siffror, med tillåtelse för mellanslag, punkter och bindestreck.
+                var regex = new Regex(@"^\+?[0-9\s\-\.\(\)]+$");
+
+                return regex.IsMatch(phoneNumber);
+            }
+        
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // Kontrollera om meddelandet innehåller stoppord
+        bool ContainsStopWords(string message)
+        {
+            var stopWords = new List<string> { "http", "www", "link", "url", "spamWord1", "spamWord2" }; // Uppdatera med relevanta stoppord
+            foreach (var word in stopWords)
+            {
+                if (message.Contains(word, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
