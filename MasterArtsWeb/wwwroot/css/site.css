@@ -1731,43 +1731,6 @@ select {
 
 
 
-.form-input {
-    width: 150px;
-    margin-bottom: 10px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.form-input-2 {
-    width: 150px;
-    margin-bottom: 10px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.form-select {
-    width: 160px;
-    margin-bottom: 10px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-    .btn-primary:hover {
-        background-color: #0056b3;
-    }
 
 
 .btn-large {
@@ -1844,37 +1807,7 @@ select {
     border-radius: 10px; /* Optional: adds rounded corners to the image */
 }
 
-.valuta-3 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Ensures a modern, readable font is used */
-    background-color: #f8f9fa; /* Light background color for contrast */
-    border-radius: 8px; /* Adds rounded corners for a softer look */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    padding: 20px; /* Adds padding for spacing inside the container */
-    max-width: 800px; /* Limits the width of the container for better readability */
-    margin: 20px auto; /* Centers the container */
-}
 
-    .valuta-3 p {
-        color: #333; /* Dark gray color for text */
-        font-size: 1rem; /* Sets a standard readable size */
-        line-height: 1.5; /* Adds space between lines for readability */
-        display: flex; /* Enables flexible box layout */
-        align-items: center; /* Centers items vertically */
-        gap: 10px; /* Adds space between the icon and the text */
-        margin-bottom: 10px; /* Adds space between paragraphs */
-    }
-
-.fa-money-bill {
-    color: #28a745; /* Green color for the money bill icon for easy identification */
-    font-size: 1.2rem; /* Slightly larger size for the icon */
-}
-
-.bla {
-    background-image: radial-gradient(circle, #ff99cc, #ff66a3);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, readable font */
-    color: #333; /* Dark grey for text, ensures readability */
-    padding: 20px; /* Spacing around the content */
-}
 
 .about-section-4 {
     text-align: center; /* Centers the text */
@@ -1893,33 +1826,7 @@ select {
 }
 
 /* Styling for the circle containers */
-.circle-container {
-    display: inline-block; /* Aligns containers side by side */
-    margin: 20px; /* Spacing around each container */
-    padding: 10px; /* Padding inside the containers */
-    background-color: #ffe0f0; /* Lighter pink background for circle containers */
-    border-radius: 50%; /* Makes the container circular */
-    width: 150px; /* Fixed width for circles */
-    height: 150px; /* Fixed height for circles */
-    line-height: 150px; /* Centers the text vertically */
-    vertical-align: middle; /* Aligns the text in the middle */
-}
 
-    .circle-container h3 {
-        color: #fff; /* Vivid pink for the circle text */
-        font-size: 1rem; /* Adjusts the size for readability */
-        vertical-align: middle; /* Ensures text is centered */
-        display: inline-block; /* Allows vertical alignment */
-        padding: 10px; /* Adds padding to prevent text from touching the edges */
-        border-radius: 50%; /* Ensures the text background is also circular if needed */
-    }
-
-.lol {
-    text-decoration: none; /* Removes underline from links */
-    color: inherit; /* Inherits color from parent for consistency */
-    display: block; /* Allows the link to fill the container */
-    height: 100%; /* Ensures the link fills the container for clickable area */
-}
 
 
 

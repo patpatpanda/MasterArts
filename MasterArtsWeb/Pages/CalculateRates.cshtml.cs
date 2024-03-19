@@ -12,6 +12,10 @@ namespace MasterArtsWeb.Pages
     {
         private readonly HttpClient _client;
         public ApiResponse ApiResponse { get; set; }
+
+        [BindProperty]
+        public ShippingRequest ShippingRequest { get; set; }
+
         private readonly ILogger<CalculateRatesModel> _logger; // Lägg till denna rad
 
         // Modifiera konstruktören för att ta emot ILogger via dependency injection
@@ -32,40 +36,17 @@ namespace MasterArtsWeb.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var shippingRequest = new ShippingRequest
-            {
-                Module = "ocean",
-                ImportExport = "export",
-                Type = "lcl",
-                FromCode = "SESTO",
-                ToCode = "GBLON",
-                RoutingCode = "",
-                Imo = false,
-                InlandZipCode = "41520",
-                Packages = 10,
-                PackageType = "PALLET(S)",
-                Weight = 2000,
-                Volume = 28.0,
-                Date = "2024-04-01",
-                Dimensions = new List<Dimension>
-    {
-        new Dimension
-        {
-            Pcs = 10,
-            Length = 120,
-            Width = 100,
-            Height = 140,
-            Weight = 200,
-            Stackable = true
-        }
-    },
-                Options = new List<Option>
-    {
-        new Option { Key = "vgm", Value = "true" },
-        new Option { Key = "incoterms", Value = "dap" }
-    }
-            };
 
+            _logger.LogInformation($"ShippingRequest är null: {ShippingRequest == null}");
+            if (ShippingRequest != null)
+            {
+                _logger.LogInformation(JsonConvert.SerializeObject(ShippingRequest));
+            }
+            else
+            {
+                _logger.LogInformation("Ingen data bunden till ShippingRequest.");
+            }
+            // Serialisera shippingRequest till JSON med CamelCase för egenskapsnamn
             var settings = new JsonSerializerSettings
             {
                 ContractResolver = new DefaultContractResolver
@@ -73,34 +54,34 @@ namespace MasterArtsWeb.Pages
                     NamingStrategy = new CamelCaseNamingStrategy()
                 }
             };
-            var jsonContent = JsonConvert.SerializeObject(shippingRequest, settings);
-
+            var jsonContent = JsonConvert.SerializeObject(ShippingRequest, settings);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             try
             {
+                // Skicka den serialiserade JSON-strängen till API:et
                 var response = await _client.PostAsync("https://ncse.nordic-on.com/api/v1/calculaterateslcl", content);
                 if (response.IsSuccessStatusCode)
                 {
                     var responseString = await response.Content.ReadAsStringAsync();
-                    ApiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseString); // Deserialisera och tilldela här
-                    _logger.LogInformation("Request lyckades: {ResponseString}", responseString);
-                }
+                    ApiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseString);
+                   
 
-                if (!response.IsSuccessStatusCode)
+                }
+                else
                 {
+                    // Logga och hantera icke-lyckade svar
                     var errorResponse = await response.Content.ReadAsStringAsync();
-                    _logger.LogWarning("Request misslyckades med statuskod: {StatusCode}. Felmeddelande: {ErrorResponse}", response.StatusCode, errorResponse);
-                    // Du kan överväga att även sätta detta som ett felmeddelande som visas på sidan.
+                    ModelState.AddModelError(string.Empty, "Servern returnerade ett fel: " + errorResponse);
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ett undantag inträffade när förfrågan gjordes");
+                ModelState.AddModelError(string.Empty, "Ett undantag inträffade: " + ex.Message);
             }
 
-
-            return Page();
+            return Page(); // Återvänd till sidan för att visa fel eller omformulera
         }
+
     }
 }
