@@ -509,7 +509,8 @@ h1 {
 
 .deal-4{
     
-    color:#333
+    margin-top:80px;
+    gap:50px
 }
 
 .a {
@@ -988,6 +989,7 @@ input {
 
 .footer-section {
     margin-left: 50px;
+    
 }
 
 .form-section-container {
@@ -1191,7 +1193,8 @@ input {
     
 
    .index-lang{
-       z-index: 1
+       z-index: 1;
+       margin-top:111px;
    }
     .card-title{
         font-size:14px
@@ -1288,6 +1291,7 @@ input {
 
 
     .contact-info {
+
         font-size: 1em; /* Mindre textstorlek för mindre skärmar */
         margin-bottom: 10px;
     }
@@ -2425,4 +2429,51 @@ select {
     margin-bottom: 10px; /* Space out list items */
     font-size: 16px; /* Adjust font size */
 }
+.krigaren {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
 
+.left-side {
+    flex: 1; /* Tar upp halva bredden */
+    background-image: url('/images/svart.webp'); /* Ersätt 'path_to_your_image.jpg' med sökvägen till din bild */
+    background-size: cover;
+    color: #fff; /* Vit text för läsbarhet mot en mörk bakgrund */
+    padding: 20px;
+}
+
+.right-side {
+    flex: 1; /* Tar upp halva bredden */
+    padding: 20px;
+    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
+}
+
+/* Stilar för text och länkar här */
+.info-text a {
+    color: #fff; /* Justera detta efter din design */
+}
+
+/* Lägg till ytterligare stilar för formuläret och kontaktinformationen enligt dina önskemål */
+
+
+
+@media (max-width: 768px) {
+    .krigaren {
+        display:grid;
+        grid-template-columns: 1fr;
+    }
+    .deal-4 {
+        margin-top: 10px;
+    }
+}
+
+.deal-image {
+    background-image: url('/images/svart.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.deal-content, .deal-form {
+    padding: 20px;
+}

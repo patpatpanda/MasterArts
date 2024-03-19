@@ -259,7 +259,7 @@
 
 
     </div>
-</div>
+
 
 
 
@@ -287,10 +287,35 @@
     <div class="image-container-3" style="margin-left: 15px;">
         <img src="~/images/63e7af8b-44b2-4d6c-9301-be1ebb6ed9bf.webp" alt="About Us Image" style="max-width: 100%; height: auto;">
     </div>
+
+
+
 </div>
+<div class="container-abbe" id="special" style="margin-top:150px">
+    <div>
+        @if (@Model.CurrentLanguage == "sv")
+        {
+            <div class="header-s">On-board courier</div>
 
+            <div class="benefits">Snabb, säker och personlig eskort av mindre paket eller dokument av känslig eller brådskande natur, med garanterad leverans via flyg till världens alla hörn</div>
+            <div class="header-s">Övervakning</div>
+            <div class="benefits">Personlig övervakning av farligt eller värdefullt gods för att förhindra skadegörelse, sabotage, inbrott och stöld, både under parkering och transport</div>
+        }
+        else
+        {
+            <div class="header-s">On-board courier</div>
+            <div class="benefits">Fast, secure, and personalized escort of small packages or sensitive and urgent documents, with guaranteed delivery via air to all corners of the world</div>
+            <div class="header-s">Monitoring</div>
+            <div class="benefits">Personal monitoring of dangerous or valuable goods to prevent vandalism, sabotage, burglary, and theft, both during parking and transportation</div>
 
-
+        }
+        <a href="/Contact#contact-id" class="cta-button">CONTACT</a>
+        <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">ORDER</a>
+    </div>
+    <div class="image-container-3" style="margin-left: 15px;">
+        <img src="~/images/63e7af8b-44b2-4d6c-9301-be1ebb6ed9bf.webp" alt="About Us Image" style="max-width: 100%; height: auto;">
+    </div>
+</div>
 
 
 <div>

@@ -80,8 +80,8 @@ namespace MasterArtsLibrary.Models
         [JsonProperty("imo")]
         public bool Imo { get; set; }
 
-        //[JsonProperty("inlandZipCode")]
-        //public string InlandZipCode { get; set; }
+        [JsonProperty("inlandZipCode")]
+        public string InlandZipCode { get; set; }
 
         [JsonProperty("packages")]
         public int Packages { get; set; }

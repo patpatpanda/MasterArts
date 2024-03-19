@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Contact";
 }
-<body id="myContact">
+
     <h3 class="contact adjusted-anchor-2" id="contact-id">
         CONTACT
     </h3>
@@ -14,19 +14,32 @@
         <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 50px">@TempData["SuccessMessage"]</div>
     }
 
-
-    
-
-
-
-
-
     <div class="language-toggle text-end">
         <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">SWE/ENG</button>
     </div>
-    <div class="deal-3" id="contactForm">
-        <div class="deal-2">
-
+    
+    <div id="contactForm">
+    <div class="krigaren">
+        <div class="left-side">
+            <div class="deal text-center">
+                <div class="deal-4">
+                    <p style="color:#fff">Or contact us directly at</p>
+                    <div class="footer-section footer-section-right">
+                        <!-- Right content -->
+                        <p class="info-text" style="margin-right:55px; color: #fff">
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:ops@artslogistics.se" style="color: #fff; text-decoration: none;">ops@artslogistics.se</a>
+                        </p>
+                    </div>
+                    <p><i class="fa-solid fa-phone"></i> Phone: +46 70-549 14 14</p>
+                    <div style="margin-top:100px"></div>
+                    <p class="kite">ARTS logistics</p>
+                    <p class="kite">Cylindervägen 12, Vån 9</p>
+                    <p class="kite">131 51 Nacka Strand</p>
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
             <form method="post" asp-page-handler="OnPost" onsubmit="return checkHoneypot()">
                 <div class="form-row">
                     <div class="form-group col-md-7">
@@ -69,54 +82,59 @@
                     <label for="honeypot"></label>
                     <input type="text" id="honeypot" name="honeypot" />
                 </div>
-                
+
                 <button type="submit" class="cta-button" style="margin-top:15px">Send</button>
             </form>
-
-
-            <div class="deal text-center">
-                <div class="deal-4">
-                    <p>Or contact us directly at</p>
-                    <div class="footer-section footer-section-right">
-                        <!-- Right content -->
-                        <p class="info-text" style="margin-right:55px">
-                            <i class="fa-solid fa-envelope"></i>
-                            <a href="mailto:ops@artslogistics.se" style="color: #333; text-decoration: none;">ops@artslogistics.se</a>
-                        </p>
-
-                    </div>
-
-                    <p><i class="fa-solid fa-phone"></i> Phone: +46 70-549 14 14</p>
-
-                </div>
-            </div>
         </div>
+    </div>
+
+
 
     </div>
 
 
-    <div id="contactFormSv" class="deal-3" style="display:none">
 
-        <div class="deal-2">
 
+<div id="contactFormSv" style="display:none">
+    <div class="krigaren">
+        <div class="left-side">
+            <div class="deal text-center">
+                <div class="deal-4">
+                    <p style="color:#fff">Eller kontakta oss direkt på</p>
+                    <div class="footer-section footer-section-right">
+                        <!-- Right content -->
+                        <p class="info-text" style="margin-right:55px; color: #fff">
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:ops@artslogistics.se" style="color: #fff; text-decoration: none;">ops@artslogistics.se</a>
+                        </p>
+                    </div>
+                    <p><i class="fa-solid fa-phone"></i> Tel: +46 70-549 14 14</p>
+                    <div style="margin-top:100px"></div>
+                    <p class="kite">ARTS logistics</p>
+                    <p class="kite">Cylindervägen 12, Vån 9</p>
+                    <p class="kite">131 51 Nacka Strand</p>
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
             <form method="post" asp-page-handler="OnPost" onsubmit="return checkHoneypot()">
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label asp-for="@Model.Input.CompanyName" style="color:#333">Företag</label>
+                        <label asp-for="@Model.Input.CompanyName" class="form-label" style="color:#333">Företag</label>
                         <input asp-for="@Model.Input.CompanyName" class="form-control" />
-
+                        <span asp-validation-for="@Model.Input.CompanyName" class="text-danger"></span>
                     </div>
 
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label asp-for="@Model.Input.Name" style="color:#333">Namn</label>
-                        <input asp-for="@Model.Input.Name" class="form-control" />
-                        <span asp-validation-for="@Model.Input.Name" class="text-danger" required></span>
+                        <label asp-for="@Model.Input.Name" class="form-label" style="color:#333">Namn</label>
+                        <input asp-for="@Model.Input.Name" class="form-control" required />
+                        <span asp-validation-for="@Model.Input.Name" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-7">
-                        <label asp-for="@Model.Input.Phone" style="color:#333">Telefon</label>
+                        <label asp-for="@Model.Input.Phone" class="form-label" style="color:#333">Tel</label>
                         <input asp-for="@Model.Input.Phone" class="form-control" />
                         <span asp-validation-for="@Model.Input.Phone" class="text-danger"></span>
                     </div>
@@ -124,47 +142,30 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label asp-for="@Model.Input.Email" style="color:#333"></label>
-                        <input asp-for="@Model.Input.Email" class="form-control" />
-                        <span asp-validation-for="@Model.Input.Email" class="text-danger" required></span>
+                        <label asp-for="@Model.Input.Email" class="form-label" style="color:#333">Email</label>
+                        <input asp-for="@Model.Input.Email" class="form-control" required />
+                        <span asp-validation-for="@Model.Input.Email" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <label asp-for="@Model.Input.Message" style="color:#333">Meddelande</label>
+                        <label asp-for="@Model.Input.Message" class="form-label" style="color:#333">Meddelande</label>
                         <textarea asp-for="@Model.Input.Message" class="form-control" rows="4"></textarea>
                         <span asp-validation-for="@Model.Input.Message" class="text-danger" required></span>
                     </div>
                 </div>
-
                 <div class="honeypot" aria-hidden="true">
                     <label for="honeypot"></label>
                     <input type="text" id="honeypot" name="honeypot" />
                 </div>
 
-
-                <button type="submit" class="cta-button" style="margin-top:7px">Send</button>
+                <button type="submit" class="cta-button" style="margin-top:15px">Skicka</button>
             </form>
-
-            <div class="deal text-center">
-                <div class="deal-4">
-                    <p>Eller kontakta oss direkt på</p>
-                    <div class="footer-section footer-section-right">
-                        <!-- Right content -->
-                        <p class="info-text" style="margin-right:55px">><i class="fa-solid fa-envelope"></i> <a href="mailto:ops@artslogistics.se">ops@artslogistics.se</a></p>
-                    </div>
-
-                    <p><i class="fa-solid fa-phone"></i> Telefon: +46 70-549 14 14</p>
-
-
-                </div>
-
-            </div>
         </div>
-
     </div>
-</body>
+    </div>
+    
 
 
 
