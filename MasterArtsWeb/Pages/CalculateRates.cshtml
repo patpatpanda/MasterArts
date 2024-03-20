@@ -6,6 +6,24 @@
 <h3 class="contact adjusted-anchor-2" id="contact-id" style="margin-top:100px">
     Calculate Rates
 </h3>
+
+<div class="text-center shipping-cost-calculator">
+    <h3 id="resultSection"></h3>
+
+    @if (Model.ApiResponse != null)
+    {
+        <h3 class="totals-title">Totals</h3>
+        <ul class="totals-list">
+            @foreach (var total in Model.ApiResponse.Totals)
+            {
+                <li class="total-item">@total.Currency: @total.Sum (Kurs: @total.ExchangeRate)</li>
+            }
+        </ul>
+
+    }
+</div>
+
+
 <form method="post" style="margin-top:50px">
     <div class="form-container-2">
     <div>
@@ -56,6 +74,7 @@
     <div>
         <label asp-for="@Model.ShippingRequest.FromCode">Från kod</label>
         <input asp-for="@Model.ShippingRequest.FromCode" />
+            <span asp-validation-for="@Model.ShippingRequest.FromCode" class="text-danger"></span>
     </div>
     <div>
         <label asp-for="@Model.ShippingRequest.ToCode">Till kod</label>
@@ -123,31 +142,28 @@
     <br>
     
     </div>
-    <button type="submit" class="btn-large">Beräkna fraktkostnader</button>
+    <div id="loadingSpinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+    <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large">Beräkna fraktkostnader</button>
 </form>
 
 
-<div class="text-center shipping-cost-calculator">
-    <h2 class="calculator-title">Fraktkostnadsberäkning</h2>
 
-    @if (Model.ApiResponse != null)
-    {
-        <h3  class="totals-title">Totals</h3>
-        <ul class="totals-list">
-            @foreach (var total in Model.ApiResponse.Totals)
-            {
-                <li class="total-item">@total.Currency: @total.Sum (Kurs: @total.ExchangeRate)</li>
-            }
-        </ul>
-        
-    }
-</div>
 
 
 
 
 @section Scripts {
     <script>
+        function startLoginProcess() {
+            document.getElementById('loadingSpinner').style.display = 'block';
+
+            // Antag att `login` är funktionen som hanterar inloggningsprocessen.
+            login().then(() => {
+                document.getElementById('loadingSpinner').style.display = 'none';
+            });
+        }
 
         window.onload = function () {
             var resultSection = document.getElementById('resultSection');

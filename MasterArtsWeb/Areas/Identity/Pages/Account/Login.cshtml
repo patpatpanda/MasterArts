@@ -7,6 +7,7 @@
 <body id="myShip">
 
 </body>
+
 <h3 class="contact adjusted-anchor adjusted-mobil" id="contact-id">
     Login
 </h3>
@@ -34,7 +35,10 @@
                     </label>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <div id="loadingSpinner" style="display: none;">
+                        <div class="spinner"></div>
+                    </div>
+                    <button id="loginButton" onclick="startLoginProcess()" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
                 </div>
                 <div>
                     @*<p>
@@ -92,6 +96,17 @@
                 }
             }
         };
+
+
+        function startLoginProcess() {
+            document.getElementById('loadingSpinner').style.display = 'block';
+
+            // Antag att `login` är funktionen som hanterar inloggningsprocessen.
+            login().then(() => {
+                document.getElementById('loadingSpinner').style.display = 'none';
+            });
+        }
+
     </script>
 
     <partial name="_ValidationScriptsPartial" />

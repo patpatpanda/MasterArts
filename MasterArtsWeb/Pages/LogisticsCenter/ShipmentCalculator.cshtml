@@ -41,101 +41,7 @@
 
 
 
-    @*<div class="valuta-3">
-        <style>
-            .valuta-3 {
-                font-family: Arial, sans-serif;
-                color: #333;
-            }
-
-                .valuta-3 h2 {
-                    color: #333;
-                    font-size: 1.5em;
-                }
-
-                .valuta-3 p {
-                    margin: 10px 0;
-                    font-size: 1em;
-                }
-
-            .fa-money-bill {
-                color: #28a745;
-                margin-right: 5px;
-            }
-
-            .na-text {
-                color: #999;
-            }
-        </style>
-
-        <h2>Current exchange rates with our markup</h2>
-        @if (Model.CurrencyData?.Rates != null)
-        {
-            decimal usdRate, eurRate, gbpRate, dkkRate, nokRate;
-            bool hasUsd = Model.CurrencyData.Rates.TryGetValue("USD", out usdRate);
-            bool hasEur = Model.CurrencyData.Rates.TryGetValue("EUR", out eurRate);
-            bool hasGbp = Model.CurrencyData.Rates.TryGetValue("GBP", out gbpRate);
-            bool hasDkk = Model.CurrencyData.Rates.TryGetValue("DKK", out dkkRate);
-            bool hasNok = Model.CurrencyData.Rates.TryGetValue("NOK", out nokRate);
-
-            <p>
-                <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/USD: @if (hasUsd)
-                {
-                    @Math.Round((1 / usdRate) + 0.5m, 2)
-                }
-                else
-                {
-                    <span class="na-text">N/A</span>
-                }
-            </p>
-            <p>
-                <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/EUR: @if (hasEur)
-                {
-                    @Math.Round((1 / eurRate) + 0.5m, 2)
-                }
-                else
-                {
-                    <span class="na-text">N/A</span>
-                }
-            </p>
-            <p>
-                <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/GBP: @if (hasGbp)
-                {
-                    @Math.Round((1 / gbpRate) + 0.5m, 2)
-                }
-                else
-                {
-                    <span class="na-text">N/A</span>
-                }
-            </p>
-            <p>
-                <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/DKK: @if (hasDkk)
-                {
-                    @Math.Round((1 / dkkRate) + 0.5m, 2)
-                }
-                else
-                {
-                    <span class="na-text">N/A</span>
-                }
-            </p>
-            <p>
-                <i class="fa-sharp fa-thin fa-money-bill"></i> SEK/NOK: @if (hasNok)
-                {
-                    @Math.Round((1 / nokRate) + 0.5m, 2)
-                }
-                else
-                {
-                    <span class="na-text">N/A</span>
-                }
-            </p>
-        }
-        else
-        {
-            <p>Valutainformation är inte tillgänglig.</p>
-        }
-    </div>
-*@
-
+    
 
 
 <form method="post"  id="contactForm" style="margin-top:100px">
@@ -756,10 +662,12 @@
         </div>
 
 
-    
 
 
-        <button type="submit" class="btn-large text-center" style="margin-top:20px" id="OrderSubmitButton" name="OrderSubmitButton">Skicka Order</button>
+    <div id="loadingSpinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+    <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" id="OrderSubmitButton" name="OrderSubmitButton">Skicka Order</button>
 
 </form>
 
@@ -802,7 +710,14 @@
         successMessage.classList.remove("show");
     }, 5000);
 
-    
+    function startLoginProcess() {
+        document.getElementById('loadingSpinner').style.display = 'block';
+
+        // Antag att `login` är funktionen som hanterar inloggningsprocessen.
+        login().then(() => {
+            document.getElementById('loadingSpinner').style.display = 'none';
+        });
+    }
     window.addEventListener("load", function () {
         var successMessage = document.getElementById("success-message");
         successMessage.classList.add("show");
