@@ -18,8 +18,10 @@
         <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 10px">@TempData["SuccessMessage"]</div>
     }
 <div class="buttons-container" style="margin-top:50px; text-align:center;">
-    <a href="/LogisticsCenter/Calculator#contact-id" class="cta-button">Calculator</a>
-    <a href="/LogisticsCenter/MyOrdersModel#contact-id" class="cta-button">Bookings</a>
+    <a href="/LogisticsCenter/Calculator#contact-id">Calculator</a>
+    <a href="/LogisticsCenter/MyOrdersModel#contact-id">Bookings</a>
+    <a href="/CalculateRates#contact-id">Rates</a>
+
     <p class="customer-number">Kundnummer: @Model.CustomerNumber</p>
 
 </div>
@@ -506,13 +508,13 @@
             </select>
             <span asp-validation-for="Order.FreightService" class="text-danger"></span>
 
-            <label asp-for="Order.PickUpTimeFrom">Lastdatum</label>
-            <input asp-for="Order.PickUpTimeFrom"  class="form-control" />
-            <span asp-validation-for="Order.PickUpTimeFrom" class="text-danger"></span>
+        <label asp-for="Order.PickUpTimeFrom">Lastdatum<span class="required">*</span></label>
+        <input asp-for="Order.PickUpTimeFrom" type="datetime-local" class="form-control" />
+        <span asp-validation-for="Order.PickUpTimeFrom" class="text-danger"></span>
 
-            <label asp-for="Order.DeliveryTimeTo">Lossningsdatum</label>
-            <input asp-for="Order.DeliveryTimeTo"  class="form-control" />
-            <span asp-validation-for="Order.DeliveryTimeTo" class="text-danger"></span>
+        <label asp-for="Order.DeliveryTimeTo">Lossningsdatum<span class="required">*</span></label>
+        <input asp-for="Order.DeliveryTimeTo" type="datetime-local" class="form-control" />
+        <span asp-validation-for="Order.DeliveryTimeTo" class="text-danger"></span>
                 
             <label asp-for="Order.CustomerOrderNumber">Customer Order Number</label>
                 <input asp-for="Order.CustomerOrderNumber" class="form-control" placeholder="Ex: ABC123" />

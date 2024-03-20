@@ -3,7 +3,7 @@
 @{
 }
 
-<h3 class="contact adjusted-anchor-2" id="contact-id">
+<h3 class="contact adjusted-anchor-2" id="contact-id" style="margin-top:100px">
     Calculate Rates
 </h3>
 <form method="post" style="margin-top:50px">
@@ -17,11 +17,11 @@
         </select>
     </div>
     <div>
-       
-        <div>
-            <label asp-for="@Model.ShippingRequest.Imo">IMO</label>
-            <input asp-for="@Model.ShippingRequest.Imo" type="checkbox" />
-        </div>
+
+            <div>
+                <label asp-for="@Model.ShippingRequest.Imo" class="text-center imo">IMO</label>
+                <input asp-for="@Model.ShippingRequest.Imo" type="checkbox" />
+            </div>
         <div>
             <label asp-for="@Model.ShippingRequest.InlandZipCode">Inland Zip Code</label>
             <input asp-for="@Model.ShippingRequest.InlandZipCode" />
@@ -45,10 +45,14 @@
             <option value="export">Export</option>
         </select>
     </div>
-    <div>
-        <label asp-for="@Model.ShippingRequest.Type">Typ</label>
-        <input asp-for="ShippingRequest.Type" />
-    </div>
+        <div>
+            <label asp-for="@Model.ShippingRequest.Type">Typ</label>
+            <!-- Displaying "LCL" as a text to the user, assuming "LCL" is the only option needed. -->
+            <p>LCL</p>
+            <!-- Hidden input to ensure "LCL" is submitted as the value -->
+            <input type="hidden" asp-for="@Model.ShippingRequest.Type" value="lcl" />
+        </div>
+
     <div>
         <label asp-for="@Model.ShippingRequest.FromCode">Från kod</label>
         <input asp-for="@Model.ShippingRequest.FromCode" />
@@ -57,6 +61,7 @@
         <label asp-for="@Model.ShippingRequest.ToCode">Till kod</label>
         <input asp-for="@Model.ShippingRequest.ToCode" />
     </div>
+        
     <!-- Fyll i fler fält enligt ovanstående mönster -->
     <div>
         <label asp-for="@Model.ShippingRequest.Packages">Antal paket</label>
@@ -122,24 +127,22 @@
 </form>
 
 
-<div class="text-center" style="margin-top:30px">
-    <h2>Fraktkostnadsberäkning</h2>
+<div class="text-center shipping-cost-calculator">
+    <h2 class="calculator-title">Fraktkostnadsberäkning</h2>
 
     @if (Model.ApiResponse != null)
     {
-        <h3 id="resultSection">Totals</h3>
-        <ul>
+        <h3  class="totals-title">Totals</h3>
+        <ul class="totals-list">
             @foreach (var total in Model.ApiResponse.Totals)
             {
-                <li>@total.Currency: @total.Sum (Kurs: @total.ExchangeRate)</li>
-
-
+                <li class="total-item">@total.Currency: @total.Sum (Kurs: @total.ExchangeRate)</li>
             }
-
         </ul>
-        <div>@Model.ApiResponse.Message</div>
+        
     }
 </div>
+
 
 
 

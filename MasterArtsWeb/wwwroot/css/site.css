@@ -218,7 +218,7 @@ header {
     justify-content: center;
     align-items: center;
     font-family:  'Arial Narrow Bold', sans-serif;
-    font-size: 4em;
+    font-size: 2em;
     border-bottom:solid 2px #333;
 }
 
@@ -1072,6 +1072,14 @@ input {
 }
 
 @media screen and (max-width: 768px) {
+
+    .adjusted-mobil{
+        margin-top:100px
+    }
+    .l-btn {
+        margin-top: 100px
+    }
+
     .card {
         height: 150px;
         width: 100px;
@@ -1335,14 +1343,13 @@ input {
 
 
     header {
-        display:block;
+        display: block;
         position: relative;
         overflow: hidden;
-        background-image: url('/images/apink.webp');
+        background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
         background-size: cover; /* Ser till att bilden täcker hela elementet */
         background-position: center; /* Centrerar bilden i elementet */
-        height:500px;
-        
+        height: 500px;
     }
     .kalle {
         height: 1px;
@@ -2070,14 +2077,14 @@ select {
 }
 /* Bakgrund och formulär container styling */
 .form-container-2 {
-    background-color: #b8d8f5;
+    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
     /* En mjuk gradient från lila till en djupare lila */
     padding: 40px;
     border-radius: 12px; /* Rundade hörn */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Lägg till en subtil skugga för djup */
     max-width: 600px; /* Maxbredd för formuläret */
     margin: 40px auto; /* Centrera och ge lite utrymme ovanför och under */
-    color: #FFFFFF; /* Vit textfärg för kontrast mot den mörka bakgrunden */
+    color: #333; /* Vit textfärg för kontrast mot den mörka bakgrunden */
 }
 
     /* Formulärtitel */
@@ -2107,7 +2114,7 @@ select {
 
 
 .form-container-2 label{
-    color:#fff
+    color:#333
 }
 /* Anpassa knappar och länkar inom formuläret */
 
@@ -2466,6 +2473,8 @@ select {
     .deal-4 {
         margin-top: 10px;
     }
+    
+    
 }
 
 .deal-image {
@@ -2476,4 +2485,52 @@ select {
 
 .deal-content, .deal-form {
     padding: 20px;
+}
+
+.shipping-cost-calculator {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.calculator-title {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.totals-title {
+    margin-top: 20px;
+    color: #555;
+}
+
+.totals-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.total-item {
+    background: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.api-response-message {
+    margin-top: 20px;
+    background: #eee;
+    padding: 10px;
+    border-radius: 5px;
+}
+input[type="checkbox"] {
+    display: block; /* Make checkbox take its own line */
+    margin: 0 auto; /* Center checkbox horizontally */
+    transform: scale(1.5); /* Scale checkbox to 150% of its original size */
+    -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+    -moz-transform: scale(1.5); /* Firefox */
+    -ms-transform: scale(1.5); /* IE 9 */
+    -o-transform: scale(1.5); /* Opera */
+}
+.imo{
+    margin-top:20px;
+    margin-bottom:20px
 }

@@ -99,7 +99,7 @@ namespace MasterArtsLibrary.Models
         public string Date { get; set; }
 
         [JsonProperty("dimensions")]
-        public List<Dimension> Dimensions { get; set; }
+        public List<Dimension>? Dimensions { get; set; }
 
         //[JsonProperty("options")]
         //public List<Option> Options { get; set; }
