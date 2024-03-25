@@ -37,9 +37,14 @@
     <div>
 
             <div>
-                <label asp-for="@Model.ShippingRequest.Imo" class="text-center imo">IMO</label>
-                <input asp-for="@Model.ShippingRequest.Imo" type="checkbox" />
+                <label asp-for="ShippingRequest.Imo">IMO</label>
+                <select asp-for="ShippingRequest.Imo">
+                    <option value="true">Ja</option>
+                    <option value="false">Nej</option>
+                </select>
+                
             </div>
+
         <div>
             <label asp-for="@Model.ShippingRequest.InlandZipCode">Inland Zip Code</label>
             <input asp-for="@Model.ShippingRequest.InlandZipCode" />
@@ -49,9 +54,10 @@
             <input asp-for="@Model.ShippingRequest.Weight" type="number" />
         </div>
             <div>
-                <label asp-for="@Model.ShippingRequest.Volume">Volym</label>
+                <label asp-for="@Model.ShippingRequest.Volume">Volym (m³)</label>
                 <input asp-for="@Model.ShippingRequest.Volume" type="number" step="0.01" />
             </div>
+
 
         <div>
             <label asp-for="@Model.ShippingRequest.Date">Datum (YYYY-MM-DD)</label>

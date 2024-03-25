@@ -6,33 +6,31 @@ using System.Linq;
 
 namespace MasterArtsWeb.Pages.LogisticsCenter
 {
-    public class CalculatorModel : PageModel
+    public class CalculatorModel : BaseModel
     {
-        private readonly LanguageService _languageService;
-        private readonly IHttpClientFactory _clientFactory;
+       
 
         public CalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory)
+            : base(languageService)
         {
-            _languageService = languageService;
-            _clientFactory = clientFactory;
+            
         }
 
         
         
-
-        public string CurrentLanguage { get; set; }
 
        
 
-        public void OnGet()
+       
+
+        public void OnGetCalculator()
         {
-            CurrentLanguage = _languageService.GetCurrentLanguage();
+          
         }
 
-        public void OnPost()
+        public void OnPostCalculator()
         {
-            CurrentLanguage = _languageService.ToggleLanguage();
-            ViewData["Language"] = CurrentLanguage;
+            
 
            
         }
