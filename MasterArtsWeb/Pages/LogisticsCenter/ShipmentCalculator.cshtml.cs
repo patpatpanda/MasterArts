@@ -11,15 +11,14 @@ using Microsoft.EntityFrameworkCore;
 namespace MasterArtsWeb.Pages.LogisticsCenter
 {
     [Authorize]
-    public class ShipmentCalculatorModel : BaseModel
+    public class ShipmentCalculatorModel : PageModel
     {
 
-        public ShipmentCalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory,OrderService orderService, UserManager<IdentityUser> userManager,MyDbContext context, ILogger<ShipmentCalculatorModel> logger)
-            : base(languageService)
+        public ShipmentCalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory, OrderService orderService, UserManager<IdentityUser> userManager, MyDbContext context, ILogger<ShipmentCalculatorModel> logger)
 
         {
             _clientFactory = clientFactory;
-           
+            _languageService = languageService;
             _orderService = orderService;
             _userManager = userManager;
             _context = context;
@@ -41,35 +40,35 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
 
         private readonly IHttpClientFactory _clientFactory;
         [BindProperty]
-       
+
         public CurrencyExchangeRates CurrencyData { get; set; }
         public string BaseCurrency { get; set; } = "SEK";
-        
+        private readonly LanguageService _languageService;
         public string CurrentLanguage { get; set; }
         public string CustomerNumber { get; set; }
-        public async Task<IActionResult> OnGetShipment()
+        public async Task<IActionResult> OnGet()
         {
-            
+
             var userId = _userManager.GetUserId(User);
             CustomerNumber = await GetCustomerNumberAsync(userId);
             Order.Customer = CustomerNumber;
             var countries = await _orderService.GetAllCountries();
             ViewData["Countries"] = countries;
 
-            
+            CurrentLanguage = _languageService.GetCurrentLanguage();
             var client = _clientFactory.CreateClient();
             var response = await client.GetStringAsync($"https://api.exchangerate-api.com/v4/latest/{BaseCurrency}");
-            
+
             CurrencyData = JsonConvert.DeserializeObject<CurrencyExchangeRates>(response);
-            return  Page();
+            return Page();
         }
-        public async Task<IActionResult> OnPostShipmentAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
             _logger.LogInformation($"Order received: {JsonConvert.SerializeObject(Order)}");
-            
+
             var countries = await _orderService.GetAllCountries();
             ViewData["Countries"] = countries;
-            
+            CurrentLanguage = _languageService.ToggleLanguage();
             ViewData["Language"] = CurrentLanguage;
 
             if (ModelState.IsValid)

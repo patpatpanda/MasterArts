@@ -9,6 +9,9 @@
 <div style="margin-top:100px;">
     <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
 </div>
+<div class="language-toggle text-end">
+    <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">Svenska</button>
+</div>
 <div class="text-center shipping-cost-calculator">
     <h3 id="resultSection"></h3>
 
@@ -26,10 +29,10 @@
 </div>
 
 
-<form method="post" style="margin-top:50px">
+<form method="post" id="contactForm" style="margin-top:50px">
     <div class="form-container-2">
     <div>
-        <label asp-for="@Model.ShippingRequest.Module">Transportmodul</label>
+        <label asp-for="@Model.ShippingRequest.Module">Transport Module</label>
         <select asp-for="@Model.ShippingRequest.Module">
             <option value="ocean">Ocean</option>
             <option value="rail">Rail</option>
@@ -41,8 +44,8 @@
             <div>
                 <label asp-for="ShippingRequest.Imo">IMO</label>
                 <select asp-for="ShippingRequest.Imo">
-                    <option value="true">Ja</option>
-                    <option value="false">Nej</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
                 </select>
                 
             </div>
@@ -52,17 +55,17 @@
             <input asp-for="@Model.ShippingRequest.InlandZipCode" />
         </div>
         <div>
-            <label asp-for="@Model.ShippingRequest.Weight">Vikt</label>
+                <label asp-for="@Model.ShippingRequest.Weight">Weight</label>
             <input asp-for="@Model.ShippingRequest.Weight" type="number" />
         </div>
             <div>
-                <label asp-for="@Model.ShippingRequest.Volume">Volym (m³)</label>
+                <label asp-for="@Model.ShippingRequest.Volume">Volume (m³)</label>
                 <input asp-for="@Model.ShippingRequest.Volume" type="number" step="0.01" />
             </div>
 
 
         <div>
-            <label asp-for="@Model.ShippingRequest.Date">Datum (YYYY-MM-DD)</label>
+            <label asp-for="@Model.ShippingRequest.Date">Date</label>
             <input asp-for="@Model.ShippingRequest.Date" type="date" />
         </div>
         <label asp-for="@Model.ShippingRequest.ImportExport">Import/Export</label>
@@ -71,42 +74,45 @@
             <option value="export">Export</option>
         </select>
     </div>
-        <div>
-            <label asp-for="@Model.ShippingRequest.Type">Typ</label>
+        
+            
             <!-- Displaying "LCL" as a text to the user, assuming "LCL" is the only option needed. -->
-            <p>LCL</p>
+            
             <!-- Hidden input to ensure "LCL" is submitted as the value -->
             <input type="hidden" asp-for="@Model.ShippingRequest.Type" value="lcl" />
+
+
+        <div>
+            <label for="fromCode">From Code</label>
+            <input type="text" id="fromCode" name="ShippingRequest.FromCode" placeholder="Ex: NO OSL" aria-describedby="fromCodeHelp">
+            <span id="fromCodeHelp" class="form-text">Enter the UN/LOCODE for the origin location, e.g., "NOOSL" for Oslo.</span>
+            <span class="text-danger"></span>
+        </div>
+        <div>
+            <label for="toCode">To Code</label>
+            <input type="text" id="toCode" name="ShippingRequest.ToCode" placeholder="Ex: SE STO" aria-describedby="toCodeHelp">
+            <span id="toCodeHelp" class="form-text">Enter the UN/LOCODE for the destination location, e.g., "SESTO" for Stockholm.</span>
         </div>
 
-    <div>
-        <label asp-for="@Model.ShippingRequest.FromCode">Från kod</label>
-        <input asp-for="@Model.ShippingRequest.FromCode" />
-            <span asp-validation-for="@Model.ShippingRequest.FromCode" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="@Model.ShippingRequest.ToCode">Till kod</label>
-        <input asp-for="@Model.ShippingRequest.ToCode" />
-    </div>
         
     <!-- Fyll i fler fält enligt ovanstående mönster -->
     <div>
-        <label asp-for="@Model.ShippingRequest.Packages">Antal paket</label>
+            <label asp-for="@Model.ShippingRequest.Packages">Number Of Packages"</label>
         <input type="number" asp-for="@Model.ShippingRequest.Packages" />
     </div>
     <div>
         <div>
-            <label asp-for="@Model.ShippingRequest.PackageType">Pakettyp</label>
+            <label asp-for="@Model.ShippingRequest.PackageType">Package Type</label>
             <select asp-for="@Model.ShippingRequest.PackageType">
-                <option value="PALLET(S)">Pall(ar)</option>
-                <option value="CARTON(S)">Kartong(er)</option>
-                <option value="CRATE(S)">Trälådor</option>
-                <option value="DRUM(S)">Fat</option>
-                <option value="BUNDLE(S)">Buntar</option>
-                <option value="PIECE(S)">Styckegods</option>
-                <option value="CONTAINER(S)">Fraktcontainrar</option>
-                <option value="ROLL(S)">Rullar</option>
-                <option value="BAG(S)">Säckar</option>
+                    <option value="PALLET(S)">PALLET(S)</option>
+                    <option value="CARTON(S)">CARTON(S)</option>
+                    <option value="CRATE(S)">CRATE(S)</option>
+                    <option value="DRUM(S)">DRUM(S)</option>
+                    <option value="BUNDLE(S)">BUNDLE</option>
+                    <option value="PIECE(S)">PIECE</option>
+                    <option value="CONTAINER(S)">CONTAINER</option>
+                    <option value="ROLL(S)">ROLL(S)</option>
+                    <option value="BAG(S)">BAG(S)</option>
             </select>
         </div>
 
@@ -116,7 +122,7 @@
         <div class="form-container-2">
     <h4>Dimensioner</h4>
 
-    <div id="dimensionsContainer">
+        <div id="dimensionsContainerEn">
         <div>
             <label asp-for="ShippingRequest.Dimensions[0].Pcs">Antal stycken</label>
             <input asp-for="ShippingRequest.Dimensions[0].Pcs" type="number" />
@@ -145,8 +151,9 @@
             </select>
         </div>
     </div>
-    
-    <button type="button" onclick="addDimension()">Lägg till Dimension</button>
+
+        <button type="button" onclick="addDimension()">Lägg till Dimension</button>
+
     <br>
     
     </div>
@@ -157,6 +164,140 @@
 </form>
 
 
+<form method="post" id="contactFormSv" style="margin-top:50px;display:none">
+    <div class="form-container-2">
+        <div>
+            <label asp-for="@Model.ShippingRequest.Module">Transportmodul</label>
+            <select asp-for="@Model.ShippingRequest.Module">
+                <option value="ocean">Ocean</option>
+                <option value="rail">Rail</option>
+                <!-- Lägg till fler transportmoduler här -->
+            </select>
+        </div>
+        <div>
+
+            <div>
+                <label asp-for="ShippingRequest.Imo">IMO</label>
+                <select asp-for="ShippingRequest.Imo">
+                    <option value="true">Ja</option>
+                    <option value="false">Nej</option>
+                </select>
+
+            </div>
+
+            <div>
+                <label asp-for="@Model.ShippingRequest.InlandZipCode">Inland Zip Code</label>
+                <input asp-for="@Model.ShippingRequest.InlandZipCode" />
+            </div>
+            <div>
+                <label asp-for="@Model.ShippingRequest.Weight">Vikt</label>
+                <input asp-for="@Model.ShippingRequest.Weight" type="number" />
+            </div>
+            <div>
+                <label asp-for="@Model.ShippingRequest.Volume">Volym (m³)</label>
+                <input asp-for="@Model.ShippingRequest.Volume" type="number" step="0.01" />
+            </div>
+
+
+            <div>
+                <label asp-for="@Model.ShippingRequest.Date">Datum (YYYY-MM-DD)</label>
+                <input asp-for="@Model.ShippingRequest.Date" type="date" />
+            </div>
+            <label asp-for="@Model.ShippingRequest.ImportExport">Import/Export</label>
+            <select asp-for="@Model.ShippingRequest.ImportExport">
+                <option value="import">Import</option>
+                <option value="export">Export</option>
+            </select>
+        </div>
+        <div>
+            
+            <!-- Displaying "LCL" as a text to the user, assuming "LCL" is the only option needed. -->
+            
+            <!-- Hidden input to ensure "LCL" is submitted as the value -->
+            <input type="hidden" asp-for="@Model.ShippingRequest.Type" value="lcl" />
+        </div>
+
+        <div>
+            <label for="fromCode">Från kod</label>
+            <input type="text" id="fromCode" name="ShippingRequest.FromCode" placeholder="Ex: NO OSL" aria-describedby="fromCodeHelp">
+            <span id="fromCodeHelp" class="form-text">Ange UN/LOCODE för avsändningsplatsen, t.ex. "NOOSL" för Oslo.</span>
+            <span class="text-danger"></span>
+        </div>
+        <div>
+            <label for="toCode">Till kod</label>
+            <input type="text" id="toCode" name="ShippingRequest.ToCode" placeholder="Ex: SE STO" aria-describedby="toCodeHelp">
+            <span id="toCodeHelp" class="form-text">Ange UN/LOCODE för destinationsplatsen, t.ex. "SESTO" för Stockholm.</span>
+        </div>
+
+
+        <!-- Fyll i fler fält enligt ovanstående mönster -->
+        <div>
+            <label asp-for="@Model.ShippingRequest.Packages">Antal paket</label>
+            <input type="number" asp-for="@Model.ShippingRequest.Packages" />
+        </div>
+        <div>
+            <div>
+                <label asp-for="@Model.ShippingRequest.PackageType">Pakettyp</label>
+                <select asp-for="@Model.ShippingRequest.PackageType">
+                    <option value="PALLET(S)">Pall(ar)</option>
+                    <option value="CARTON(S)">Kartong(er)</option>
+                    <option value="CRATE(S)">Trälådor</option>
+                    <option value="DRUM(S)">Fat</option>
+                    <option value="BUNDLE(S)">Buntar</option>
+                    <option value="PIECE(S)">Styckegods</option>
+                    <option value="CONTAINER(S)">Fraktcontainrar</option>
+                    <option value="ROLL(S)">Rullar</option>
+                    <option value="BAG(S)">Säckar</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-container-2">
+        <h4>Dimensioner</h4>
+
+        <div id="dimensionsContainerSv">
+            <div>
+                <label asp-for="ShippingRequest.Dimensions[0].Pcs">Antal stycken</label>
+                <input asp-for="ShippingRequest.Dimensions[0].Pcs" type="number" />
+            </div>
+            <div>
+                <label asp-for="ShippingRequest.Dimensions[0].Length">Längd</label>
+                <input asp-for="ShippingRequest.Dimensions[0].Length" type="number" />
+            </div>
+            <div>
+                <label asp-for="ShippingRequest.Dimensions[0].Width">Bredd</label>
+                <input asp-for="ShippingRequest.Dimensions[0].Width" type="number" />
+            </div>
+            <div>
+                <label asp-for="ShippingRequest.Dimensions[0].Height">Höjd</label>
+                <input asp-for="ShippingRequest.Dimensions[0].Height" type="number" />
+            </div>
+            <div>
+                <label asp-for="ShippingRequest.Dimensions[0].Weight">Vikt</label>
+                <input asp-for="ShippingRequest.Dimensions[0].Weight" type="number" />
+            </div>
+            <div>
+                <label asp-for="ShippingRequest.Dimensions[0].Stackable">Stackbar</label>
+                <select asp-for="ShippingRequest.Dimensions[0].Stackable">
+                    <option value="true">Ja</option>
+                    <option value="false">Nej</option>
+                </select>
+            </div>
+        </div>
+
+
+        <button type="button" onclick="addDimension()">Lägg till Dimension</button>
+
+        <br>
+
+    </div>
+    <div id="loadingSpinner2" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+    <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large">Beräkna fraktkostnader</button>
+</form>
 
 
 
@@ -166,7 +307,7 @@
     <script>
         function startLoginProcess() {
             document.getElementById('loadingSpinner').style.display = 'block';
-
+            document.getElementById('loadingSpinner2').style.display = 'block';
             // Antag att `login` är funktionen som hanterar inloggningsprocessen.
             login().then(() => {
                 document.getElementById('loadingSpinner').style.display = 'none';
@@ -180,7 +321,21 @@
             }
         };
 
+        function toggleLanguage() {
+            var toggleBtn = document.getElementById('languageToggleBtn');
+            var contactForm = document.getElementById('contactForm');
+            var contactFormSv = document.getElementById('contactFormSv');
 
+            if (toggleBtn.innerText === 'Svenska') {
+                toggleBtn.innerText = 'English';
+                contactForm.style.display = 'none';
+                contactFormSv.style.display = 'block';
+            } else {
+                toggleBtn.innerText = 'Svenska';
+                contactForm.style.display = 'block';
+                contactFormSv.style.display = 'none';
+            }
+        }
         var dimensionIndex = 0;
         function addOption() {
             var container = document.getElementById('optionsContainer');
@@ -209,24 +364,33 @@
 
 
 
-        function addDimension() {
-            var container = document.getElementById('dimensionsContainer');
-            container.insertAdjacentHTML('beforeend', `
-                        <div id="dimension-${dimensionIndex}">
-                            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Pcs" placeholder="Antal stycken" />
-                            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Length" placeholder="Längd" />
-                            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Width" placeholder="Bredd" />
-                            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Height" placeholder="Höjd" />
-                            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Weight" placeholder="Vikt" />
-                            <select name="ShippingRequest.Dimensions[${dimensionIndex}].Stackable">
-                                <option value="true">Ja</option>
-                                <option value="false">Nej</option>
-                            </select>
-                            <button type="button" onclick="removeDimension(${dimensionIndex})">Ta bort</button>
-                        </div>
-                    `);
-            dimensionIndex++;
-        }
+      function addDimension() {
+    var language = document.getElementById('languageToggleBtn').innerText;
+    // Eftersom standardtexten är "English", innebär det att sidan initialt visas på svenska.
+    // Så om knappen visar "Svenska", betyder det att användaren har växlat till engelska.
+    var containerId = language === 'Svenska' ? 'dimensionsContainerEn' : 'dimensionsContainerSv';
+    var container = document.getElementById(containerId);
+
+    var dimensionHTML = `
+        <div id="dimension-${dimensionIndex}">
+            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Pcs" placeholder="Antal stycken" />
+            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Length" placeholder="Längd" />
+            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Width" placeholder="Bredd" />
+            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Height" placeholder="Höjd" />
+            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Weight" placeholder="Vikt" />
+            <select name="ShippingRequest.Dimensions[${dimensionIndex}].Stackable">
+                <option value="true">Ja</option>
+                <option value="false">Nej</option>
+            </select>
+            <button type="button" onclick="removeDimension(${dimensionIndex})">Ta bort</button>
+        </div>
+    `;
+
+    container.insertAdjacentHTML('beforeend', dimensionHTML);
+    dimensionIndex++;
+}
+
+
 
         function removeDimension(index) {
             var elementToRemove = document.getElementById(`dimension-${index}`);
