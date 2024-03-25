@@ -884,34 +884,7 @@
 
 
 
-@functions {
-    public string CalculatePercentageChange(decimal oldRate, decimal newRate)
-    {
-        decimal percentageChange = ((newRate - oldRate) / oldRate) * 100;
-        string color = "";
 
-        if (percentageChange > 0)
-        {
-            color = "green";
-        }
-        else if (percentageChange < 0)
-        {
-            color = "red";
-        }
-        else
-        {
-            
-            return "";
-        }
-
-        
-        string html = $"<span style='color: {color};'>(+{Math.Round(percentageChange, 2)}%)</span>";
-        return html;
-    }
-
-
-
-}
 
 
 

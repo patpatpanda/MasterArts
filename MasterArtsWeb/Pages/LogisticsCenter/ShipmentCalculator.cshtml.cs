@@ -11,14 +11,15 @@ using Microsoft.EntityFrameworkCore;
 namespace MasterArtsWeb.Pages.LogisticsCenter
 {
     [Authorize]
-    public class ShipmentCalculatorModel : PageModel
+    public class ShipmentCalculatorModel : BaseModel
     {
 
         public ShipmentCalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory,OrderService orderService, UserManager<IdentityUser> userManager,MyDbContext context, ILogger<ShipmentCalculatorModel> logger)
-                
+            : base(languageService)
+
         {
             _clientFactory = clientFactory;
-            _languageService = languageService;
+           
             _orderService = orderService;
             _userManager = userManager;
             _context = context;
@@ -43,10 +44,10 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
        
         public CurrencyExchangeRates CurrencyData { get; set; }
         public string BaseCurrency { get; set; } = "SEK";
-        private readonly LanguageService _languageService;
+        
         public string CurrentLanguage { get; set; }
         public string CustomerNumber { get; set; }
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGetShipment()
         {
             
             var userId = _userManager.GetUserId(User);
@@ -55,20 +56,20 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             var countries = await _orderService.GetAllCountries();
             ViewData["Countries"] = countries;
 
-            CurrentLanguage = _languageService.GetCurrentLanguage();
+            
             var client = _clientFactory.CreateClient();
             var response = await client.GetStringAsync($"https://api.exchangerate-api.com/v4/latest/{BaseCurrency}");
             
             CurrencyData = JsonConvert.DeserializeObject<CurrencyExchangeRates>(response);
             return  Page();
         }
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostShipmentAsync()
         {
             _logger.LogInformation($"Order received: {JsonConvert.SerializeObject(Order)}");
             
             var countries = await _orderService.GetAllCountries();
             ViewData["Countries"] = countries;
-            CurrentLanguage = _languageService.ToggleLanguage();
+            
             ViewData["Language"] = CurrentLanguage;
 
             if (ModelState.IsValid)

@@ -2426,5 +2426,17 @@ input[type="checkbox"] {
         box-shadow: 0 0 20px rgba(0, 153, 255, 1);
     }
 }
-
+.page-title {
+    font-size: 2em; /* Storlek på texten */
+    color: #4A90E2; /* Färg på texten */
+    text-align: center; /* Centrerar texten */
+    margin-top: 20px; /* Avstånd till toppen */
+    margin-bottom: 20px; /* Avstånd till innehållet nedanför */
+    font-family: 'Arial', sans-serif; /* Typsnitt */
+    text-transform: uppercase; /* Gör all text till versaler */
+    letter-spacing: 0.05em; /* Lägger till lite mellanrum mellan bokstäverna */
+    border-bottom: 2px solid #4A90E2; /* En linje under texten för extra stil */
+    display: inline-block; /* Gör att border-bottom endast tar upp så mycket plats som texten */
+    padding-bottom: 5px; /* Lägger till lite utrymme mellan texten och linjen */
+}
 
