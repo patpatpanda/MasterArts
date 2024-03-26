@@ -52,9 +52,8 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             var userId = _userManager.GetUserId(User);
             CustomerNumber = await GetCustomerNumberAsync(userId);
             Order.Customer = CustomerNumber;
-            var countries = await _orderService.GetAllCountries();
-            ViewData["Countries"] = countries;
-
+           
+            
             CurrentLanguage = _languageService.GetCurrentLanguage();
             var client = _clientFactory.CreateClient();
             var response = await client.GetStringAsync($"https://api.exchangerate-api.com/v4/latest/{BaseCurrency}");
@@ -66,8 +65,8 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         {
             _logger.LogInformation($"Order received: {JsonConvert.SerializeObject(Order)}");
 
-            var countries = await _orderService.GetAllCountries();
-            ViewData["Countries"] = countries;
+           
+            
             CurrentLanguage = _languageService.ToggleLanguage();
             ViewData["Language"] = CurrentLanguage;
 

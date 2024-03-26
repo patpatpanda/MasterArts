@@ -84,13 +84,13 @@
 
         <div>
             <label for="fromCode">From Code</label>
-            <input type="text" id="fromCode" name="ShippingRequest.FromCode" placeholder="Ex: NO OSL" aria-describedby="fromCodeHelp">
+            <input type="text" id="fromCode" name="ShippingRequest.FromCode" placeholder="Ex: NOOSL" aria-describedby="fromCodeHelp">
             <span id="fromCodeHelp" class="form-text">Enter the UN/LOCODE for the origin location, e.g., "NOOSL" for Oslo.</span>
             <span class="text-danger"></span>
         </div>
         <div>
             <label for="toCode">To Code</label>
-            <input type="text" id="toCode" name="ShippingRequest.ToCode" placeholder="Ex: SE STO" aria-describedby="toCodeHelp">
+            <input type="text" id="toCode" name="ShippingRequest.ToCode" placeholder="Ex: SESTO" aria-describedby="toCodeHelp">
             <span id="toCodeHelp" class="form-text">Enter the UN/LOCODE for the destination location, e.g., "SESTO" for Stockholm.</span>
         </div>
 
@@ -219,13 +219,17 @@
 
         <div>
             <label for="fromCode">Från kod</label>
-            <input type="text" id="fromCode" name="ShippingRequest.FromCode" placeholder="Ex: NO OSL" aria-describedby="fromCodeHelp">
+            <!-- Antag att ShippingRequest är en egenskap i din PageModel och du vill binda till dess fält -->
+            <input type="text" asp-for="ShippingRequest.FromCode" placeholder="Ex: NOSTO" aria-describedby="fromCodeHelp">
+
             <span id="fromCodeHelp" class="form-text">Ange UN/LOCODE för avsändningsplatsen, t.ex. "NOOSL" för Oslo.</span>
             <span class="text-danger"></span>
         </div>
         <div>
             <label for="toCode">Till kod</label>
-            <input type="text" id="toCode" name="ShippingRequest.ToCode" placeholder="Ex: SE STO" aria-describedby="toCodeHelp">
+            <!-- Antag att ShippingRequest är en egenskap i din PageModel och du vill binda till dess fält -->
+            <input type="text" asp-for="ShippingRequest.ToCode" placeholder="Ex: SESTO" aria-describedby="fromCodeHelp">
+
             <span id="toCodeHelp" class="form-text">Ange UN/LOCODE för destinationsplatsen, t.ex. "SESTO" för Stockholm.</span>
         </div>
 

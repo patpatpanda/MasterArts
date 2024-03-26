@@ -18,7 +18,7 @@ namespace MasterArtsWeb.Data
 
         public DbSet<Goods> Goods { get; set; }
         public DbSet<ExchangeRate> CurrencyRates { get; set; }
-        public DbSet<MrRate> Rates { get; set; }
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
