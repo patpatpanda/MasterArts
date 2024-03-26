@@ -124,30 +124,30 @@
 
         <div id="dimensionsContainerEn">
         <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Pcs">Antal stycken</label>
+            <label asp-for="ShippingRequest.Dimensions[0].Pcs">Number Of Package</label>
             <input asp-for="ShippingRequest.Dimensions[0].Pcs" type="number" />
         </div>
         <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Length">Längd</label>
+            <label asp-for="ShippingRequest.Dimensions[0].Length">Lenght</label>
             <input asp-for="ShippingRequest.Dimensions[0].Length" type="number" />
         </div>
         <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Width">Bredd</label>
+            <label asp-for="ShippingRequest.Dimensions[0].Width">Width</label>
             <input asp-for="ShippingRequest.Dimensions[0].Width" type="number" />
         </div>
         <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Height">Höjd</label>
+            <label asp-for="ShippingRequest.Dimensions[0].Height">Hight</label>
             <input asp-for="ShippingRequest.Dimensions[0].Height" type="number" />
         </div>
         <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Weight">Vikt</label>
+            <label asp-for="ShippingRequest.Dimensions[0].Weight">Weight</label>
             <input asp-for="ShippingRequest.Dimensions[0].Weight" type="number" />
         </div>
         <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Stackable">Stackbar</label>
+            <label asp-for="ShippingRequest.Dimensions[0].Stackable">Stackable</label>
             <select asp-for="ShippingRequest.Dimensions[0].Stackable">
-                <option value="true">Ja</option>
-                <option value="false">Nej</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
             </select>
         </div>
     </div>
@@ -364,31 +364,55 @@
 
 
 
-      function addDimension() {
-    var language = document.getElementById('languageToggleBtn').innerText;
-    // Eftersom standardtexten är "English", innebär det att sidan initialt visas på svenska.
-    // Så om knappen visar "Svenska", betyder det att användaren har växlat till engelska.
-    var containerId = language === 'Svenska' ? 'dimensionsContainerEn' : 'dimensionsContainerSv';
-    var container = document.getElementById(containerId);
+        function addDimension() {
+            var language = document.getElementById('languageToggleBtn').innerText;
+            var isSwedish = language.includes('Svenska');
 
-    var dimensionHTML = `
-        <div id="dimension-${dimensionIndex}">
-            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Pcs" placeholder="Antal stycken" />
-            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Length" placeholder="Längd" />
-            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Width" placeholder="Bredd" />
-            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Height" placeholder="Höjd" />
-            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Weight" placeholder="Vikt" />
-            <select name="ShippingRequest.Dimensions[${dimensionIndex}].Stackable">
-                <option value="true">Ja</option>
-                <option value="false">Nej</option>
-            </select>
-            <button type="button" onclick="removeDimension(${dimensionIndex})">Ta bort</button>
-        </div>
-    `;
+            var containerId = isSwedish ? 'dimensionsContainerEn' : 'dimensionsContainerSv';
+            var container = document.getElementById(containerId);
 
-    container.insertAdjacentHTML('beforeend', dimensionHTML);
-    dimensionIndex++;
-}
+            var placeholders = isSwedish ? {
+
+                pcs: "Number of pieces",
+                length: "Length",
+                width: "Width",
+                height: "Height",
+                weight: "Weight",
+                yes: "Yes",
+                no: "No",
+                removeBtn: "Remove"
+                
+                
+            } : {
+                pcs: "Antal stycken",
+                length: "Längd",
+                width: "Bredd",
+                height: "Höjd",
+                weight: "Vikt",
+                yes: "Ja",
+                no: "Nej",
+                removeBtn: "Ta bort"
+            };
+
+            var dimensionHTML = `
+                <div id="dimension-${dimensionIndex}">
+                    <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Pcs" placeholder="${placeholders.pcs}" />
+                    <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Length" placeholder="${placeholders.length}" />
+                    <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Width" placeholder="${placeholders.width}" />
+                    <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Height" placeholder="${placeholders.height}" />
+                    <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Weight" placeholder="${placeholders.weight}" />
+                    <select name="ShippingRequest.Dimensions[${dimensionIndex}].Stackable">
+                        <option value="true">${placeholders.yes}</option>
+                        <option value="false">${placeholders.no}</option>
+                    </select>
+                    <button type="button" onclick="removeDimension(${dimensionIndex})">${placeholders.removeBtn}</button>
+                </div>
+            `;
+
+            container.insertAdjacentHTML('beforeend', dimensionHTML);
+            dimensionIndex++;
+        }
+
 
 
 
