@@ -15,14 +15,14 @@ namespace MasterArtsLibrary.Models
     {
         public string Module { get; set; } 
         public string ImportExport { get; set; } 
-        public string Type { get; set; } = "fcl";
+        public string Type { get; set; } 
         public string FromCode { get; set; }
         public string ToCode { get; set; }
-        public string RoutingCode { get; set; }
+        public string? RoutingCode { get; set; }
         public string InlandZipCode { get; set; }
         public int NoOfContainers { get; set; } 
         public double Weight { get; set; } 
         public string ContainerMode { get; set; } 
-        public DateTime Date { get; set; } 
+        public string Date { get; set; } 
     }
 }

@@ -42,6 +42,8 @@ namespace MasterArtsLibrary.Services
             _logger = logger;
             _context = context;
             _httpClient = httpClient;
+            var authValue = Convert.ToBase64String(Encoding.ASCII.GetBytes("nils-emil1337@hotmail.se:27wH5AFp"));
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authValue);
         }
 
 
@@ -157,6 +159,47 @@ namespace MasterArtsLibrary.Services
             }
         }
 
+        public async Task<ApiResponse> CalculateRatesFclAsync(FclRate shippingRequest, RateType rateType)
+        {
+            var authValue = Convert.ToBase64String(Encoding.ASCII.GetBytes("nils-emil1337@hotmail.se:27wH5AFp"));
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authValue);
+
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new CamelCaseNamingStrategy()
+                }
+            };
+
+            var jsonContent = JsonConvert.SerializeObject(shippingRequest, settings);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            // Bygg URL baserat på RateType
+            var endpoint = rateType == RateType.LCL ? "calculaterateslcl" : "calculateratesfcl";
+            var url = $"https://ncse.nordic-on.com/api/v1/{endpoint}";
+
+            try
+            {
+                var response = await _httpClient.PostAsync(url, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<ApiResponse>(responseString);
+                }
+                else
+                {
+                    _logger.LogError("Servern returnerade ett fel: " + await response.Content.ReadAsStringAsync());
+                    return null; // Eller hantera det på något annat sätt
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Ett undantag inträffade: " + ex.Message);
+                return null; // Eller hantera det på något annat sätt
+            }
+        }
+
 
 
 
@@ -222,7 +265,30 @@ namespace MasterArtsLibrary.Services
 
 
 
-
+        public async Task<TransportInformation> TrackAndTraceAsync(string trackingCode)
+        {
+            var url = $"https://ncse.nordic-on.com/api/v1/trackandtrace?input={trackingCode}";
+            try
+            {
+                var response = await _httpClient.GetAsync(url);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    var transportInformation = JsonConvert.DeserializeObject<TransportInformation>(responseContent);
+                    return transportInformation;
+                }
+                else
+                {
+                    // Hantera icke-lyckade svar här, t.ex. genom att logga eller kasta ett undantag
+                    throw new Exception($"API call failed: {response.ReasonPhrase}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Logga eller hantera undantag här
+                throw new Exception($"An error occurred while calling the API: {ex.Message}", ex);
+            }
+        }
 
 
 
