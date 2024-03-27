@@ -118,7 +118,7 @@ namespace MasterArtsLibrary.Services
             return null;
         }
 
-        public async Task<ApiResponse> CalculateRatesAsync(ShippingRequest shippingRequest, RateType rateType)
+        public async Task<object> CalculateRatesAsync(ShippingRequest shippingRequest)
         {
             var authValue = Convert.ToBase64String(Encoding.ASCII.GetBytes("nils-emil1337@hotmail.se:27wH5AFp"));
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authValue);
@@ -134,8 +134,7 @@ namespace MasterArtsLibrary.Services
             var jsonContent = JsonConvert.SerializeObject(shippingRequest, settings);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            // Bygg URL baserat på RateType
-            var endpoint = rateType == RateType.LCL ? "calculaterateslcl" : "calculateratesfcl";
+            var endpoint = shippingRequest.UserSelection == "inlandtransport" ? "inlandtransport" : "calculaterateslcl";
             var url = $"https://ncse.nordic-on.com/api/v1/{endpoint}";
 
             try
@@ -144,20 +143,30 @@ namespace MasterArtsLibrary.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var responseString = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<ApiResponse>(responseString);
+
+                    // Använd olika deserialisering baserat på endpoint
+                    if (endpoint == "inlandtransport")
+                    {
+                        return JsonConvert.DeserializeObject<ApiResponseInland>(responseString);
+                    }
+                    else
+                    {
+                        return JsonConvert.DeserializeObject<ApiResponse>(responseString);
+                    }
                 }
                 else
                 {
-                    _logger.LogError("Servern returnerade ett fel: " + await response.Content.ReadAsStringAsync());
-                    return null; // Eller hantera det på något annat sätt
+                    // Hantera icke-lyckade svar på lämpligt sätt
+                    return null;
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError("Ett undantag inträffade: " + ex.Message);
-                return null; // Eller hantera det på något annat sätt
+                // Logga och hantera undantag
+                return null;
             }
         }
+
 
         public async Task<ApiResponse> CalculateRatesFclAsync(FclRate shippingRequest, RateType rateType)
         {

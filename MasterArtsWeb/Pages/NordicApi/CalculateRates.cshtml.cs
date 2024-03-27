@@ -44,13 +44,18 @@ namespace MasterArtsWeb.Pages
                 _logger.LogInformation(JsonConvert.SerializeObject(ShippingRequest));
                 try
                 {
-                    
-                    ApiResponse = await _orderService.CalculateRatesAsync(ShippingRequest, RateType.LCL);
-
-                    if (ApiResponse == null)
+                    var response = await _orderService.CalculateRatesAsync(ShippingRequest);
+                    // Ytterligare logik efter anropet, som att hantera ApiResponse...
+                    if (response is ApiResponse apiResponse)
                     {
-                        _logger.LogInformation("API-svaret är null.");
-                        ModelState.AddModelError(string.Empty, "Servern returnerade ett fel eller inget svar.");
+                        // Hantera ApiResponse
+                        ApiResponse = apiResponse; // Anta att ApiResponse är av typen ApiResponse
+                    }
+                    else if (response is ApiResponseInland apiResponseInland)
+                    {
+                        // Hantera ApiResponseInland
+                        // Om du vill konvertera ApiResponseInland till något som kan hanteras likadant som ApiResponse
+                        // eller om du vill uppdatera UI baserat på ApiResponseInland-specifika data
                     }
                 }
                 catch (Exception ex)

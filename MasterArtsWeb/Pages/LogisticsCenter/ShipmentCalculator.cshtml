@@ -20,8 +20,8 @@
 <div class="buttons-container" style="margin-top:50px; text-align:center;">
     <a href="/LogisticsCenter/Calculator#contact-id">Calculator</a>
     <a href="/LogisticsCenter/MyOrdersModel#contact-id">Bookings</a>
-    <a href="/NordicApi/CalculateRates#contact-id">Rates</a>
-    <a href="/NordicApi/FclRequest#contact-id">Rates</a>
+    <a href="/NordicApi/CalculateRates#contact-id">Rates LCL</a>
+    
 
     <p class="customer-number">Kundnummer: @Model.CustomerNumber</p>
 
@@ -362,7 +362,10 @@
    
 
     
-    <button type="submit" class="btn-large text-center" style="margin-top:20px">Send Order</button>
+    <div id="loadingSpinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+    <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" id="OrderSubmitButton" name="OrderSubmitButton">Skicka Order</button>
 </form>
 
 

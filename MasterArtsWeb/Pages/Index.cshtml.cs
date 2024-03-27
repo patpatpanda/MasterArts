@@ -74,7 +74,7 @@ namespace MasterArtsWeb.Pages
             {
                 // Hantera eventuella undantag som kastas under processen
                 TempData["NotValidCode"] = $"Could not find anything";
-                return Page();
+                return RedirectToPage(new { scrollTo = "contact" });
             }
 
             CurrentLanguage = _languageService.ToggleLanguage();
@@ -95,6 +95,14 @@ namespace MasterArtsWeb.Pages
             return RedirectToPage();
         }
 
+        public IActionResult OnPostChangeLanguage()
+        {
+            CurrentLanguage = _languageService.ToggleLanguage();
+            ViewData["Language"] = CurrentLanguage;
+            Console.WriteLine($"Language switched to: {CurrentLanguage}");
 
+            // Inget behov av att sätta TempData["NotValidCode"] här
+            return RedirectToPage();
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@page
-@model MasterArtsWeb.Pages.CalculateRatesModel
+@model MasterArtsWeb.Pages.NordicApi.InlandRequestModel
 @{
 }
 
@@ -15,15 +15,20 @@
 <div class="text-center shipping-cost-calculator">
     <h3 id="resultSection"></h3>
 
-    @if (Model.ApiResponse != null)
+    @if (Model.ApiResponseInland != null)
     {
-        <h3 class="totals-title">Totals</h3>
-        <ul class="totals-list">
-            @foreach (var total in Model.ApiResponse.Totals)
-            {
-                <li class="total-item">@total.Currency: @total.Sum (Kurs: @total.ExchangeRate)</li>
-            }
-        </ul>
+        <div>
+            <p>Total: @Model.ApiResponseInland.total</p>
+            <p>USD Exchange Rate: @Model.ApiResponseInland.usdExchangeRate</p>
+            <p>EUR Exchange Rate: @Model.ApiResponseInland.eurExchangeRate</p>
+            <p>Currency: @Model.ApiResponseInland.currency</p>
+            <p>Fuel Surcharge: @Model.ApiResponseInland.fuelSurcharge</p>
+            <p>Fuel Surcharge Percentage: @Model.ApiResponseInland.fuelSurchargePercentage</p>
+            <p>CO2: @Model.ApiResponseInland.co2</p>
+            <p>Zip Code: @Model.ApiResponseInland.zipCode</p>
+            <p>City: @Model.ApiResponseInland.city</p>
+        </div>
+
 
     }
 </div>
@@ -32,8 +37,8 @@
 <form method="post" id="contactForm" style="margin-top:50px">
     <div class="form-container-2">
     <div>
-        <label asp-for="@Model.ShippingRequest.Module">Transport Module</label>
-        <select asp-for="@Model.ShippingRequest.Module">
+        <label asp-for="@Model.Inland.Module">Transport Module</label>
+            <select asp-for="@Model.Inland.Module">
             <option value="ocean">Ocean</option>
             <option value="rail">Rail</option>
             <!-- Lägg till fler transportmoduler här -->
@@ -41,35 +46,28 @@
     </div>
     <div>
 
-            <div>
-                <label asp-for="ShippingRequest.Imo">IMO</label>
-                <select asp-for="ShippingRequest.Imo">
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
-                
-            </div>
+           
 
         <div>
-            <label asp-for="@Model.ShippingRequest.InlandZipCode">Inland Zip Code</label>
-            <input asp-for="@Model.ShippingRequest.InlandZipCode" />
+                <label asp-for="@Model.Inland.InlandZipCode">Inland Zip Code</label>
+                <input asp-for="@Model.Inland.InlandZipCode" />
         </div>
         <div>
-                <label asp-for="@Model.ShippingRequest.Weight">Weight</label>
-            <input asp-for="@Model.ShippingRequest.Weight" type="number" />
+                <label asp-for="@Model.Inland.Weight">Weight</label>
+                <input asp-for="@Model.Inland.Weight" type="number" />
         </div>
             <div>
-                <label asp-for="@Model.ShippingRequest.Volume">Volume (m³)</label>
-                <input asp-for="@Model.ShippingRequest.Volume" type="number" step="0.01" />
+                <label asp-for="@Model.Inland.Volume">Volume (m³)</label>
+                <input asp-for="@Model.Inland.Volume" type="number" step="0.01" />
             </div>
 
 
         <div>
-            <label asp-for="@Model.ShippingRequest.Date">Date</label>
-            <input asp-for="@Model.ShippingRequest.Date" type="date" />
+                <label asp-for="@Model.Inland.Date">Date</label>
+                <input asp-for="@Model.Inland.Date" type="date" />
         </div>
-        <label asp-for="@Model.ShippingRequest.ImportExport">Import/Export</label>
-        <select asp-for="@Model.ShippingRequest.ImportExport">
+            <label asp-for="@Model.Inland.ImportExport">Import/Export</label>
+            <select asp-for="@Model.Inland.ImportExport">
             <option value="import">Import</option>
             <option value="export">Export</option>
         </select>
@@ -80,36 +78,26 @@
             
             <!-- Hidden input to ensure "LCL" is submitted as the value -->
 
-        <input type="hidden" asp-for="@Model.ShippingRequest.Type" value="lcl" />
-        <input type="hidden" asp-for="@Model.ShippingRequest.UserSelection" value="lcl" />
-        
+        <input type="hidden" asp-for="@Model.Inland.Type" value="lcl" />
+        <input type="hidden" asp-for="@Model.Inland.UserSelection" value="inlandtransport" />
+
           
+
+        <div>
+            <label asp-for="@Model.Inland.City">City</label>
+            <input asp-for="@Model.Inland.City" />
+        </div>
         
-
-
-
-        <div>
-            <label for="fromCode">From Code</label>
-            <input type="text" id="fromCode" name="ShippingRequest.FromCode" placeholder="Ex: NOOSL" aria-describedby="fromCodeHelp">
-            <span id="fromCodeHelp" class="form-text">Enter the UN/LOCODE for the origin location, e.g., "NOOSL" for Oslo.</span>
-            <span class="text-danger"></span>
-        </div>
-        <div>
-            <label for="toCode">To Code</label>
-            <input type="text" id="toCode" name="ShippingRequest.ToCode" placeholder="Ex: SESTO" aria-describedby="toCodeHelp">
-            <span id="toCodeHelp" class="form-text">Enter the UN/LOCODE for the destination location, e.g., "SESTO" for Stockholm.</span>
-        </div>
-
         
     <!-- Fyll i fler fält enligt ovanstående mönster -->
     <div>
-            <label asp-for="@Model.ShippingRequest.Packages">Number Of Packages"</label>
-        <input type="number" asp-for="@Model.ShippingRequest.Packages" />
+            <label asp-for="@Model.Inland.Packages">Number Of Packages"</label>
+            <input type="number" asp-for="@Model.Inland.Packages" />
     </div>
     <div>
         <div>
-            <label asp-for="@Model.ShippingRequest.PackageType">Package Type</label>
-            <select asp-for="@Model.ShippingRequest.PackageType">
+                <label asp-for="@Model.Inland.PackageType">Package Type</label>
+                <select asp-for="@Model.Inland.PackageType">
                     <option value="PALLET(S)">PALLET(S)</option>
                     <option value="CARTON(S)">CARTON(S)</option>
                     <option value="CRATE(S)">CRATE(S)</option>
@@ -130,28 +118,28 @@
 
         <div id="dimensionsContainerEn">
         <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Pcs">Number Of Package</label>
-            <input asp-for="ShippingRequest.Dimensions[0].Pcs" type="number" />
+                <label asp-for="Inland.Dimensions[0].Pcs">Number Of Package</label>
+                <input asp-for="Inland.Dimensions[0].Pcs" type="number" />
         </div>
         <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Length">Lenght</label>
-            <input asp-for="ShippingRequest.Dimensions[0].Length" type="number" />
+                <label asp-for="Inland.Dimensions[0].Length">Lenght</label>
+                <input asp-for="Inland.Dimensions[0].Length" type="number" />
         </div>
         <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Width">Width</label>
-            <input asp-for="ShippingRequest.Dimensions[0].Width" type="number" />
+                <label asp-for="Inland.Dimensions[0].Width">Width</label>
+                <input asp-for="Inland.Dimensions[0].Width" type="number" />
         </div>
         <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Height">Hight</label>
-            <input asp-for="ShippingRequest.Dimensions[0].Height" type="number" />
+                <label asp-for="Inland.Dimensions[0].Height">Hight</label>
+                <input asp-for="Inland.Dimensions[0].Height" type="number" />
         </div>
         <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Weight">Weight</label>
-            <input asp-for="ShippingRequest.Dimensions[0].Weight" type="number" />
+                <label asp-for="Inland.Dimensions[0].Weight">Weight</label>
+                <input asp-for="Inland.Dimensions[0].Weight" type="number" />
         </div>
         <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Stackable">Stackable</label>
-            <select asp-for="ShippingRequest.Dimensions[0].Stackable">
+                <label asp-for="Inland.Dimensions[0].Stackable">Stackable</label>
+                <select asp-for="Inland.Dimensions[0].Stackable">
                 <option value="true">Yes</option>
                 <option value="false">No</option>
             </select>
@@ -223,22 +211,7 @@
             <input type="hidden" asp-for="@Model.ShippingRequest.Type" value="lcl" />
         </div>
 
-        <div>
-            <label for="fromCode">Från kod</label>
-            <!-- Antag att ShippingRequest är en egenskap i din PageModel och du vill binda till dess fält -->
-            <input type="text" asp-for="ShippingRequest.FromCode" placeholder="Ex: NOSTO" aria-describedby="fromCodeHelp">
-
-            <span id="fromCodeHelp" class="form-text">Ange UN/LOCODE för avsändningsplatsen, t.ex. "NOOSL" för Oslo.</span>
-            <span class="text-danger"></span>
-        </div>
-        <div>
-            <label for="toCode">Till kod</label>
-            <!-- Antag att ShippingRequest är en egenskap i din PageModel och du vill binda till dess fält -->
-            <input type="text" asp-for="ShippingRequest.ToCode" placeholder="Ex: SESTO" aria-describedby="fromCodeHelp">
-
-            <span id="toCodeHelp" class="form-text">Ange UN/LOCODE för destinationsplatsen, t.ex. "SESTO" för Stockholm.</span>
-        </div>
-
+        
 
         <!-- Fyll i fler fält enligt ovanstående mönster -->
         <div>

@@ -29,6 +29,19 @@ namespace MasterArtsLibrary.Models
         public string Message { get; set; }
         // Lägg till andra delar av svaret här om nödvändigt
     }
+    public class ApiResponseInland
+    {
+        public float total { get; set; }
+        public float usdExchangeRate { get; set; }
+        public float eurExchangeRate { get; set; }
+        public string currency { get; set; }
+        public float fuelSurcharge { get; set; }
+        public float fuelSurchargePercentage { get; set; }
+        public float co2 { get; set; }
+        public string zipCode { get; set; }
+        public string city { get; set; }
+    }
+
 
     public class Dimension
     {
@@ -69,7 +82,9 @@ namespace MasterArtsLibrary.Models
         public string ImportExport { get; set; }
 
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public string Type { get; set; } = "lcl";
+        [JsonIgnore]
+        public string UserSelection { get; set; }
 
         [JsonProperty("fromCode")]
         public string FromCode { get; set; }
@@ -97,6 +112,8 @@ namespace MasterArtsLibrary.Models
 
         [JsonProperty("date")]
         public string Date { get; set; }
+        [JsonProperty("city")]
+        public string? City { get; set; }
 
         [JsonProperty("dimensions")]
         public List<Dimension>? Dimensions { get; set; }

@@ -4,27 +4,35 @@
 
 
 
-<h3 class="goStart adjusted-anchor" id="contact-id"></h3>
 
-@if (TempData["NotValidCode"] != null)
-{
+    <h3 class="goStart adjusted-anchor" id="index-id"></h3>
+    @if (TempData["NotValidCode"] != null)
+    {
 
-    <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 50px">@TempData["NotValidCode"]</div>
-}
-<form method="post" id="languageForm">
-    <div id="language-switch" class="index-lang">
-        <button type="submit" class="l-btn">SWE/ENG</button>
-    </div>
-</form>
+        <div class="" id="success-message" style="margin-top: 50px">@TempData["NotValidCode"]</div>
+    }
 
-<form method="post">
-    <div class="form-group">
-        <label for="trackingCode">Tracking Code:</label>
-        <input type="text" id="trackingCode" name="trackingCode" class="form-control" />
-    </div>
+    <form method="post" asp-page-handler="Track">
+        <div class="form-group">
+            <label for="trackingCode">Tracking Code:</label>
+            <input type="text" id="trackingCode" name="trackingCode" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Track</button>
+    </form>
 
-    <button type="submit" class="btn btn-primary">Track</button>
-</form>
+
+    <form method="post" asp-page-handler="ChangeLanguage" id="languageForm">
+        <div id="language-switch" class="index-lang">
+            <button type="submit" class="l-btn">SWE/ENG</button>
+        </div>
+    </form>
+
+
+
+
+
+
+
 
 
 @if (Model.TrackResponse != null)
@@ -75,7 +83,7 @@
 <!-- Visa transportinformation här om den finns -->
 
     <div class="kajsa">
-
+    
 
         <div class="card">
             <a href="/ArtServices#air" class="card-link" stlye=" text-decoration: none;">
@@ -993,7 +1001,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const scrollTo = urlParams.get('scrollTo');
             if (scrollTo === 'contact') {
-                const contactSection = document.getElementById('contact-id');
+                const contactSection = document.getElementById('index-id');
                 if (contactSection) {
                     contactSection.scrollIntoView({ behavior: 'smooth' });
                 }

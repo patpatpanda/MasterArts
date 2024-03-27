@@ -9,7 +9,8 @@ namespace MasterArtsLibrary.Models
     public enum RateType
     {
         LCL,
-        FCL
+        FCL,
+        INLAND
     }
     public class FclRate
     {
