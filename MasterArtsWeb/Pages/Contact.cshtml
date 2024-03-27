@@ -4,6 +4,10 @@
 @{
     ViewData["Title"] = "Contact";
 }
+
+<div class="language-toggle text-end index-lang">
+    <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">Svenska</button>
+</div>
     <h3 class="contact adjusted-anchor-2" id="contact-id">
         CONTACT
     </h3>
@@ -13,9 +17,7 @@
         <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 50px">@TempData["SuccessMessage"]</div>
     }
 
-    <div class="language-toggle text-end">
-        <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">Svenska</button>
-    </div>
+
     
     <div id="contactForm">
     <div class="krigaren">
@@ -86,6 +88,7 @@
         </div>
     </div>
     </div>
+
 <div id="contactFormSv" style="display:none">
     <div class="krigaren">
         <div class="left-side">

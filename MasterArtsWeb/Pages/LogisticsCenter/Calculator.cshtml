@@ -7,11 +7,9 @@
 <div style="margin-top:100px;">
     <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
 </div>
-<form method="post" id="languageForm">
-    <div id="language-switch">
-        <button type="submit" class="l-btn">SWE/ENG</button>
-    </div>
-</form>
+<div class="language-toggle text-end index-lang">
+    <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">SWE/ENG</button>
+</div>
     <div class="section">
     @if (@Model.CurrentLanguage == "sv")
     {

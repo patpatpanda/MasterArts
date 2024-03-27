@@ -6,26 +6,61 @@
 
 
     <h3 class="goStart adjusted-anchor" id="index-id"></h3>
+    
+<form method="post" asp-page-handler="ChangeLanguage" id="languageForm">
+    <div id="language-switch" class="index-lang">
+        <button type="submit" class="l-btn">SWE/ENG</button>
+    </div>
+</form>
+
+<div class="text-center" style="margin-bottom:100px">
     @if (TempData["NotValidCode"] != null)
     {
 
         <div class="" id="success-message" style="margin-top: 50px">@TempData["NotValidCode"]</div>
     }
+    @if (@Model.CurrentLanguage == "sv")
+    {
+        <form method="post" asp-page-handler="Track">
+            <div class="form-group" style="max-width: 500px; margin: auto;">
+                <label for="trackingCode">Spårningskod:</label>
+                <input type="text" id="trackingCode" name="trackingCode" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Spåra</button>
+        </form>
 
-    <form method="post" asp-page-handler="Track">
-        <div class="form-group">
-            <label for="trackingCode">Tracking Code:</label>
-            <input type="text" id="trackingCode" name="trackingCode" class="form-control" />
+        <div class="mt-3" style="max-width: 500px; margin: auto;">
+            <p>Observera: Spårning är endast tillgänglig för LCL-sändningar. För andra typer av sändningar, besök följande sida.</p>
+            <a href="https://www.17track.net/en" class="btn btn-info">Andra sändningar</a>
         </div>
-        <button type="submit" class="btn btn-primary">Track</button>
-    </form>
+
+    }
 
 
-    <form method="post" asp-page-handler="ChangeLanguage" id="languageForm">
-        <div id="language-switch" class="index-lang">
-            <button type="submit" class="l-btn">SWE/ENG</button>
+    else
+    {
+        <form method="post" asp-page-handler="Track">
+    <div class="form-group" style="max-width: 500px; margin: auto;">
+                <label for="trackingCode">Tracking Code:</label>
+                <input type="text" id="trackingCode" name="trackingCode" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Track</button>
+        </form>
+
+        <div class="mt-3">
+            <p>Note: Tracking is only available for LCL shipments. For other types of shipments, please visit the following page.</p>
+            <a href="https://www.17track.net/en" class="btn btn-info">Other Shipments</a>
         </div>
-    </form>
+    }
+
+</div>
+
+
+
+
+
+
+    
 
 
 
@@ -34,7 +69,7 @@
 
 
 
-
+<div class="text-center">
 @if (Model.TrackResponse != null)
 {
     <div id="transportDetails" style="margin-top:20px;margin-bottom:100px">
@@ -75,8 +110,9 @@
         
 
     </div>
+    
 }
-
+</div>
 
 
 

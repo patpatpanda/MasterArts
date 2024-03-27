@@ -3,11 +3,13 @@
 @{
 }
 
-
-<body id="ser">
-
-</body>
+<form method="post" asp-page-handler="ChangeLanguage" id="languageForm">
+    <div id="language-switch" class="index-lang">
+        <button type="submit" class="l-btn">SWE/ENG</button>
+    </div>
+</form>
 <h3 class="contact adjusted-anchor-2" id="contact-id">
+   
     @if (@Model.CurrentLanguage == "sv")
     {
         <span>TJÄNSTER</span>
@@ -17,11 +19,7 @@
         <span>SERVICES</span>
     }
 </h3>
-<form method="post" id="languageForm">
-    <div id="language-switch">
-        <button type="submit" class="l-btn">SWE/ENG</button>
-    </div>
-</form>
+
 <div class="master-qop">
 
 
@@ -76,9 +74,9 @@
 
 
 </div>
-        
-            
-<div class="moby">
+
+<div class="master-qop">
+    <div class="moby text-center">
     <div id="air" class="container-abbe">
         <div class="image-container">
             <img src="/images/d938d927-eebb-48a3-8596-18b84411f6d5.jpg" alt="Cool Image">
@@ -314,6 +312,7 @@
         <img src="~/images/23fe0df2-369f-4a07-ba62-fed71886cd6e.webp" alt="About Us Image" style="max-width: 100%; height: auto;">
     </div>
 </div>
+    </div>
 
 
 <div>
