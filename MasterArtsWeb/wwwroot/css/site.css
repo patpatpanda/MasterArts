@@ -1830,7 +1830,7 @@ select {
     color: #5D3B66;
     height:400px
 }
-.ert{
+.ert {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -1842,6 +1842,7 @@ select {
     padding: 24px;
     border-radius: 10px;
     line-height: 1.5;
+    
 }
 .qop-3 h2 {
     color: #5D3B66; /* Mörkare rosa för kontrast */
