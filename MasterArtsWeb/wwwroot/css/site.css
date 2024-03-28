@@ -931,7 +931,9 @@ input {
 .mobil{
     display:none
 }
-
+.ban{
+    margin-left:100px
+}
 @media screen and (max-width: 768px) {
     .contact {
         margin-top: 10px;
@@ -942,6 +944,9 @@ input {
         font-family: 'Arial Narrow Bold', sans-serif;
         font-size: 2em;
         border-bottom: solid 2px #333;
+    }
+    .ban{
+        margin-left:5px;
     }
     .index-lang {
         z-index: 1;
