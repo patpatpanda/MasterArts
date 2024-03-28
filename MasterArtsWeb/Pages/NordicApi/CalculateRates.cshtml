@@ -24,11 +24,13 @@
         <ul class="totals-list">
             @foreach (var total in Model.ApiResponse.Totals)
             {
-                <li class="total-item">@total.Currency: @total.Sum (Kurs: @total.ExchangeRate)</li>
+                <li class="total-item">@total.Currency: @total.Sum (Exchange Rate: @total.ExchangeRate)</li>
             }
+            <!-- Lägg till CO2-värdet -->
+            <li class="total-item">CO2 Emissions: @Model.ApiResponse.Co2</li>
         </ul>
-
     }
+
 </div>
 
 
@@ -85,26 +87,31 @@
 
         <input type="hidden" asp-for="@Model.ShippingRequest.Type" value="lcl" />
         <input type="hidden" asp-for="@Model.ShippingRequest.UserSelection" value="lcl" />
-        
-          
-        
 
 
 
+
+
+
+        <!-- För 'Från Stad' -->
         <div>
-            <label for="fromCode">From Code</label>
-            <input type="text" id="fromCode" name="ShippingRequest.FromCode" placeholder="Ex: NOOSL" aria-describedby="fromCodeHelp">
-            <span id="fromCodeHelp" class="form-text">Enter the UN/LOCODE for the origin location, e.g., "NOOSL" for Oslo.</span>
+            <label for="fromCity">From City</label>
+            <input type="text" class="city-autocomplete" placeholder="City(english)" aria-describedby="fromCodeHelp">
+            <input type="hidden" class="locode" name="ShippingRequest.FromCode">
+            <span class="form-text"></span>
             <span class="text-danger"></span>
         </div>
+
+        <!-- För 'Till Stad' -->
         <div>
-            <label for="toCode">To Code</label>
-            <input type="text" id="toCode" name="ShippingRequest.ToCode" placeholder="Ex: SESTO" aria-describedby="toCodeHelp">
-            <span id="toCodeHelp" class="form-text">Enter the UN/LOCODE for the destination location, e.g., "SESTO" for Stockholm.</span>
+            <label for="toCity">To City</label>
+            <input type="text" class="city-autocomplete" placeholder="City(english)" aria-describedby="toCodeHelp">
+            <input type="hidden" class="locode" name="ShippingRequest.ToCode">
+            
         </div>
 
-        
-    <!-- Fyll i fler fält enligt ovanstående mönster -->
+        <!-- Lägg till fler språkval om nödvändigt, använd samma klassnamn 'city-autocomplete' och 'locode' -->
+        <!-- Fyll i fler fält enligt ovanstående mönster -->
     <div>
             <label asp-for="@Model.ShippingRequest.Packages">Number Of Packages"</label>
         <input type="number" asp-for="@Model.ShippingRequest.Packages" />
@@ -226,23 +233,24 @@
             <input type="hidden" asp-for="@Model.ShippingRequest.Type" value="lcl" />
         </div>
 
+        <!-- För 'Från Stad' -->
         <div>
-            <label for="fromCode">Från kod</label>
-            <!-- Antag att ShippingRequest är en egenskap i din PageModel och du vill binda till dess fält -->
-            <input type="text" asp-for="ShippingRequest.FromCode" placeholder="Ex: NOSTO" aria-describedby="fromCodeHelp">
-
-            <span id="fromCodeHelp" class="form-text">Ange UN/LOCODE för avsändningsplatsen, t.ex. "NOOSL" för Oslo.</span>
+            <label for="fromCity">Från Stad</label>
+            <input type="text" class="city-autocomplete" placeholder="Stad(engelska)" aria-describedby="fromCodeHelp">
+            <input type="hidden" class="locode" name="ShippingRequest.FromCode">
+            
             <span class="text-danger"></span>
         </div>
-        <div>
-            <label for="toCode">Till kod</label>
-            <!-- Antag att ShippingRequest är en egenskap i din PageModel och du vill binda till dess fält -->
-            <input type="text" asp-for="ShippingRequest.ToCode" placeholder="Ex: SESTO" aria-describedby="fromCodeHelp">
 
-            <span id="toCodeHelp" class="form-text">Ange UN/LOCODE för destinationsplatsen, t.ex. "SESTO" för Stockholm.</span>
+        <!-- För 'Till Stad' -->
+        <div>
+            <label for="toCity">Till Stad</label>
+            <input type="text" class="city-autocomplete" placeholder="Stad(engelska)" aria-describedby="toCodeHelp">
+            <input type="hidden" class="locode" name="ShippingRequest.ToCode">
+            
         </div>
 
-
+        <!-- Lägg till fler språkval om nödvändigt, använd samma klassnamn 'city-autocomplete' och 'locode' -->
         <!-- Fyll i fler fält enligt ovanstående mönster -->
         <div>
             <label asp-for="@Model.ShippingRequest.Packages">Antal paket</label>
@@ -318,6 +326,440 @@
 
 @section Scripts {
     <script>
+        const locodes = {
+            
+            "Destination": "UNLO Code",
+            "GOTHENBURG": "SEGOT",
+            "ABIDJAN": "CIABJ",
+            "ABU DHABI": "AEAUH",
+            "ACCRA": "GHACC",
+            "ADELAIDE": "AUADL",
+            "ADEN": "YEADE",
+            "AHMEDABAD": "INAMD",
+            "AKITA": "JPAXT",
+            "ALBUQUERQUE, NM": "USABQ",
+            "ALEXANDRIA": "EGALY",
+            "ALGER": "DZALG",
+            "ALTAMIRA": "MXATM",
+            "AMMAN": "JOAMM",
+            "ANTANANARIVO": "MGTNR",
+            "ANTOFAGASTA": "CLANF",
+            "AQABA": "JOAQJ",
+            "ARICA": "CLARI",
+            "ASHDOD": "ILASH",
+            "ASUNCION": "PYASU",
+            "ATLANTA, GA": "USATL",
+            "AUCKLAND": "NZAKL",
+            "AUSTIN, TX": "USAUS",
+            "BAHRAIN": "BHBAH",
+            "BALBOA": "PABLB",
+            "BALTIMORE MD": "USBAL",
+            "BAMAKO": "MLBKO",
+            "BANGALORE": "INBLR",
+            "BANGKOK": "THBKK",
+            "BANJUL": "GMBJL",
+            "BARRANQUILLA": "COBAQ",
+            "BASSETERRE": "KNBAS",
+            "BATAM (EX BATU BESAR)": "IDBTH",
+            "BEIJIAO": "CNBIJ",
+            "BEIJING": "CNBJS",
+            "BEIRUT": "LBBEY",
+            "BELAWAN": "IDBLW",
+            "BELIZE CITY": "BZBZE",
+            "BINTULU, SARAWAK": "MYBTU",
+            "BIRMINGHAM": "USBHM",
+            "BLANTYRE": "MWBLZ",
+            "BOGOTA": "COBOG",
+            "BOSTON, MA": "USBOS",
+            "BRIDGETOWN": "BBBGI",
+            "BRISBANE": "AUBNE",
+            "BROWNSVILLE": "USBRO",
+            "BUENAVENTURA": "COBUN",
+            "BUENOS AIRES": "ARBUE",
+            "BUFFALO NY": "USBUF",
+            "BULAWAYO": "ZWBUQ",
+            "BUSAN": "KRPUS",
+            "CAGAYAN DE ORO": "PHCGY",
+            "CAIRO": "EGCAI",
+            "CALCUTTA": "INCCU",
+            "CALGARY": "CACAL",
+            "CALLAO": "PECLL",
+            "CAPE TOWN": "ZACPT",
+            "CARTAGENA": "COCTG",
+            "CASABLANCA": "MACAS",
+            "CASTRIES": "LCCAS",
+            "CAYENNE": "GFCAY",
+            "CEBU": "PHCEB",
+            "CHANGSHA": "CNCSH",
+            "CHANGSHA HUANGHUA INTERNATIONAL APT": "CNCSX",
+            "CHANGZHOU JIANGSU ": "CNCZX",
+            "CHARLESTON, SC": "USCHS",
+            "CHARLOTTE, NC": "USCLT",
+            "CHATTANOOGA": "USCHA",
+            "CHENGDU SHUANGLIU INTERNATIONAL APT": "CNCTU",
+            "CHENNAI (MADRAS)": "INMAA",
+            "CHIBA": "JPCHB",
+            "CHICAGO, IL": "USCHI",
+            "CHITTAGONG": "BDCGP",
+            "CHONGQING": "CNCKG",
+            "CINCINNATI, OH": "USCVG",
+            "CLEVELAND, OH": "USCLE",
+            "COCHIN": "INCOK",
+            "COLOMBO": "LKCMB",
+            "COLON": "PAONX",
+            "COLUMBUS, OH": "USCMH",
+            "CONAKRY": "GNCKY",
+            "COTONOU": "BJCOO",
+            "CRISTOBAL": "PACTB",
+            "DADRI": "INDER",
+            "DAKAR": "SNDKR",
+            "DALIAN": "CNDAL",
+            "DALLAS, TX": "USDAL",
+            "DAMIETTE": "EGDAM",
+            "DAMMAM": "SADMM",
+            "DANANG": "VNDAD",
+            "DAR ES SALAAM": "TZDAR",
+            "DARWIN": "AUDRW",
+            "DAVAO, MINDANAO": "PHDVO",
+            "DAYTON, OH": "USDAY",
+            "DENVER, CO": "USDEN",
+            "DES MOINES": "USDSM",
+            "DETROIT, MI": "USDET",
+            "DJIBOUTI": "DJJIB",
+            "DOHA/HAMAD PORT": "QADOH",
+            "DONGGUAN PT": "CNDGG",
+            "DOUALA": "CMDLA",
+            "DOUMEN": "CNDOU",
+            "DUBAI": "AEDXB",
+            "DURBAN": "ZADUR",
+            "EDMONTON": "CAEDM",
+            "EL PASO, TX": "USELP",
+            "FORT DE FRANCE": "MQFDF",
+            "FOSHAN": "CNFOS",
+            "FREEPORT": "BSFPO",
+            "FREETOWN": "SLFNA",
+            "FREMANTLE": "AUFRE",
+            "FUJAIRAH (AL-FUJAIRAH)": "AEFJR",
+            "FUKUYAMA": "JPFKY",
+            "FUZHOU": "CNFOC",
+            "GABORONE": "BWGBE",
+            "GARHI HARSARU": "INGHR",
+            "GEORGETOWN": "GYGEO",
+            "GRAND CAYMAN": "KYGEC",
+            "GRAND RAPIDS": "USGRR",
+            "GREENSBORO": "USGBO",
+            "GREENVILLE SC": "USGLH",
+            "GUANGZHOU (HUANGPU)": "CNWUC",
+            "GUANGZHOU JIAO XIN": "CNJXN",
+            "GUATEMALA CITY": "GTGUA",
+            "GUAYAQUIL": "ECGYE",
+            "HACHINOHE": "JPHHE",
+            "HAIFA": "ILHFA",
+            "HAIPHONG": "VNHPH",
+            "HAKATA": "JPHKT",
+            "HALIFAX": "CAHAL",
+            "HAMILTON": "BMBDA",
+            "HANGZHOU": "CNHAZ",
+            "HARARE": "ZWHRE",
+            "HEFEI XINQIAO INTERNATIONAL APT": "CNHFE",
+            "HIDALGO, TX": "USHID",
+            "HIROSHIMA": "JPHIJ",
+            "HO CHI MINH, CAT LAI": "VNSGN",
+            "HOBART": "AUHBA",
+            "HONG KONG": "HKHKG",
+            "Honiara": "SBHIR",
+            "HOUSTON, TX": "USHOU",
+            "HUNTSVILLE": "USHSV",
+            "HUZHOU (ZHEJIANG)": "CNHZH",
+            "HYDERABAD": "INHYD",
+            "IMABARI": "JPIMB",
+            "INCHEON": "KRINC",
+            "INDIANAPOLIS, IN": "USIND",
+            "IQUIQUE": "CLIQQ",
+            "ISTANBUL": "TRIST",
+            "ITAPOÁ": "BRIOA",
+            "IZMIR": "TRIZM",
+            "JACKSONVILLE, FL": "USJAX",
+            "JAKARTA": "IDJKT",
+            "JEBEL ALI": "AEJEA",
+            "JEDDAH": "SAJED",
+            "JIANGMEN": "CNJMN",
+            "JOHANNESBURG": "ZAJNB",
+            "KAGOSHIMA": "JPKOJ",
+            "KAMPALA": "UGKLA",
+            "KANAZAWA": "JPKNZ",
+            "KANSAS CITY, MO": "USMKC",
+            "KAOHSIUNG": "TWKHH",
+            "KARACHI OLD PORT": "PKKHI",
+            "KEELUNG": "TWKEL",
+            "KINGSTON": "JMKIN",
+            "KINGSTOWN": "VCKTN",
+            "KINSHASA": "CDFIH",
+            "KNOXVILLE": "USTYS",
+            "KOBE": "JPUKB",
+            "KOTA KINABALU, SABAH": "MYBKI",
+            "KRALENDIJK": "BQKRA",
+            "KUCHING": "MYKCH",
+            "KUMAMOTO": "JPKMJ",
+            "KUMASI": "GHKMS",
+            "LA GUAIRA": "VELAG",
+            "LABUAN": "MYLBH",
+            "LAE": "PGLAE",
+            "LAEM CHABANG": "THLCH",
+            "LAGOS": "NGLOS",
+            "LAREDO, TX": "USLRD",
+            "LARNACA": "CYLCA",
+            "LAS PALMAS": "ESLPA",
+            "LAS VEGAS, NV": "USLAS",
+            "LAT KRABANG": "THLKR",
+            "LAUTOKA": "FJLTK",
+            "LIAN HUA SHAN PANYU GUANGDONG": "CNLIH",
+            "LIANYUNGANG": "CNLYG",
+            "LIBREVILLE": "GALBV",
+            "LILONGWE": "MWLLW",
+            "LIMASSOL": "CYLMS",
+            "LITTLE ROCK": "USLIT",
+            "LOME": "TGLFW",
+            "LONGONI": "KMLOG",
+            "LOS ANGELES, CA": "USLAX",
+            "LOUISEVILLE, KY": "USLUI",
+            "LUANDA": "AOLAD",
+            "LUBUMASHI": "CDFBM",
+            "LUDHIANA": "INLUH",
+            "LUSAKA": "ZMLUN",
+            "LYTTELTON": "NZLYT",
+            "MACAU": "MOMFM",
+            "MAHE": "SCMAW",
+            "MALABO": "GQSSG",
+            "MALE": "MVMLE",
+            "MANAGUA": "NIMGA",
+            "MANAUS": "BRMAO",
+            "MANILA": "PHMNL",
+            "MANILA SOUTH HARBOUR": "PHMNS",
+            "MANZANILLO": "PAMIT",
+            "MANZINI (ROAD)": "SZMTS",
+            "MAPUTO": "MZMPM",
+            "MASERU (ROAD)": "LSMSU",
+            "MATADI": "CDMAT",
+            "MATSAPHA (ROAD)": "SZMAT",
+            "MATSUYAMA": "JPMYJ",
+            "MAZATLAN": "MXMZT",
+            "MELBOURNE": "AUMEL",
+            "MEMPHIS, TN": "USMEM",
+            "MEXICO CITY": "MXMEX",
+            "MIAMI, FL": "USMIA",
+            "MILWAUKEE, WI": "USMKE",
+            "MINDELO": "CVMIN",
+            "MINNEAPOLIS MN": "USMES",
+            "MIZUSHIMA": "JPMIZ",
+            "MOBILE, AL": "USMOB",
+            "MOJI": "JPMOJ",
+            "MOMBASA": "KEMBA",
+            "MONCTON": "CAMNT",
+            "MONROVIA": "LRMLW",
+            "MONTEGO BAY": "JMMBJ",
+            "MONTEVIDEO": "UYMVD",
+            "MONTREAL": "CAMTR",
+            "MUARA": "BNMUA",
+            "NAGASAKI": "JPNGS",
+            "NAGOYA": "JPNGO",
+            "NAHA, OKINAWA": "JPNAH",
+            "NAIROBI": "KENBO",
+            "NANJING JIANGSU": "CNNKG",
+            "NANSHA": "CNNSA",
+            "NANTONG": "CNNTG",
+            "NAOETSU": "JPNAO",
+            "NAPIER": "NZNPE",
+            "NASHVILLE TN": "USBNA",
+            "NASSAU": "BSNAS",
+            "NDOLA": "ZMNLA",
+            "NELSON": "NZNSN",
+            "NEVIS (VN)": "KNNEV",
+            "NEW DELHI PATPARGANJ": "INICD",
+            "NEW ORLEANS, LA": "USMSY",
+            "NEW YORK, NY": "USNYC",
+            "NHAVA SHEVA": "INNSA",
+            "NIAMEY": "NENIM",
+            "NICOSIA": "CYNIC",
+            "NIIGATA": "JPKIJ",
+            "NINGBO": "CNNGB",
+            "NORFOLK, VA": "USORF",
+            "NOUAKCHOTT": "MRNKC",
+            "NOUMEA": "NCNOU",
+            "NOVO HAMBURGO": "BRQHV",
+            "NUKU ALOFA": "TOTBU",
+            "OAKLAND, CA": "USOAK",
+            "OITA": "JPOIT",
+            "OKLAHOMA, CITY": "USOKC",
+            "OMAHA": "USOMA",
+            "ONNE": "NGONN",
+            "ORAN": "DZORN",
+            "ORANJESTAD": "AWORJ",
+            "ORLANDO, FL": "USORL",
+            "OSAKA": "JPOSA",
+            "OUAGADOUGOU": "BFOUA",
+            "PANAMA CITY": "PAPTY",
+            "PAPEETE": "PFPPT",
+            "PARAMARIBO": "SRPBM",
+            "PARANAGUA": "BRPNG",
+            "PASIR GUDANG": "MYPGU",
+            "PENANG": "MYPEN",
+            "PHILADELPHIA, PA": "USPHL",
+            "PHILIPSBURG": "SXPHI",
+            "PHNOM PENH": "KHPNH",
+            "PHOENIX, AZ": "USPHX",
+            "PITTSBURGH, PA": "USPIT",
+            "PLYMOUTH": "MSPLY",
+            "POINT DES GALATES": "REPDG",
+            "POINTE NOIRE": "CGPNR",
+            "POINTE-À-PITRE": "GPPTP",
+            "PORT AU PRINCE": "HTPAP",
+            "PORT ELIZABETH": "ZAPLZ",
+            "PORT GENTIL": "GAPOG",
+            "PORT KLANG NORTH": "MYPKG",
+            "PORT LOUIS": "MUPLU",
+            "PORT MORESBY (PORT MOTUKEA)": "PGPOM",
+            "PORT OF SPAIN": "TTPOS",
+            "PORT SAID": "EGPSD",
+            "PORT SUDAN": "SDPZU",
+            "PORT VILA": "VUVLI",
+            "PORTLAND, OR": "USPDX",
+            "PRAIA": "CVRAI",
+            "PROVIDENCE": "USPVD",
+            "PUERTO CABELLO": "VEPBL",
+            "PUERTO DEL ROSARIO": "ESFUE",
+            "PUERTO LIMON": "CRLIO",
+            "PUERTO QUETZAL": "GTPRQ",
+            "QINGDAO": "CNQIN",
+            "RALEIGH, NC": "USRAG",
+            "RAROTONGA": "CKRAR",
+            "RAS AL KHAIMAH": "AERKT",
+            "REGINA": "CAREG",
+            "REYKJAVIK": "ISREY",
+            "RICHMOND, VA": "USRIC",
+            "RIO DE JANEIRO": "BRRIO",
+            "RIO GRANDE": "BRRIG",
+            "RIO HAINA": "DOHAI",
+            "RIYADH": "SARUH",
+            "ROCHESTER": "USROC",
+            "RONGQI": "CNROQ",
+            "ROSEAU": "DMRSU",
+            "S.TOMAS DE CASTILLO": "VISTT",
+            "SAKATA": "JPSKT",
+            "SALT LAKE CITY, UT": "USSLC",
+            "SAN ANTONIO": "CLSAI",
+            "SAN DIEGO, CA": "USSAN",
+            "SAN FRANCISCO, CA": "USSFO",
+            "SAN JOSE": "CRSJO",
+            "SAN JUAN": "PRSJU",
+            "SAN PEDRO SULA": "HNSAP",
+            "SAN SALVADOR": "SVSAL",
+            "SANTA CRUZ (ES)": "ESSCT",
+            "SANTIAGO": "CLSCL",
+            "SANTO DOMINGO": "DOSDQ",
+            "SANTO TOMAS DE CASTILLA": "GTSTC",
+            "SANTOS": "BRSSZ",
+            "SASKATOON": "CASAK",
+            "SAVANNAH, GA": "USSAV",
+            "SEATTLE, WA": "USSEA",
+            "SEMARANG": "IDSRG",
+            "SENDAI, MIYAGI": "JPSDJ",
+            "SFAX": "TNSFA",
+            "SHANGHAI": "CNSHA",
+            "SHARJAH": "AESHJ",
+            "SHENZHEN (YANTIAN)": "CNSNZ",
+            "SHIMIZU": "JPSMZ",
+            "SHIMONOSEKI": "JPSHS",
+            "SHUWAIKH, (KUWAIT)": "KWSWK",
+            "SIBU, SARAWAK": "MYSBW",
+            "SIHANOUKVILLE": "KHKOS",
+            "SINGAPORE": "SGSIN",
+            "SIXTH OF OCTOBER": "EGXOO",
+            "SOHAR": "OMSOH",
+            "SOUSSE": "TNSUS",
+            "SPRINGFIELD, MO": "USSGF",
+            "ST JOHN, NB": "CASJB",
+            "ST JOHN, NF": "CASJF",
+            "ST. GEORGES": "GDSTG",
+            "ST. JOHN'S": "AGSJO",
+            "ST. LOUIS, MO": "USSTL",
+            "SUBIC (LUZON)": "PHSFS",
+            "SURABAYA": "IDSUB",
+            "SUVA": "FJSUV",
+            "SUZHOU": "CNSZH",
+            "SYDNEY": "AUSYD",
+            "TAICHUNG": "TWTXG",
+            "TAKAMATSU": "JPTAK",
+            "TAKORADI": "GHTKD",
+            "TAMATAVE": "MGTMM",
+            "TAMPA, FL": "USTPA",
+            "TEGUCIGALPA": "HNTGU",
+            "TEL AVIV": "ILTLV",
+            "TEMA": "GHTEM",
+            "TIANJIN": "CNTSN",
+            "TOKYO": "JPTYO",
+            "TOMAKOMAI": "JPTMK",
+            "TORONTO": "CATOR",
+            "TOYAMA": "JPTOY",
+            "TRIPOLI": "LYTIP",
+            "TSURUGA": "JPTSG",
+            "TUCSON, AZ": "USTUS",
+            "TUGHLAKABAD": "INTKD",
+            "TULSA": "USTUL",
+            "TUNIS": "TNTUN",
+            "TUTICORIN": "INTUT",
+            "UMM QASR": "IQUQR",
+            "VALPARAISO": "CLVAP",
+            "VANCOUVER": "CAVAN",
+            "VERACRUZ": "MXVER",
+            "WALVIS BAY": "NAWVB",
+            "WASHINGTON, DC": "USWAS",
+            "WELLINGTON": "NZWLG",
+            "WICHITA": "USICT",
+            "WILLEMSTAD": "CWWIL",
+            "WILMINGTON NC": "USILM",
+            "WINDHOEK": "NAWDH",
+            "WINNIPEG": "CAWNP",
+            "WUHAN HUBEI": "CNWUH",
+            "WUXI": "CNWUX",
+            "WUZHOU GUANGXI": "CNWUZ",
+            "XIAMEN": "CNXMN",
+            "XIAOLAN": "CNXAO",
+            "XINGANG": "CNXIP",
+            "XINHUI": "CNXIN",
+            "YANGON": "MMRGN",
+            "YANGPU PT": "CNYPG",
+            "YANTAI": "CNYNT",
+            "YIWU": "CNYIU",
+            "YOKOHAMA": "JPYOK",
+            "ZHAOQING GUANGDONG": "CNZQG",
+            "ZHONGSHAN": "CNZSN",
+            "ZHUHAI GUANGDONG": "CNZUH",
+        };
+
+        $(function () {
+            $(".city-autocomplete").each(function () {
+                $(this).autocomplete({
+                    source: Object.keys(locodes), // Städernas namn
+                    select: function (event, ui) {
+                        // När ett namn väljs, hitta närmaste 'locode' fält och sätt UN/LOCODE
+                        $(this).next(".locode").val(locodes[ui.item.value]);
+                    }
+                });
+            });
+        });
+
+        // Använd jQuery UI Autocomplete för både från och till städer
+        $(function () {
+            setUpAutocomplete("fromCity", "fromCode");
+            setUpAutocomplete("toCity", "toCode");
+        });
+
+       
+        
+
+
+
         function startLoginProcess() {
             document.getElementById('loadingSpinner').style.display = 'block';
             document.getElementById('loadingSpinner2').style.display = 'block';

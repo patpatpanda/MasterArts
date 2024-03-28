@@ -36,6 +36,7 @@ namespace MasterArtsWeb.Pages
 
         public void  OnGet()
         {
+           
 
             CurrentLanguage = _languageService.GetCurrentLanguage();
             ViewData["Language"] = CurrentLanguage;

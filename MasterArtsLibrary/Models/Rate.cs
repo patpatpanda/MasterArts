@@ -18,6 +18,7 @@ namespace MasterArtsLibrary.Models
 
         [JsonProperty("exchangeRate")]
         public decimal ExchangeRate { get; set; }
+        
     }
 
     public class ApiResponse
@@ -27,6 +28,10 @@ namespace MasterArtsLibrary.Models
 
         [JsonProperty("message")]
         public string Message { get; set; }
+        [JsonProperty("co2")]
+        public float Co2 { get; set; }
+
+
         // Lägg till andra delar av svaret här om nödvändigt
     }
     public class ApiResponseInland
