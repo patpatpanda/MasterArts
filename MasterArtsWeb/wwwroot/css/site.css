@@ -129,17 +129,29 @@ header {
 
 
 
-
 .contact {
     margin-top: 100px;
     color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family:  'Arial Narrow Bold', sans-serif;
+    font-family: 'Arial Narrow Bold', sans-serif;
     font-size: 2em;
-    border-bottom:solid 2px #333;
+    position: relative;
+    /* Lägg till detta för att positionera pseudo-elementet korrekt */
 }
+
+    .contact::after {
+        content: ''; /* Nödvändigt för att visa pseudo-elementet */
+        display: block;
+        margin: 0 auto; /* Centrerar border i mitten */
+        height: 2px; /* Höjden på din border */
+        width: 50%; /* Justera denna procentandel för att ändra längden på din border */
+        background: #333; /* Färgen på din border */
+        position: absolute; /* Gör så att du kan positionera den exakt var du vill */
+        bottom: -10px;
+        /* Justera detta värde för att flytta border uppåt eller nedåt */
+    }
 
 
 
@@ -943,7 +955,7 @@ input {
         align-items: center;
         font-family: 'Arial Narrow Bold', sans-serif;
         font-size: 2em;
-        border-bottom: solid 2px #333;
+        
     }
     .ban{
         margin-left:5px;
