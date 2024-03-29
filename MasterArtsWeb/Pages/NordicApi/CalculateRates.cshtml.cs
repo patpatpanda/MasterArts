@@ -21,13 +21,13 @@ namespace MasterArtsWeb.Pages
         private readonly ILogger<CalculateRatesModel> _logger; // Lägg till denna rad
 
         // Modifiera konstruktören för att ta emot ILogger via dependency injection
-        public CalculateRatesModel(HttpClient client, ILogger<CalculateRatesModel> logger,OrderService order)
+        public CalculateRatesModel(HttpClient client, ILogger<CalculateRatesModel> logger, OrderService order)
         {
             _client = client;
             _logger = logger; // Spara referensen till _logger
             _orderService = order;
             // Din befintliga konfiguration...
-           
+
         }
 
 
@@ -70,7 +70,7 @@ namespace MasterArtsWeb.Pages
                 ModelState.AddModelError(string.Empty, "Ingen data bunden till ShippingRequest.");
             }
 
-            return Page(); 
+            return Page();
         }
 
     }

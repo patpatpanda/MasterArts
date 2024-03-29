@@ -18,7 +18,7 @@ namespace MasterArtsLibrary.Models
 
         [JsonProperty("exchangeRate")]
         public decimal ExchangeRate { get; set; }
-        
+
     }
 
     public class ApiResponse
