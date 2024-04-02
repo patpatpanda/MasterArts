@@ -15,26 +15,58 @@
 <div class="ban">
     <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
 </div>
-
 <div class="text-center shipping-cost-calculator">
-    <h3 id="resultSection"></h3>
+<h3 id="resultSection"></h3>
+    @if (Model.ApiResponse != null)
+    {
+        <div>
+            <h3>Totals</h3>
+            @foreach (var total in Model.ApiResponse.Totals)
+            {
+                <p>@total.Currency: @total.Sum (@total.ExchangeRate)</p>
+            }
+        </div>
+    }
+
+    @*@if (Model.ApiResponse != null)
+    {
+        <div>
+            <h3>Rates</h3>
+            @foreach (var rate in Model.ApiResponse.Rates)
+            {
+                <p>
+                    @rate.Type, @rate.Name, @rate.Currency, Rate: @rate.RateValue, Sum: @rate.Sum,
+                    Method: @rate.CalculationMethod, Tags: @rate.Tags
+                </p>
+            }
+        </div>
+    }*@
 
     @if (Model.ApiResponse != null)
     {
-        <h3 class="totals-title">Totals</h3>
-        <ul class="totals-list">
-            @foreach (var total in Model.ApiResponse.Totals)
-            {
-                <li class="total-item">@total.Currency: @total.Sum (Exchange Rate: @total.ExchangeRate)</li>
-            }
-            <!-- Lägg till CO2-värdet -->
-            <li class="total-item">CO2 Emissions: @Model.ApiResponse.Co2</li>
-        </ul>
+        <div>
+            <h3>Transit Details</h3>
+            <p><strong>Transit Time:</strong> @Model.ApiResponse.TransitTime days</p>
+            <p><strong>Vessel:</strong> @Model.ApiResponse.Sailing?.Vessel</p>
+            <p><strong>Voyage Number:</strong> @Model.ApiResponse.Sailing?.VoyageNumber</p>
+            <p><strong>From:</strong> @Model.ApiResponse.Sailing?.FromDescription (@Model.ApiResponse.Sailing?.FromCode)</p>
+            <p><strong>To:</strong> @Model.ApiResponse.Sailing?.ToDescription (@Model.ApiResponse.Sailing?.ToCode)</p>
+
+            <h3>Agent Details</h3>
+            <p><strong>Name:</strong> @Model.ApiResponse.Agent?.Name</p>
+            <p><strong>Address:</strong> @Model.ApiResponse.Agent?.Address</p>
+            <p><strong>Zip Code:</strong> @Model.ApiResponse.Agent?.ZipCode</p>
+            <p><strong>City:</strong> @Model.ApiResponse.Agent?.City</p>
+            <p><strong>Country:</strong> @Model.ApiResponse.Agent?.Country</p>
+
+            
+            <p><strong>CO2 Emissions:</strong> @Model.ApiResponse.Co2.ToString()</p>
+        </div>
     }
 
+   
+
 </div>
-
-
 <form method="post" id="contactForm" style="margin-top:50px">
     <div class="form-container-2">
     <div>
@@ -174,10 +206,13 @@
     <br>
     
     </div>
+    <div class="sleep">
     <div id="loadingSpinner" style="display: none;">
         <div class="spinner"></div>
     </div>
-    <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large">Calculate</button>
+    
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Skicka Order</button>
+    </div>
 </form>
 
 
@@ -315,10 +350,13 @@
         <br>
 
     </div>
-    <div id="loadingSpinner2" style="display: none;">
+   <div class="sleep">
+    <div id="loadingSpinner" style="display: none;">
         <div class="spinner"></div>
     </div>
-    <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large">Beräkna fraktkostnader</button>
+    
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Skicka Order</button>
+    </div>
 </form>
 
 
@@ -329,7 +367,7 @@
     <script>
         const locodes = {
             
-            "Destination": "UNLO Code",
+            
             "GOTHENBURG": "SEGOT",
             "ABIDJAN": "CIABJ",
             "ABU DHABI": "AEAUH",

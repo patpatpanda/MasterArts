@@ -3,14 +3,16 @@
 @{
 }
 
-<h3 class="contact adjusted-anchor-2" id="contact-id" style="margin-top:100px">
-    Calculate lcl Rates
-</h3>
-<div style="margin-top:100px;">
-    <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
+<div class="text-center">
+    <h3 class="contact adjusted-anchor-2" id="contact-id">
+        LCL-INLAND
+    </h3>
 </div>
-<div class="language-toggle text-end">
+<div class="language-toggle text-end index-lang">
     <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">Svenska</button>
+</div>
+<div class="ban">
+    <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
 </div>
 <div class="text-center shipping-cost-calculator">
     <h3 id="resultSection"></h3>
@@ -46,7 +48,14 @@
     </div>
     <div>
 
-           
+            <div>
+                <label asp-for="ShippingRequest.Imo">IMO</label>
+                <select asp-for="ShippingRequest.Imo">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+
+            </div>
 
         <div>
                 <label asp-for="@Model.Inland.InlandZipCode">Inland Zip Code</label>
@@ -95,20 +104,7 @@
             <input type="number" asp-for="@Model.Inland.Packages" />
     </div>
     <div>
-        <div>
-                <label asp-for="@Model.Inland.PackageType">Package Type</label>
-                <select asp-for="@Model.Inland.PackageType">
-                    <option value="PALLET(S)">PALLET(S)</option>
-                    <option value="CARTON(S)">CARTON(S)</option>
-                    <option value="CRATE(S)">CRATE(S)</option>
-                    <option value="DRUM(S)">DRUM(S)</option>
-                    <option value="BUNDLE(S)">BUNDLE</option>
-                    <option value="PIECE(S)">PIECE</option>
-                    <option value="CONTAINER(S)">CONTAINER</option>
-                    <option value="ROLL(S)">ROLL(S)</option>
-                    <option value="BAG(S)">BAG(S)</option>
-            </select>
-        </div>
+        
 
     </div>
     </div>
@@ -151,10 +147,13 @@
     <br>
     
     </div>
-    <div id="loadingSpinner" style="display: none;">
-        <div class="spinner"></div>
+    <div class="sleep">
+        <div id="loadingSpinner" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Skicka Order</button>
     </div>
-    <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large">Calculate</button>
 </form>
 
 
@@ -219,20 +218,7 @@
             <input type="number" asp-for="@Model.ShippingRequest.Packages" />
         </div>
         <div>
-            <div>
-                <label asp-for="@Model.ShippingRequest.PackageType">Pakettyp</label>
-                <select asp-for="@Model.ShippingRequest.PackageType">
-                    <option value="PALLET(S)">Pall(ar)</option>
-                    <option value="CARTON(S)">Kartong(er)</option>
-                    <option value="CRATE(S)">Trälådor</option>
-                    <option value="DRUM(S)">Fat</option>
-                    <option value="BUNDLE(S)">Buntar</option>
-                    <option value="PIECE(S)">Styckegods</option>
-                    <option value="CONTAINER(S)">Fraktcontainrar</option>
-                    <option value="ROLL(S)">Rullar</option>
-                    <option value="BAG(S)">Säckar</option>
-                </select>
-            </div>
+           
 
         </div>
     </div>
@@ -276,10 +262,13 @@
         <br>
 
     </div>
-    <div id="loadingSpinner2" style="display: none;">
-        <div class="spinner"></div>
+    <div class="sleep">
+        <div id="loadingSpinner" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Skicka Order</button>
     </div>
-    <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large">Beräkna fraktkostnader</button>
 </form>
 
 

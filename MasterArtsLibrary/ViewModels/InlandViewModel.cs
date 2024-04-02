@@ -31,8 +31,7 @@ namespace MasterArtsLibrary.ViewModels
         [JsonProperty("packages")]
         public int Packages { get; set; }
 
-        [JsonProperty("packageType")]
-        public string PackageType { get; set; }
+        
 
         [JsonProperty("weight")]
         public int Weight { get; set; }

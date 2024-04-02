@@ -3,37 +3,10 @@ using System.Collections.Generic;
 
 namespace MasterArtsLibrary.Models
 {
-    public class Rate
-    {
-        // Om Rate-klassen ska ha egenskaper, följ samma mönster.
-    }
+    
 
-    public class Total
-    {
-        [JsonProperty("currency")]
-        public string Currency { get; set; }
-
-        [JsonProperty("sum")]
-        public decimal Sum { get; set; }
-
-        [JsonProperty("exchangeRate")]
-        public decimal ExchangeRate { get; set; }
-
-    }
-
-    public class ApiResponse
-    {
-        [JsonProperty("totals")]
-        public List<Total> Totals { get; set; }
-
-        [JsonProperty("message")]
-        public string Message { get; set; }
-        [JsonProperty("co2")]
-        public float Co2 { get; set; }
-
-
-        // Lägg till andra delar av svaret här om nödvändigt
-    }
+    
+   
     public class ApiResponseInland
     {
         public float total { get; set; }
@@ -46,7 +19,70 @@ namespace MasterArtsLibrary.Models
         public string zipCode { get; set; }
         public string city { get; set; }
     }
+    public class ApiResponse
+    {
+        public List<Total> Totals { get; set; }
+        public List<Rate> Rates { get; set; }
+        public int TransitTime { get; set; }
+        public Sailing Sailing { get; set; }
+        public Agent Agent { get; set; }
+        public string ValidFrom { get; set; }
+        public string ValidTo { get; set; }
+        public double Co2 { get; set; }
+        public bool OnRequest { get; set; }
+    }
 
+    public class Total
+    {
+        public string Currency { get; set; }
+        public double Sum { get; set; }
+        public decimal ExchangeRate { get; set; }
+    }
+
+    public class Rate
+    {
+        public string Type { get; set; }
+        public string Name { get; set; }
+        public string Currency { get; set; }
+        public decimal RateValue { get; set; }
+        public decimal MinimumSum { get; set; }
+        public decimal Sum { get; set; }
+        public decimal SumExchangeRate { get; set; }
+        public string CalculationMethod { get; set; }
+        public decimal Multiplier { get; set; }
+        public decimal ExchangeRate { get; set; }
+        public string Tags { get; set; }
+    }
+
+    public class Sailing
+    {
+        public string Vessel { get; set; }
+        public string VoyageNumber { get; set; }
+        public string FromCode { get; set; }
+        public string FromDescription { get; set; }
+        public string ToCode { get; set; }
+        public string ToDescription { get; set; }
+        public string TransshipmentCode { get; set; }
+        public string TransshipmentDescription { get; set; }
+        public string GatewayCode { get; set; }
+        public string GatewayDescription { get; set; }
+        public DateTime Closing { get; set; }
+        public DateTime Etd { get; set; }
+        public DateTime Eta { get; set; }
+        public string Remarks { get; set; }
+    }
+
+    public class Agent
+    {
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string ZipCode { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Fax { get; set; }
+    }
 
     public class Dimension
     {

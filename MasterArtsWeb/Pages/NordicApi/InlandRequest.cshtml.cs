@@ -52,7 +52,7 @@ namespace MasterArtsWeb.Pages.NordicApi
                     Type = Inland.Type,
                     InlandZipCode = Inland.InlandZipCode,
                     Packages = Inland.Packages,
-                    PackageType = Inland.PackageType,
+                  
                     Weight = Inland.Weight,
                     Volume = Inland.Volume,
                     Date = Inland.Date,

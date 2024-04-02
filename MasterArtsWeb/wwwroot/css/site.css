@@ -7,10 +7,13 @@
 }
 
 html, body {
-    
     overflow-x: hidden;
     background-color: aliceblue;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 .honeypot {
     position: absolute;
@@ -24,6 +27,7 @@ html, body {
     align-items: center;
     width: 100%;
     margin-top: 100px;
+
 
    
 }
@@ -52,6 +56,13 @@ header {
     background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
     background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
     background-repeat: no-repeat; /* Hindrar att bilden upprepas */
+}
+header::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: linear-gradient(45deg, rgba(93, 59, 102, 0.5), rgba(0, 0, 0, 0.5));
+    pointer-events: none;
 }
 .kalle {
     position: relative;
@@ -894,29 +905,23 @@ input {
 }
 
 
-#ser .services {
-    display: block;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 4em
-}
+
 .fot {
     display: flex;
     gap: 50px;
     margin-left: auto;
 }
 .asdf {
-    
     width: 100%;
     margin-top: 200px;
     padding: 50px;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); /* Skugga */
+    backdrop-filter: blur(4px); /* Frostat glas-effekt */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(to right, #f0f0f0 0%, #d9d9d9 50%, #bbbbbb 100%);
 }
 
 .container-abbe {
@@ -1859,6 +1864,8 @@ select {
     padding: 24px;
     border-radius: 10px;
     line-height: 1.5;
+
+
     
 }
 .qop-3 h2 {
@@ -2472,7 +2479,11 @@ input[type="checkbox"] {
     display: inline-block; /* Gör att border-bottom endast tar upp så mycket plats som texten */
     padding-bottom: 5px; /* Lägger till lite utrymme mellan texten och linjen */
 }
-
+.sleep{
+    display:flex;
+    justify-content:center;
+    align-items:center
+}
 
 .form-group label {
     display: block;

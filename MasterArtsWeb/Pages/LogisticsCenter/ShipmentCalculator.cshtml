@@ -21,6 +21,7 @@
     <a href="/LogisticsCenter/Calculator#contact-id">Calculator</a>
     <a href="/LogisticsCenter/MyOrdersModel#contact-id">Bookings</a>
     <a href="/NordicApi/CalculateRates#contact-id">LCL-Rates</a>
+    <a href="/NordicApi/InlandRequest#contact-id">LCL-Inland</a>
     
 
     <p class="customer-number">Kundnummer: @Model.CustomerNumber</p>
@@ -360,10 +361,13 @@
    
 
     
-    <div id="loadingSpinner" style="display: none;">
-        <div class="spinner"></div>
+    <div class="sleep">
+        <div id="loadingSpinner" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Skicka Order</button>
     </div>
-    <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" id="OrderSubmitButton" name="OrderSubmitButton">Skicka Order</button>
 </form>
 
 
@@ -666,10 +670,14 @@
 
 
 
-    <div id="loadingSpinner" style="display: none;">
-        <div class="spinner"></div>
+    <div class="sleep">
+        <div id="loadingSpinner" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Skicka Order</button>
     </div>
-    <button id="loginButton"  onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" id="OrderSubmitButton" name="OrderSubmitButton">Skicka Order</button>
+    
 
 </form>
 
