@@ -1,4 +1,4 @@
-
+ï»¿
 
 @import url('site.css');
 
@@ -8,7 +8,7 @@
 
 html, body {
     overflow-x: hidden;
-    background-color: aliceblue;
+    background: linear-gradient(to bottom, #ffffff 0%, #e6e6e6 100%);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #333;
     line-height: 1.6;
@@ -41,7 +41,7 @@ html, body {
 
 .dark-transparent-bg {
     background-color: rgba(0, 0, 0, 0.5); /* Svart med 50% genomskinlighet */
-    border-bottom: solid 3px white; /* Behåller din befintliga stil för gränsen */
+    border-bottom: solid 3px white; /* BehÃ¥ller din befintliga stil fÃ¶r grÃ¤nsen */
 
 }
 
@@ -53,8 +53,8 @@ header {
     background: rgba(0, 0, 0, 0.5); /* Svart med 50% genomskinlighet */
     height: 140px;
     width: 100%;
-    background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
-    background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
+    background-size: cover; /* GÃ¶r sÃ¥ att bilden tÃ¤cker hela bredden (och eventuellt hÃ¶jden) */
+    background-position: center; /* Centrerar bilden sÃ¥ viktiga delar inte klipps bort */
     background-repeat: no-repeat; /* Hindrar att bilden upprepas */
 }
 header::before {
@@ -69,8 +69,8 @@ header::before {
     background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
     height: 1100px;
     width: 100%;
-    background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
-    background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
+    background-size: cover; /* GÃ¶r sÃ¥ att bilden tÃ¤cker hela bredden (och eventuellt hÃ¶jden) */
+    background-position: center; /* Centrerar bilden sÃ¥ viktiga delar inte klipps bort */
     background-repeat: no-repeat; /* hindrar att bilden upprepas */
    
     
@@ -115,7 +115,7 @@ header::before {
 }
 
 .card a.card-link {
-    color: inherit; /* Använd den ärftliga textfärgen */
+    color: inherit; /* AnvÃ¤nd den Ã¤rftliga textfÃ¤rgen */
     text-decoration: none; /* Ta bort understrykningen */
 }
 
@@ -149,19 +149,19 @@ header::before {
     font-family: 'Arial Narrow Bold', sans-serif;
     font-size: 2em;
     position: relative;
-    /* Lägg till detta för att positionera pseudo-elementet korrekt */
+    /* LÃ¤gg till detta fÃ¶r att positionera pseudo-elementet korrekt */
 }
 
     .contact::after {
-        content: ''; /* Nödvändigt för att visa pseudo-elementet */
+        content: ''; /* NÃ¶dvÃ¤ndigt fÃ¶r att visa pseudo-elementet */
         display: block;
         margin: 0 auto; /* Centrerar border i mitten */
-        height: 2px; /* Höjden på din border */
-        width: 50%; /* Justera denna procentandel för att ändra längden på din border */
-        background: #333; /* Färgen på din border */
-        position: absolute; /* Gör så att du kan positionera den exakt var du vill */
+        height: 2px; /* HÃ¶jden pÃ¥ din border */
+        width: 50%; /* Justera denna procentandel fÃ¶r att Ã¤ndra lÃ¤ngden pÃ¥ din border */
+        background: #333; /* FÃ¤rgen pÃ¥ din border */
+        position: absolute; /* GÃ¶r sÃ¥ att du kan positionera den exakt var du vill */
         bottom: -10px;
-        /* Justera detta värde för att flytta border uppåt eller nedåt */
+        /* Justera detta vÃ¤rde fÃ¶r att flytta border uppÃ¥t eller nedÃ¥t */
     }
 
 
@@ -295,13 +295,13 @@ h1 {
 
 .customer-text {
     margin: auto;
-    color: white; /* Mörk textfärg */
+    color: white; /* MÃ¶rk textfÃ¤rg */
     font-size: 1.5em;
 }
 
     .customer-text:hover {
         color: white;
-        text-decoration: underline; /* Lägg till understreck vid hover */
+        text-decoration: underline; /* LÃ¤gg till understreck vid hover */
         transition: 0.5s;
     }
 
@@ -310,8 +310,8 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row; /* Ändrat till rad */
-    /* Lägg till en maxbredd efter behov */
+    flex-direction: row; /* Ã„ndrat till rad */
+    /* LÃ¤gg till en maxbredd efter behov */
 }
 
 
@@ -330,7 +330,7 @@ h1 {
 
 .contact-info {
     font-size: 1.5em;
-    color: #FFF; /* Ändra färgen efter behov */
+    color: #FFF; /* Ã„ndra fÃ¤rgen efter behov */
     margin-bottom: 15px; /* Justera nedre marginalen efter behov */
 }
 
@@ -346,7 +346,7 @@ h1 {
 }
 
 .highlight {
-    color: pink; /* eller vilken färg du föredrar */
+    color: pink; /* eller vilken fÃ¤rg du fÃ¶redrar */
     font-weight: bold;
 }
 
@@ -377,7 +377,7 @@ h1 {
     display: flex;
     margin-top: 200px;
     background-color: #000;
-    /* Svart genomskinlig bakgrundsfärg */
+    /* Svart genomskinlig bakgrundsfÃ¤rg */
     color: white;
     border-radius: 10px;
     background-size: cover;
@@ -397,7 +397,7 @@ h1 {
 .b {
     display: flex;
     margin-top: 660px;
-    /* Svart genomskinlig bakgrundsfärg */
+    /* Svart genomskinlig bakgrundsfÃ¤rg */
     color: white;
     border-radius: 10px;
     background-position: center;
@@ -486,13 +486,13 @@ h1 {
 .results-heading {
     font-size: 24px;
     font-weight: bold;
-    color: #333; /* Färg för rubrik */
+    color: #333; /* FÃ¤rg fÃ¶r rubrik */
     margin-bottom: 10px;
 }
 
 .result {
     font-size: 18px;
-    color: #333; /* Färg för resultattext */
+    color: #333; /* FÃ¤rg fÃ¶r resultattext */
     margin-bottom: 8px;
     margin-bottom: 40px;
 }
@@ -554,8 +554,8 @@ h1 {
 }
 @media (max-width: 768px) {
     .section {
-        flex-direction: column; /* Ändra layout till kolumn för att stapla element vertikalt */
-        padding: 20px; /* Justera padding för mindre skärmar om nödvändigt */
+        flex-direction: column; /* Ã„ndra layout till kolumn fÃ¶r att stapla element vertikalt */
+        padding: 20px; /* Justera padding fÃ¶r mindre skÃ¤rmar om nÃ¶dvÃ¤ndigt */
     }
 }
 
@@ -567,10 +567,10 @@ h1 {
 
 .contact-section {
     display: flex;
-    flex-wrap: wrap; /* Lägg till wrap för att hantera mindre skärmar */
+    flex-wrap: wrap; /* LÃ¤gg till wrap fÃ¶r att hantera mindre skÃ¤rmar */
     justify-content: center;
     align-items: center;
-    /* Justera padding för mindre skärmar */
+    /* Justera padding fÃ¶r mindre skÃ¤rmar */
 
     background-color: #e6f7ec;
 }
@@ -615,7 +615,7 @@ h1 {
 }
 
 #trackingCode {
-    border: 2px solid #007bff; /* Matchar Bootstrap's primära färg */
+    border: 2px solid #007bff; /* Matchar Bootstrap's primÃ¤ra fÃ¤rg */
     border-radius: 0.25rem;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
@@ -623,7 +623,7 @@ h1 {
     
 }
 
-/* Stil för 'Track'-knappen */
+/* Stil fÃ¶r 'Track'-knappen */
 .btn-primary {
     background-color: #007bff;
     border-color: #007bff;
@@ -701,7 +701,7 @@ input {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    text-decoration: none; /* Lägg till för att avlägsna standard länkstil */
+    text-decoration: none; /* LÃ¤gg till fÃ¶r att avlÃ¤gsna standard lÃ¤nkstil */
     margin-top: 7px
 }
 
@@ -727,7 +727,7 @@ input {
 .logo-container img {
     margin-top: 30px;
     width: 100px; /* Anpassa bredden efter ditt behov */
-    height: auto; /* Autojustering av höjden för att behålla proportionerna */
+    height: auto; /* Autojustering av hÃ¶jden fÃ¶r att behÃ¥lla proportionerna */
     background-color: black
 }
 
@@ -793,8 +793,8 @@ input {
     flex-wrap: wrap;
     justify-content: center;
     margin: 0 auto;
-    width: 400px; /* Bredden på ditt kort */
-    height: 200px; /* Höjden på ditt kort */
+    width: 400px; /* Bredden pÃ¥ ditt kort */
+    height: 200px; /* HÃ¶jden pÃ¥ ditt kort */
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 20px;
@@ -829,8 +829,8 @@ input {
 }
 
 .l-btn {
-    background-color: pink; /* Vit bakgrundsfärg */
-    color: black; /* Svart textfärg */
+    background-color: pink; /* Vit bakgrundsfÃ¤rg */
+    color: black; /* Svart textfÃ¤rg */
     border-radius: 10px;
     transition: background-color 0.25s, color 0.15s;
     margin-top: 10px
@@ -838,8 +838,8 @@ input {
 
 
     .l-btn:hover {
-        background-color: #333; /* Ändra till svart bakgrundsfärg vid hover */
-        color: #ffffff; /* Ändra till vit textfärg vid hover */
+        background-color: #333; /* Ã„ndra till svart bakgrundsfÃ¤rg vid hover */
+        color: #ffffff; /* Ã„ndra till vit textfÃ¤rg vid hover */
     }
 
 .mr-h6 {
@@ -1029,8 +1029,8 @@ input {
         display: inline-block;
         margin: 5px;
         padding: 6px 12px;
-        background-color: #b8d8f5; /* Subtil blå färg för knapparna */
-        color: #2c3e50; /* Mörkblå text för kontrast */
+        background-color: #b8d8f5; /* Subtil blÃ¥ fÃ¤rg fÃ¶r knapparna */
+        color: #2c3e50; /* MÃ¶rkblÃ¥ text fÃ¶r kontrast */
         text-decoration: none;
         border-radius: 25px;
         transition: all 0.3s ease;
@@ -1045,10 +1045,10 @@ input {
     }
     .larger-text-5 {
         font-family: 'Helvetica', sans-serif; /* Teckensnitt */
-        font-size: 2em; /* Storlek på teckensnittet */
+        font-size: 2em; /* Storlek pÃ¥ teckensnittet */
         font-weight: bold; /* Fetstil */
         text-align: center; /* Justering av text */
-        text-transform: uppercase; /* Gör texten till versaler */
+        text-transform: uppercase; /* GÃ¶r texten till versaler */
         margin-bottom: 20px;
     }
     .background-image-container{
@@ -1074,7 +1074,7 @@ input {
     }
 
     .navbar-nav .nav-link .customer-text {
-        font-size: 16px; /* Ange önskad storlek */
+        font-size: 16px; /* Ange Ã¶nskad storlek */
     }
 
    
@@ -1168,7 +1168,7 @@ input {
         display: grid;
         grid-template-rows: 1fr;
         margin-top: 100px;
-        background-color: rgba(0, 0, 0, 0.8); /* Svart genomskinlig bakgrundsfärg */
+        background-color: rgba(0, 0, 0, 0.8); /* Svart genomskinlig bakgrundsfÃ¤rg */
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -1177,7 +1177,7 @@ input {
 
     .animate-charcter {
         display: none;
-        margin-bottom: 10px; /* Du kan justera detta värde för att flytta border-bottom nedåt */
+        margin-bottom: 10px; /* Du kan justera detta vÃ¤rde fÃ¶r att flytta border-bottom nedÃ¥t */
         margin-top: 10px;
     }
 
@@ -1194,7 +1194,7 @@ input {
 
     .contact-info {
 
-        font-size: 1em; /* Mindre textstorlek för mindre skärmar */
+        font-size: 1em; /* Mindre textstorlek fÃ¶r mindre skÃ¤rmar */
         margin-bottom: 10px;
     }
 
@@ -1241,7 +1241,7 @@ input {
         position: relative;
         overflow: hidden;
         background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
-        background-size: cover; /* Ser till att bilden täcker hela elementet */
+        background-size: cover; /* Ser till att bilden tÃ¤cker hela elementet */
         background-position: center; /* Centrerar bilden i elementet */
         height: 500px;
         
@@ -1305,28 +1305,28 @@ input {
     }
    
     .larger-text {
-        font-size: 18px; /* Minska textstorleken för mindre skärmar */
-        line-height: 1.3; /* Anpassa radhöjden för mindre skärmar */
+        font-size: 18px; /* Minska textstorleken fÃ¶r mindre skÃ¤rmar */
+        line-height: 1.3; /* Anpassa radhÃ¶jden fÃ¶r mindre skÃ¤rmar */
     }
 
     .contact-section {
-        padding: 20px; /* Anpassa padding för mindre skärmar */
+        padding: 20px; /* Anpassa padding fÃ¶r mindre skÃ¤rmar */
     }
 
     .valuta-1, .valuta-2 {
-        margin: 5px; /* Justera marginal för mindre skärmar */
+        margin: 5px; /* Justera marginal fÃ¶r mindre skÃ¤rmar */
 
 
         margin-top: 20px;
     }
 
     .valuta-2 {
-        order: 2; /* Ändra ordningen för mindre skärmar */
+        order: 2; /* Ã„ndra ordningen fÃ¶r mindre skÃ¤rmar */
     }
 
     .text-container-2 {
-        text-align: center; /* Justera textcentrering för mindre skärmar */
-        max-width: 100%; /* Anpassa maxbredd för mindre skärmar */
+        text-align: center; /* Justera textcentrering fÃ¶r mindre skÃ¤rmar */
+        max-width: 100%; /* Anpassa maxbredd fÃ¶r mindre skÃ¤rmar */
         margin-top: 20px;
     }
 
@@ -1470,14 +1470,14 @@ footer {
 }
 
 .p-mail a {
-    text-decoration: none; /* Ta bort understrykningen från länken */
-    color: inherit; /* Behåll färgen från förälderelementet */
+    text-decoration: none; /* Ta bort understrykningen frÃ¥n lÃ¤nken */
+    color: inherit; /* BehÃ¥ll fÃ¤rgen frÃ¥n fÃ¶rÃ¤lderelementet */
     font-size: 16px
 }
 
 .fa-github {
-    color: #ff66b2; /* Grundfärg */
-    transition: color 0.3s ease; /* Gör övergång mjuk över 0.3 sekunder */
+    color: #ff66b2; /* GrundfÃ¤rg */
+    transition: color 0.3s ease; /* GÃ¶r Ã¶vergÃ¥ng mjuk Ã¶ver 0.3 sekunder */
 }
 
 
@@ -1525,8 +1525,8 @@ footer {
         background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
         height: 1400px;
         width: 100%;
-        background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
-        background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
+        background-size: cover; /* GÃ¶r sÃ¥ att bilden tÃ¤cker hela bredden (och eventuellt hÃ¶jden) */
+        background-position: center; /* Centrerar bilden sÃ¥ viktiga delar inte klipps bort */
         background-repeat: no-repeat; /* hindrar att bilden upprepas */
     }
     .qop-4 {
@@ -1617,31 +1617,31 @@ select {
     background-color: #ffcccc; /* Ljusrosa */
     color: #333; /* Vit text */
 
-    padding: 20px 40px; /* Storlek på knappen */
-    border-radius: 10px; /* Rundade hörn */
-    font-size: 22px; /* Storlek på text */
+    padding: 20px 40px; /* Storlek pÃ¥ knappen */
+    border-radius: 10px; /* Rundade hÃ¶rn */
+    font-size: 22px; /* Storlek pÃ¥ text */
 
-    transition: background-color 0.3s ease; /* Smidig övergång för bakgrundsfärg */
+    transition: background-color 0.3s ease; /* Smidig Ã¶vergÃ¥ng fÃ¶r bakgrundsfÃ¤rg */
     text-decoration: none;
 }
 
     .btn-large:hover {
-        background-color: #ff9999; /* Mörkare rosa vid hover */
+        background-color: #ff9999; /* MÃ¶rkare rosa vid hover */
     }
 .btn-large-2 {
     background-color: #cccccc; /* Ljusrosa */
     color: #333; /* Vit text */
 
-    padding: 20px 40px; /* Storlek på knappen */
-    border-radius: 10px; /* Rundade hörn */
-    font-size: 22px; /* Storlek på text */
+    padding: 20px 40px; /* Storlek pÃ¥ knappen */
+    border-radius: 10px; /* Rundade hÃ¶rn */
+    font-size: 22px; /* Storlek pÃ¥ text */
 
-    transition: background-color 0.3s ease; /* Smidig övergång för bakgrundsfärg */
+    transition: background-color 0.3s ease; /* Smidig Ã¶vergÃ¥ng fÃ¶r bakgrundsfÃ¤rg */
     text-decoration: none;
 }
 
     .btn-large-2:hover {
-        background-color: #ff9999; /* Mörkare rosa vid hover */
+        background-color: #ff9999; /* MÃ¶rkare rosa vid hover */
     }
 
 
@@ -1714,23 +1714,23 @@ select {
     padding: 20px;
 }
 
-/* Stil för rubriker */
+/* Stil fÃ¶r rubriker */
 
 
-/* Stil för etiketter */
+/* Stil fÃ¶r etiketter */
 
 
-/* Stil för valideringsmeddelanden */
+/* Stil fÃ¶r valideringsmeddelanden */
 .text-danger {
     color: #d9534f;
     margin-bottom: 15px;
     display: block;
 }
 
-/* Stil för knappar och formulärets sändningsknapp */
-/* Lägg till denna del om du har en skicka-knapp i ditt formulär */
+/* Stil fÃ¶r knappar och formulÃ¤rets sÃ¤ndningsknapp */
+/* LÃ¤gg till denna del om du har en skicka-knapp i ditt formulÃ¤r */
 .form-button {
-    background-color: #0056b3; /* Anpassa färgen efter ditt tema */
+    background-color: #0056b3; /* Anpassa fÃ¤rgen efter ditt tema */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -1774,11 +1774,11 @@ select {
     z-index: 1;
     height: 300px;
     width: 500px;
-    background: rgba(255, 255, 255, 0.2); /* Lägger till en lätt genomskinlig vit bakgrund */
-    border-radius: 10px; /* Runda hörnen lite */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Lägger till en mjuk skugga runtom för djup */
-    backdrop-filter: blur(10px); /* Detta är nyckeln till glasmorfism, det suddar bakgrunden */
-    -webkit-backdrop-filter: blur(10px); /* För Safari */
+    background: rgba(255, 255, 255, 0.2); /* LÃ¤gger till en lÃ¤tt genomskinlig vit bakgrund */
+    border-radius: 10px; /* Runda hÃ¶rnen lite */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* LÃ¤gger till en mjuk skugga runtom fÃ¶r djup */
+    backdrop-filter: blur(10px); /* Detta Ã¤r nyckeln till glasmorfism, det suddar bakgrunden */
+    -webkit-backdrop-filter: blur(10px); /* FÃ¶r Safari */
 }
 .veta {
     display: flex;
@@ -1794,9 +1794,9 @@ select {
     background-image: url('/images/aae.webp');
     height: 700px; 
     width: 100%;
-    background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
-    background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
-    background-repeat: no-repeat; /* Förhindrar att bilden upprepas */
+    background-size: cover; /* GÃ¶r sÃ¥ att bilden tÃ¤cker hela bredden (och eventuellt hÃ¶jden) */
+    background-position: center; /* Centrerar bilden sÃ¥ viktiga delar inte klipps bort */
+    background-repeat: no-repeat; /* FÃ¶rhindrar att bilden upprepas */
 }
 
     .background-image-container::before {
@@ -1807,28 +1807,28 @@ select {
         right: 0;
         bottom: 0;
         background: rgba(0, 0, 0, 0.5); /* Svart med 50% opacitet */
-        z-index: -1; /* Ser till att överlägget ligger ovanför bakgrundsbilden men under innehållet */
+        z-index: -1; /* Ser till att Ã¶verlÃ¤gget ligger ovanfÃ¶r bakgrundsbilden men under innehÃ¥llet */
     }
 
 
 .centered-text {
-    /* Stil för din centralt placerade text */
-    position: absolute; /* Använd denna om flex inte är tillräckligt för ditt specifika fall */
-    z-index: 2; /* Se till att den ligger över andra element */
-    color: white; /* Exempel på textfärg */
-    font-size: 24px; /* Exempel på textstorlek */
+    /* Stil fÃ¶r din centralt placerade text */
+    position: absolute; /* AnvÃ¤nd denna om flex inte Ã¤r tillrÃ¤ckligt fÃ¶r ditt specifika fall */
+    z-index: 2; /* Se till att den ligger Ã¶ver andra element */
+    color: white; /* Exempel pÃ¥ textfÃ¤rg */
+    font-size: 24px; /* Exempel pÃ¥ textstorlek */
     margin-top: 900px;
-    background: rgba(255, 255, 255, 0.2); /* Lägger till en lätt genomskinlig vit bakgrund */
-    border-radius: 10px; /* Runda hörnen lite */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Lägger till en mjuk skugga runtom för djup */
-    backdrop-filter: blur(10px); /* Detta är nyckeln till glasmorfism, det suddar bakgrunden */
-    -webkit-backdrop-filter: blur(10px); /* För Safari */
+    background: rgba(255, 255, 255, 0.2); /* LÃ¤gger till en lÃ¤tt genomskinlig vit bakgrund */
+    border-radius: 10px; /* Runda hÃ¶rnen lite */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* LÃ¤gger till en mjuk skugga runtom fÃ¶r djup */
+    backdrop-filter: blur(10px); /* Detta Ã¤r nyckeln till glasmorfism, det suddar bakgrunden */
+    -webkit-backdrop-filter: blur(10px); /* FÃ¶r Safari */
     height: 100px;
     width: 600px;
 }
 .mpm {
     margin-top: 40px;
-    font-size: 24px; /* Ställer in storleken på texten */
+    font-size: 24px; /* StÃ¤ller in storleken pÃ¥ texten */
    
     color: #ccc;
 
@@ -1869,7 +1869,7 @@ select {
     
 }
 .qop-3 h2 {
-    color: #5D3B66; /* Mörkare rosa för kontrast */
+    color: #5D3B66; /* MÃ¶rkare rosa fÃ¶r kontrast */
     font-size: 2.5rem;
     margin-bottom: 15px;
     text-shadow: 2px 2px 4px #f6d6e9;
@@ -1913,19 +1913,19 @@ select {
 .card {
     height: 170px;
     width: 130px;
-    border-radius: 15px; /* Rundade hörn */
-    margin: 7px 0; /* Avstånd mellan korten */
+    border-radius: 15px; /* Rundade hÃ¶rn */
+    margin: 7px 0; /* AvstÃ¥nd mellan korten */
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); /* Skugga */
     backdrop-filter: blur(4px); /* Frostat glas-effekt */
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
-    color: #ffffff; /* Vit textfärg */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Lägg till transition för mjukare effekt */
+    color: #ffffff; /* Vit textfÃ¤rg */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* LÃ¤gg till transition fÃ¶r mjukare effekt */
 }
 
     .card:hover {
-        transform: scale(1.05); /* Gör kortet lite större */
-        box-shadow: 0px 10px 36px rgba(0, 0, 0, 0.7); /* Mörkare/längre skugga */
+        transform: scale(1.05); /* GÃ¶r kortet lite stÃ¶rre */
+        box-shadow: 0px 10px 36px rgba(0, 0, 0, 0.7); /* MÃ¶rkare/lÃ¤ngre skugga */
     }
 
 
@@ -1951,93 +1951,93 @@ select {
    
      /* Ger korten en semi-transparent bakgrund */
     margin: 10px; /* Ger utrymme runt korten */
-    border-radius: 10px; /* Rundade hörn på korten */
-     /* Lägger till en subtil skugga för djup */
+    border-radius: 10px; /* Rundade hÃ¶rn pÃ¥ korten */
+     /* LÃ¤gger till en subtil skugga fÃ¶r djup */
 }
 
 .card-icon {
-    font-size: 48px; /* Justerar storleken på ikonen */
+    font-size: 48px; /* Justerar storleken pÃ¥ ikonen */
     color: #333;
    
-    /* Ger ikonen en färg som matchar en av gradientfärgerna */
+    /* Ger ikonen en fÃ¤rg som matchar en av gradientfÃ¤rgerna */
 }
 
 .card-title, .card-text {
-    color: #333; /* Mörk textfärg för läsbarhet mot den ljusare kortbakgrunden */
+    color: #333; /* MÃ¶rk textfÃ¤rg fÃ¶r lÃ¤sbarhet mot den ljusare kortbakgrunden */
 
 }
-/* Bakgrund och formulär container styling */
+/* Bakgrund och formulÃ¤r container styling */
 .form-container-2 {
     background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
-    /* En mjuk gradient från lila till en djupare lila */
+    /* En mjuk gradient frÃ¥n lila till en djupare lila */
     padding: 40px;
-    border-radius: 12px; /* Rundade hörn */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Lägg till en subtil skugga för djup */
-    max-width: 600px; /* Maxbredd för formuläret */
-    margin: 40px auto; /* Centrera och ge lite utrymme ovanför och under */
-    color: #333; /* Vit textfärg för kontrast mot den mörka bakgrunden */
+    border-radius: 12px; /* Rundade hÃ¶rn */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* LÃ¤gg till en subtil skugga fÃ¶r djup */
+    max-width: 600px; /* Maxbredd fÃ¶r formulÃ¤ret */
+    margin: 40px auto; /* Centrera och ge lite utrymme ovanfÃ¶r och under */
+    color: #333; /* Vit textfÃ¤rg fÃ¶r kontrast mot den mÃ¶rka bakgrunden */
 }
 
-    /* Formulärtitel */
+    /* FormulÃ¤rtitel */
     .form-container-2 h3 {
         margin-bottom: 20px; /* Ger utrymme under rubriken */
         text-align: center; /* Centrerar texten */
         font-weight: bold;
     }
 
-/* Formulärfält styling */
+/* FormulÃ¤rfÃ¤lt styling */
 .form-control {
-    background-color: #FFFFFF; /* Vit bakgrundsfärg för inputfält */
-    border: 1px solid #DDD; /* Subtil grå kant */
-    border-radius: 8px; /* Rundade hörn på fälten */
-    padding: 10px 15px; /* Padding för att göra fältet större och lättare att interagera med */
-    margin-bottom: 15px; /* Ger utrymme mellan varje fält */
-    width: 100%; /* Får fälten att expandera och fylla containerbredden */
-    box-sizing: border-box; /* Ser till att padding och border inte lägger till extra bredd */
+    background-color: #FFFFFF; /* Vit bakgrundsfÃ¤rg fÃ¶r inputfÃ¤lt */
+    border: 1px solid #DDD; /* Subtil grÃ¥ kant */
+    border-radius: 8px; /* Rundade hÃ¶rn pÃ¥ fÃ¤lten */
+    padding: 10px 15px; /* Padding fÃ¶r att gÃ¶ra fÃ¤ltet stÃ¶rre och lÃ¤ttare att interagera med */
+    margin-bottom: 15px; /* Ger utrymme mellan varje fÃ¤lt */
+    width: 100%; /* FÃ¥r fÃ¤lten att expandera och fylla containerbredden */
+    box-sizing: border-box; /* Ser till att padding och border inte lÃ¤gger till extra bredd */
 }
 
 /* Felmeddelande styling */
 .text-danger {
-    color: #FF3860; /* En stark röd färg för att indikera fel */
+    color: #FF3860; /* En stark rÃ¶d fÃ¤rg fÃ¶r att indikera fel */
 }
 
-/* Förbättra tillgängligheten och visuell feedback */
+/* FÃ¶rbÃ¤ttra tillgÃ¤ngligheten och visuell feedback */
 
 
 .form-container-2 label{
     color:#333
 }
-/* Anpassa knappar och länkar inom formuläret */
+/* Anpassa knappar och lÃ¤nkar inom formulÃ¤ret */
 
 .form {
     background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
-    color: #ffffff; /* Vit textfärg */
+    color: #ffffff; /* Vit textfÃ¤rg */
 }
 .customer-number {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern typsnitt */
-    color: #4A90E2; /* Ljusblå textfärg för att stå ut */
-    background-color: #f0f4f8; /* Ljus bakgrund för att lyfta fram texten */
-    padding: 10px 15px; /* Padding för att skapa utrymme runt texten */
-    border-radius: 5px; /* Rundade hörn för en mjukare look */
-    border: 1px solid #d1dce5; /* Ljus grå kant för att definiera området */
-    display: inline-block; /* Gör att bakgrunden bara omsluter texten */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Lägger till en subtil skugga för djup */
+    color: #4A90E2; /* LjusblÃ¥ textfÃ¤rg fÃ¶r att stÃ¥ ut */
+    background-color: #f0f4f8; /* Ljus bakgrund fÃ¶r att lyfta fram texten */
+    padding: 10px 15px; /* Padding fÃ¶r att skapa utrymme runt texten */
+    border-radius: 5px; /* Rundade hÃ¶rn fÃ¶r en mjukare look */
+    border: 1px solid #d1dce5; /* Ljus grÃ¥ kant fÃ¶r att definiera omrÃ¥det */
+    display: inline-block; /* GÃ¶r att bakgrunden bara omsluter texten */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* LÃ¤gger till en subtil skugga fÃ¶r djup */
     margin: 10px 0; /* Ger lite utrymme ovan och under */
-    font-size: 18px; /* Större textstorlek för att göra numret mer läsbart */
-    font-weight: bold; /* Gör texten fet för att den ska sticka ut mer */
-    text-shadow: 1px 1px 0px #ffffff; /* Lägger till en subtil textskugga för djup */
+    font-size: 18px; /* StÃ¶rre textstorlek fÃ¶r att gÃ¶ra numret mer lÃ¤sbart */
+    font-weight: bold; /* GÃ¶r texten fet fÃ¶r att den ska sticka ut mer */
+    text-shadow: 1px 1px 0px #ffffff; /* LÃ¤gger till en subtil textskugga fÃ¶r djup */
 }
 
     /* Hovereffekt */
     .customer-number:hover {
-        color: #ffffff; /* Vit text på hover */
-        background-color: #4A90E2; /* Mörkare blå bakgrund på hover */
-        border-color: #4A90E2; /* Mörkare blå kant för att matcha bakgrunden */
-        cursor: pointer; /* Ändrar muspekaren för att indikera klickbarhet */
-        box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15); /* Starkare skugga för hovereffekt */
+        color: #ffffff; /* Vit text pÃ¥ hover */
+        background-color: #4A90E2; /* MÃ¶rkare blÃ¥ bakgrund pÃ¥ hover */
+        border-color: #4A90E2; /* MÃ¶rkare blÃ¥ kant fÃ¶r att matcha bakgrunden */
+        cursor: pointer; /* Ã„ndrar muspekaren fÃ¶r att indikera klickbarhet */
+        box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15); /* Starkare skugga fÃ¶r hovereffekt */
     }
 .nav-link {
     color: white;
@@ -2093,8 +2093,8 @@ select {
     display: inline-block;
     margin: 5px;
     padding: 10px 20px;
-    background-color: #b8d8f5; /* Subtil blå färg för knapparna */
-    color: #2c3e50; /* Mörkblå text för kontrast */
+    background-color: #b8d8f5; /* Subtil blÃ¥ fÃ¤rg fÃ¶r knapparna */
+    color: #2c3e50; /* MÃ¶rkblÃ¥ text fÃ¶r kontrast */
     text-decoration: none;
     border-radius: 25px;
     transition: all 0.3s ease;
@@ -2110,7 +2110,7 @@ select {
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 40px 20px;
-    background-color: #2c3e50; /* Mörkblå bakgrund för foten */
+    background-color: #2c3e50; /* MÃ¶rkblÃ¥ bakgrund fÃ¶r foten */
     color: white;
 }
 
@@ -2120,7 +2120,7 @@ select {
 }
 
     .fot-1 p, .fot-1 a {
-        color: white; /* Vit text för läsbarhet */
+        color: white; /* Vit text fÃ¶r lÃ¤sbarhet */
         margin: 10px 0;
         text-decoration: none;
     }
@@ -2130,7 +2130,7 @@ select {
 }
 
     .kite:hover, .fot-1 p:hover {
-        color: #f5c7b8; /* Ljusare färg vid hover */
+        color: #f5c7b8; /* Ljusare fÃ¤rg vid hover */
     }
 
 .fot-1 span, .fot-1 p {
@@ -2140,13 +2140,13 @@ select {
 .fot-5 {
     width: 100%;
     text-align: center;
-    border-top: 1px solid #4a6fa1; /* Ljusblå linje som separator */
+    border-top: 1px solid #4a6fa1; /* LjusblÃ¥ linje som separator */
     padding-top: 20px;
     margin-top: 20px;
 }
 
 .mr-arts-2 {
-    display: none; /* Döljer denna om den inte används */
+    display: none; /* DÃ¶ljer denna om den inte anvÃ¤nds */
 }
 
 /* Responsivitet */
@@ -2161,23 +2161,23 @@ select {
         text-align: center;
     }
 }
-/* Döljer mobil-specifikt innehåll på desktop */
+/* DÃ¶ljer mobil-specifikt innehÃ¥ll pÃ¥ desktop */
 .desktop-only {
     display: none;
 }
 
-/* Media query för skärmar större än 768px (exempelvis för tablets och desktops) */
+/* Media query fÃ¶r skÃ¤rmar stÃ¶rre Ã¤n 768px (exempelvis fÃ¶r tablets och desktops) */
 @media (min-width: 769px) {
     .desktop-only {
-        display: block; /* Visa desktop-specifikt innehåll */
+        display: block; /* Visa desktop-specifikt innehÃ¥ll */
     }
 
     .mobile-only {
-        display: none; /* Dölj mobil-specifikt innehåll */
+        display: none; /* DÃ¶lj mobil-specifikt innehÃ¥ll */
     }
 }
 
-/* Alternativt kan du ha en specifik query för mobil och använda "max-width" */
+/* Alternativt kan du ha en specifik query fÃ¶r mobil och anvÃ¤nda "max-width" */
 @media (max-width: 768px) {
     .desktop-only {
         display: none;
@@ -2187,10 +2187,10 @@ select {
         display: block;
     }
     .card-icon {
-        font-size: 48px; /* Justerar storleken på ikonen */
+        font-size: 48px; /* Justerar storleken pÃ¥ ikonen */
         color: #333;
         margin-top:25px
-        /* Ger ikonen en färg som matchar en av gradientfärgerna */
+        /* Ger ikonen en fÃ¤rg som matchar en av gradientfÃ¤rgerna */
     }
 }
 /* Calculator Container Styles */
@@ -2344,9 +2344,9 @@ select {
 
 .left-side {
     flex: 1; /* Tar upp halva bredden */
-    background-image: url('/images/svart.webp'); /* Ersätt 'path_to_your_image.jpg' med sökvägen till din bild */
+    background-image: url('/images/svart.webp'); /* ErsÃ¤tt 'path_to_your_image.jpg' med sÃ¶kvÃ¤gen till din bild */
     background-size: cover;
-    color: #fff; /* Vit text för läsbarhet mot en mörk bakgrund */
+    color: #fff; /* Vit text fÃ¶r lÃ¤sbarhet mot en mÃ¶rk bakgrund */
     padding: 20px;
 }
 
@@ -2356,12 +2356,12 @@ select {
     background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
 }
 
-/* Stilar för text och länkar här */
+/* Stilar fÃ¶r text och lÃ¤nkar hÃ¤r */
 .info-text a {
     color: #fff; /* Justera detta efter din design */
 }
 
-/* Lägg till ytterligare stilar för formuläret och kontaktinformationen enligt dina önskemål */
+/* LÃ¤gg till ytterligare stilar fÃ¶r formulÃ¤ret och kontaktinformationen enligt dina Ã¶nskemÃ¥l */
 
 
 
@@ -2434,17 +2434,17 @@ input[type="checkbox"] {
     margin-top:20px;
     margin-bottom:20px
 }
-/* Visa hamburgermeny-togglen och göm den fullständiga menyn på skärmar upp till 900px */
+/* Visa hamburgermeny-togglen och gÃ¶m den fullstÃ¤ndiga menyn pÃ¥ skÃ¤rmar upp till 900px */
 
 .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    border-top-color: #09f; /* Ändrad från left till top för synlighet */
-    background-image: linear-gradient(to bottom, #09f, #f06); /* Lägger till en subtil gradient */
+    border-top-color: #09f; /* Ã„ndrad frÃ¥n left till top fÃ¶r synlighet */
+    background-image: linear-gradient(to bottom, #09f, #f06); /* LÃ¤gger till en subtil gradient */
     animation: spin 1s ease infinite, pulse 2s infinite alternate;
-    box-shadow: 0 0 20px rgba(0, 153, 255, 0.5); /* Lägger till en lysande skugga */
+    box-shadow: 0 0 20px rgba(0, 153, 255, 0.5); /* LÃ¤gger till en lysande skugga */
 }
 
 @keyframes spin {
@@ -2467,17 +2467,17 @@ input[type="checkbox"] {
     }
 }
 .page-title {
-    font-size: 2em; /* Storlek på texten */
-    color: #4A90E2; /* Färg på texten */
+    font-size: 2em; /* Storlek pÃ¥ texten */
+    color: #4A90E2; /* FÃ¤rg pÃ¥ texten */
     text-align: center; /* Centrerar texten */
-    margin-top: 20px; /* Avstånd till toppen */
-    margin-bottom: 20px; /* Avstånd till innehållet nedanför */
+    margin-top: 20px; /* AvstÃ¥nd till toppen */
+    margin-bottom: 20px; /* AvstÃ¥nd till innehÃ¥llet nedanfÃ¶r */
     font-family: 'Arial', sans-serif; /* Typsnitt */
-    text-transform: uppercase; /* Gör all text till versaler */
-    letter-spacing: 0.05em; /* Lägger till lite mellanrum mellan bokstäverna */
-    border-bottom: 2px solid #4A90E2; /* En linje under texten för extra stil */
-    display: inline-block; /* Gör att border-bottom endast tar upp så mycket plats som texten */
-    padding-bottom: 5px; /* Lägger till lite utrymme mellan texten och linjen */
+    text-transform: uppercase; /* GÃ¶r all text till versaler */
+    letter-spacing: 0.05em; /* LÃ¤gger till lite mellanrum mellan bokstÃ¤verna */
+    border-bottom: 2px solid #4A90E2; /* En linje under texten fÃ¶r extra stil */
+    display: inline-block; /* GÃ¶r att border-bottom endast tar upp sÃ¥ mycket plats som texten */
+    padding-bottom: 5px; /* LÃ¤gger till lite utrymme mellan texten och linjen */
 }
 .sleep{
     display:flex;
@@ -2546,4 +2546,52 @@ input[type="checkbox"] {
     z-index: 1;
     margin-top: 10px;
     margin-right: 100px
+}
+/* GrundlÃ¤ggande styling fÃ¶r att centrera och ge sidan ett modernt utseende */
+.shipping-cost-calculator {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.result-heading, .section-heading {
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Styling fÃ¶r total-, rate- och transit-sektionerna */
+.totals-section, .rates-section, .transit-details {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.total-item, .rate-item, .transit-item, .agent-item, .emission-item {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+    /* Specifik styling fÃ¶r att framhÃ¤va viktiga detaljer */
+    .transit-item strong, .agent-item strong, .emission-item strong {
+        color: #495057;
+    }
+
+/* Anpassning fÃ¶r responsiv design */
+@media (max-width: 768px) {
+    .shipping-cost-calculator {
+        padding: 10px;
+    }
+
+    .total-item, .rate-item, .transit-item, .agent-item, .emission-item {
+        font-size: 14px;
+    }
 }
