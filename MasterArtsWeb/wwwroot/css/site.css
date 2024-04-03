@@ -2117,7 +2117,7 @@ select {
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 40px 20px;
-    background-color: #2c3e50; /* Mörkblå bakgrund för foten */
+    background-color: #b8d8f5; /* Mörkblå bakgrund för foten */
     color: white;
 }
 
@@ -2642,7 +2642,7 @@ input[type="checkbox"] {
 
 @keyframes colorFade {
     0% {
-        color: deeppink;
+        color: #333;
     }
 
     25% {
@@ -2650,15 +2650,15 @@ input[type="checkbox"] {
     }
 
     50% {
-        color: limegreen;
+        color: #333;
     }
 
     75% {
-        color: orange;
+        color: skyblue;
     }
 
     100% {
-        color: deeppink;
+        color: #333;
     }
 }
 
@@ -2669,5 +2669,27 @@ input[type="checkbox"] {
     animation: colorFade 8s infinite; /* Använd nyckelramsanimationen, varar i 8 sekunder och upprepas oändligt */
 }
 
+
+.hej-hop .full-width-image img {
+    
+   
+    width: 400px; 
+    max-height: 300px;
+    display: block; 
+    object-fit: cover; 
+}
+
+.hej-hop .full-width-image {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; /* Centers the child elements horizontally */
+    text-align: center; /* Centers the text inside the <p> tag */
+    margin-bottom: 20px; /* Adds space between each image container */
+}
+
+.hej-hop .full-width-image p {
+   margin-top:27px;
+   border-bottom:solid 1px black;
+}
 
     

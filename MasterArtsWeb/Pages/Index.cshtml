@@ -26,12 +26,12 @@
                 <label for="trackingCode">Spårningskod:</label>
                 <input type="text" id="trackingCode" name="trackingCode" class="form-control" />
             </div>
-            <button type="submit" class="btn btn-primary">Spåra</button>
+            <button type="submit" class="cta-button">Spåra</button>
         </form>
 
         <div class="mt-3" style="max-width: 500px; margin: auto;">
             <p>Observera: Spårning är endast tillgänglig för LCL-sändningar. För andra typer av sändningar, besök följande sida.</p>
-            <a href="https://www.track-trace.com/" class="btn btn-info">Andra sändningar</a>
+            <a href="https://www.track-trace.com/" class="cta-button">Andra sändningar</a>
         </div>
 
     }
@@ -44,12 +44,12 @@
                 <label for="trackingCode">Tracking Code:</label>
                 <input type="text" id="trackingCode" name="trackingCode" class="form-control" />
             </div>
-            <button type="submit" class="btn btn-primary">Track</button>
+            <button type="submit" class="cta-button">Track</button>
         </form>
 
         <div class="mt-3">
             <p>Note: Tracking is only available for LCL shipments. For other types of shipments, please visit the following page.</p>
-            <a href="https://www.track-trace.com/" class="btn btn-info">Other Shipments</a>
+            <a href="https://www.track-trace.com/" class="cta-button">Other Shipments</a>
         </div>
     }
 
@@ -982,17 +982,22 @@
 
 
 <div class="hej-hop">
-    <div class="full-width-image container-abbe">
+    <div class="full-width-image container-abbe" data-text="Text för bild 1">
         <img src="/images/real.webp" alt="Placeholder Image" />
+        <p>Having problem with your logistics?</p>
     </div>
-    <div class="full-width-image container-abbe">
-        <img src="/images/sno.webp" alt="Placeholder Image" />
+   
+    <div class="full-width-image container-abbe" data-text="Text för bild 3">
+        <img src="/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp" alt="Placeholder Image" />
+        <p>We find the best solution for you!</p>
     </div>
-    <div class="full-width-image container-abbe">
-        <img src="/images/krak.webp" alt="Placeholder Image" />
+    
+    <div class="full-width-image container-abbe" data-text="Text för bild 4">
+        <img src="/images/kvibngolf.webp" alt="Placeholder Image" />
+        <p>And you can focus on the things your good at!</p>
     </div>
-
 </div>
+
 
 
 
@@ -1017,7 +1022,7 @@
 @section Scripts{
 
     <script>
-
+       
         setTimeout(function () {
             var successMessage = document.getElementById("success-message");
             successMessage.classList.remove("show");
