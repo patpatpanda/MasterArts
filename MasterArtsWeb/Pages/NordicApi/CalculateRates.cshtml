@@ -169,7 +169,7 @@
     </div>
 
         <div class="form-container-2">
-    <h4>Dimensioner</h4>
+    <h4>Dimensions</h4>
 
         <div id="dimensionsContainerEn">
         <div>
@@ -201,7 +201,7 @@
         </div>
     </div>
 
-        <button type="button" onclick="addDimension()">Lägg till Dimension</button>
+        <button type="button" onclick="addDimension()">Add Dimension</button>
 
     <br>
     
@@ -830,33 +830,7 @@
                 contactFormSv.style.display = 'none';
             }
         }
-        var dimensionIndex = 0;
-        function addOption() {
-            var container = document.getElementById('optionsContainer');
-            var optionHTML = `
-                <div id="option-${optionIndex}">
-                    <select name="ShippingRequest.Options[${optionIndex}].Key">
-                        <option value="vgm">VGM</option>
-                        <option value="incoterms">Incoterms</option>
-                        <!-- Lägg till fler fördefinierade nycklar här -->
-                    </select>
-                    <select name="ShippingRequest.Options[${optionIndex}].Value">
-                        <option value="true">True</option>
-                        <option value="false">False</option>
-                        <!-- Specifika värden för Incoterms, exempelvis -->
-                        <option value="dap">DAP</option>
-                        <option value="exw">EXW</option>
-                        <option value="fob">FOB</option>
-                    </select>
-                    <button type="button" onclick="removeOption(${optionIndex})">Ta bort</button>
-                </div>
-            `;
-            container.insertAdjacentHTML('beforeend', optionHTML);
-            optionIndex++;
-        }
-
-
-
+        var dimensionIndex = 0; // Initialiserar dimensionIndex här
 
         function addDimension() {
             var language = document.getElementById('languageToggleBtn').innerText;
@@ -866,7 +840,6 @@
             var container = document.getElementById(containerId);
 
             var placeholders = isSwedish ? {
-
                 pcs: "Number of pieces",
                 length: "Length",
                 width: "Width",
@@ -875,8 +848,6 @@
                 yes: "Yes",
                 no: "No",
                 removeBtn: "Remove"
-                
-                
             } : {
                 pcs: "Antal stycken",
                 length: "Längd",
@@ -904,8 +875,9 @@
             `;
 
             container.insertAdjacentHTML('beforeend', dimensionHTML);
-            dimensionIndex++;
+            dimensionIndex++; // Inkrementera dimensionIndex för varje ny dimension
         }
+
 
 
 
