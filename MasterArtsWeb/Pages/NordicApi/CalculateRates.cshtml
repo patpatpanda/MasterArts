@@ -20,7 +20,7 @@
 
     @if (Model.ApiResponse != null)
     {
-        <div class="totals-section">
+        <div class="transit-details">
             <h3 class="section-heading">Totals</h3>
             @foreach (var total in Model.ApiResponse.Totals)
             {
@@ -31,7 +31,7 @@
 
     @if (Model.ApiResponse != null)
     {
-        <div class="rates-section">
+        <div class="transit-details">
             <h3 class="section-heading">Rates</h3>
             @foreach (var rate in Model.ApiResponse.Rates)
             {
@@ -47,18 +47,18 @@
     {
         <div class="transit-details">
             <h3 class="section-heading">Transit Details</h3>
-            <p class="transit-item"><strong>Transit Time:</strong> @Model.ApiResponse.TransitTime days</p>
-            <p class="transit-item"><strong>Vessel:</strong> @Model.ApiResponse.Sailing?.Vessel</p>
-            <p class="transit-item"><strong>Voyage Number:</strong> @Model.ApiResponse.Sailing?.VoyageNumber</p>
-            <p class="transit-item"><strong>From:</strong> @Model.ApiResponse.Sailing?.FromDescription (@Model.ApiResponse.Sailing?.FromCode)</p>
-            <p class="transit-item"><strong>To:</strong> @Model.ApiResponse.Sailing?.ToDescription (@Model.ApiResponse.Sailing?.ToCode)</p>
+            <p><strong>Transit Time:</strong> @Model.ApiResponse.TransitTime days</p>
+            <p><strong>Vessel:</strong> @Model.ApiResponse.Sailing?.Vessel</p>
+            <p><strong>Voyage Number:</strong> @Model.ApiResponse.Sailing?.VoyageNumber</p>
+            <p><strong>From:</strong> @Model.ApiResponse.Sailing?.FromDescription (@Model.ApiResponse.Sailing?.FromCode)</p>
+            <p><strong>To:</strong> @Model.ApiResponse.Sailing?.ToDescription (@Model.ApiResponse.Sailing?.ToCode)</p>
 
             <h3 class="section-heading">Agent Details</h3>
-            <p class="agent-item"><strong>Name:</strong> @Model.ApiResponse.Agent?.Name</p>
-            <p class="agent-item"><strong>Address:</strong> @Model.ApiResponse.Agent?.Address</p>
-            <p class="agent-item"><strong>Zip Code:</strong> @Model.ApiResponse.Agent?.ZipCode</p>
-            <p class="agent-item"><strong>City:</strong> @Model.ApiResponse.Agent?.City</p>
-            <p class="agent-item"><strong>Country:</strong> @Model.ApiResponse.Agent?.Country</p>
+            <p><strong>Name:</strong> @Model.ApiResponse.Agent?.Name</p>
+            <p><strong>Address:</strong> @Model.ApiResponse.Agent?.Address</p>
+            <p><strong>Zip Code:</strong> @Model.ApiResponse.Agent?.ZipCode</p>
+            <p><strong>City:</strong> @Model.ApiResponse.Agent?.City</p>
+            <p><strong>Country:</strong> @Model.ApiResponse.Agent?.Country</p>
 
             <p class="emission-item"><strong>CO2 Emissions:</strong> @Model.ApiResponse.Co2.ToString() kg</p>
         </div>

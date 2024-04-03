@@ -56,9 +56,12 @@
         <input asp-for="Order.OrderReference" class="form-control"  />
         <span asp-validation-for="Order.OrderReference" class="text-danger"></span>*@
 
+        <div style="display: none;">
             <label asp-for="Order.Customer">Customer Number<span class="required">*</span></label>
             <input asp-for="Order.Customer" class="form-control" />
             <span asp-validation-for="Order.Customer" class="text-danger"></span>
+        </div>
+
 
                
         
@@ -107,23 +110,31 @@
                 <input asp-for="Order.CustomerOrderNumber" class="form-control" />
                 <span asp-validation-for="Order.CustomerOrderNumber" class="text-danger"></span>
 
-
                 <label asp-for="Order.OrderType">Order Type<span class="required">*</span></label>
-                <select asp-for="Order.OrderType" class="form-control">
-                    <option value="">Select OrderType</option>
-                    <option value="Export">Export</option>
-                    <option value="Import">Import</option>
-                    <option value="Inrikes">Inrikes</option>
-                    <option value="Tullhantering">Tullhantering</option>
-                    
-                </select>
-                <span asp-validation-for="Order.OrderType" class="text-danger"></span>
+<div class="input-icon-container">
+    <select asp-for="Order.OrderType" class="form-control">
+        <option value="">Select OrderType</option>
+        <option value="Export">Export</option>
+        <option value="Import">Import</option>
+        <option value="Inrikes">Inrikes</option>
+        <option value="Tullhantering">Tullhantering</option>
+    </select>
+    <span class="feedback-icon" style="display:none;"><i class="fa fa-check mr-check"></i></span> <!-- Feedback-ikonen här -->
+</div>
+<span asp-validation-for="Order.OrderType" class="text-danger"></span>
 
 
 
-            <label asp-for="Order.OrderReference">Reference</label>
+
+        <label asp-for="Order.OrderReference">Reference</label>
+        <div class="input-icon-container">
             <input asp-for="Order.OrderReference" class="form-control" />
-            <span asp-validation-for="Order.OrderReference" class="text-danger"></span>
+            <span class="feedback-icon" id="feedback-icon" style="display:none;"><i class="fa fa-check mr-check"></i></span>
+            <!-- Feedback-ikonen här -->
+        </div>
+        <span asp-validation-for="Order.OrderReference" class="text-danger"></span>
+
+
 
 
                 <label asp-for="@Model.Order.TransportModeCode">Transport Mode</label>
@@ -384,9 +395,12 @@
             <input asp-for="Order.OrderReference" class="form-control" placeholder="Exempel: REF123" />
             <span asp-validation-for="Order.OrderReference" class="text-danger"></span>*@
 
-            <label asp-for="Order.Customer">Kund</label>
-            <input asp-for="Order.Customer" class="form-control" placeholder="Exempel: John Doe" />
+        <div style="display: none;">
+            <label asp-for="Order.Customer">Customer Number<span class="required">*</span></label>
+            <input asp-for="Order.Customer" class="form-control" />
             <span asp-validation-for="Order.Customer" class="text-danger"></span>
+        </div>
+
 
 
                 <label asp-for="Order.TermsOfDelivery">Leveransvillkor</label>
@@ -715,6 +729,21 @@
 
 
 <script>
+
+   
+    document.querySelectorAll('.form-control').forEach(input => {
+        input.addEventListener('input', function () {
+            const feedbackIcon = this.nextElementSibling; // Anta att feedbackIcon är span-elementet direkt efter input
+            if (this.value.trim() !== '') {
+                feedbackIcon.style.display = 'inline';
+            } else {
+                feedbackIcon.style.display = 'none';
+            }
+        });
+    });
+
+
+
     setTimeout(function () {
         var successMessage = document.getElementById("success-message");
         successMessage.classList.remove("show");
@@ -760,10 +789,10 @@
         var newGoods = document.createElement('div');
         newGoods.className = 'goods-item'; // For styling or future selection if needed
         newGoods.innerHTML = `
-            <div class="form-group">
-                <label>PackageId</label>
-                <input type="text" name="Order.Goods[${index}].PackageId"  class="form-control" />
-            </div>
+        <div class="form-group">
+            <label>PackageId</label>
+            <input type="text" name="Order.Goods[${index}].PackageId" class="form-control" />
+        </div>
             <div class="form-group">
                 <label>Mark Numbers</label>
                 <input type="text" name="Order.Goods[${index}].MarksNumbers"  class="form-control" />
@@ -828,7 +857,17 @@
 
         // Append the new goods form to the container
         document.getElementById('goodsContainer').appendChild(newGoods);
+        var inputField = newGoods.querySelector('input[name="Order.Goods[${index}].PackageId"]');
+    var feedbackIcon = newGoods.querySelector('.feedback-icon'); // Hittar ikonen inuti just den här varuposten
+
+    inputField.addEventListener('input', function () {
+        if (this.value.trim() !== '') {
+            feedbackIcon.style.display = 'inline'; // Eller 'block' beroende på hur du vill visa den
+        } else {
+            feedbackIcon.style.display = 'none';
+        }
     });
+});
 
     document.getElementById('addGoodsBtnSv').addEventListener('click', function () {
         var index = document.querySelectorAll('.goods-item').length; // To ensure unique names
