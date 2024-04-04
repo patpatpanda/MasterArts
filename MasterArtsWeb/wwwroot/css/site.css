@@ -2767,23 +2767,25 @@ input[type="checkbox"] {
 
 
 .ino-field {
+    display: flex;
     position: absolute;
     margin-left: 60px;
     width: 1000px; /* Ställ in en lämplig bredd */
     height: 40px; /* Höjd på fältet */
     background-image: linear-gradient(to right, lightgray 10%, pink 10%);
     z-index: 1;
-    
 }
 .ino-field-2 {
+    display: flex;
     position: absolute;
     margin-left: 60px;
     width: 1000px; /* Ställ in en lämplig bredd */
     height: 40px; /* Höjd på fältet */
-    background-image: linear-gradient(to right, lightgray 18%, pink 10%);
+    background-image: linear-gradient(to right, lightgray 19%, pink 10%);
     z-index: 1;
 }
 .ino-field-3 {
+    display: flex;
     position: absolute;
     margin-left: 60px;
     width: 1000px; /* Ställ in en lämplig bredd */
@@ -2792,6 +2794,7 @@ input[type="checkbox"] {
     z-index: 1;
 }
 .ino-field-4 {
+    display:flex;
     position: absolute;
     margin-left: 60px;
     width: 1000px; /* Ställ in en lämplig bredd */
@@ -2800,6 +2803,7 @@ input[type="checkbox"] {
     z-index: 1;
 }
 .ino-field-5 {
+    display: flex;
     position: absolute;
     margin-left: 60px;
     width: 1000px; /* Ställ in en lämplig bredd */
@@ -2808,29 +2812,30 @@ input[type="checkbox"] {
     z-index: 1;
 }
 .ino-field-6 {
+    display: flex;
     position: absolute;
     margin-left: 60px;
     width: 1000px; /* Ställ in en lämplig bredd */
     height: 40px; /* Höjd på fältet */
-    background-image: linear-gradient(to right, lightgray 66.5%, pink 10%);
+    background-image: linear-gradient(to right, lightgray 74.5%, pink 10%);
     z-index: 1;
 }
 .small-icon-4 {
-    margin-left: 223px;
+    margin-left: 217px;
     font-size: 20px;
     z-index: 1;
     color: black;
     background-color: yellow;
 }
 .small-icon-5 {
-    margin-left: 400px;
+    margin-left: 115px;
     font-size: 20px;
     z-index: 1;
     color: black;
     background-color: yellow;
 }
 .small-icon-6 {
-    margin-right: 600px;
+    margin-left:171px;
     font-size: 20px;
     z-index: 1;
     color: black;
