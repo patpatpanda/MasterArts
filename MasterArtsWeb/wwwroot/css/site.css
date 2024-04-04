@@ -8,7 +8,7 @@
 
 html, body {
     overflow-x: hidden;
-    background: linear-gradient(to bottom, #ffffff 0%, #e6e6e6 100%);
+    background-color:aliceblue;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #333;
     line-height: 1.6;
@@ -56,17 +56,7 @@ header {
     background-repeat: no-repeat; /* Hindrar att bilden upprepas */
 }
 
-    header::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: linear-gradient(45deg, rgba(93, 59, 102, 0.5), rgba(0, 0, 0, 0.5));
-        pointer-events: none;
-    }
-
+    
 .kalle {
     position: relative;
     background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
@@ -910,6 +900,7 @@ input {
     display: flex;
     gap: 50px;
     margin-left: auto;
+    
 }
 
 .asdf {
@@ -1012,9 +1003,9 @@ input {
 
     .asdf {
         width: 400px;
-        height: 1000px;
+        height: 1100px;
         padding: 50px;
-        width: 400px;
+        
         padding: 20px;
         margin: 20px;
         border-radius: 10px;
@@ -2692,4 +2683,62 @@ input[type="checkbox"] {
    border-bottom:solid 1px black;
 }
 
+
+.incoterms-header {
+    display: block; /* eller 'flex' om du vill använda flexbox */
+    max-width: 1800px;
+    margin: 0 auto; /* Detta centrera blocket horisontellt */
+    text-align: center; /* Detta centrera texten inom blocket */
+    background-color: #ECEFF1;
+    padding: 15px;
+    margin-top: 300px;
+    color: #607D8B;
+   
+}
+
+.inco-icons {
+    display: flex;
+    flex-wrap: wrap; /* Låter ikonerna omsluta på små skärmar */
+    justify-content: center;
+    gap: 30px; /* Minskad gap för små skärmar */
+    margin-top: 20px; /* Minskad överkantmarginal för små skärmar */
+}
+
+.icon-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative; /* Gör så att pseudoelementets positionering är relativ till ikongruppen */
+}
+
+    .icon-group p {
+        margin-top: 8px;
+        position: relative; /* För att säkerställa att texten ligger över den lodräta linjen */
+        z-index: 1; /* Placerar texten ovanpå linjen */
+        font-size:12px;
+    }
+
+    .icon-group:after {
+        content: ''; /* Nödvändigt för att :after ska visas */
+        position: absolute;
+        top: 100%; /* Startar precis under ikongruppen */
+        left: 50%; /* Centrerar linjen under ikongruppen */
+        width: 2px; /* Bredden på det lodräta strecket */
+        height: 700px; /* Höjden på det lodräta strecket */
+        background-color: #000; /* Färgen på det lodräta strecket */
+        transform: translateX(-50%); /* Centrerar linjen korrekt under varje ikongrupp */
+    }
+
+    .card-icon-2{
+        font-size:35px
+    }
+
+/* Använd en mediabegäran för att anpassa designen för små skärmar */
+@media (max-width: 1000px) {
+    .mr-inco{
+        display:none
+    }
+}
     
+
