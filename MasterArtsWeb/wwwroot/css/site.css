@@ -2703,7 +2703,13 @@ input[type="checkbox"] {
     gap: 30px; /* Minskad gap för små skärmar */
     margin-top: 20px; /* Minskad överkantmarginal för små skärmar */
 }
-
+.incoterms-list {
+   display:grid;
+    justify-content: center;
+    gap: 30px; /* Minskad gap för små skärmar */
+    margin-top: 35px; /* Minskad överkantmarginal för små skärmar */
+    margin-right:15px;
+}
 .icon-group {
     display: flex;
     flex-direction: column;
@@ -2721,18 +2727,25 @@ input[type="checkbox"] {
 
     .icon-group:after {
         content: ''; /* Nödvändigt för att :after ska visas */
-        position: absolute;
-        top: 100%; /* Startar precis under ikongruppen */
-        left: 50%; /* Centrerar linjen under ikongruppen */
+        position: absolute; /* Ändrat från relative till absolute */
+        top: 100px; /* Startar precis under ikongruppen */
+        left: 50%; /* Fortfarande börjar centrerat */
         width: 2px; /* Bredden på det lodräta strecket */
         height: 700px; /* Höjden på det lodräta strecket */
         background-color: #000; /* Färgen på det lodräta strecket */
-        transform: translateX(-50%); /* Centrerar linjen korrekt under varje ikongrupp */
+        transform: translateX(calc(-50% - 5px)); /* Flyttar linjen 7px till vänster från mitten */
     }
+
 
     .card-icon-2{
         font-size:35px
     }
+.mr-inco {
+    position: relative; /* Detta ser till att alla absolut positionerade barn relaterar till denna förälder */
+    /* ...andra stilar... */
+}
+
+
 
 /* Använd en mediabegäran för att anpassa designen för små skärmar */
 @media (max-width: 1000px) {
