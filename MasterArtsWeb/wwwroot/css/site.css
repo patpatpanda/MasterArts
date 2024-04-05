@@ -2808,13 +2808,24 @@ input[type="checkbox"] {
     background-image: linear-gradient(to right, lightgray 36.5%, pink 10%);
     z-index: 1;
 }
+
+
 .ino-field-5 {
     display: flex;
     position: absolute;
     margin-left: 60px;
     width: 1000px; /* Ställ in en lämplig bredd */
     height: 40px; /* Höjd på fältet */
-    background-image: linear-gradient(to right, lightgray 55.5%, pink 10%);
+    background-image: linear-gradient(to right, lightgray 74.5%, pink 10%);
+    z-index: 1;
+}
+.ino-field-12 {
+    display: flex;
+    position: absolute;
+    margin-left: 60px;
+    width: 1000px; /* Ställ in en lämplig bredd */
+    height: 40px; /* Höjd på fältet */
+    background-image: linear-gradient(to right, lightgray 55%, pink 10%);
     z-index: 1;
 }
 .ino-field-6 {
@@ -2823,7 +2834,7 @@ input[type="checkbox"] {
     margin-left: 60px;
     width: 1000px; /* Ställ in en lämplig bredd */
     height: 40px; /* Höjd på fältet */
-    background-image: linear-gradient(to right, lightgray 74.5%, pink 10%);
+    background-image: linear-gradient(to right, lightgray 83%, pink 10%);
     z-index: 1;
 }
 .small-icon-4 {
@@ -2850,6 +2861,16 @@ input[type="checkbox"] {
 .small-icon-7 {
     position: absolute; /* Ändrar positioneringen av ikonen till absolut */
     right: 245px; /* Justerar ikonens position åt höger, ändra detta värde efter behov */
+    top: 50%; /* Centrerar ikonen vertikalt inom dess container */
+    transform: translateY(-50%);
+    font-size: 20px;
+    z-index: 1;
+    color: black;
+    background-color: yellow; /* Justerar vertikalt så att ikonen verkligen är i mitten */
+}
+.small-icon-8 {
+    position: absolute; /* Ändrar positioneringen av ikonen till absolut */
+    right: 160px; /* Justerar ikonens position åt höger, ändra detta värde efter behov */
     top: 50%; /* Centrerar ikonen vertikalt inom dess container */
     transform: translateY(-50%);
     font-size: 20px;
@@ -2900,14 +2921,20 @@ input[type="checkbox"] {
 }
 .small-icon-11{
     font-size:50px;
+    background:yellow;
+    color:black;
 }
 
-@media (max-width: 768px) { /* För tabletter */
+
+
+@media (max-width: 1000px) { /* För tabletter */
+
     .incoterms-header {
         padding: 10px;
         margin-top: 150px; /* Minskad från 300px */
         font-size: 0.8em; /* Mindre text */
     }
+
     .ino-field {
         position: absolute;
         margin-left: 60px;
@@ -2917,10 +2944,13 @@ input[type="checkbox"] {
         z-index: 1;
         font-size: 7px;
     }
-    .small-icon-4 {
-        
-        font-size: 8px;
+
+    .incoterm-row p {
+        font-size: 7px;
+        margin-top: 2px;
+        margin-left: 2px
     }
+
 
     .ino-field-2 {
         position: absolute;
@@ -2929,7 +2959,7 @@ input[type="checkbox"] {
         height: 40px; /* Höjd på fältet */
         background-image: linear-gradient(to right, lightgray 18%, pink 10%);
         z-index: 1;
-        font-size:7px;
+        font-size: 7px;
     }
 
     .ino-field-3 {
@@ -2951,6 +2981,7 @@ input[type="checkbox"] {
         z-index: 1;
         font-size: 7px;
     }
+
     .inco-icons, .incoterms-list {
         gap: 5px; /* Mindre utrymme mellan element */
         margin-top: 10px;
@@ -2964,36 +2995,45 @@ input[type="checkbox"] {
     .card-icon-2 {
         font-size: 12px; /* Mindre ikoner */
     }
-    
-    .icon-group p {
-        font-size: 6px; /* Mindre text */
-    }
-    
-}
-
-@media (max-width: 480px) { /* För mobiltelefoner */
-    .incoterms-header {
-        padding: 10px;
-        margin-top: 150px; /* Minskad från 300px */
-        font-size: 0.8em; /* Mindre text */
-    }
-
-    .inco-icons, .incoterms-list {
-        gap: 4px; /* Mindre utrymme mellan element */
-        margin-top: 10px;
-    }
-
-    .icon-group:not(.no-line):after {
-        height: 350px; /* Halvera höjden på strecken */
-        top: 40px; /* Justera startpunkt om nödvändigt */
-    }
-
-    .card-icon-2 {
-        font-size: 12px; /* Mindre ikoner */
-    }
 
     .icon-group p {
         font-size: 6px; /* Mindre text */
+    }
+
+    /* Grundinställning för alla small-icon storlekar */
+    .small-icon, .small-icon-2, .small-icon-3, .small-icon-4, .small-icon-5, .small-icon-6, .small-icon-7, .small-icon-11 {
+        font-size: 10px; /* Sätter ikonens storlek till 10px */
+    }
+
+    @media (max-width: 480px) { /* För mobiltelefoner */
+        .incoterms-header {
+            padding: 10px;
+            margin-top: 150px; /* Minskad från 300px */
+            font-size: 0.8em; /* Mindre text */
+        }
+
+        .inco-icons, .incoterms-list {
+            gap: 4px; /* Mindre utrymme mellan element */
+            margin-top: 10px;
+        }
+
+        .icon-group:not(.no-line):after {
+            height: 350px; /* Halvera höjden på strecken */
+            top: 40px; /* Justera startpunkt om nödvändigt */
+        }
+
+        .card-icon-2 {
+            font-size: 12px; /* Mindre ikoner */
+        }
+
+        .icon-group p {
+            font-size: 6px; /* Mindre text */
+        }
+    }
+    }
+@media (max-width: 1000px) {
+    .mr-inco{
+        display:none
     }
 }
 
