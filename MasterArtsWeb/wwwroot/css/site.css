@@ -2898,6 +2898,7 @@ input[type="checkbox"] {
     max-width: 1400px;
     margin: 0 auto;
     
+    
 }
 .last {
     margin-top:100px;
@@ -2931,7 +2932,7 @@ input[type="checkbox"] {
 
     .incoterms-header {
         padding: 10px;
-        margin-top: 150px; /* Minskad från 300px */
+        margin-top: 15px; /* Minskad från 300px */
         font-size: 0.8em; /* Mindre text */
     }
 
