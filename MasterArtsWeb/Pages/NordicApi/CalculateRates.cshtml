@@ -6,7 +6,7 @@
 
 <div class="text-center">
     <h3 class="contact adjusted-anchor-2" id="contact-id">
-        LCL-RATES
+       LCL OCEAN
     </h3>
 </div>
 <div class="language-toggle text-end index-lang">
@@ -22,26 +22,36 @@
     {
         <div class="transit-details">
             <h3 class="section-heading">Totals</h3>
-            @foreach (var total in Model.ApiResponse.Totals)
-            {
-                <p class="total-item">@total.Currency: @total.Sum (@total.ExchangeRate)</p>
-            }
+            <div class="totals-table">
+                @foreach (var total in Model.ApiResponse.Totals)
+                {
+                    <div class="table-row">
+                        <div class="table-cell">@total.Currency</div>
+                        <div class="table-cell">@total.Sum</div>
+                        <div class="table-cell">(@total.ExchangeRate)</div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="transit-details">
+            <h3 class="section-heading">Rates</h3>
+            <div class="rates-table">
+                @foreach (var rate in Model.ApiResponse.Rates)
+                {
+                    <div class="table-row">
+                        
+                        <div class="table-cell">@rate.Currency</div>
+                        <div class="table-cell">@rate.Name</div>
+                       
+                        <div class="table-cell">Sum: @rate.Sum</div>
+                        
+                    </div>
+                }
+            </div>
         </div>
     }
 
-    @if (Model.ApiResponse != null)
-    {
-        <div class="transit-details">
-            <h3 class="section-heading">Rates</h3>
-            @foreach (var rate in Model.ApiResponse.Rates)
-            {
-                <p class="rate-item">
-                    @rate.Type, @rate.Name, @rate.Currency, Rate: @rate.RateValue, Sum: @rate.Sum,
-                    Method: @rate.CalculationMethod, Tags: @rate.Tags
-                </p>
-            }
-        </div>
-    }
 
     @if (Model.ApiResponse != null)
     {
@@ -67,108 +77,83 @@
    
 
 </div>
-<form method="post" id="contactForm" style="margin-top:50px">
-    <div class="form-container-2">
-    <div>
-        <label asp-for="@Model.ShippingRequest.Module">Transport Module</label>
-        <select asp-for="@Model.ShippingRequest.Module">
-            <option value="ocean">Ocean</option>
-            <option value="rail">Rail</option>
-            <!-- Lägg till fler transportmoduler här -->
-        </select>
-    </div>
-    <div>
+<link rel="stylesheet" href="style.css">
 
-            <div>
-                <label asp-for="ShippingRequest.Imo">IMO</label>
-                <select asp-for="ShippingRequest.Imo">
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
-                
-            </div>
-
-        <div>
-            <label asp-for="@Model.ShippingRequest.InlandZipCode">Inland Zip Code</label>
-            <input asp-for="@Model.ShippingRequest.InlandZipCode" />
+<form method="post" id="contactForm" style="margin-top:50px;">
+    <div class="form-row">
+        <div class="form-col">
+            <label asp-for="@Model.ShippingRequest.ImportExport">Import/Export</label>
+            <select asp-for="@Model.ShippingRequest.ImportExport">
+                <option value="import">Import</option>
+                <option value="export">Export</option>
+            </select>
         </div>
-        <div>
-                <label asp-for="@Model.ShippingRequest.Weight">Weight</label>
-            <input asp-for="@Model.ShippingRequest.Weight" type="number" />
-        </div>
-            <div>
-                <label asp-for="@Model.ShippingRequest.Volume">Volume (m³)</label>
-                <input asp-for="@Model.ShippingRequest.Volume" type="number" step="0.01" />
-            </div>
-
-
-        <div>
+        <div class="form-col date-field">
             <label asp-for="@Model.ShippingRequest.Date">Date</label>
             <input asp-for="@Model.ShippingRequest.Date" type="date" />
         </div>
-        <label asp-for="@Model.ShippingRequest.ImportExport">Import/Export</label>
-        <select asp-for="@Model.ShippingRequest.ImportExport">
-            <option value="import">Import</option>
-            <option value="export">Export</option>
-        </select>
     </div>
-        
-            
-            <!-- Displaying "LCL" as a text to the user, assuming "LCL" is the only option needed. -->
-            
-            <!-- Hidden input to ensure "LCL" is submitted as the value -->
-
-        <input type="hidden" asp-for="@Model.ShippingRequest.Type" value="lcl" />
-        <input type="hidden" asp-for="@Model.ShippingRequest.UserSelection" value="lcl" />
-
-
-
-
-
-
-        <!-- För 'Från Stad' -->
-        <div>
+    
+    <div class="form-row">
+        <div class="form-col">
             <label for="fromCity">From City</label>
             <input type="text" class="city-autocomplete" placeholder="City(english)" aria-describedby="fromCodeHelp">
             <input type="hidden" class="locode" name="ShippingRequest.FromCode">
-            <span class="form-text"></span>
-            <span class="text-danger"></span>
         </div>
-
-        <!-- För 'Till Stad' -->
-        <div>
+        <div class="form-col">
             <label for="toCity">To City</label>
             <input type="text" class="city-autocomplete" placeholder="City(english)" aria-describedby="toCodeHelp">
             <input type="hidden" class="locode" name="ShippingRequest.ToCode">
-            
         </div>
-
-        <!-- Lägg till fler språkval om nödvändigt, använd samma klassnamn 'city-autocomplete' och 'locode' -->
-        <!-- Fyll i fler fält enligt ovanstående mönster -->
-    <div>
-            <label asp-for="@Model.ShippingRequest.Packages">Number Of Packages"</label>
-        <input type="number" asp-for="@Model.ShippingRequest.Packages" />
     </div>
-    <div>
-        <div>
-            <label asp-for="@Model.ShippingRequest.PackageType">Package Type</label>
-            <select asp-for="@Model.ShippingRequest.PackageType">
-                    <option value="PALLET(S)">PALLET(S)</option>
-                    <option value="CARTON(S)">CARTON(S)</option>
-                    <option value="CRATE(S)">CRATE(S)</option>
-                    <option value="DRUM(S)">DRUM(S)</option>
-                    <option value="BUNDLE(S)">BUNDLE</option>
-                    <option value="PIECE(S)">PIECE</option>
-                    <option value="CONTAINER(S)">CONTAINER</option>
-                    <option value="ROLL(S)">ROLL(S)</option>
-                    <option value="BAG(S)">BAG(S)</option>
+
+    <div class="form-row">
+        <div class="form-col">
+            <label asp-for="@Model.ShippingRequest.Module">Transport Module</label>
+            <select asp-for="@Model.ShippingRequest.Module">
+                <option value="ocean">Ocean</option>
+                
+                <!-- Additional options -->
             </select>
         </div>
-
+        <div class="form-col">
+            <label asp-for="@Model.ShippingRequest.Weight">Weight</label>
+            <input asp-for="@Model.ShippingRequest.Weight" type="number" />
+        </div>
+        <div class="form-col">
+            <label asp-for="@Model.ShippingRequest.Volume">Volume (m³)</label>
+            <input asp-for="@Model.ShippingRequest.Volume" type="number" step="0.01" />
+        </div>
+        <div class="form-col">
+            <label asp-for="@Model.ShippingRequest.Packages">Number Of Packages</label>
+            <input type="number" asp-for="@Model.ShippingRequest.Packages" />
+        </div>
+        <div class="form-col">
+            <label asp-for="@Model.ShippingRequest.PackageType">Package Type</label>
+            <select asp-for="@Model.ShippingRequest.PackageType">
+                <option value="PALLET(S)">Pall(ar)</option>
+                <option value="CARTON(S)">Kartong(er)</option>
+                <option value="CRATE(S)">Trälådor</option>
+                <option value="DRUM(S)">Fat</option>
+                <option value="BUNDLE(S)">Buntar</option>
+                <option value="PIECE(S)">Styckegods</option>
+                <option value="CONTAINER(S)">Fraktcontainrar</option>
+                <option value="ROLL(S)">Rullar</option>
+                <option value="BAG(S)">Säckar</option>
+            </select>
+        </div>
+        
     </div>
-    </div>
+    
+    <!-- Hidden Inputs -->
+    <input type="hidden" asp-for="@Model.ShippingRequest.Type" value="lcl" />
+    <input type="hidden" asp-for="@Model.ShippingRequest.UserSelection" value="lcl" />
 
-        <div class="form-container-2">
+
+
+    
+
+       <div class="form-container-2">
     <h4>Dimensions</h4>
 
         <div id="dimensionsContainerEn">
@@ -201,7 +186,7 @@
         </div>
     </div>
 
-        @*@*<button type="button" onclick="addDimension()">Add Dimension</button>*@*
+        <button type="button" onclick="addDimension()">Add Dimension</button>
 
     <br>
     
@@ -228,19 +213,7 @@
         </div>
         <div>
 
-            <div>
-                <label asp-for="ShippingRequest.Imo">IMO</label>
-                <select asp-for="ShippingRequest.Imo">
-                    <option value="true">Ja</option>
-                    <option value="false">Nej</option>
-                </select>
-
-            </div>
-
-            <div>
-                <label asp-for="@Model.ShippingRequest.InlandZipCode">Inland Zip Code</label>
-                <input asp-for="@Model.ShippingRequest.InlandZipCode" />
-            </div>
+           
             <div>
                 <label asp-for="@Model.ShippingRequest.Weight">Vikt</label>
                 <input asp-for="@Model.ShippingRequest.Weight" type="number" />
@@ -345,7 +318,7 @@
         </div>
 
 
-        <@*button type="button" onclick="addDimension()">Lägg till Dimension</button>*@
+        <button type="button" onclick="addDimension()">Lägg till Dimension</button>
 
         <br>
 
@@ -358,8 +331,6 @@
         <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
     </div>
 </form>
-
-
 
 
 

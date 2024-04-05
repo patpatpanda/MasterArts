@@ -50,13 +50,13 @@ namespace MasterArtsWeb.Pages.NordicApi
                     Module = Inland.Module,
                     ImportExport = Inland.ImportExport,
                     Type = Inland.Type,
-                    InlandZipCode = Inland.InlandZipCode,
+                 
                     Packages = Inland.Packages,
                   
                     Weight = Inland.Weight,
                     Volume = Inland.Volume,
                     Date = Inland.Date,
-                    City = Inland.City,
+                    
                     Dimensions = Inland.Dimensions,
                    UserSelection = Inland.UserSelection
                 };

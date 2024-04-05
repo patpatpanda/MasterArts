@@ -48,14 +48,7 @@
     </div>
     <div>
 
-            <div>
-                <label asp-for="ShippingRequest.Imo">IMO</label>
-                <select asp-for="ShippingRequest.Imo">
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
-
-            </div>
+           
 
         <div>
                 <label asp-for="@Model.Inland.InlandZipCode">Inland Zip Code</label>
@@ -169,19 +162,7 @@
         </div>
         <div>
 
-            <div>
-                <label asp-for="ShippingRequest.Imo">IMO</label>
-                <select asp-for="ShippingRequest.Imo">
-                    <option value="true">Ja</option>
-                    <option value="false">Nej</option>
-                </select>
-
-            </div>
-
-            <div>
-                <label asp-for="@Model.ShippingRequest.InlandZipCode">Inland Zip Code</label>
-                <input asp-for="@Model.ShippingRequest.InlandZipCode" />
-            </div>
+            
             <div>
                 <label asp-for="@Model.ShippingRequest.Weight">Vikt</label>
                 <input asp-for="@Model.ShippingRequest.Weight" type="number" />
