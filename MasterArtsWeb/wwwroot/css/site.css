@@ -47,7 +47,7 @@ html, body {
 
 header {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     background: rgba(0, 0, 0, 0.5); /* Svart med 50% genomskinlighet */
     height: 140px;
     width: 100%;
@@ -1250,7 +1250,7 @@ input {
         background-position: center; /* Centrerar bilden i elementet */
         height: 500px;
     }
-
+    
     .kalle {
         height: 1px;
         background: pink;
@@ -2754,7 +2754,13 @@ input[type="checkbox"] {
     gap: 10px; 
     
 }
+.incoterm-row p {
+    font-size:12px;
+    margin-top:8px;
+    margin-left:9px
+}
 .small-icon{
+    margin-left:17px;
     font-size:20px;
     z-index:1;
     color:black;
@@ -2781,7 +2787,7 @@ input[type="checkbox"] {
     margin-left: 60px;
     width: 1000px; /* Ställ in en lämplig bredd */
     height: 40px; /* Höjd på fältet */
-    background-image: linear-gradient(to right, lightgray 19%, pink 10%);
+    background-image: linear-gradient(to right, lightgray 18%, pink 10%);
     z-index: 1;
 }
 .ino-field-3 {
@@ -2821,14 +2827,14 @@ input[type="checkbox"] {
     z-index: 1;
 }
 .small-icon-4 {
-    margin-left: 217px;
+    margin-left: 247px;
     font-size: 20px;
     z-index: 1;
     color: black;
     background-color: yellow;
 }
 .small-icon-5 {
-    margin-left: 115px;
+    margin-left: 175px;
     font-size: 20px;
     z-index: 1;
     color: black;
@@ -2841,22 +2847,60 @@ input[type="checkbox"] {
     color: black;
     background-color: yellow;
 }
+.small-icon-7 {
+    position: absolute; /* Ändrar positioneringen av ikonen till absolut */
+    right: 245px; /* Justerar ikonens position åt höger, ändra detta värde efter behov */
+    top: 50%; /* Centrerar ikonen vertikalt inom dess container */
+    transform: translateY(-50%);
+    font-size: 20px;
+    z-index: 1;
+    color: black;
+    background-color: yellow; /* Justerar vertikalt så att ikonen verkligen är i mitten */
+}
 
 .small-icon-3 {
-    margin-left: 72px;
+    margin-left: 120px;
     font-size: 20px;
     z-index: 1;
     color: black;
     background-color: yellow;
 }
 .small-icon-2 {
-    margin-left: 42px;
+    margin-left: 74px;
     font-size: 20px;
     z-index: 1;
     color: black;
     background-color: yellow;
 }
+.mr-inco {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    max-width: 1400px;
+    margin: 0 auto;
+    
+}
+.last {
+    margin-top:100px;
+    margin-bottom:20px;
+    display: flex;
+    justify-content: space-around; /* Centrerar elementen med utrymme runt dem */
+    align-items: center; /* Centrerar elementen vertikalt */
+}
 
+.color-text-group {
+    display: flex;
+    flex-direction: column; /* Organiserar färgruta och text vertikalt */
+    align-items: center; /* Centrerar innehållet */
+    text-align: center; /* Ser till att texten är centrerad under färgrutan */
+}
+
+.color-box {
+    width: 60px; /* Bredd på färgrutan */
+    height: 30px; /* Höjd på färgrutan */
+    margin-bottom: 10px; /* Avstånd mellan färgrutan och texten */
+}
+.small-icon-11{
+    font-size:50px;
+}
 
 @media (max-width: 768px) { /* För tabletter */
     .incoterms-header {
