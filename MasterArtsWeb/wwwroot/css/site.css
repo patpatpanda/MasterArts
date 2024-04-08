@@ -8,12 +8,10 @@
 
 html, body {
     overflow-x: hidden;
-    background-color: #f4f7f6;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #333;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
+    
+    background-color: #f5f5f5; /* En mycket mjuk grå färg */
+    color: #333; /* Mörkare textfärg för kontrast */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Modern typsnitt */
 }
 
 .honeypot {
@@ -819,7 +817,7 @@ input {
 }
 
 .l-btn {
-    background-color: pink; /* Vit bakgrundsfärg */
+    background-color: #b8d8f5;
     color: black; /* Svart textfärg */
     border-radius: 10px;
     transition: background-color 0.25s, color 0.15s;
@@ -3065,7 +3063,7 @@ input[type="checkbox"] {
 
 /* Base styles for the form */
 #contactForm {
-    background-color: #f9f9f9;
+    
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -3122,15 +3120,17 @@ input[type="checkbox"] {
 .form-col {
     flex: 1;
 }
-
-    /* Space between columns */
-    .form-col + .form-col {
-        margin-left: 20px;
-    }
+.imp-field {
+    max-width: 800px
+}
+/* Space between columns */
+.form-col + .form-col {
+    margin-left: 20px;
+}
 
 /* Adjustments for the date field to take more space */
 .date-field {
-    flex: 2;
+   max-width:800px
 }
 
 /* Responsive adjustments */
@@ -3138,6 +3138,22 @@ input[type="checkbox"] {
     .form-row {
         flex-direction: column;
     }
+    /* Base styles for mobile */
+    .buttons-container .button-link {
+        display: inline-block;
+        margin: 5px; /* Reduced margin to fit smaller screens */
+        padding: 7px 15px; /* Increased padding for easier tapping */
+        background-color: #b8d8f5;
+        color: #333;
+        text-decoration: none;
+        font-size: 10px; /* Increased font size for better readability */
+         /* Slightly more rounded corners for a modern look */
+        transition: background-color 0.3s ease;
+        -webkit-tap-highlight-color: transparent; /* Removes highlight color on tap for iOS */
+    }
+
+        
+   
 
     .form-col + .form-col {
         margin-left: 0;
@@ -3239,3 +3255,59 @@ input[type="checkbox"] {
 /* Add additional styles to match the specific colors and fonts from the image as needed. */
 
 /* Add additional styles to match the specific colors and fonts from the image as needed. */
+/* Grundläggande styling för att hålla allt samlat och snyggt */
+.form-container-2 {
+    font-family: Arial, sans-serif;
+}
+
+    /* Stylar h4 för att passa med formens utseende */
+    .form-container-2 h4 {
+        margin-bottom: 20px;
+    }
+
+/* Flex container styling för att placera barn vågrätt eller lodrätt baserat på skärmstorlek */
+#dimensionsContainerSv  {
+    display: flex;
+    flex-wrap: wrap; /* Ser till att element kan gå till nästa rad */
+    gap: 10px; /* Lägger till utrymme mellan element */
+}
+#dimensionsContainerEn {
+display: flex;
+flex-wrap: wrap; /* Ser till att element kan gå till nästa rad */
+gap: 10px; /* Lägger till utrymme mellan element */
+}
+
+    /* Stylar varje div inom dimensionsContainerSv för att ta upp lika mycket utrymme */
+    #dimensionsContainerSv > div {
+        flex: 1; /* Gör att varje element växer och tar lika mycket plats */
+        min-width: 120px; /* Sätter en minsta bredd för att förhindra för liten storlek på mobil */
+    }
+#dimensionsContainerEn > div {
+    flex: 1; /* Gör att varje element växer och tar lika mycket plats */
+    min-width: 120px; /* Sätter en minsta bredd för att förhindra för liten storlek på mobil */
+}
+
+/* Anpassar layouten för mobila enheter */
+@media (max-width: 768px) {
+    #dimensionsContainerSv {
+        flex-direction: column; /* Ändrar till lodrätt layout */
+    }
+    #dimensionsContainerEn {
+        flex-direction: column; /* Ändrar till lodrätt layout */
+    }
+}
+
+/* Button styling för att matcha formulärets övergripande utseende */
+button[type="button"] {
+    background-color: #007bff; /* Exempel på en blå knapp */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Lägger till lite utrymme ovanför knappen */
+}
+
+    button[type="button"]:hover {
+        background-color: #0056b3; /* Mörkare blå när muspekaren är över */
+    }

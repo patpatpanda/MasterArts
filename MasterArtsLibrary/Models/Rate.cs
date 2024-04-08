@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace MasterArtsLibrary.Models
 {
-    
 
-    
-   
+
+
+
     public class ApiResponseInland
     {
         public float total { get; set; }
@@ -135,7 +135,7 @@ namespace MasterArtsLibrary.Models
 
        
 
-       
+   
 
         [JsonProperty("packages")]
         public int Packages { get; set; }
@@ -156,8 +156,8 @@ namespace MasterArtsLibrary.Models
         [JsonProperty("dimensions")]
         public List<Dimension>? Dimensions { get; set; }
 
-        [JsonProperty("options")]
-        public List<Option>? Options { get; set; }
+        //[JsonProperty("options")]
+        //public List<Option> Options { get; set; }
     }
 
 }
