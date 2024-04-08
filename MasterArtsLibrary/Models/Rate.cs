@@ -133,9 +133,12 @@ namespace MasterArtsLibrary.Models
         [JsonProperty("toCode")]
         public string ToCode { get; set; }
 
-       
 
-   
+        [JsonProperty("routingCode")]
+        public string? RoutingCode { get; set; }
+       
+        [JsonProperty("inlandZipCode")]
+        public string? InlandZipCode { get; set; }
 
         [JsonProperty("packages")]
         public int Packages { get; set; }
@@ -151,7 +154,7 @@ namespace MasterArtsLibrary.Models
 
         [JsonProperty("date")]
         public string Date { get; set; }
-       
+        
 
         [JsonProperty("dimensions")]
         public List<Dimension>? Dimensions { get; set; }

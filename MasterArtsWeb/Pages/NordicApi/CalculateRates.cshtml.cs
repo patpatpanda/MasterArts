@@ -51,7 +51,12 @@ namespace MasterArtsWeb.Pages
                         // Hantera ApiResponse
                         ApiResponse = apiResponse; // Anta att ApiResponse är av typen ApiResponse
                     }
-                   
+                    else if (response is ApiResponseInland apiResponseInland)
+                    {
+                        // Hantera ApiResponseInland
+                        // Om du vill konvertera ApiResponseInland till något som kan hanteras likadant som ApiResponse
+                        // eller om du vill uppdatera UI baserat på ApiResponseInland-specifika data
+                    }
                 }
                 catch (Exception ex)
                 {

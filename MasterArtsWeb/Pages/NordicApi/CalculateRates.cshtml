@@ -20,95 +20,107 @@
 
     @if (Model.ApiResponse != null)
     {
-        <div class="totals-section">
-            <h3 class="section-heading">Totals</h3>
-            @foreach (var total in Model.ApiResponse.Totals)
-            {
-                <div>
-                    <span>@total.Currency</span>
-                    <span>@total.Sum</span>
-                    <span>@total.ExchangeRate</span>
-                </div>
-            }
-        </div>
-
-        <div class="rates-section">
-            <h3 class="section-heading">Rates</h3>
-            @foreach (var rate in Model.ApiResponse.Rates)
-            {
-                <div>
-                    <span>@rate.Type</span>
-                    <span>@rate.Name</span>
-                    <span>@rate.Currency</span>
-                    
-                    <span>@rate.MinimumSum</span>
-                    <span>@rate.Sum</span>
-                    <span>@rate.SumExchangeRate</span>
-                    <span>@rate.CalculationMethod</span>
-                    <span>@rate.Multiplier</span>
-                    <span>@rate.ExchangeRate</span>
-                    <span>@rate.Tags</span>
-                </div>
-            }
-        </div>
-
         <div class="transit-details">
-            <h3 class="section-heading">Transit Details</h3>
-            <p><strong>Transit Time:</strong> @Model.ApiResponse.TransitTime days</p>
-            <div>
-                <p><strong>Vessel:</strong> @Model.ApiResponse.Sailing?.Vessel</p>
-                <p><strong>Voyage Number:</strong> @Model.ApiResponse.Sailing?.VoyageNumber</p>
-                <p><strong>From:</strong> @Model.ApiResponse.Sailing?.FromDescription (@Model.ApiResponse.Sailing?.FromCode)</p>
-                <p><strong>To:</strong> @Model.ApiResponse.Sailing?.ToDescription (@Model.ApiResponse.Sailing?.ToCode)</p>
-                <p><strong>Transshipment:</strong> @Model.ApiResponse.Sailing?.TransshipmentDescription (@Model.ApiResponse.Sailing?.TransshipmentCode)</p>
-                <p><strong>Gateway:</strong> @Model.ApiResponse.Sailing?.GatewayDescription (@Model.ApiResponse.Sailing?.GatewayCode)</p>
-                <p><strong>Closing Date:</strong> @Model.ApiResponse.Sailing?.Closing.ToString("yyyy-MM-dd")</p>
-                <p><strong>Estimated Time of Departure:</strong> @Model.ApiResponse.Sailing?.Etd.ToString("yyyy-MM-dd")</p>
-                <p><strong>Estimated Time of Arrival:</strong> @Model.ApiResponse.Sailing?.Eta.ToString("yyyy-MM-dd")</p>
-                <p><strong>Remarks:</strong> @Model.ApiResponse.Sailing?.Remarks</p>
+            <h3 class="section-heading">Totals</h3>
+            <div class="totals-table">
+                @foreach (var total in Model.ApiResponse.Totals)
+                {
+                    <div class="table-row">
+                        <div class="table-cell">@total.Currency</div>
+                        <div class="table-cell">@total.Sum</div>
+                        <div class="table-cell">(@total.ExchangeRate)</div>
+                    </div>
+                }
             </div>
         </div>
 
-        <div class="agent-details">
+        <div class="transit-details">
+            <h3 class="section-heading">Rates</h3>
+            <div class="rates-table">
+                @foreach (var rate in Model.ApiResponse.Rates)
+                {
+                    <div class="table-row">
+
+                        <div class="table-cell">@rate.Currency</div>
+                        <div class="table-cell">@rate.Name</div>
+
+                        <div class="table-cell">Sum: @rate.Sum</div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+
+    @if (Model.ApiResponse != null)
+    {
+        <div class="transit-details">
+            <h3 class="section-heading">Transit Details</h3>
+            <p><strong>Transit Time:</strong> @Model.ApiResponse.TransitTime days</p>
+            <p><strong>Vessel:</strong> @Model.ApiResponse.Sailing?.Vessel</p>
+            <p><strong>Voyage Number:</strong> @Model.ApiResponse.Sailing?.VoyageNumber</p>
+            <p><strong>From:</strong> @Model.ApiResponse.Sailing?.FromDescription (@Model.ApiResponse.Sailing?.FromCode)</p>
+            <p><strong>To:</strong> @Model.ApiResponse.Sailing?.ToDescription (@Model.ApiResponse.Sailing?.ToCode)</p>
+            <p><strong>Transshipment:</strong> @Model.ApiResponse.Sailing?.TransshipmentDescription (@Model.ApiResponse.Sailing?.TransshipmentCode)</p>
+            <p><strong>Gateway:</strong> @Model.ApiResponse.Sailing?.GatewayDescription (@Model.ApiResponse.Sailing?.GatewayCode)</p>
+            <p><strong>Closing Date:</strong> @Model.ApiResponse.Sailing?.Closing.ToString("yyyy-MM-dd")</p>
+            <p><strong>Estimated Time of Departure:</strong> @Model.ApiResponse.Sailing?.Etd.ToString("yyyy-MM-dd")</p>
+            <p><strong>Estimated Time of Arrival:</strong> @Model.ApiResponse.Sailing?.Eta.ToString("yyyy-MM-dd")</p>
+            <p><strong>Remarks:</strong> @Model.ApiResponse.Sailing?.Remarks</p>
+
+
             <h3 class="section-heading">Agent Details</h3>
             <p><strong>Name:</strong> @Model.ApiResponse.Agent?.Name</p>
             <p><strong>Address:</strong> @Model.ApiResponse.Agent?.Address</p>
             <p><strong>Zip Code:</strong> @Model.ApiResponse.Agent?.ZipCode</p>
             <p><strong>City:</strong> @Model.ApiResponse.Agent?.City</p>
             <p><strong>Country:</strong> @Model.ApiResponse.Agent?.Country</p>
-            <p><strong>Email:</strong> @Model.ApiResponse.Agent?.Email</p>
-            <p><strong>Phone:</strong> @Model.ApiResponse.Agent?.Phone</p>
-            <p><strong>Fax:</strong> @Model.ApiResponse.Agent?.Fax</p>
-        </div>
 
-        <div class="additional-details">
-            <h3 class="section-heading">Additional Information</h3>
-            <p><strong>CO2 Emissions:</strong> @Model.ApiResponse.Co2 kg</p>
-            
+            <p class="emission-item"><strong>CO2 Emissions:</strong> @Model.ApiResponse.Co2.ToString() kg</p>
         </div>
     }
 
+
+
+</div>
 <link rel="stylesheet" href="style.css">
 
 
 <form method="post" id="contactForm" style="margin-top:50px;">
-    <div class="form-row">
-        <div class="form-col">
-            <label asp-for="@Model.ShippingRequest.ImportExport">Import/Export</label>
-            <select asp-for="@Model.ShippingRequest.ImportExport">
-                <option value="import">Import</option>
-                <option value="export">Export</option>
-            </select>
-        </div>
-        <div class="form-col date-field">
-            <label asp-for="@Model.ShippingRequest.Date">Date</label>
-            <input asp-for="@Model.ShippingRequest.Date" type="date" />
+    <div class="master-qop">
+        <div class="form-row">
+            <div class="form-col emo-1">
+                <label asp-for="@Model.ShippingRequest.ImportExport">Import/Export</label>
+                <select id="importExportSelect" name="ShippingRequest.ImportExport">
+                    <option value="export">Export</option>
+                    <option value="import">Import</option>
+                </select>
+            </div>
+            <div class="form-col date-field">
+                <label asp-for="@Model.ShippingRequest.Date">Date</label>
+                <input asp-for="@Model.ShippingRequest.Date" type="date" />
+            </div>
         </div>
     </div>
-    
+   
+  
+   
+
+    <div class="form-col date-field">
+        <label asp-for="@Model.ShippingRequest.InlandZipCode">Zip Code</label>
+        <input asp-for="@Model.ShippingRequest.InlandZipCode" >
+        <div id="zipExplanation"></div>
+    </div>
+
+    <div class="form-col date-field">
+        <label asp-for="@Model.ShippingRequest.RoutingCode">routing</label>
+        <input asp-for="@Model.ShippingRequest.RoutingCode">
+        <div id="zipExplanation"></div>
+    </div>
 
 
-    <div class="form-row">
+    <div class="form-row" style="margin-top:100px">
         <div class="form-col">
             <label for="fromCity">From City</label>
             <input type="text" class="city-autocomplete" placeholder="City(english)" aria-describedby="fromCodeHelp">
@@ -225,7 +237,10 @@
             </select>
         </div>
        
-
+        <div class="form-col date-field">
+            <label asp-for="@Model.ShippingRequest.InlandZipCode">z</label>
+            <input asp-for="@Model.ShippingRequest.InlandZipCode" placeholder="">
+        </div>
 
         <div class="form-col date-field">
             <label asp-for="@Model.ShippingRequest.Date">Datum</label>
@@ -233,7 +248,7 @@
         </div>
     </div>
 
-    <div class="form-row">
+    <div class="form-row" style="margin-top:100px">
         <div class="form-col">
             <label for="fromCity">From City</label>
             <input type="text" class="city-autocomplete" placeholder="City(engelska)" aria-describedby="fromCodeHelp">
@@ -770,8 +785,14 @@
             setUpAutocomplete("toCity", "toCode");
         });
 
-       
-        
+
+
+
+
+
+
+
+
 
 
 
@@ -864,5 +885,41 @@
                 elementToRemove.remove();
             }
         }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var selectElement = document.getElementById('importExportSelect');
+            var explanationElement = document.getElementById('zipExplanation');
+
+            selectElement.addEventListener('change', function () {
+                var selectedValue = this.value;
+                if (selectedValue === 'import') {
+                    explanationElement.innerHTML = "<strong>Zip Code for Import:</strong> The 'zip code' refers to the postal code of the receiving location within the destination country. Please provide the postal code for the final receiving location for your imported goods.";
+                } else if (selectedValue === 'export') {
+                    explanationElement.innerHTML = "<strong>Zip Code for Export:</strong> The 'zip code' indicates the postal code of the sending location in the country of origin. Enter the postal code that corresponds to where your goods will be dispatched from.";
+                } else {
+                    explanationElement.innerHTML = ""; // Clear the explanation if neither is selected
+                }
+            });
+
+            // Trigger change event on page load to handle pre-selected values
+            selectElement.dispatchEvent(new Event('change'));
+        });
+
+
+        document.getElementById('importExportSelect').addEventListener('change', function () {
+            if (this.value === 'import') {
+                document.getElementById('toCity').value = "GOTHENBURG";
+                document.querySelector('input[name="ShippingRequest.ToCode"]').value = "GOTHENBURG";
+                document.getElementById('fromCity').value = "";
+                document.querySelector('input[name="ShippingRequest.FromCode"]').value = "";
+            } else if (this.value === 'export') {
+                document.getElementById('fromCity').value = "GOTHENBURG";
+                document.querySelector('input[name="ShippingRequest.FromCode"]').value = "GOTHENBURG";
+                document.getElementById('toCity').value = "";
+                document.querySelector('input[name="ShippingRequest.ToCode"]').value = "";
+            }
+        });
+
     </script>
 }

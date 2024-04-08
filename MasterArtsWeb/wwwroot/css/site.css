@@ -913,7 +913,10 @@ input {
     backdrop-filter: blur(4px); /* Frostat glas-effekt */
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: linear-gradient(to right, #f0f0f0 0%, #d9d9d9 50%, #bbbbbb 100%);
+   
+   
 }
+
 
 .container-abbe {
     margin-left: 1px;
@@ -1521,7 +1524,7 @@ footer {
 
 
 
-@media screen and (min-width: 2400px) {
+@media screen and (min-width: 2000px) {
 
 
     .kalle {
@@ -1533,34 +1536,11 @@ footer {
         background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
         background-repeat: no-repeat; /* hindrar att bilden upprepas */
     }
-
-    .qop-4 {
-        margin: 20px auto;
-        padding: 20px;
-        max-width: 100%; /* Anpassar bredden */
-        background-image: url('/images/123.webp');
-        background-size: 200% 200%;
-        animation: GradientShift 10s ease infinite;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-        color: #5D3B66;
-        height: 800px
-    }
+    
+    
 }
 
-@media screen and (max-width: 2000px) {
-    .about-section-2 {
-        display: grid;
-        grid-template-columns: 1fr
-    }
 
-
-
-    .about-section {
-        display: grid;
-        grid-template-columns: 1fr
-    }
-}
 
 
 
@@ -1853,7 +1833,7 @@ select {
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     color: #5D3B66;
-    height: 400px
+    height: 500px
 }
 
 .ert {
@@ -3295,6 +3275,9 @@ gap: 10px; /* Lägger till utrymme mellan element */
     #dimensionsContainerEn {
         flex-direction: column; /* Ändrar till lodrätt layout */
     }
+    .emo-1 {
+        width: 400px
+    }
 }
 
 /* Button styling för att matcha formulärets övergripande utseende */
@@ -3310,4 +3293,7 @@ button[type="button"] {
 
     button[type="button"]:hover {
         background-color: #0056b3; /* Mörkare blå när muspekaren är över */
+    }
+    .emo-1{
+        width:1200px
     }

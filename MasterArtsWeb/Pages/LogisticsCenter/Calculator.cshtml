@@ -29,32 +29,6 @@
         <button type="submit" class="l-btn">SWE/ENG</button>
     </div>
 </form>
-<div class="calculator-container">
-    <div class="section">
-        @if (@Model.CurrentLanguage == "sv")
-        {
-            <p>
-                1:6, 1:5, 1:4, 1:3, 1:2 – Dessa förhållanden indikerar lägre densitet, vilket innebär att godset är relativt lätt i förhållande till sin volym. Exempelvis skulle ett förhållande på 1:6 kunna representera mycket lätt, men skrymmande gods, som isoleringsmaterial eller stora plastkomponenter. Ju högre den andra siffran i förhållandet, desto mer tar godset upp utrymme jämfört med dess vikt.
-
-                1:1 – Detta är ett förhållande där vikten och volymen är lika i termer av densitet. Detta skulle kunna representera mer tätt packade eller solidare material, där vikten direkt motsvarar volymen på ett jämnt sätt.
-
-                1:7, 1:8, 1:9, 1:10 – Dessa värden indikerar ännu lägre densiteter och är typiska för extremt lätta och skrymmande föremål. Exempel på sådana föremål kan inkludera stora förpackningar av fjädrar eller stora plastbollar. För dessa förhållanden tar godset upp en betydande mängd utrymme i förhållande till dess lilla vikt.
-            </p>
-        }
-        else
-        {
-            <p>
-                1:6, 1:5, 1:4, 1:3, 1:2 – These ratios indicate lower density, meaning the goods are relatively light in relation to their volume. For example, a ratio of 1:6 could represent very light but bulky goods, such as insulation materials or large plastic components. The higher the second number in the ratio, the more space the goods occupy compared to their weight.
-
-                1:1 – This is a ratio where the weight and volume are equal in terms of density. This could represent more tightly packed or denser materials, where the weight directly corresponds to the volume in an even manner.
-
-                1:7, 1:8, 1:9, 1:10 – These values indicate even lower densities and are typical for extremely light and bulky items. Examples of such items might include large packages of feathers or large plastic balls. For these conditions, the goods occupy a significant amount of space in relation to their small weight.
-            </p>
-        }
-
-    </div>
-
-</div>
    
 
 @if (@Model.CurrentLanguage == "sv")
@@ -65,16 +39,7 @@
                 <label>Välj Densitet:</label>
                 <select id="selectedDensity" onchange="updateResults()">
                     <option value="1:6">1:6</option>
-                    <option value="1:1">1:1</option>
-                    <option value="1:2">1:2</option>
-                    <option value="1:3">1:3</option>
-                    <option value="1:4">1:4</option>
-                    <option value="1:5">1:5</option>
-                    <option value="1:6">1:6</option>
-                    <option value="1:7">1:7</option>
-                    <option value="1:8">1:8</option>
-                    <option value="1:9">1:9</option>
-                    <option value="1:10">1:10</option>
+                   
                     <!-- Lägg till fler densitetsalternativ här -->
                 </select>
             </div>
@@ -104,16 +69,7 @@ else
                 <label>Select Density:</label>
                 <select id="selectedDensity" onchange="updateResults()">
                     <option value="1:6">1:6</option>
-                    <option value="1:1">1:1</option>
-                    <option value="1:2">1:2</option>
-                    <option value="1:3">1:3</option>
-                    <option value="1:4">1:4</option>
-                    <option value="1:5">1:5</option>
-                    <option value="1:6">1:6</option>
-                    <option value="1:7">1:7</option>
-                    <option value="1:8">1:8</option>
-                    <option value="1:9">1:9</option>
-                    <option value="1:10">1:10</option>
+                    
                     <!-- Lägg till fler densitetsalternativ här -->
                 </select>
             </div>
