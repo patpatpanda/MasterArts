@@ -22,6 +22,7 @@ html, body {
 
 
 .center-container {
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -133,6 +134,7 @@ header {
 
 
 .contact {
+    
     margin-top: 100px;
     color: #333;
     display: flex;
@@ -914,9 +916,7 @@ input {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); /* Skugga */
     backdrop-filter: blur(4px); /* Frostat glas-effekt */
     border: 1px solid rgba(255, 255, 255, 0.25);
-    background: linear-gradient(to right, #f0f0f0 0%, #d9d9d9 50%, #bbbbbb 100%);
-   
-   
+    background: linear-gradient(to right, #c2e0f8 0%, #b8d8f5 25%, #a0c8e2 50%, #88b8cf 75%, #ccf0fc 100%);
 }
 
 
@@ -1894,7 +1894,12 @@ select {
     padding: 24px;
     border-radius: 10px;
     line-height: 1.5;
+    background: rgba(255, 255, 255, 0.65); /* Lätt genomskinlig vit */
+    backdrop-filter: blur(10px); /* Oskarp bakgrundseffekt */
+    -webkit-backdrop-filter: blur(10px); /* För Safari */
+    border: 1px solid rgba(255, 255, 255, 0.18); /* Subtil vit gräns */
 }
+
 
 .qop-3 h2 {
     color: #5D3B66; /* Mörkare rosa för kontrast */
@@ -2523,7 +2528,7 @@ input[type="checkbox"] {
 .form-group label {
     display: block;
     margin-bottom: .5rem;
-    font-weight: 600;
+    
     color: #333;
 }
 
@@ -2588,8 +2593,7 @@ input[type="checkbox"] {
 .result-heading, .section-heading {
     color: #007bff;
     text-align: center;
-    margin-bottom: 20px;
-    font-weight:bold;
+    
 }
 
 /* Styling för total-, rate- och transit-sektionerna */
@@ -3106,7 +3110,7 @@ input[type="checkbox"] {
     display: block;
     margin-bottom: 10px;
     color: #333; /* Ljusare blå för en modern känsla */
-    font-weight: bold;
+    
     text-transform: uppercase; /* Lägger till en professionell touch */
     letter-spacing: 1px; /* Ger texten mer andningsrum */
 }
@@ -3365,7 +3369,9 @@ gap: 10px; /* Lägger till utrymme mellan element */
 }
 
 
-
+h3{
+    font-family: 'Arial Narrow Bold', sans-serif;
+}
 
 /* Button styling för att matcha formulärets övergripande utseende */
 
