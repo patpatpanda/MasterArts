@@ -893,7 +893,9 @@ input {
     background-color: aliceblue;
 }
 
-
+.emo-1 {
+    width: 800px
+}
 
 .fot {
     display: flex;
@@ -2257,6 +2259,10 @@ select {
     padding: 20px;
     box-sizing: border-box;
 }
+.master-master{
+    display:grid;
+    justify-content:center
+}
 
 .master-qop-1 {
     max-width: 100%; /* Anpassar bredden */
@@ -2366,10 +2372,7 @@ select {
     padding: 20px;
 }
 
-.shipping-cost-calculator {
-    text-align: center;
-    margin-top: 30px;
-}
+
 
 .calculator-title {
     color: #333;
@@ -2531,13 +2534,7 @@ input[type="checkbox"] {
     margin-right: 100px
 }
 /* Grundläggande styling för att centrera och ge sidan ett modernt utseende */
-.shipping-cost-calculator {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
+
 
 .result-heading, .section-heading {
     color: #007bff;
@@ -2546,13 +2543,7 @@ input[type="checkbox"] {
 }
 
 /* Styling för total-, rate- och transit-sektionerna */
-.totals-section, .rates-section, .transit-details {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
+
 
 .total-item, .rate-item, .transit-item, .agent-item, .emission-item {
     background-color: #fff;
@@ -3043,10 +3034,10 @@ input[type="checkbox"] {
 
 /* Base styles for the form */
 #contactForm {
-    
     padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+   
 }
 
 /* Style for each form field container */
@@ -3057,23 +3048,43 @@ input[type="checkbox"] {
 /* Style for each label */
 #contactForm label {
     display: block;
-    margin-bottom: 5px;
-    color: #333;
+    margin-bottom: 10px;
+    color: #333; /* Ljusare blå för en modern känsla */
     font-weight: bold;
+    text-transform: uppercase; /* Lägger till en professionell touch */
+    letter-spacing: 1px; /* Ger texten mer andningsrum */
 }
 
-/* Style for each input and select */
 #contactForm input[type="text"],
 #contactForm input[type="number"],
 #contactForm input[type="date"],
 #contactForm select {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 15px;
+    border: 2px solid #b8d8f5; /* Matchande blå kant */
+    border-radius: 20px; /* Mer uttalad rundad kant för ett mjukare intryck */
     box-sizing: border-box;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out; /* Gör interaktioner mjukare */
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2); /* Lägger till en subtil skugga för djup */
+    font-size: 16px; /* Gör texten mer läsbar */
 }
+
+    #contactForm input[type="text"]:focus,
+    #contactForm input[type="number"]:focus,
+    #contactForm input[type="date"]:focus,
+    #contactForm select:focus {
+        border-color: #0056b3; /* Mörkare blå för fokus */
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Stärker skuggan för att indikera fokus */
+    }
+
+    #contactForm input[type="text"]:hover,
+    #contactForm input[type="number"]:hover,
+    #contactForm input[type="date"]:hover,
+    #contactForm select:hover {
+        background-color: #e7f3ff; /* Mycket ljus blå som en hover-effekt */
+       
+    }
 
 /* Style for the large action button */
 #loginButton {
@@ -3165,18 +3176,13 @@ input[type="checkbox"] {
         border-color: #007bff;
     }
 
-    .transit-details {
-    background: #FFF;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    padding: 20px;
-}
+   
 
 .section-heading {
     font-size: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
     color: #333;
+    border:solid 2px #333
 }
 
 .totals-table, .rates-table {
@@ -3199,38 +3205,25 @@ input[type="checkbox"] {
     font-weight: bold;
 }
 .transit-details {
-    background: #FFF;
+
+    background: linear-gradient(to right, #f0f0f0 0%, #d9d9d9 50%, #bbbbbb 100%);
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     padding: 20px;
+    max-width:800px;
 }
 
-.section-heading {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #333;
-}
 
-.totals-table, .rates-table {
-    display: table;
-    width: 100%;
-    border-collapse: collapse;
-}
 
-.table-row {
-    display: table-row;
-}
 
-.table-cell {
-    display: table-cell;
-    padding: 8px;
-    border-bottom: 1px solid #eee;
-}
 
-    .table-cell:nth-child(1) {
-        font-weight: bold;
-    }
+
+
+
+.table-cell:nth-child(1) {
+    font-weight: bold;
+}
 
 /* Add additional styles to match the specific colors and fonts from the image as needed. */
 
@@ -3268,7 +3261,7 @@ gap: 10px; /* Lägger till utrymme mellan element */
 }
 
 /* Anpassar layouten för mobila enheter */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     #dimensionsContainerSv {
         flex-direction: column; /* Ändrar till lodrätt layout */
     }
@@ -3280,20 +3273,8 @@ gap: 10px; /* Lägger till utrymme mellan element */
     }
 }
 
-/* Button styling för att matcha formulärets övergripande utseende */
-button[type="button"] {
-    background-color: #007bff; /* Exempel på en blå knapp */
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px; /* Lägger till lite utrymme ovanför knappen */
-}
 
-    button[type="button"]:hover {
-        background-color: #0056b3; /* Mörkare blå när muspekaren är över */
-    }
-    .emo-1{
-        width:1200px
-    }
+
+/* Button styling för att matcha formulärets övergripande utseende */
+
+    

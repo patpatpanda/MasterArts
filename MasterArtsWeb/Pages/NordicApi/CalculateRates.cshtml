@@ -9,13 +9,14 @@
        LCL OCEAN
     </h3>
 </div>
-<div class="language-toggle text-end index-lang">
+<div class="language-toggle text-end index-lang" style="display:none">
     <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">Svenska</button>
 </div>
 <div class="ban">
     <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
 </div>
-<div class="text-center shipping-cost-calculator">
+
+<div class="master-master">
     <h3 id="resultSection" class="result-heading"></h3>
 
     @if (Model.ApiResponse != null)
@@ -40,17 +41,21 @@
                 @foreach (var rate in Model.ApiResponse.Rates)
                 {
                     <div class="table-row">
-
                         <div class="table-cell">@rate.Currency</div>
                         <div class="table-cell">@rate.Name</div>
-
                         <div class="table-cell">Sum: @rate.Sum</div>
-
                     </div>
                 }
+                <!-- Lägg till en ny rad här för att inkludera den statiska cellen -->
+                <div class="table-row">
+                    <div class="table-cell">SEK</div>
+                    <div class="table-cell">LOCAL SERVICE HANDLING DESTINATION</div>
+                    <div class="table-cell">Sum: 3500</div>
+                </div>
             </div>
         </div>
-    }
+
+        }
 
 
     @if (Model.ApiResponse != null)
@@ -105,19 +110,17 @@
     </div>
    
   
+   <div class="master-qop">
+        <div class="form-col date-field">
+            <label asp-for="@Model.ShippingRequest.InlandZipCode">Zip Code</label>
+            <input asp-for="@Model.ShippingRequest.InlandZipCode">
+            <div id="zipExplanation"></div>
+        </div>
+   </div>
+
    
 
-    <div class="form-col date-field">
-        <label asp-for="@Model.ShippingRequest.InlandZipCode">Zip Code</label>
-        <input asp-for="@Model.ShippingRequest.InlandZipCode" >
-        <div id="zipExplanation"></div>
-    </div>
-
-    <div class="form-col date-field">
-        <label asp-for="@Model.ShippingRequest.RoutingCode">routing</label>
-        <input asp-for="@Model.ShippingRequest.RoutingCode">
-        <div id="zipExplanation"></div>
-    </div>
+   
 
 
     <div class="form-row" style="margin-top:100px">
@@ -179,7 +182,7 @@
 
     
 
-       <div>
+       <div style="margin-top:100px">
     <h4>Dimensions</h4>
 
         <div id="dimensionsContainerEn">
@@ -212,7 +215,7 @@
         </div>
     </div>
 
-        <button type="button" onclick="addDimension()">Add Dimension</button>
+        <button type="button" class="cta-button" onclick="addDimension()">Add Dimension</button>
 
     <br>
     
@@ -222,7 +225,7 @@
         <div class="spinner"></div>
     </div>
     
-        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
     </div>
 </form>
 
@@ -238,7 +241,7 @@
         </div>
        
         <div class="form-col date-field">
-            <label asp-for="@Model.ShippingRequest.InlandZipCode">z</label>
+            <label asp-for="@Model.ShippingRequest.InlandZipCode">ZipCode</label>
             <input asp-for="@Model.ShippingRequest.InlandZipCode" placeholder="">
         </div>
 
@@ -338,7 +341,7 @@
         </div>
 
 
-        <button type="button" onclick="addDimension()">Lägg till Dimension</button>
+        <button type="button" class="cta-button" onclick="addDimension()">Lägg till Dimension</button>
 
         <br>
 
@@ -348,7 +351,7 @@
         <div class="spinner"></div>
     </div>
     
-        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button" text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
     </div>
 </form>
 
@@ -887,6 +890,7 @@
         }
 
 
+
         document.addEventListener('DOMContentLoaded', function () {
             var selectElement = document.getElementById('importExportSelect');
             var explanationElement = document.getElementById('zipExplanation');
@@ -894,9 +898,9 @@
             selectElement.addEventListener('change', function () {
                 var selectedValue = this.value;
                 if (selectedValue === 'import') {
-                    explanationElement.innerHTML = "<strong>Zip Code for Import:</strong> The 'zip code' refers to the postal code of the receiving location within the destination country. Please provide the postal code for the final receiving location for your imported goods.";
+                    explanationElement.innerHTML = "Import: The 'zip code' refers to the postal code of the receiving location within the destination country. Please provide the postal code for the final receiving location for your imported goods.";
                 } else if (selectedValue === 'export') {
-                    explanationElement.innerHTML = "<strong>Zip Code for Export:</strong> The 'zip code' indicates the postal code of the sending location in the country of origin. Enter the postal code that corresponds to where your goods will be dispatched from.";
+                    explanationElement.innerHTML = "Export: The 'zip code' indicates the postal code of the sending location in the country of origin. Enter the postal code that corresponds to where your goods will be dispatched from.";
                 } else {
                     explanationElement.innerHTML = ""; // Clear the explanation if neither is selected
                 }

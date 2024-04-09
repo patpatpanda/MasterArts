@@ -137,23 +137,13 @@
                 <select asp-for="@Model.Order.TransportModeCode" class="form-control">
                     <option value="">Select a transport mode</option>
                     <option value="11">Sea transport</option>
-                    <option value="12">Sea + rail</option>
-                    <option value="13">Sea + road</option>
-                    <option value="14">Sea + air</option>
-                    <option value="21">Rail + sea</option>
+                    
                     <option value="22">Rail transport</option>
-                    <option value="23">Rail + road</option>
-                    <option value="24">Rail + air</option>
-                    <option value="31">Road + sea</option>
-                    <option value="32">Road + rail</option>
+                    
                     <option value="33">Road transport</option>
-                    <option value="34">Road + air</option>
-                    <option value="41">Air + sea</option>
-                    <option value="42">Air + rail</option>
-                    <option value="43">Air + road</option>
+                  
                     <option value="44">Air transport</option>
-                    <option value="55">Postal shipment</option>
-                    <option value="99">Self-propulsion</option>
+                    
                 </select>
                 <span asp-validation-for="@Model.Order.TransportModeCode" class="text-danger"></span>
 
@@ -457,23 +447,14 @@
                 <select asp-for="@Model.Order.TransportModeCode" class="form-control">
                     <option value="">Välj ett transportläge</option>
                     <option value="11">Sjötransport</option>
-                    <option value="12">Sjö + tåg</option>
-                    <option value="13">Sjö + väg</option>
-                    <option value="14">Sjö + flyg</option>
-                    <option value="21">Tåg + sjö</option>
+                   
                     <option value="22">Tågtransport</option>
-                    <option value="23">Tåg + väg</option>
-                    <option value="24">Tåg + flyg</option>
-                    <option value="31">Väg + sjö</option>
-                    <option value="32">Väg + tåg</option>
+                   
                     <option value="33">Vägtransport</option>
                     <option value="34">Väg + flyg</option>
-                    <option value="41">Flyg + sjö</option>
-                    <option value="42">Flyg + tåg</option>
-                    <option value="43">Flyg + väg</option>
+                    
                     <option value="44">Flygtransport</option>
-                    <option value="55">Postförsändelse</option>
-                    <option value="99">Egen framdrivning</option>
+                   
                 </select>
                 <span asp-validation-for="@Model.Order.TransportModeCode" class="text-danger"></span>
 
