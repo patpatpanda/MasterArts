@@ -20,7 +20,7 @@
 <div class="buttons-container" style="margin-top:50px; text-align:center;">
     <a href="/LogisticsCenter/Calculator#contact-id" class="button-link"><i class="fas fa-calculator"></i>SHIPMENT-CALCULATOR</a>
     <a href="/LogisticsCenter/MyOrdersModel#contact-id" class="button-link"><i class="fas fa-book"></i> BOOKINGS</a>
-    <a href="/NordicApi/CalculateRates#contact-id" class="button-link"><i class="fas fa-shipping-fast"></i>OCEAN LCL</a>
+    <a href="/NordicApi/CalculateRates#contact-id" class="button-link"><i class="fa-thin fa-anchor"></i>OCEAN LCL</a>
 </div>
 
 
@@ -136,13 +136,16 @@
                 <label asp-for="@Model.Order.TransportModeCode">Transport Mode</label>
                 <select asp-for="@Model.Order.TransportModeCode" class="form-control">
                     <option value="">Select a transport mode</option>
+            <option value="44">Air transport</option>
+            <option value="33">Road transport</option>
+             <option value="22">Train transport</option>
                     <option value="11">Sea transport</option>
                     
-                    <option value="22">Rail transport</option>
                     
-                    <option value="33">Road transport</option>
+                    
+                    
                   
-                    <option value="44">Air transport</option>
+                    
                     
                 </select>
                 <span asp-validation-for="@Model.Order.TransportModeCode" class="text-danger"></span>
@@ -446,14 +449,10 @@
                 <label asp-for="@Model.Order.TransportModeCode">Transportläge</label>
                 <select asp-for="@Model.Order.TransportModeCode" class="form-control">
                     <option value="">Välj ett transportläge</option>
-                    <option value="11">Sjötransport</option>
-                   
-                    <option value="22">Tågtransport</option>
-                   
-                    <option value="33">Vägtransport</option>
-                    <option value="34">Väg + flyg</option>
-                    
-                    <option value="44">Flygtransport</option>
+            <option value="44">Flyg</option>
+            <option value="33">Väg</option>
+            <option value="22">Tåg</option>
+            <option value="11">Sjö</option>
                    
                 </select>
                 <span asp-validation-for="@Model.Order.TransportModeCode" class="text-danger"></span>

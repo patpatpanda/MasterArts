@@ -952,8 +952,48 @@ input {
 }
 
 @media screen and (max-width: 768px) {
+
+    .navbar-collapse {
+        position: absolute;
+        top: 0; /* Eller annan värde som matchar din design */
+        right: 0; /* Justera efter behov för att positionera menyn korrekt */
+        width: 100%; /* Eller annan bredd beroende på designkrav */
+        z-index: 1000; /* Se till att dropdownmenyn ligger över andra element */
+    }
+
+        /* Om .navbar-collapse inte täcker hela bredden och du behöver centrera innehållet */
+        .navbar-collapse.collapse.show {
+            display: block !important; /* Överskriv Bootstrap's default gömmande av .collapse */
+        }
+
+    /* Justera stylingen för att matcha din webbplats layout och design */
+    .light-black-background {
+        color: #fff; /* Exempel på textfärg */
+    }
+
+
+
+    .nav-item .dropdown-menu {
+        position: static; /* Låter dropdown ta sin naturliga plats i flödet */
+        box-shadow: none; /* Tar bort skuggan för enklare utseende */
+    }
+    .mille{
+        margin-top:300px
+    }
+
+    .nav-item {
+        width: 100%; /* Låter nav-items ta full bredd för bättre åtkomst och synlighet */
+    }
+
+        /* Alternativ för att hantera klick istället för hover på mobil */
+        .nav-item .dropdown-toggle:active + .dropdown-menu,
+        .nav-item .dropdown-toggle:focus + .dropdown-menu {
+            display: block; /* Visa dropdown när aktiv/fokuserad */
+            position: absolute; /* Om du vill ha absolut positionering även på mobil */
+        }
+    
     .contact {
-        margin-top: 10px;
+        margin-top: 15px;
         color: #333;
         display: flex;
         justify-content: center;
@@ -998,11 +1038,11 @@ input {
 
 
     .adjusted-anchor {
-        padding-top: 15px;
+        padding-top: 200px;
     }
 
     .adjusted-anchor-2 {
-        padding-top: 15px;
+        margin-top: 500px;
     }
 
     .asdf {
@@ -1065,6 +1105,10 @@ input {
 
     .navbar-collapse.collapse {
         background-color: rgba(0, 0, 0, 0.5); /* Ljussvart med viss transparens */
+
+
+
+       
     }
 
     .team {
@@ -1252,7 +1296,7 @@ input {
         background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
         background-size: cover; /* Ser till att bilden täcker hela elementet */
         background-position: center; /* Centrerar bilden i elementet */
-        height: 500px;
+        height: 550px;
     }
     
     .kalle {
@@ -2259,10 +2303,15 @@ select {
     padding: 20px;
     box-sizing: border-box;
 }
-.master-master{
-    display:grid;
-    justify-content:center
+.master-master {
+    display: flex;
+    justify-content:center;
+    align-content:center;
+    gap: 20px; /* Space between the columns */
+   
+    
 }
+
 
 .master-qop-1 {
     max-width: 100%; /* Anpassar bredden */
@@ -2540,6 +2589,7 @@ input[type="checkbox"] {
     color: #007bff;
     text-align: center;
     margin-bottom: 20px;
+    font-weight:bold;
 }
 
 /* Styling för total-, rate- och transit-sektionerna */
@@ -2574,7 +2624,7 @@ input[type="checkbox"] {
     .shipping-cost-calculator {
         padding: 10px;
     }
-
+    
     .full-width-image img {
         width: 100%;
         height: auto;
@@ -3004,9 +3054,15 @@ input[type="checkbox"] {
         }
     }
     }
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
     .mr-inco{
         display:none
+    }
+    .master-master {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        gap: 20px; /* Space between the columns */
     }
 }
 
@@ -3117,11 +3173,13 @@ input[type="checkbox"] {
 /* Space between columns */
 .form-col + .form-col {
     margin-left: 20px;
+    
 }
 
 /* Adjustments for the date field to take more space */
 .date-field {
-   max-width:800px
+   max-width:800px;
+   z-index:2
 }
 
 /* Responsive adjustments */
@@ -3180,9 +3238,9 @@ input[type="checkbox"] {
 
 .section-heading {
     font-size: 20px;
-    margin-bottom: 40px;
+   
     color: #333;
-    border:solid 2px #333
+    border-bottom:solid 2px #333
 }
 
 .totals-table, .rates-table {
@@ -3216,6 +3274,11 @@ input[type="checkbox"] {
 
 
 
+.sun {
+    
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
 
 
 
@@ -3272,6 +3335,35 @@ gap: 10px; /* Lägger till utrymme mellan element */
         width: 400px
     }
 }
+/* Style for the dropdown menu */
+.nav-item .dropdown-menu {
+    display: none; /* Hide dropdown by default */
+    position: absolute; /* Positioning relative to the parent nav-item */
+    background-color: #f9f9f9; /* Background color */
+    min-width: 160px; /* Minimum width */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Dropdown shadow */
+    z-index: 1; /* Ensure dropdown is above other content */
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block; /* Show dropdown on hover */
+}
+
+.dropdown-item {
+    color: black; /* Text color */
+    padding: 12px 16px; /* Padding */
+    text-decoration: none; /* Remove underline from links */
+    display: block; /* Display as block for proper alignment */
+}
+
+    .dropdown-item:hover {
+        background-color: #ddd; /* Background color on hover */
+    }
+
+.custom-container {
+    position: relative; /* Säkerställer att .navbar-collapse positioneras relativt till denna container */
+}
+
 
 
 

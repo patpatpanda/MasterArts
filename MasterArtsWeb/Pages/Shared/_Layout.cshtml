@@ -76,7 +76,7 @@
 
 
 
-                            <!-- I layoutfilen -->
+                          
                             <li class="nav-item">
                                 @if (User.Identity.Name == "ops@artslogistics.se")
                                 {
@@ -104,14 +104,12 @@
 
                                 </a>
                             </li>
-                            <li class="nav-item">
-                        <a href="/About#contact-id" class="nav-link text-light">
-
-
-                                    <p class="customer-text"> About Us </p>
-
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="/About#contact-id" class="nav-link text-light">
+                                <p class="customer-text">About</p>
+                            </a>
+                            
+                        </li>
                             <li class="nav-item">
                         <a href="/Contact#contact-id" class="nav-link text-light">
 
@@ -123,24 +121,47 @@
 
                                 </a>
                             </li>
-                            <li class="nav-item">
-                        <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="nav-link text-light">
+                        
 
 
-                                    <p class="customer-text">Booking</p>
+                        <li class="nav-item">
+                            <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="nav-link text-light">
+
+
+                                <p class="customer-text">Booking</p>
 
 
 
 
-                                </a>
-                            </li>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="nav-link text-light dropdown-toggle" data-toggle="dropdown">
+                                <p class="customer-text">Tools</p>
+                            </a>
+                            <div class="dropdown-menu">
 
 
+                                <a href="/NordicApi/CalculateRates#contact-id" class="dropdown-item"><i class="fa-thin fa-anchor"></i>OCEAN LCL</a>
+                                <a href="/LogisticsCenter/Calculator#contact-id" class="dropdown-item"><i class="fas fa-calculator"></i> SHIPMENT-CALCULATOR</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="/Terms#contact-id" class="nav-link text-light dropdown-toggle" data-toggle="dropdown">
+                                <p class="customer-text">Terms</p>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="/Terms/#nsab-2" class="dropdown-item"> NSAB</a>
+                                <a href="/Terms/#nsab" class="dropdown-item">Incoterms</a>
+
+                            </div>
+                        </li>
 
                             </ul>
 
 
 
+                   
 
 
                             <partial name="_LoginPartial" />
@@ -324,7 +345,7 @@
 
                 </p>
                 <p>
-                    <a href="/About#nsab" class="kite">
+                    <a href="/Terms#nsab" class="kite">
 
 
                         <span>Shipping terms</span>
