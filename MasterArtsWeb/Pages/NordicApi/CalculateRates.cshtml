@@ -18,7 +18,7 @@
 
 
 
-    <div class="master-master" style="margin-bottom:10px">
+    <div class="master-master shipping-cost-calculator" style="margin-bottom:10px">
 
 
         @if (Model.ApiResponse != null)
@@ -876,7 +876,13 @@
 
 
 
-
+        $(document).ready(function () {
+            // Iterera över varje p-element inuti din div och lägg till fade-in-klassen med en fördröjning
+            $('.shipping-cost-calculator div p').each(function (i) {
+                $(this).css('animation-delay', `${i * 0.2}s`); // 0.1s fördröjning mellan varje rad
+                $(this).addClass('fade-in');
+            });
+        });
 
 
 

@@ -14,12 +14,12 @@
 <div class="ban">
     <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
 </div>
-<div class="text-center shipping-cost-calculator">
+<div class="master-master shipping-cost-calculator">
     <h3 id="resultSection"></h3>
 
     @if (Model.ApiResponseInland != null)
     {
-        <div>
+        <div class="transit-details">
             <p>Total: @Model.ApiResponseInland.total</p>
             <p>USD Exchange Rate: @Model.ApiResponseInland.usdExchangeRate</p>
             <p>EUR Exchange Rate: @Model.ApiResponseInland.eurExchangeRate</p>
@@ -96,11 +96,11 @@
     </div>
 
         <div class="form-container-2">
-    <h4>Dimensioner</h4>
+    <h4>Dimensions</h4>
 
         <div id="dimensionsContainerEn">
         <div>
-                <label asp-for="Inland.Dimensions[0].Pcs">Number Of Package</label>
+                <label asp-for="Inland.Dimensions[0].Pcs">Number Of Packages</label>
                 <input asp-for="Inland.Dimensions[0].Pcs" type="number" />
         </div>
         <div>
@@ -253,6 +253,16 @@
 
 @section Scripts {
     <script>
+
+
+        $(document).ready(function () {
+            // Iterera över varje p-element inuti din div och lägg till fade-in-klassen med en fördröjning
+            $('.shipping-cost-calculator div p').each(function (i) {
+                $(this).css('animation-delay', `${i * 0.2}s`); // 0.1s fördröjning mellan varje rad
+                $(this).addClass('fade-in');
+            });
+        });
+
         function startLoginProcess() {
             document.getElementById('loadingSpinner').style.display = 'block';
             document.getElementById('loadingSpinner2').style.display = 'block';

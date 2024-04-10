@@ -2466,7 +2466,7 @@ input[type="checkbox"] {
     height: 36px;
     border-radius: 50%;
     border-top-color: #09f; /* Ändrad från left till top för synlighet */
-    background-image: linear-gradient(to bottom, #09f, #f06); /* Lägger till en subtil gradient */
+    background: #b8d8f5; /* Lägger till en subtil gradient */
     animation: spin 1s ease infinite, pulse 2s infinite alternate;
     box-shadow: 0 0 20px rgba(0, 153, 255, 0.5); /* Lägger till en lysande skugga */
 }
@@ -3384,4 +3384,15 @@ h3{
         margin: 40px auto; /* Centrera och ge lite utrymme ovanför och under */
         color: #333; /* Vit textfärg för kontrast mot den mörka bakgrunden */
     }
-} 
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeInAnimation ease-in 1s forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
