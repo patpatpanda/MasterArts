@@ -18,6 +18,7 @@ namespace MasterArtsLibrary.Models
         public float co2 { get; set; }
         public string zipCode { get; set; }
         public string city { get; set; }
+
     }
     public class ApiResponse
     {
@@ -117,21 +118,21 @@ namespace MasterArtsLibrary.Models
     public class ShippingRequest
     {
         [JsonProperty("module")]
-        public string Module { get; set; }
+        public string? Module { get; set; }
 
         [JsonProperty("importExport")]
-        public string ImportExport { get; set; }
+        public string? ImportExport { get; set; }
 
         [JsonProperty("type")]
-        public string Type { get; set; } = "lcl";
+        public string? Type { get; set; } = "lcl";
         [JsonIgnore]
-        public string UserSelection { get; set; }
+        public string? UserSelection { get; set; }
 
         [JsonProperty("fromCode")]
-        public string FromCode { get; set; }
+        public string? FromCode { get; set; }
 
         [JsonProperty("toCode")]
-        public string ToCode { get; set; }
+        public string? ToCode { get; set; }
 
 
         [JsonProperty("routingCode")]
@@ -141,20 +142,23 @@ namespace MasterArtsLibrary.Models
         public string? InlandZipCode { get; set; }
 
         [JsonProperty("packages")]
-        public int Packages { get; set; }
+        public int? Packages { get; set; }
 
         [JsonProperty("packageType")]
-        public string PackageType { get; set; }
+        public string? PackageType { get; set; }
 
         [JsonProperty("weight")]
-        public int Weight { get; set; }
+        public int? Weight { get; set; }
 
         [JsonProperty("volume")]
-        public float Volume { get; set; }
+        public float? Volume { get; set; }
 
         [JsonProperty("date")]
-        public string Date { get; set; }
-        
+        public string? Date { get; set; }
+
+        [JsonProperty("city")]
+        public string? City { get; set; }
+
 
         [JsonProperty("dimensions")]
         public List<Dimension>? Dimensions { get; set; }

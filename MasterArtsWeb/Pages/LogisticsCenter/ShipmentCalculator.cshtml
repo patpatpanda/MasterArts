@@ -21,6 +21,7 @@
     <a href="/LogisticsCenter/Calculator#contact-id" class="button-link"><i class="fas fa-calculator"></i>SHIPMENT-CALCULATOR</a>
     <a href="/LogisticsCenter/MyOrdersModel#contact-id" class="button-link"><i class="fas fa-book"></i> BOOKINGS</a>
     <a href="/NordicApi/CalculateRates#contact-id" class="button-link"><i class="fa-thin fa-anchor"></i>OCEAN LCL</a>
+    <a href="/NordicApi/InlandRequest#contact-id" class="button-link"><i class="fa-thin fa-ship"></i>INLAND LCL</a>
 </div>
 
 
@@ -35,12 +36,9 @@
 
   
 
-
-
+<form method="post" id="contactForm" style="margin-top:100px">
+<div class="order-1">
     
-
-
-<form method="post"  id="contactForm" style="margin-top:100px">
     
     
    
@@ -71,7 +69,7 @@
                     <option value="0017 DAP">0017 DAP</option>
                     <option value="0021 DDP">0021 DDP</option>
                     <option value="0026 FAS">0026 FAS</option>
-                    <option value="0027 FOB">0027 FOB</option>
+                    <option value="0029 FOB">0027 FOB</option>
                     <option value="0031 CFR">0031 CFR</option>
                     <option value="0034 CIF">0034 CIF</option>
                 </select>
@@ -168,13 +166,13 @@
     </div>
 
 
-        
 
 
-       
 
-            
-       <div class="form-container-2">
+
+
+
+        <div class="form-container-2 goods-container">
             <h3 class="text-center" style="color:#fff">Goods</h3>
            
                 @for (int i = 0; i < Model.Order.Goods.Count; i++)
@@ -255,20 +253,22 @@
                 <input asp-for="@Model.Order.Goods[@i].Remarks" class="form-control" placeholder="Ex: Fragile, Handle with care, etc..." />
                 <span asp-validation-for="@Model.Order.Goods[@i].Remarks" class="text-danger"></span>
                 }
-            <div id="goodsContainer">
-                
-            </div>
-            <button type="button" class="cta-button" id="addGoodsBtn">Add Goods</button>
+            <div id="dimensionsContainerEn"  class="goods-container">
+        </div>
+        <button type="button" class="cta-button" onclick="addDimension()">Add Goods</button>
 
 
         </div>
         
-       
-        
 
+
+</div>
     
 
-        <div class="form-container-2">
+
+
+       <div class="order-1">
+           <div class="form-container-2">
             <h3 class="text-center" style="color:#fff">Consignor</h3>
             <label asp-for="Order.ConsignorName">Consignor Name</label>
             <input asp-for="Order.ConsignorName" class="form-control" />
@@ -361,20 +361,29 @@
    
 
     
+    
+    </div>
     <div class="sleep">
         <div id="loadingSpinner" style="display: none;">
             <div class="spinner"></div>
         </div>
 
-        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Send</button>
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button text-center" style="margin-top:20px" name="OrderSubmitButton">Send</button>
     </div>
 </form>
 
 
 
+
+        
+
+    
+
+        
+
 <form method="post"  id="contactFormSv" style="margin-top:100px;display:none">
 
-
+    <div class="order-1">
    
         <div class="form-container-2">
             <h3 class="text-center" style="color:#fff">Detaljer</h3>
@@ -402,7 +411,7 @@
                     <option value="0017 DAP">0017 DAP</option>
                     <option value="0021 DDP">0021 DDP</option>
                     <option value="0026 FAS">0026 FAS</option>
-                    <option value="0027 FOB">0027 FOB</option>
+                    <option value="0029 FOB">0027 FOB</option>
                     <option value="0031 CFR">0031 CFR</option>
                     <option value="0034 CIF">0034 CIF</option>
                 </select>
@@ -479,7 +488,7 @@
 
             </div>
 
-                <div class="form-container-2">
+        <div class="form-container-2 goods-container">
                     <h3 class="text-center" style="color:#fff">Goods</h3>
                     @for (int i = 0; i < Model.Order.Goods.Count; i++)
                     {
@@ -554,19 +563,21 @@
                     <input asp-for="@Model.Order.Goods[@i].Remarks" class="form-control" placeholder="Ex: Fragile, Handle with care, etc..." />
                     <span asp-validation-for="@Model.Order.Goods[@i].Remarks" class="text-danger"></span>
                     }
-            <div id="goodsContainerSv">
+        <div id="dimensionsContainerSv">
             </div>
-            <button type="button" class="cta-button" id="addGoodsBtnSv">Lägg till fler Goods</button>
+        <button type="button" class="cta-button" onclick="addDimension()">Lägg till gods</button>
                 </div>
-        
-            
 
 
+
+
+
+    </div>
     
-      
     
-    
-    
+    <div class="order-2">
+
+  
         <div class="form-container-2">
             <h3 class="text-center" style="color:#fff">Avsändare</h3>
             <label asp-for="Order.ConsignorName">Namn</label>
@@ -659,15 +670,14 @@
 
 
 
-
+    </div>
     <div class="sleep">
         <div id="loadingSpinner" style="display: none;">
             <div class="spinner"></div>
         </div>
 
-        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Skicka Order</button>
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button text-center" style="margin-top:20px" name="OrderSubmitButton">Send</button>
     </div>
-    
 
 </form>
 
@@ -760,26 +770,53 @@
 
 
 
-    document.getElementById('addGoodsBtn').addEventListener('click', function () {
-        var index = document.querySelectorAll('.goods-item').length; // To ensure unique names
-        var newGoods = document.createElement('div');
-        newGoods.className = 'goods-item'; // For styling or future selection if needed
-        newGoods.innerHTML = `
-        <div class="form-group">
-            <label>PackageId</label>
-            <input type="text" name="Order.Goods[${index}].PackageId" class="form-control" />
-        </div>
-            <div class="form-group">
-                <label>Mark Numbers</label>
-                <input type="text" name="Order.Goods[${index}].MarksNumbers"  class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Description</label>
-                <textarea name="Order.Goods[${index}].Description"  class="form-control"></textarea>
-            </div>
-            <div class="form-group">
-                <label>Package Type</label>
-                <select name="Order.Goods[${index}].PackageType" class="form-control">
+    var dimensionIndex = 0; // Initialiserar dimensionIndex här
+
+    function addDimension() {
+        var language = document.getElementById('languageToggleBtn').innerText;
+        var isSwedish = language.includes('Svenska');
+
+        var containerId = isSwedish ? 'dimensionsContainerEn' : 'dimensionsContainerSv';
+        var container = document.getElementById(containerId);
+
+        var placeholders = isSwedish ? {
+            packageId: "Package ID",
+            marksNumbers: "Marks Numbers",
+            description: "Description",
+            packageType: "Package Type",
+            pcs: "Number of pieces",
+            length: "Length",
+            width: "Width",
+            height: "Height",
+            weight: "Weight",
+            volume: "Volume",
+            grossWeight: "Gross Weight",
+            remarks: "Remarks",
+            removeBtn: "Remove"
+            
+        } : {
+            packageId: "PaketID",
+            marksNumbers: "Märkningsnummer",
+            description: "Beskrivning",
+            packageType: "Pakettyp",
+            pcs: "Antal stycken",
+            length: "Längd",
+            width: "Bredd",
+            height: "Höjd",
+            weight: "Vikt",
+            volume: "Volym",
+            grossWeight: "Bruttovikt",
+            remarks: "Anmärkningar",
+            removeBtn: "Ta bort"
+        };
+
+        var dimensionHTML = `
+            <div id="dimension-${dimensionIndex}" class="dimension-container">
+                    <input type="text" name="Order.Goods[${dimensionIndex}].PackageId" placeholder="${placeholders.packageId}" class="form-control" />
+                    <input type="text" name="Order.Goods[${dimensionIndex}].MarksNumbers" placeholder="${placeholders.marksNumbers}" class="form-control" />
+                    <textarea name="Order.Goods[${dimensionIndex}].Description" placeholder="${placeholders.description}" class="form-control"></textarea>
+                    <select name="Order.Goods[${dimensionIndex}].PackageType" class="form-control">
+                    <option value="">Select a package type</option>
                     <option value="CTN">CTN - Carton</option>
                     <option value="HPX">HPX - Special packaging</option>
                     <option value="KVT">KVT - Custom type</option>
@@ -787,138 +824,34 @@
                     <option value="PKG">PKG - Package</option>
                     <option value="PX">PX - Special packaging X</option>
                 </select>
+                    <input type="number" name="Order.Goods[${dimensionIndex}].Quantity" placeholder="${placeholders.pcs}" class="form-control" />
+                    <input type="number" name="Order.Goods[${dimensionIndex}].Length" placeholder="${placeholders.length}" class="form-control" />
+                    <input type="number" name="Order.Goods[${dimensionIndex}].Width" placeholder="${placeholders.width}" class="form-control" />
+                    <input type="number" name="Order.Goods[${dimensionIndex}].Height" placeholder="${placeholders.height}" class="form-control" />
+                    <input type="number" name="Order.Goods[${dimensionIndex}].NetWeight" placeholder="${placeholders.weight}" class="form-control" />
+                    <input type="number" name="Order.Goods[${dimensionIndex}].Volume" placeholder="${placeholders.volume}" class="form-control" />
+                    <input type="number" name="Order.Goods[${dimensionIndex}].GrossWeight" placeholder="${placeholders.grossWeight}" class="form-control" />
+                    <textarea name="Order.Goods[${dimensionIndex}].Remarks" placeholder="${placeholders.remarks}" class="form-control"></textarea>
+                <button type="button" class="cta-button" onclick="removeDimension(${dimensionIndex})">${placeholders.removeBtn}</button>
             </div>
-            <div class="form-group">
-                    <label>Quantity</label>
-                <input type="number" name="Order.Goods[${index}].Quantity" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Weight</label>
-                    <input type="number" step="0.01" name="Order.Goods[${index}].Weight"  class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Volume</label>
-                <input type="number" step="0.01" name="Order.Goods[${index}].Volume"  class="form-control" />
-            </div>
-            <div class="form-group">
-                    <label>Remarks</label>
-                    <input type="text" name="Order.Goods[${index}].Remarks" class="form-control" />
-            </div>
-                <div class="form-group">
-                        <label>VolumetricWeight</label>
-                        <input type="text" name="Order.Goods[${index}].VolumetricWeight"  class="form-control" />
-                </div>
-                    <div class="form-group">
-                                <label>NetWeight</label>
-                            <input type="text" name="Order.Goods[${index}].NetWeight"  class="form-control" />
-                    </div
-                        </div>
-                        <div class="form-group">
-                                <label>VolumeUnit</label>
-                                         <select name="Order.Goods[${index}].VolumeUnit" class="form-control">
-                                        <option value="">Select a unit</option>
-                                <option value="CBM">Cubic Meter (CBM)</option>
-                                <option value="CFT">Cubic Feet (CFT)</option>
-                                <option value="L">Liter (L)</option>
-                                <option value="Gallon">Gallon (US/Imperial)</option>
-                                <option value="In³">Cubic Inches (In³)</option>
-                                     </select>
-                        </div>
-                            <div class="form-group">
-                                    <label>GrossWeight</label>
-                                            <input type="text" name="Order.Goods[${index}].GrossWeight" class="form-control" />
-                            </div>
-            <!-- Add any additional fields as needed -->
         `;
 
-        // Append the new goods form to the container
-        document.getElementById('goodsContainer').appendChild(newGoods);
-        var inputField = newGoods.querySelector('input[name="Order.Goods[${index}].PackageId"]');
-    var feedbackIcon = newGoods.querySelector('.feedback-icon'); // Hittar ikonen inuti just den här varuposten
+        container.insertAdjacentHTML('beforeend', dimensionHTML);
+        dimensionIndex++; // Increment dimensionIndex for each new dimension
+    }
 
-    inputField.addEventListener('input', function () {
-        if (this.value.trim() !== '') {
-            feedbackIcon.style.display = 'inline'; // Eller 'block' beroende på hur du vill visa den
-        } else {
-            feedbackIcon.style.display = 'none';
+
+
+
+
+    function removeDimension(index) {
+        var elementToRemove = document.getElementById(`dimension-${index}`);
+        if (elementToRemove) {
+            elementToRemove.remove();
         }
-    });
-});
+    }
 
-    document.getElementById('addGoodsBtnSv').addEventListener('click', function () {
-        var index = document.querySelectorAll('.goods-item').length; // To ensure unique names
-        var newGoods = document.createElement('div');
-        newGoods.className = 'goods-item'; // For styling or future selection if needed
-        newGoods.innerHTML = `
-                <div class="form-group">
-                    <label>Paket ID</label>
-                    <input type="text" name="Order.Goods[${index}].PackageId"  class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Märknummer</label>
-                    <input type="text" name="Order.Goods[${index}].MarksNumbers" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Beskrivning</label>
-                    <textarea name="Order.Goods[${index}].Description"  class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Pakettyp</label>
-                    <select name="Order.Goods[${index}].PackageType" class="form-control">
-                        <option value="CTN">CTN - Carton</option>
-                        <option value="HPX">HPX - Special packaging</option>
-                        <option value="KVT">KVT - Custom type</option>
-                        <option value="OTH">OTH - Other</option>
-                        <option value="PKG">PKG - Package</option>
-                        <option value="PX">PX - Special packaging X</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Antal</label>
-                    <input type="number" name="Order.Goods[${index}].Quantity"  class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Vikt (kg)</label>
-                        <input type="number" step="0.01" name="Order.Goods[${index}].Weight"  class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Volym</label>
-                    <input type="number" step="0.01" name="Order.Goods[${index}].Volume" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Anmärkningar</label>
-                        <input type="text" name="Order.Goods[${index}].Remarks"  class="form-control" />
-                </div>
-                    <div class="form-group">
-                        <label>Volymvikt</label>
-                            <input type="text" name="Order.Goods[${index}].VolumetricWeight"  class="form-control" />
-                    </div>
-                        <div class="form-group">
-                                <label>Nettovikt</label>
-                                <input type="text" name="Order.Goods[${index}].NetWeight"  class="form-control" />
-                        </div
-                            </div>
-                            <div class="form-group">
-                                    <label>Volymenhet</label>
-                                             <select name="Order.Goods[${index}].VolumeUnit" class="form-control">
-                                            <option value="">Select a unit</option>
-                                    <option value="CBM">Cubic Meter (CBM)</option>
-                                    <option value="CFT">Cubic Feet (CFT)</option>
-                                    <option value="L">Liter (L)</option>
-                                    <option value="Gallon">Gallon (US/Imperial)</option>
-                                    <option value="In³">Cubic Inches (In³)</option>
-                                         </select>
-                            </div>
-                                <div class="form-group">
-                                        <label>Bruttovikt</label>
-                                                <input type="text" name="Order.Goods[${index}].GrossWeight" class="form-control" />
-                                </div>
-                
-            `;
-
-        // Append the new goods form to the container
-        document.getElementById('goodsContainerSv').appendChild(newGoods);
-    });
+   
 
 </script>
 

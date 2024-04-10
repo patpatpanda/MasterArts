@@ -845,17 +845,25 @@
         };
 
         $(function () {
-            $(".city-autocomplete").each(function () {
-                $(this).autocomplete({
-                    source: Object.keys(locodes), // Städernas namn
-                    select: function (event, ui) {
-                        // När ett namn väljs, hitta närmaste 'locode' fält och sätt UN/LOCODE
-                        $(this).next(".locode").val(locodes[ui.item.value]);
-                    }
-                });
+            // Initialiserar jQuery UI Autocomplete
+            $(".city-autocomplete").autocomplete({
+                source: Object.keys(locodes), // Använder städernas namn som källa
+                select: function (event, ui) {
+                    // När ett namn väljs, hitta närmaste 'locode' fält och sätt UN/LOCODE
+                    $(this).next(".locode").val(locodes[ui.item.value]);
+                }
+            });
+
+            $(".city-autocomplete").blur(function () {
+                // Kontrollera manuellt värdet mot locodes när fältet förlorar fokus
+                var value = $(this).val().toUpperCase(); // Anta att stadsnamn är lagrade i stora bokstäver
+                var matchingLocode = locodes[value];
+                if (matchingLocode) {
+                    // Sätt det dolda fältets värde om ett matchande namn hittas
+                    $(this).next(".locode").val(matchingLocode);
+                }
             });
         });
-
         // Använd jQuery UI Autocomplete för både från och till städer
         $(function () {
             setUpAutocomplete("fromCity", "fromCode");

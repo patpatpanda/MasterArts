@@ -8,7 +8,7 @@
         LCL-INLAND
     </h3>
 </div>
-<div class="language-toggle text-end index-lang">
+<div class="language-toggle text-end index-lang" style="display:none">
     <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">Svenska</button>
 </div>
 <div class="ban">
@@ -42,8 +42,7 @@
         <label asp-for="@Model.Inland.Module">Transport Module</label>
             <select asp-for="@Model.Inland.Module">
             <option value="ocean">Ocean</option>
-            <option value="rail">Rail</option>
-            <!-- Lägg till fler transportmoduler här -->
+            
         </select>
     </div>
     <div>
@@ -51,8 +50,8 @@
            
 
         <div>
-                <label asp-for="@Model.Inland.InlandZipCode">Inland Zip Code</label>
-                <input asp-for="@Model.Inland.InlandZipCode" />
+                <label asp-for="@Model.Inland.City">City</label>
+                <input asp-for="@Model.Inland.City"/>
         </div>
         <div>
                 <label asp-for="@Model.Inland.Weight">Weight</label>
@@ -64,10 +63,7 @@
             </div>
 
 
-        <div>
-                <label asp-for="@Model.Inland.Date">Date</label>
-                <input asp-for="@Model.Inland.Date" type="date" />
-        </div>
+       
             <label asp-for="@Model.Inland.ImportExport">Import/Export</label>
             <select asp-for="@Model.Inland.ImportExport">
             <option value="import">Import</option>
@@ -85,10 +81,7 @@
 
           
 
-        <div>
-            <label asp-for="@Model.Inland.City">City</label>
-            <input asp-for="@Model.Inland.City" />
-        </div>
+       
         
         
     <!-- Fyll i fler fält enligt ovanstående mönster -->
@@ -135,7 +128,7 @@
         </div>
     </div>
 
-        <button type="button" onclick="addDimension()">Lägg till Dimension</button>
+        <button type="button" class="cta-button" onclick="addDimension()">Lägg till Dimension</button>
 
     <br>
     
@@ -145,7 +138,7 @@
             <div class="spinner"></div>
         </div>
 
-        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
     </div>
 </form>
 
@@ -153,54 +146,56 @@
 <form method="post" id="contactFormSv" style="margin-top:50px;display:none">
     <div class="form-container-2">
         <div>
-            <label asp-for="@Model.ShippingRequest.Module">Transportmodul</label>
-            <select asp-for="@Model.ShippingRequest.Module">
+            <label asp-for="@Model.Inland.Module">Transport Module</label>
+            <select asp-for="@Model.Inland.Module">
                 <option value="ocean">Ocean</option>
-                <option value="rail">Rail</option>
-                <!-- Lägg till fler transportmoduler här -->
+
             </select>
         </div>
         <div>
 
-            
-            <div>
-                <label asp-for="@Model.ShippingRequest.Weight">Vikt</label>
-                <input asp-for="@Model.ShippingRequest.Weight" type="number" />
-            </div>
-            <div>
-                <label asp-for="@Model.ShippingRequest.Volume">Volym (m³)</label>
-                <input asp-for="@Model.ShippingRequest.Volume" type="number" step="0.01" />
-            </div>
 
 
             <div>
-                <label asp-for="@Model.ShippingRequest.Date">Datum (YYYY-MM-DD)</label>
-                <input asp-for="@Model.ShippingRequest.Date" type="date" />
+                <label asp-for="@Model.Inland.City">City</label>
+                <input asp-for="@Model.Inland.City" />
             </div>
-            <label asp-for="@Model.ShippingRequest.ImportExport">Import/Export</label>
-            <select asp-for="@Model.ShippingRequest.ImportExport">
+            <div>
+                <label asp-for="@Model.Inland.Weight">Weight</label>
+                <input asp-for="@Model.Inland.Weight" type="number" />
+            </div>
+            <div>
+                <label asp-for="@Model.Inland.Volume">Volume (m³)</label>
+                <input asp-for="@Model.Inland.Volume" type="number" step="0.01" />
+            </div>
+
+
+
+            <label asp-for="@Model.Inland.ImportExport">Import/Export</label>
+            <select asp-for="@Model.Inland.ImportExport">
                 <option value="import">Import</option>
                 <option value="export">Export</option>
             </select>
         </div>
-        <div>
-            
-            <!-- Displaying "LCL" as a text to the user, assuming "LCL" is the only option needed. -->
-            
-            <!-- Hidden input to ensure "LCL" is submitted as the value -->
-            <input type="hidden" asp-for="@Model.ShippingRequest.Type" value="lcl" />
-        </div>
 
-        
+
+        <!-- Displaying "LCL" as a text to the user, assuming "LCL" is the only option needed. -->
+        <!-- Hidden input to ensure "LCL" is submitted as the value -->
+
+        <input type="hidden" asp-for="@Model.Inland.Type" value="lcl" />
+        <input type="hidden" asp-for="@Model.Inland.UserSelection" value="inlandtransport" />
+
+
+
+
+
 
         <!-- Fyll i fler fält enligt ovanstående mönster -->
         <div>
-            <label asp-for="@Model.ShippingRequest.Packages">Antal paket</label>
-            <input type="number" asp-for="@Model.ShippingRequest.Packages" />
+            <label asp-for="@Model.Inland.Packages">Number Of Packages"</label>
+            <input type="number" asp-for="@Model.Inland.Packages" />
         </div>
         <div>
-           
-
         </div>
     </div>
 
@@ -238,7 +233,7 @@
         </div>
 
 
-        <button type="button" onclick="addDimension()">Lägg till Dimension</button>
+        <button type="button" class="cta-button" onclick="addDimension()">Lägg till Dimension</button>
 
         <br>
 
@@ -248,7 +243,7 @@
             <div class="spinner"></div>
         </div>
 
-        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="btn-large text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
     </div>
 </form>
 
@@ -307,7 +302,7 @@
                         <option value="exw">EXW</option>
                         <option value="fob">FOB</option>
                     </select>
-                    <button type="button" onclick="removeOption(${optionIndex})">Ta bort</button>
+                    <button type="button" class="cta-button" onclick="removeOption(${optionIndex})">Ta bort</button>
                 </div>
             `;
             container.insertAdjacentHTML('beforeend', optionHTML);
@@ -358,7 +353,7 @@
                         <option value="true">${placeholders.yes}</option>
                         <option value="false">${placeholders.no}</option>
                     </select>
-                    <button type="button" onclick="removeDimension(${dimensionIndex})">${placeholders.removeBtn}</button>
+                            <button type="button" class="cta-button"  onclick="removeDimension(${dimensionIndex})">${placeholders.removeBtn}</button>
                 </div>
             `;
 

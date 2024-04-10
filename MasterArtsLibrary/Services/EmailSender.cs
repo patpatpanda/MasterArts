@@ -21,7 +21,7 @@ namespace MasterArtsLibrary.Services
         {
             var client = new SendGridClient(SendGridSecret);
             var from = new EmailAddress("emil.arrenius@student.kyh.se", "Kund");
-            var to = new EmailAddress("nils-emil1337@hotmail.se");
+            var to = new EmailAddress("ops@artslogistics.se");
 
             var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);
 

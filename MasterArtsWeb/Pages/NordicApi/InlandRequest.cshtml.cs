@@ -55,10 +55,11 @@ namespace MasterArtsWeb.Pages.NordicApi
                   
                     Weight = Inland.Weight,
                     Volume = Inland.Volume,
-                    Date = Inland.Date,
+                    
                     
                     Dimensions = Inland.Dimensions,
-                   UserSelection = Inland.UserSelection
+                   UserSelection = Inland.UserSelection,
+                    City = Inland.City
                 };
 
                 try
