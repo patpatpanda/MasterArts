@@ -193,21 +193,15 @@
 
     </div>
 
-   
 
 
-    <div class="form-row" style="margin-top:100px">
-        <div class="form-col">
-            <label for="fromCity">From City</label>
-            <input type="text" class="city-autocomplete" placeholder="City(english)" aria-describedby="fromCodeHelp">
-            <input type="hidden" class="locode" name="ShippingRequest.FromCode">
-        </div>
-        <div class="form-col">
-            <label for="toCity">To City</label>
-            <input type="text" class="city-autocomplete" placeholder="City(english)" aria-describedby="toCodeHelp">
-            <input type="hidden" class="locode" name="ShippingRequest.ToCode">
-        </div>
-    </div>
+
+    <input type="text" id="fromCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="fromCodeHelp">
+    <input type="hidden" id="fromCodeInput" class="locode" name="ShippingRequest.FromCode">
+
+    <input type="text" id="toCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="toCodeHelp">
+    <input type="hidden" id="toCodeInput" class="locode" name="ShippingRequest.ToCode">
+
 
     <div class="form-row">
         <div class="form-col">
@@ -843,6 +837,24 @@
             "ZHONGSHAN": "CNZSN",
             "ZHUHAI GUANGDONG": "CNZUH",
         };
+        $(document).ready(function () {
+            $('#importExportSelect').change(function () {
+                var selectedValue = $(this).val();
+                console.log("Selected value:", selectedValue);
+
+                if (selectedValue === 'import') {
+                    $('#toCityInput').val('GOTHENBURG');
+                    $('#toCodeInput').val('SEGOT');
+                    $('#fromCityInput').val('');
+                    $('#fromCodeInput').val('');
+                } else if (selectedValue === 'export') {
+                    $('#fromCityInput').val('GOTHENBURG');
+                    $('#fromCodeInput').val('SEGOT');
+                    $('#toCityInput').val('');
+                    $('#toCodeInput').val('');
+                }
+            });
+        });
 
         $(function () {
             // Initialiserar jQuery UI Autocomplete
