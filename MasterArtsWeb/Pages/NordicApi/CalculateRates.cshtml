@@ -184,16 +184,18 @@
    
   
    <div class="master-qop">
-
-
+        <div class="form-row">
+            <div class="form-col emo-1">
+        <label asp-for="@Model.ShippingRequest.FromCode">From</label>
         <input type="text" id="fromCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="fromCodeHelp">
         <input type="hidden" id="fromCodeInput" class="locode" name="ShippingRequest.FromCode">
-
+        <label asp-for="@Model.ShippingRequest.ToCode">To</label>
         <input type="text" id="toCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="toCodeHelp">
         <input type="hidden" id="toCodeInput" class="locode" name="ShippingRequest.ToCode">
     </div>
 
-
+        </div>
+    </div>
 
 
 

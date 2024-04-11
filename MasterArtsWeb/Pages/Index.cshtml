@@ -5,7 +5,9 @@
 
 
 
+
     <h3 class="goStart adjusted-anchor" id="index-id"></h3>
+
     
 <form method="post" asp-page-handler="ChangeLanguage" id="languageForm">
     <div id="language-switch" class="index-lang">
@@ -976,6 +978,7 @@
 </div>
 
 
+<div id="dynamic-text"></div>
 
 
 
@@ -1086,28 +1089,8 @@
         });
 
 
-        const words = ["Discover", "Art", "Logistics", "Simplify", "Transparent"];
-        let index = 0;
+        
 
-        function cycleWords() {
-            const dynamicText = document.getElementById('dynamic-text');
-            if (!dynamicText) {
-                console.log('Elementet "dynamic-text" kunde inte hittas.');
-                return; // Avslutar funktionen om elementet inte hittas
-            }
-
-            dynamicText.innerHTML = words[index];
-            console.log('Nuvarande ord:', words[index]); // För felsökning
-
-            index = (index + 1) % words.length; // Loopa tillbaka till första ordet efter det sista
-
-            setTimeout(cycleWords, 2000); // Justera tiden beroende på totala längden på din CSS-animation
-        }
-
-        // Det är bättre att använda "DOMContentLoaded" än "onload" då den väntar på att DOM ska vara helt laddad.
-        document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(cycleWords, 2000); // Starta med första ordets visning
-        });
 
 
        

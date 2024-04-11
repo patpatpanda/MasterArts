@@ -43,8 +43,9 @@
 <body>
     
     <div class="kalle">
+       
     <header>
-        
+           
             @*<video autoplay muted loop>
             <source src="~/images/ARTS VID2.mp4" type="video/mp4">
 
@@ -177,11 +178,11 @@
 
             @RenderSection("Navbar", required: false)
 
-        
+           
        
     </header>
 
-
+        
         
 
     </div>
@@ -389,3 +390,41 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+<script>
+
+
+    const words = ["Discover", "Art", "Logistics", "Simplify", "Transparent"];
+    let index = 0;
+
+   
+
+    function cycleWords() {
+        const dynamicText = document.getElementById('dynamic-text');
+        if (!dynamicText) {
+            console.log('Elementet "dynamic-text" kunde inte hittas.');
+            return;
+        }
+
+        // Applicera fade-out-effekten först
+        dynamicText.style.animation = 'fadeOutSlideOut 1s forwards';
+
+        setTimeout(() => {
+            // Uppdatera ordet efter fade-out-animationen är klar
+            dynamicText.innerHTML = words[index];
+
+            // Applicera fade-in-effekten för det nya ordet
+            dynamicText.style.animation = 'fadeInSlideIn 1s forwards';
+
+            index = (index + 1) % words.length;
+        }, 1000); // Denna timing måste matcha längden på din fade-out-animation
+
+        setTimeout(cycleWords, 4000); // Låt ordet vara synligt en stund innan nästa cykel startar
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(cycleWords, 1000);
+    });
+
+
+
+</script>
