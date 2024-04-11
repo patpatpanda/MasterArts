@@ -5,7 +5,7 @@
 
 <div class="text-center">
     <h3 class="contact adjusted-anchor-2" id="contact-id">
-        LCL-INLAND
+        INLAND LCL
     </h3>
 </div>
 <div class="language-toggle text-end index-lang" style="display:none">
@@ -37,17 +37,23 @@
 
 
 <form method="post" id="contactForm" style="margin-top:50px">
-    <div class="form-container-2">
+    <div class="form-container-4">
+    
+    <label for="ImportExportSelect">Import/Export</label>
+    <select id="ImportExportSelect" name="Inland.ImportExport">
+        <option value="import">Import</option>
+        <option value="export">Export</option>
+    </select>
     <div>
-        <label asp-for="@Model.Inland.Module">Transport Module</label>
-            <select asp-for="@Model.Inland.Module">
-            <option value="ocean">Ocean</option>
-            
+        <label id="moduleLabel" for="ModuleSelect">From</label>
+        <select id="ModuleSelect" name="Inland.Module">
+            <option value="ocean">Gothenburg</option>
         </select>
     </div>
-    <div>
 
-           
+
+    
+
 
         <div>
                 <label asp-for="@Model.Inland.City">City</label>
@@ -62,13 +68,9 @@
                 <input asp-for="@Model.Inland.Volume" type="number" step="0.01" />
             </div>
 
-
+        <label asp-for="@Model.Inland.Packages">Number Of Packages</label>
+        <input type="number" asp-for="@Model.Inland.Packages" />
        
-            <label asp-for="@Model.Inland.ImportExport">Import/Export</label>
-            <select asp-for="@Model.Inland.ImportExport">
-            <option value="import">Import</option>
-            <option value="export">Export</option>
-        </select>
     </div>
         
             
@@ -79,23 +81,22 @@
         <input type="hidden" asp-for="@Model.Inland.Type" value="lcl" />
         <input type="hidden" asp-for="@Model.Inland.UserSelection" value="inlandtransport" />
 
-          
 
+   
        
         
         
     <!-- Fyll i fler fält enligt ovanstående mönster -->
     <div>
-            <label asp-for="@Model.Inland.Packages">Number Of Packages"</label>
-            <input type="number" asp-for="@Model.Inland.Packages" />
+            
     </div>
     <div>
         
 
     </div>
-    </div>
+    
 
-        <div class="form-container-2">
+        <div class="form-container-4">
     <h4>Dimensions</h4>
 
         <div id="dimensionsContainerEn">
@@ -128,7 +129,7 @@
         </div>
     </div>
 
-        <button type="button" class="cta-button" onclick="addDimension()">Lägg till Dimension</button>
+        <button type="button" class="cta-button" onclick="addDimension()">Add Dimension</button>
 
     <br>
     
@@ -253,6 +254,33 @@
 
 @section Scripts {
     <script>
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Hämtar referenser till dropdown för Import/Export och etiketten
+            var importExportSelect = document.getElementById('ImportExportSelect');
+            var moduleLabel = document.getElementById('moduleLabel');
+
+            // Funktion för att uppdatera etiketten baserat på användarens val
+            function updateModuleLabel() {
+                if (importExportSelect.value === 'import') {
+                    moduleLabel.textContent = 'From'; // Uppdaterar till "From" om användaren väljer "Import"
+                } else if (importExportSelect.value === 'export') {
+                    moduleLabel.textContent = 'To'; // Uppdaterar till "To" om användaren väljer "Export"
+                }
+            }
+
+            // Använder en eventlyssnare för att kalla på updateModuleLabel när användaren ändrar sitt val
+            importExportSelect.addEventListener('change', updateModuleLabel);
+
+            // Kallar på funktionen direkt vid sidans laddning för att sätta korrekt etikett baserat på standardvalet
+            updateModuleLabel();
+        });
+
+
+
+
 
 
         $(document).ready(function () {

@@ -134,29 +134,22 @@ header {
 
 
 .contact {
-    
+   
     margin-top: 100px;
     color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Arial Narrow Bold', sans-serif;
+   
     font-size: 2em;
     position: relative;
+    border: none;
+    
+    
     /* Lägg till detta för att positionera pseudo-elementet korrekt */
 }
 
-    .contact::after {
-        content: ''; /* Nödvändigt för att visa pseudo-elementet */
-        display: block;
-        margin: 0 auto; /* Centrerar border i mitten */
-        height: 2px; /* Höjden på din border */
-        width: 50%; /* Justera denna procentandel för att ändra längden på din border */
-        background: #333; /* Färgen på din border */
-        position: absolute; /* Gör så att du kan positionera den exakt var du vill */
-        bottom: -10px;
-        /* Justera detta värde för att flytta border uppåt eller nedåt */
-    }
+   
 
 
 
@@ -227,13 +220,13 @@ header {
 
 .service-info {
     margin-top: 30px;
-    
     padding: 50px;
     max-width: 100%;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 4px 8px #b8d8f5;
+    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
 }
 
 
@@ -277,6 +270,8 @@ h1 {
     display:flex;
     justify-content:center;
     align-items:center;
+    gap:30px;
+    margin-top:12px
 
     
 }
@@ -923,7 +918,7 @@ input {
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); /* Skugga */
+    box-shadow: 0px 4px 8px #b8d8f5;
     backdrop-filter: blur(4px); /* Frostat glas-effekt */
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
@@ -1893,10 +1888,8 @@ select {
     padding: 24px;
     border-radius: 10px;
     line-height: 1.5;
-    background: rgba(255, 255, 255, 0.65); /* Lätt genomskinlig vit */
-    backdrop-filter: blur(10px); /* Oskarp bakgrundseffekt */
-    -webkit-backdrop-filter: blur(10px); /* För Safari */
-    border: 1px solid rgba(255, 255, 255, 0.18); /* Subtil vit gräns */
+    
+   
 }
 
 
@@ -1937,7 +1930,7 @@ select {
     width: 130px;
     border-radius: 15px; /* Rundade hörn */
     margin: 7px 0; /* Avstånd mellan korten */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); /* Skugga */
+    box-shadow: 0px 4px 8px #b8d8f5;
     backdrop-filter: blur(4px); /* Frostat glas-effekt */
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
@@ -1992,7 +1985,17 @@ select {
     padding: 40px;
     border-radius: 12px; /* Rundade hörn */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Lägg till en subtil skugga för djup */
-    width: 900px; /* Maxbredd för formuläret */
+    width: 800px; /* Maxbredd för formuläret */
+   gap:30px;
+    color: #333; /* Vit textfärg för kontrast mot den mörka bakgrunden */
+}
+.form-container-4 {
+    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
+    /* En mjuk gradient från lila till en djupare lila */
+    padding: 40px;
+    border-radius: 12px; /* Rundade hörn */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Lägg till en subtil skugga för djup */
+    width: 800px; /* Maxbredd för formuläret */
     margin: 40px auto; /* Centrera och ge lite utrymme ovanför och under */
     color: #333; /* Vit textfärg för kontrast mot den mörka bakgrunden */
 }
@@ -2146,7 +2149,7 @@ select {
 }
 
     .kite:hover, .fot-1 p:hover {
-        color: #f5c7b8; /* Ljusare färg vid hover */
+        color: #b8d8f5
     }
 
 .fot-1 span, .fot-1 p {
@@ -2195,6 +2198,16 @@ select {
 
 /* Alternativt kan du ha en specifik query för mobil och använda "max-width" */
 @media (max-width: 768px) {
+    .form-container-4 {
+        background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
+        /* En mjuk gradient från lila till en djupare lila */
+        padding: 40px;
+        border-radius: 12px; /* Rundade hörn */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Lägg till en subtil skugga för djup */
+        width: 400px; /* Maxbredd för formuläret */
+        margin: 40px auto; /* Centrera och ge lite utrymme ovanför och under */
+        color: #333; /* Vit textfärg för kontrast mot den mörka bakgrunden */
+    }
     .desktop-only {
         display: none;
     }
@@ -3107,7 +3120,14 @@ input[type="checkbox"] {
 #contactForm select {
     width: 100%;
     padding: 15px;
-    border: 2px solid #b8d8f5; /* Matchande blå kant */
+   
+
+
+
+
+
+
+
     border-radius: 20px; /* Mer uttalad rundad kant för ett mjukare intryck */
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -3394,5 +3414,23 @@ h3{
 @keyframes fadeInAnimation {
     0% { opacity: 0; }
     100% { opacity: 1; }
+}
+.dynamic-text {
+    font-size: 50px;
+    opacity: 0;
+    animation: fadeInOut 10s infinite;
+    text-align: center;
+    margin: 20px;
+    margin-top:100px;
+}
+
+@keyframes fadeInOut {
+    100%, 100% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 

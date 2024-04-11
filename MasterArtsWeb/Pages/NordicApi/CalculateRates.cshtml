@@ -170,8 +170,9 @@
             <div class="form-col emo-1">
                 <label asp-for="@Model.ShippingRequest.ImportExport">Import/Export</label>
                 <select id="importExportSelect" name="ShippingRequest.ImportExport">
-                    <option value="export">Export</option>
                     <option value="import">Import</option>
+                    <option value="export">Export</option>
+                   
                 </select>
             </div>
             <div class="form-col date-field">
@@ -183,24 +184,18 @@
    
   
    <div class="master-qop">
-       <div class="form-row">
-        <div class="form-col date-field">
-            <label asp-for="@Model.ShippingRequest.InlandZipCode">Zip Code</label>
-            <input asp-for="@Model.ShippingRequest.InlandZipCode">
-            <div id="zipExplanation"></div>
-        </div>
-   </div>
 
+
+        <input type="text" id="fromCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="fromCodeHelp">
+        <input type="hidden" id="fromCodeInput" class="locode" name="ShippingRequest.FromCode">
+
+        <input type="text" id="toCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="toCodeHelp">
+        <input type="hidden" id="toCodeInput" class="locode" name="ShippingRequest.ToCode">
     </div>
 
 
 
 
-    <input type="text" id="fromCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="fromCodeHelp">
-    <input type="hidden" id="fromCodeInput" class="locode" name="ShippingRequest.FromCode">
-
-    <input type="text" id="toCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="toCodeHelp">
-    <input type="hidden" id="toCodeInput" class="locode" name="ShippingRequest.ToCode">
 
 
     <div class="form-row">
@@ -837,10 +832,10 @@
             "ZHONGSHAN": "CNZSN",
             "ZHUHAI GUANGDONG": "CNZUH",
         };
+
         $(document).ready(function () {
             $('#importExportSelect').change(function () {
                 var selectedValue = $(this).val();
-                console.log("Selected value:", selectedValue);
 
                 if (selectedValue === 'import') {
                     $('#toCityInput').val('GOTHENBURG');
@@ -854,28 +849,27 @@
                     $('#toCodeInput').val('');
                 }
             });
-        });
 
-        $(function () {
             // Initialiserar jQuery UI Autocomplete
             $(".city-autocomplete").autocomplete({
-                source: Object.keys(locodes), // Använder städernas namn som källa
+                source: Object.keys(locodes),
                 select: function (event, ui) {
-                    // När ett namn väljs, hitta närmaste 'locode' fält och sätt UN/LOCODE
                     $(this).next(".locode").val(locodes[ui.item.value]);
                 }
             });
 
             $(".city-autocomplete").blur(function () {
-                // Kontrollera manuellt värdet mot locodes när fältet förlorar fokus
-                var value = $(this).val().toUpperCase(); // Anta att stadsnamn är lagrade i stora bokstäver
+                var value = $(this).val().toUpperCase();
                 var matchingLocode = locodes[value];
                 if (matchingLocode) {
-                    // Sätt det dolda fältets värde om ett matchande namn hittas
                     $(this).next(".locode").val(matchingLocode);
                 }
             });
+
+            // Utlös change-event manuellt för att sätta standardvärden baserat på förvalt alternativ
+            $('#importExportSelect').change();
         });
+
         // Använd jQuery UI Autocomplete för både från och till städer
         $(function () {
             setUpAutocomplete("fromCity", "fromCode");

@@ -817,7 +817,7 @@
     </div>
         <div class="center-container">
             <div class="service-info">
-                <div class="mysan text-center">
+        <div class="mysan text-center shipping-cost-calculator">
 
 
                     <div style="margin-bottom: 20px;">
@@ -971,9 +971,11 @@
                 </div>
             </div>
 
-
+   
 
 </div>
+
+
 
 
 
@@ -1001,7 +1003,17 @@
 @section Scripts{
 
     <script>
-       
+
+
+
+        
+
+
+
+
+
+
+
         setTimeout(function () {
             var successMessage = document.getElementById("success-message");
             successMessage.classList.remove("show");
@@ -1040,78 +1052,64 @@
             }
         });
 
-        var words = ["Efficient Logistics",
-            "Secure Shipping",
-            "Global Delivery Solutions",
-            "Reliable Logistics Partner",
-
-            "Flexible Delivery Services",
-            "Sustainable Shipping Options",
-            "Customized Logistics Solutions",
-            "Fast and Reliable Distribution",
-            "Innovative Logistics Technology",
-            "Smooth Supply Chain",
-            "Improved Logistics Efficiency",
-            "Real-time Logistics",
-            "Borderless Shipping",
-            "Independent Logistics Company"],
-            part,
-            i = 0,
-            offset = 0,
-            len = words.length,
-            forwards = true,
-            skip_count = 0,
-            skip_delay = 15,
-            speed = 120;
-        var wordflick = function () {
-            var container = $('.word');
-            var containerWidth = container.width();
-            var containerHeight = container.height();
-
-            setInterval(function () {
-                if (forwards) {
-                    if (offset >= words[i].length) {
-                        ++skip_count;
-                        if (skip_count == skip_delay) {
-                            forwards = false;
-                            skip_count = 0;
-                        }
-                    }
-                }
-                else {
-                    if (offset == 0) {
-                        forwards = true;
-                        i++;
-                        offset = 0;
-                        if (i >= len) {
-                            i = 0;
-                        }
-                    }
-                }
-                part = words[i].substr(0, offset);
-                if (skip_count == 0) {
-                    if (forwards) {
-                        offset++;
-                    }
-                    else {
-                        offset--;
-                    }
-                }
-
-                // Sätt fast bredd och höjd för att undvika hopp
-                container.text(part).css({
-                    'width': containerWidth,
-                    'height': containerHeight
-                });
-            }, speed);
-        };
-
         $(document).ready(function () {
-            wordflick();
+            // Funktion för att kontrollera om ett element är i synfältet
+            function isInViewport(element) {
+                var elementTop = $(element).offset().top;
+                var elementBottom = elementTop + $(element).outerHeight();
+
+                var viewportTop = $(window).scrollTop();
+                var viewportBottom = viewportTop + $(window).height();
+
+                return elementBottom > viewportTop && elementTop < viewportBottom;
+            }
+
+            // Funktion för att tillämpa fade-in-effekten
+            function applyFadeIn() {
+                $('.shipping-cost-calculator div p, .shipping-cost-calculator div span, .shipping-cost-calculator div h6').each(function (i) {
+                    if (isInViewport(this) && !$(this).hasClass('fade-in')) { // Kontrollera även att klassen inte redan har lagts till
+                        $(this).css({
+                            'opacity': 0,
+                            'animation-delay': `${i * 0.2}s`,
+                            'animation': 'fadeInAnimation ease-in 1s forwards'
+                        });
+                        $(this).addClass('fade-in'); // Lägg till klassen för att undvika att effekten tillämpas flera gånger
+                    }
+                });
+            }
+
+            // Lyssna på scroll-eventet och tillämpa fade-in-effekten
+            $(window).on('scroll', applyFadeIn);
+
+            // Tillämpa effekten en gång vid sidans laddning ifall elementen redan är i synfältet
+            applyFadeIn();
         });
 
 
-    
+        const words = ["Discover", "Art", "Logistics", "Simplify", "Transparent"];
+        let index = 0;
 
+        function cycleWords() {
+            const dynamicText = document.getElementById('dynamic-text');
+            if (!dynamicText) {
+                console.log('Elementet "dynamic-text" kunde inte hittas.');
+                return; // Avslutar funktionen om elementet inte hittas
+            }
+
+            dynamicText.innerHTML = words[index];
+            console.log('Nuvarande ord:', words[index]); // För felsökning
+
+            index = (index + 1) % words.length; // Loopa tillbaka till första ordet efter det sista
+
+            setTimeout(cycleWords, 2000); // Justera tiden beroende på totala längden på din CSS-animation
+        }
+
+        // Det är bättre att använda "DOMContentLoaded" än "onload" då den väntar på att DOM ska vara helt laddad.
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(cycleWords, 2000); // Starta med första ordets visning
+        });
+
+
+       
     </script>
 }
