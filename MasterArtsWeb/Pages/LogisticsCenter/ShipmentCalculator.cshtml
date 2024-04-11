@@ -269,95 +269,96 @@
 
        <div class="order-1">
            <div class="form-container-2">
-            <h3 class="text-center" style="color:#fff">Consignor</h3>
-            <label asp-for="Order.ConsignorName">Consignor Name</label>
-            <input asp-for="Order.ConsignorName" class="form-control" />
-            <span asp-validation-for="Order.ConsignorName" class="text-danger"></span>
 
-            <label asp-for="Order.ConsignorAddress1">Consignor Address 1</label>
-            <input asp-for="Order.ConsignorAddress1" class="form-control"  />
-            <span asp-validation-for="Order.ConsignorAddress1" class="text-danger"></span>
-
-            <label asp-for="Order.ConsignorAddress2">Consignor Address 2</label>
-            <input asp-for="Order.ConsignorAddress2" class="form-control"  />
-            <span asp-validation-for="Order.ConsignorAddress2" class="text-danger"></span>
-
-
-            <label asp-for="Order.ConsignorCity">Consignor City</label>
-            <input asp-for="Order.ConsignorCity" class="form-control"  />
-            <span asp-validation-for="Order.ConsignorCity" class="text-danger"></span>
-
-@*@*
-            <label asp-for="Order.ConsignorCountry">Consignor Country</label>
-            <select asp-for="Order.ConsignorCountry" asp-items="@(new SelectList((IEnumerable<string>)ViewData["Countries"]))" class="form-control">
-                <option value="">Select country...</option>
-                <!-- Add country options dynamically if needed -->
-            </select>
-            <span asp-validation-for="Order.ConsignorCountry" class="text-danger"></span>*@
-
-            <label asp-for="Order.ConsignorZip">Consignor Zip</label>
-            <input asp-for="Order.ConsignorZip" class="form-control"  />
-            <span asp-validation-for="Order.ConsignorZip" class="text-danger"></span>
-
-
-            <label asp-for="Order.ConsignorContact">Consignor Contact</label>
-            <input asp-for="Order.ConsignorContact" class="form-control" />
-            <span asp-validation-for="Order.ConsignorContact" class="text-danger"></span>
-
-            <label asp-for="Order.ConsignorPhone">Consignor Phone</label>
-            <input asp-for="Order.ConsignorPhone" class="form-control"  />
-            <span asp-validation-for="Order.ConsignorPhone" class="text-danger"></span>
-
-            <label asp-for="Order.ConsignorEmail">Consignor Email</label>
-            <input asp-for="Order.ConsignorEmail" class="form-control"  />
-            <span asp-validation-for="Order.ConsignorEmail" class="text-danger"></span>
-        </div>
-
-
-        <div class="form-container-2">
             <h3 class="text-center" style="color:#fff">Consignee</h3>
             <label asp-for="Order.ConsigneeName">Consignee Name</label>
-            <input asp-for="Order.ConsigneeName" class="form-control"  />
+            <input asp-for="Order.ConsigneeName" class="form-control" />
             <span asp-validation-for="Order.ConsigneeName" class="text-danger"></span>
 
             <label asp-for="Order.ConsigneeAddress1">Consignee Address 1</label>
-            <input asp-for="Order.ConsigneeAddress1" class="form-control"  />
+            <input asp-for="Order.ConsigneeAddress1" class="form-control" />
             <span asp-validation-for="Order.ConsigneeAddress1" class="text-danger"></span>
 
             <label asp-for="Order.ConsigneeAddress2">Consignee Address 2 (Optional)</label>
-            <input asp-for="Order.ConsigneeAddress2" class="form-control"  />
+            <input asp-for="Order.ConsigneeAddress2" class="form-control" />
             <span asp-validation-for="Order.ConsigneeAddress2" class="text-danger"></span>
 
             <label asp-for="Order.ConsigneeCity">Consignee City</label>
-            <input asp-for="Order.ConsigneeCity" class="form-control"  />
+            <input asp-for="Order.ConsigneeCity" class="form-control" />
             <span asp-validation-for="Order.ConsigneeCity" class="text-danger"></span>
 
-               @* <label asp-for="Order.ConsigneeCountry">Consignor Country</label>
-                <select asp-for="Order.ConsigneeCountry" asp-items="@(new SelectList((IEnumerable<string>)ViewData["Countries"]))" class="form-control">
-                    <option value="">Select country...</option>
-                    <!-- Add country options dynamically if needed -->
-                </select>
-                <span asp-validation-for="Order.ConsigneeCountry" class="text-danger"></span>*@
+            @* <label asp-for="Order.ConsigneeCountry">Consignor Country</label>
+            <select asp-for="Order.ConsigneeCountry" asp-items="@(new SelectList((IEnumerable<string>)ViewData["Countries"]))" class="form-control">
+            <option value="">Select country...</option>
+            <!-- Add country options dynamically if needed -->
+            </select>
+            <span asp-validation-for="Order.ConsigneeCountry" class="text-danger"></span>*@
 
             <label asp-for="Order.ConsigneeZip">Consignee Zip</label>
-            <input asp-for="Order.ConsigneeZip" class="form-control"  />
+            <input asp-for="Order.ConsigneeZip" class="form-control" />
             <span asp-validation-for="Order.ConsigneeZip" class="text-danger"></span>
 
             <label asp-for="Order.ConsigneeContact">Consignee Contact</label>
-            <input asp-for="Order.ConsigneeContact" class="form-control"  />
+            <input asp-for="Order.ConsigneeContact" class="form-control" />
             <span asp-validation-for="Order.ConsigneeContact" class="text-danger"></span>
 
             <label asp-for="Order.ConsigneePhone">Consignee Phone</label>
-            <input asp-for="Order.ConsigneePhone" class="form-control"  />
+            <input asp-for="Order.ConsigneePhone" class="form-control" />
             <span asp-validation-for="Order.ConsigneePhone" class="text-danger"></span>
 
             <label asp-for="Order.ConsigneeEmail">Consignee Email</label>
-            <input asp-for="Order.ConsigneeEmail" class="form-control"  />
+            <input asp-for="Order.ConsigneeEmail" class="form-control" />
             <span asp-validation-for="Order.ConsigneeEmail" class="text-danger"></span>
         </div>
 
-  
 
+
+
+        <div class="form-container-2">
+                <h3 class="text-center" style="color:#fff">Consignor</h3>
+                <label asp-for="Order.ConsignorName">Consignor Name</label>
+                <input asp-for="Order.ConsignorName" class="form-control" />
+                <span asp-validation-for="Order.ConsignorName" class="text-danger"></span>
+
+                <label asp-for="Order.ConsignorAddress1">Consignor Address 1</label>
+                <input asp-for="Order.ConsignorAddress1" class="form-control" />
+                <span asp-validation-for="Order.ConsignorAddress1" class="text-danger"></span>
+
+                <label asp-for="Order.ConsignorAddress2">Consignor Address 2</label>
+                <input asp-for="Order.ConsignorAddress2" class="form-control" />
+                <span asp-validation-for="Order.ConsignorAddress2" class="text-danger"></span>
+
+
+                <label asp-for="Order.ConsignorCity">Consignor City</label>
+                <input asp-for="Order.ConsignorCity" class="form-control" />
+                <span asp-validation-for="Order.ConsignorCity" class="text-danger"></span>
+
+                @*@*
+                <label asp-for="Order.ConsignorCountry">Consignor Country</label>
+                <select asp-for="Order.ConsignorCountry" asp-items="@(new SelectList((IEnumerable<string>)ViewData["Countries"]))" class="form-control">
+                <option value="">Select country...</option>
+                <!-- Add country options dynamically if needed -->
+                </select>
+                <span asp-validation-for="Order.ConsignorCountry" class="text-danger"></span>*@
+
+                <label asp-for="Order.ConsignorZip">Consignor Zip</label>
+                <input asp-for="Order.ConsignorZip" class="form-control" />
+                <span asp-validation-for="Order.ConsignorZip" class="text-danger"></span>
+
+
+                <label asp-for="Order.ConsignorContact">Consignor Contact</label>
+                <input asp-for="Order.ConsignorContact" class="form-control" />
+                <span asp-validation-for="Order.ConsignorContact" class="text-danger"></span>
+
+                <label asp-for="Order.ConsignorPhone">Consignor Phone</label>
+                <input asp-for="Order.ConsignorPhone" class="form-control" />
+                <span asp-validation-for="Order.ConsignorPhone" class="text-danger"></span>
+
+                <label asp-for="Order.ConsignorEmail">Consignor Email</label>
+                <input asp-for="Order.ConsignorEmail" class="form-control" />
+                <span asp-validation-for="Order.ConsignorEmail" class="text-danger"></span>
+            </div>
+            
    
 
     
