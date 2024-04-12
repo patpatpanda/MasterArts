@@ -4,6 +4,7 @@ using MasterArtsWeb;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MasterArtsLibrary.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240412103721_added-some-models")]
+    partial class addedsomemodels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -334,88 +337,6 @@ namespace MasterArtsLibrary.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("MasterArtsLibrary.Models.CustomerRates", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AgentId")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("Co2")
-                        .HasColumnType("float");
-
-                    b.Property<string>("CustomerOrderNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("OnRequest")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("SailingId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ShippingRequestId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TransitTime")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ValidFrom")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ValidTo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AgentId");
-
-                    b.HasIndex("SailingId");
-
-                    b.HasIndex("ShippingRequestId");
-
-                    b.ToTable("CustomerRates");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.Dimension", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Length")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Pcs")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ShippingRequestId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Stackable")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Weight")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Width")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ShippingRequestId");
-
-                    b.ToTable("Dimensions");
-                });
-
             modelBuilder.Entity("MasterArtsLibrary.Models.Goods", b =>
                 {
                     b.Property<int>("Id")
@@ -578,9 +499,6 @@ namespace MasterArtsLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CustomerRatesId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("ExchangeRate")
                         .HasColumnType("decimal(18,2)");
 
@@ -614,8 +532,6 @@ namespace MasterArtsLibrary.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApiResponseId");
-
-                    b.HasIndex("CustomerRatesId");
 
                     b.ToTable("Rates");
                 });
@@ -686,67 +602,6 @@ namespace MasterArtsLibrary.Migrations
                     b.ToTable("Sailings");
                 });
 
-            modelBuilder.Entity("MasterArtsLibrary.Models.ShippingRequest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Date")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FromCity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FromCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImportExport")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InlandZipCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Module")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PackageType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Packages")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RoutingCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ToCity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ToCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserSelection")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float?>("Volume")
-                        .HasColumnType("real");
-
-                    b.Property<int?>("Weight")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Requests");
-                });
-
             modelBuilder.Entity("MasterArtsLibrary.Models.Total", b =>
                 {
                     b.Property<int>("Id")
@@ -762,9 +617,6 @@ namespace MasterArtsLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CustomerRatesId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("ExchangeRate")
                         .HasColumnType("decimal(18,2)");
 
@@ -774,8 +626,6 @@ namespace MasterArtsLibrary.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApiResponseId");
-
-                    b.HasIndex("CustomerRatesId");
 
                     b.ToTable("Totals");
                 });
@@ -1012,34 +862,6 @@ namespace MasterArtsLibrary.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MasterArtsLibrary.Models.CustomerRates", b =>
-                {
-                    b.HasOne("MasterArtsLibrary.Models.Agent", "Agent")
-                        .WithMany()
-                        .HasForeignKey("AgentId");
-
-                    b.HasOne("MasterArtsLibrary.Models.Sailing", "Sailing")
-                        .WithMany()
-                        .HasForeignKey("SailingId");
-
-                    b.HasOne("MasterArtsLibrary.Models.ShippingRequest", "ShippingRequest")
-                        .WithMany()
-                        .HasForeignKey("ShippingRequestId");
-
-                    b.Navigation("Agent");
-
-                    b.Navigation("Sailing");
-
-                    b.Navigation("ShippingRequest");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.Dimension", b =>
-                {
-                    b.HasOne("MasterArtsLibrary.Models.ShippingRequest", null)
-                        .WithMany("Dimensions")
-                        .HasForeignKey("ShippingRequestId");
-                });
-
             modelBuilder.Entity("MasterArtsLibrary.Models.Goods", b =>
                 {
                     b.HasOne("MasterArtsLibrary.Models.Order", null)
@@ -1054,10 +876,6 @@ namespace MasterArtsLibrary.Migrations
                     b.HasOne("MasterArtsLibrary.Models.ApiResponse", null)
                         .WithMany("Rates")
                         .HasForeignKey("ApiResponseId");
-
-                    b.HasOne("MasterArtsLibrary.Models.CustomerRates", null)
-                        .WithMany("Rates")
-                        .HasForeignKey("CustomerRatesId");
                 });
 
             modelBuilder.Entity("MasterArtsLibrary.Models.Total", b =>
@@ -1065,10 +883,6 @@ namespace MasterArtsLibrary.Migrations
                     b.HasOne("MasterArtsLibrary.Models.ApiResponse", null)
                         .WithMany("Totals")
                         .HasForeignKey("ApiResponseId");
-
-                    b.HasOne("MasterArtsLibrary.Models.CustomerRates", null)
-                        .WithMany("Totals")
-                        .HasForeignKey("CustomerRatesId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1129,21 +943,9 @@ namespace MasterArtsLibrary.Migrations
                     b.Navigation("Totals");
                 });
 
-            modelBuilder.Entity("MasterArtsLibrary.Models.CustomerRates", b =>
-                {
-                    b.Navigation("Rates");
-
-                    b.Navigation("Totals");
-                });
-
             modelBuilder.Entity("MasterArtsLibrary.Models.Order", b =>
                 {
                     b.Navigation("Goods");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.ShippingRequest", b =>
-                {
-                    b.Navigation("Dimensions");
                 });
 #pragma warning restore 612, 618
         }

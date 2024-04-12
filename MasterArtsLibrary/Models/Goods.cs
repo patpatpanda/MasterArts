@@ -18,13 +18,13 @@ namespace MasterArtsLibrary.Models
         public int Quantity { get; set; }
 
         public string PackageType { get; set; }
-        public double? VolumetricWeight { get; set; }
+        
         public double? NetWeight { get; set; }
         public double Length { get; set; }
         public double Height { get; set; }
         public double Width { get; set; }
-        public double? Volume { get; set; }
-        public string? VolumeUnit { get; set; }
+       
+        
         public double? GrossWeight { get; set; }
         public string? Remarks { get; set; }
 

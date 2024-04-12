@@ -18,8 +18,15 @@ namespace MasterArtsWeb
         public DbSet<Consignor> Consignors { get; set; }
          public DbSet<Customer> Customers { get; set; }
         public DbSet<Goods> Goods { get; set; }
-       
-        
+        public DbSet<ApiResponse> ApiResponses { get; set; }
+        public DbSet<Agent> Agents { get; set; }
+        public DbSet<Sailing> Sailings { get; set; }
+        public DbSet<Rate> Rates { get; set; }
+        public DbSet<Total> Totals { get; set; }
+        public DbSet<ApiResponseInland> Inlands { get; set; }
+        public DbSet<ShippingRequest> Requests { get; set; }
+        public DbSet<Dimension> Dimensions { get; set; }
+        public DbSet<CustomerRates> CustomerRates { get; set; }
         public DbSet<Airport> Airports { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

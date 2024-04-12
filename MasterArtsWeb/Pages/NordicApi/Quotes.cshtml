@@ -1,0 +1,36 @@
+﻿@page
+@model MasterArtsWeb.Pages.NordicApi.QuotesModel
+@{
+}
+<h1>Customer Rates Details for Order: @Model.CustomerOrderNumber</h1>
+
+@if (Model.CustomerRatesDetails.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Valid From</th>
+                <th>Valid To</th>
+                <th>Transit Time</th>
+                <th>CO2 Emissions</th>
+                <!-- Andra detaljer som behövs -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rate in Model.CustomerRatesDetails)
+            {
+                <tr>
+                    <td>@rate.ValidFrom</td>
+                    <td>@rate.ValidTo</td>
+                    <td>@rate.TransitTime days</td>
+                    <td>@rate.Co2 kg</td>
+                    <!-- Visa andra detaljer -->
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No customer rates found for this order.</p>
+}

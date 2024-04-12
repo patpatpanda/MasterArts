@@ -88,8 +88,6 @@
 
 
 
-
-
         <h3 id="resultSection" class="result-heading"></h3>
 
         @{
@@ -154,6 +152,36 @@
 
 
         }
+    
+       @* @if (Model.ApiResponse != null)
+        {
+            <form method="post" asp-page-handler="SaveApiResponse">
+                <button type="submit" class="btn btn-primary">Spara ApiResponse</button>
+            </form>
+        }
+*@
+    
+    <div>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 50px">@TempData["SuccessMessage"]</div>
+            <script>
+                // Fade out the success message after 5 seconds
+                setTimeout(function () {
+                    var successMessage = document.getElementById("success-message");
+                    if (successMessage) {
+                        successMessage.style.display = 'none'; // Eller använd en CSS-klass för att hantera visibilitet
+                    }
+                }, 5000);
+            </script>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">@TempData["Error"]</div>
+        }
+    </div>
+
 
     </div>
 
@@ -164,10 +192,10 @@
 <link rel="stylesheet" href="style.css">
 
 
-<form method="post" id="contactForm" style="margin-top:50px;">
+<form method="post" id="contactForm" style="margin-top:200px;">
     <div class="master-qop">
         <div class="form-row">
-            <div class="form-col emo-1">
+            <div class="form-col date-field">
                 <label asp-for="@Model.ShippingRequest.ImportExport">Import/Export</label>
                 <select id="importExportSelect" name="ShippingRequest.ImportExport">
                     <option value="import">Import</option>
@@ -184,18 +212,24 @@
    
   
    <div class="master-qop">
-        <div class="form-row">
-            <div class="form-col emo-1">
-        <label asp-for="@Model.ShippingRequest.FromCode">From</label>
-        <input type="text" id="fromCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="fromCodeHelp">
-        <input type="hidden" id="fromCodeInput" class="locode" name="ShippingRequest.FromCode">
-        <label asp-for="@Model.ShippingRequest.ToCode">To</label>
-        <input type="text" id="toCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="toCodeHelp">
-        <input type="hidden" id="toCodeInput" class="locode" name="ShippingRequest.ToCode">
+       <div class="form-row">
+            <div class="form-col date-field">
+        <label asp-for="@Model.ShippingRequest.FromCity">From</label>
+        <input type="text" asp-for="@Model.ShippingRequest.FromCity" id="fromCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="fromCodeHelp">
+
+        <input type="hidden" asp-for="@Model.ShippingRequest.FromCode" id="fromCodeInput" class="locode" name="ShippingRequest.FromCode">
+
+        <label asp-for="@Model.ShippingRequest.ToCity">To</label>
+        <input type="text" asp-for="@Model.ShippingRequest.ToCity" id="toCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="toCodeHelp">
+
+        <input type="hidden" asp-for="@Model.ShippingRequest.ToCode" id="toCodeInput" class="locode" name="ShippingRequest.ToCode">
+
     </div>
+</div>
+
 
         </div>
-    </div>
+    
 
 
 
@@ -291,6 +325,8 @@
     
         <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
     </div>
+    
+
 </form>
 
 
@@ -419,6 +455,7 @@
         <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button" text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
     </div>
 </form>
+
 
 
 
@@ -835,6 +872,8 @@
             "ZHUHAI GUANGDONG": "CNZUH",
         };
 
+       
+
         $(document).ready(function () {
             $('#importExportSelect').change(function () {
                 var selectedValue = $(this).val();
@@ -987,39 +1026,10 @@
 
 
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var selectElement = document.getElementById('importExportSelect');
-            var explanationElement = document.getElementById('zipExplanation');
 
-            selectElement.addEventListener('change', function () {
-                var selectedValue = this.value;
-                if (selectedValue === 'import') {
-                    explanationElement.innerHTML = "Import: The 'zip code' refers to the postal code of the receiving location within the destination country. Please provide the postal code for the final receiving location for your imported goods.";
-                } else if (selectedValue === 'export') {
-                    explanationElement.innerHTML = "Export: The 'zip code' indicates the postal code of the sending location in the country of origin. Enter the postal code that corresponds to where your goods will be dispatched from.";
-                } else {
-                    explanationElement.innerHTML = ""; // Clear the explanation if neither is selected
-                }
-            });
-
-            // Trigger change event on page load to handle pre-selected values
-            selectElement.dispatchEvent(new Event('change'));
-        });
+       
 
 
-        document.getElementById('importExportSelect').addEventListener('change', function () {
-            if (this.value === 'import') {
-                document.getElementById('toCity').value = "GOTHENBURG";
-                document.querySelector('input[name="ShippingRequest.ToCode"]').value = "GOTHENBURG";
-                document.getElementById('fromCity').value = "";
-                document.querySelector('input[name="ShippingRequest.FromCode"]').value = "";
-            } else if (this.value === 'export') {
-                document.getElementById('fromCity').value = "GOTHENBURG";
-                document.querySelector('input[name="ShippingRequest.FromCode"]').value = "GOTHENBURG";
-                document.getElementById('toCity').value = "";
-                document.querySelector('input[name="ShippingRequest.ToCode"]').value = "";
-            }
-        });
 
     </script>
 }

@@ -30,7 +30,8 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         [BindProperty]
         public Order Order { get; set; } = new Order();
         private readonly MyDbContext _context;
-
+        public int OrderId { get; set; }
+        public string Description { get; set; }
         public PartialViewResult OnGetAddGoodsForm(int index)
         {
             var newGoods = new Goods(); // Initialize your Goods model
@@ -46,20 +47,10 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         private readonly LanguageService _languageService;
         public string CurrentLanguage { get; set; }
         public string CustomerNumber { get; set; }
-        public async Task<IActionResult> OnGet()
+        public void OnGet(int orderId)
         {
-
-            var userId = _userManager.GetUserId(User);
-            CustomerNumber = await GetCustomerNumberAsync(userId);
-            Order.Customer = CustomerNumber;
            
-            
-            CurrentLanguage = _languageService.GetCurrentLanguage();
-            var client = _clientFactory.CreateClient();
-            var response = await client.GetStringAsync($"https://api.exchangerate-api.com/v4/latest/{BaseCurrency}");
 
-            CurrencyData = JsonConvert.DeserializeObject<CurrencyExchangeRates>(response);
-            return Page();
         }
         public async Task<IActionResult> OnPostAsync()
         {

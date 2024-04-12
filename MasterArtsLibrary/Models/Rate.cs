@@ -9,6 +9,7 @@ namespace MasterArtsLibrary.Models
 
     public class ApiResponseInland
     {
+        public int Id { get; set; }
         public float total { get; set; }
         public float usdExchangeRate { get; set; }
         public float eurExchangeRate { get; set; }
@@ -22,6 +23,7 @@ namespace MasterArtsLibrary.Models
     }
     public class ApiResponse
     {
+        public int Id { get; set; }
         public List<Total> Totals { get; set; }
         public List<Rate> Rates { get; set; }
         public int TransitTime { get; set; }
@@ -31,10 +33,12 @@ namespace MasterArtsLibrary.Models
         public string ValidTo { get; set; }
         public double Co2 { get; set; }
         public bool OnRequest { get; set; }
+
     }
 
     public class Total
     {
+        public int Id { get; set; }
         public string Currency { get; set; }
         public double Sum { get; set; }
         public decimal ExchangeRate { get; set; }
@@ -42,6 +46,7 @@ namespace MasterArtsLibrary.Models
 
     public class Rate
     {
+        public int Id { get; set; }
         public string Type { get; set; }
         public string Name { get; set; }
         public string Currency { get; set; }
@@ -57,6 +62,7 @@ namespace MasterArtsLibrary.Models
 
     public class Sailing
     {
+        public int Id { get; set; }
         public string Vessel { get; set; }
         public string VoyageNumber { get; set; }
         public string FromCode { get; set; }
@@ -75,6 +81,7 @@ namespace MasterArtsLibrary.Models
 
     public class Agent
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string ZipCode { get; set; }
@@ -87,6 +94,7 @@ namespace MasterArtsLibrary.Models
 
     public class Dimension
     {
+        public int Id { get; set; }
         [JsonProperty("pcs")]
         public int Pcs { get; set; }
 
@@ -117,6 +125,8 @@ namespace MasterArtsLibrary.Models
 
     public class ShippingRequest
     {
+        public int Id { get; set; }
+        
         [JsonProperty("module")]
         public string? Module { get; set; }
 
@@ -162,6 +172,8 @@ namespace MasterArtsLibrary.Models
 
         [JsonProperty("dimensions")]
         public List<Dimension>? Dimensions { get; set; }
+        public string? FromCity { get; set; }
+        public string? ToCity { get; set; }
 
         //[JsonProperty("options")]
         //public List<Option> Options { get; set; }

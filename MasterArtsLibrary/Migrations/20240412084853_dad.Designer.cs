@@ -4,6 +4,7 @@ using MasterArtsWeb;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MasterArtsLibrary.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240412084853_dad")]
+    partial class dad
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,51 +24,6 @@ namespace MasterArtsLibrary.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.Agent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Fax")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Agents");
-                });
 
             modelBuilder.Entity("MasterArtsLibrary.Models.Airport", b =>
                 {
@@ -129,89 +87,6 @@ namespace MasterArtsLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Airports");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.ApiResponse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AgentId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Co2")
-                        .HasColumnType("float");
-
-                    b.Property<bool>("OnRequest")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("SailingId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TransitTime")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ValidFrom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ValidTo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AgentId");
-
-                    b.HasIndex("SailingId");
-
-                    b.ToTable("ApiResponses");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.ApiResponseInland", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("city")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("co2")
-                        .HasColumnType("real");
-
-                    b.Property<string>("currency")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("eurExchangeRate")
-                        .HasColumnType("real");
-
-                    b.Property<float>("fuelSurcharge")
-                        .HasColumnType("real");
-
-                    b.Property<float>("fuelSurchargePercentage")
-                        .HasColumnType("real");
-
-                    b.Property<float>("total")
-                        .HasColumnType("real");
-
-                    b.Property<float>("usdExchangeRate")
-                        .HasColumnType("real");
-
-                    b.Property<string>("zipCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Inlands");
                 });
 
             modelBuilder.Entity("MasterArtsLibrary.Models.Consignee", b =>
@@ -332,88 +207,6 @@ namespace MasterArtsLibrary.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.CustomerRates", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AgentId")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("Co2")
-                        .HasColumnType("float");
-
-                    b.Property<string>("CustomerOrderNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("OnRequest")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("SailingId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ShippingRequestId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TransitTime")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ValidFrom")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ValidTo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AgentId");
-
-                    b.HasIndex("SailingId");
-
-                    b.HasIndex("ShippingRequestId");
-
-                    b.ToTable("CustomerRates");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.Dimension", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Length")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Pcs")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ShippingRequestId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Stackable")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Weight")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Width")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ShippingRequestId");
-
-                    b.ToTable("Dimensions");
                 });
 
             modelBuilder.Entity("MasterArtsLibrary.Models.Goods", b =>
@@ -557,227 +350,6 @@ namespace MasterArtsLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.Rate", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("ApiResponseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CalculationMethod")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CustomerRatesId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ExchangeRate")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("MinimumSum")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Multiplier")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("RateValue")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Sum")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SumExchangeRate")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Tags")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApiResponseId");
-
-                    b.HasIndex("CustomerRatesId");
-
-                    b.ToTable("Rates");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.Sailing", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Closing")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Eta")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Etd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FromCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FromDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GatewayCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GatewayDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Remarks")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ToCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ToDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TransshipmentCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TransshipmentDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Vessel")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VoyageNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Sailings");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.ShippingRequest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Date")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FromCity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FromCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImportExport")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InlandZipCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Module")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PackageType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Packages")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RoutingCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ToCity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ToCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserSelection")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float?>("Volume")
-                        .HasColumnType("real");
-
-                    b.Property<int?>("Weight")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Requests");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.Total", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("ApiResponseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CustomerRatesId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ExchangeRate")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<double>("Sum")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApiResponseId");
-
-                    b.HasIndex("CustomerRatesId");
-
-                    b.ToTable("Totals");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -982,25 +554,6 @@ namespace MasterArtsLibrary.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("MasterArtsLibrary.Models.ApiResponse", b =>
-                {
-                    b.HasOne("MasterArtsLibrary.Models.Agent", "Agent")
-                        .WithMany()
-                        .HasForeignKey("AgentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MasterArtsLibrary.Models.Sailing", "Sailing")
-                        .WithMany()
-                        .HasForeignKey("SailingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Agent");
-
-                    b.Navigation("Sailing");
-                });
-
             modelBuilder.Entity("MasterArtsLibrary.Models.Customer", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
@@ -1012,34 +565,6 @@ namespace MasterArtsLibrary.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MasterArtsLibrary.Models.CustomerRates", b =>
-                {
-                    b.HasOne("MasterArtsLibrary.Models.Agent", "Agent")
-                        .WithMany()
-                        .HasForeignKey("AgentId");
-
-                    b.HasOne("MasterArtsLibrary.Models.Sailing", "Sailing")
-                        .WithMany()
-                        .HasForeignKey("SailingId");
-
-                    b.HasOne("MasterArtsLibrary.Models.ShippingRequest", "ShippingRequest")
-                        .WithMany()
-                        .HasForeignKey("ShippingRequestId");
-
-                    b.Navigation("Agent");
-
-                    b.Navigation("Sailing");
-
-                    b.Navigation("ShippingRequest");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.Dimension", b =>
-                {
-                    b.HasOne("MasterArtsLibrary.Models.ShippingRequest", null)
-                        .WithMany("Dimensions")
-                        .HasForeignKey("ShippingRequestId");
-                });
-
             modelBuilder.Entity("MasterArtsLibrary.Models.Goods", b =>
                 {
                     b.HasOne("MasterArtsLibrary.Models.Order", null)
@@ -1047,28 +572,6 @@ namespace MasterArtsLibrary.Migrations
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.Rate", b =>
-                {
-                    b.HasOne("MasterArtsLibrary.Models.ApiResponse", null)
-                        .WithMany("Rates")
-                        .HasForeignKey("ApiResponseId");
-
-                    b.HasOne("MasterArtsLibrary.Models.CustomerRates", null)
-                        .WithMany("Rates")
-                        .HasForeignKey("CustomerRatesId");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.Total", b =>
-                {
-                    b.HasOne("MasterArtsLibrary.Models.ApiResponse", null)
-                        .WithMany("Totals")
-                        .HasForeignKey("ApiResponseId");
-
-                    b.HasOne("MasterArtsLibrary.Models.CustomerRates", null)
-                        .WithMany("Totals")
-                        .HasForeignKey("CustomerRatesId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1122,28 +625,9 @@ namespace MasterArtsLibrary.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MasterArtsLibrary.Models.ApiResponse", b =>
-                {
-                    b.Navigation("Rates");
-
-                    b.Navigation("Totals");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.CustomerRates", b =>
-                {
-                    b.Navigation("Rates");
-
-                    b.Navigation("Totals");
-                });
-
             modelBuilder.Entity("MasterArtsLibrary.Models.Order", b =>
                 {
                     b.Navigation("Goods");
-                });
-
-            modelBuilder.Entity("MasterArtsLibrary.Models.ShippingRequest", b =>
-                {
-                    b.Navigation("Dimensions");
                 });
 #pragma warning restore 612, 618
         }
