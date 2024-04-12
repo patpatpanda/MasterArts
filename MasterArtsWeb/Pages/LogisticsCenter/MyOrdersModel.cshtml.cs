@@ -10,7 +10,7 @@ public class MyOrdersModel : PageModel
 {
     private readonly MyDbContext _context;
     public List<Order> CustomerOrders { get; set; }
-    public List<Goods> CustomerGoods { get; set; }
+   
     public string CustomerNumber { get; set; }
     private readonly UserManager<IdentityUser> _userManager;
     public Order Order { get; set; } = new Order();

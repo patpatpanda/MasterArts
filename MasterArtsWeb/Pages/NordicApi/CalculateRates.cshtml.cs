@@ -1,8 +1,10 @@
 using DocumentFormat.OpenXml.Drawing.Charts;
 using MasterArtsLibrary.Models;
 using MasterArtsLibrary.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Net.Http.Headers;
@@ -20,17 +22,19 @@ namespace MasterArtsWeb.Pages
         [BindProperty]
         public ShippingRequest ShippingRequest { get; set; }
         public CustomerRates CustomerRates { get; set; }
-        
+        public string CustomerNumber { get; set; }
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly OrderService _orderService;
         private readonly ILogger<CalculateRatesModel> _logger; // Lägg till denna rad
 
         // Modifiera konstruktören för att ta emot ILogger via dependency injection
-        public CalculateRatesModel(HttpClient client, ILogger<CalculateRatesModel> logger, OrderService order,MyDbContext context)
+        public CalculateRatesModel(HttpClient client, ILogger<CalculateRatesModel> logger, OrderService order,MyDbContext context, UserManager<IdentityUser> userManager)
         {
             _client = client;
             _logger = logger; // Spara referensen till _logger
             _orderService = order;
             _context = context;
+            _userManager = userManager;
             // Din befintliga konfiguration...
 
         }
@@ -43,100 +47,67 @@ namespace MasterArtsWeb.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
+            var userId = _userManager.GetUserId(User);
+            CustomerNumber = await GetCustomerNumberAsync(userId);
+
+            if (string.IsNullOrWhiteSpace(CustomerNumber))
+            {
+                _logger.LogInformation("Kunde inte hämta ett giltigt kundnummer.");
+                ModelState.AddModelError(string.Empty, "Kunde inte hämta ett giltigt kundnummer.");
+                return Page();
+            }
 
             _logger.LogInformation($"ShippingRequest är null: {ShippingRequest == null}");
-            if (ShippingRequest != null)
-            {
-                _logger.LogInformation(JsonConvert.SerializeObject(ShippingRequest));
-                try
-                {
-                    var response = await _orderService.CalculateRatesAsync(ShippingRequest);
-
-                    if (response is ApiResponse apiResponse)
-                    {
-                        ApiResponse = apiResponse;
-                        TempData["ApiResponse"] = JsonConvert.SerializeObject(apiResponse);
-                        TempData.Keep("ApiResponse");
-
-                        CustomerRates = new CustomerRates
-                        {
-                            ShippingRequest = ShippingRequest,
-                            Totals = ApiResponse.Totals, // Anpassa dessa fält baserat på ditt ApiResponse objekt
-                            Rates = ApiResponse.Rates,
-                            TransitTime = ApiResponse.TransitTime,
-                            Sailing = ApiResponse.Sailing,
-                            Agent = ApiResponse.Agent,
-                            Co2 = ApiResponse.Co2,
-                            ValidFrom = DateTime.Now.ToString("yyyy-MM-dd"), // Exempel, justera enligt dina behov
-                            ValidTo = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd"), // Exempel, justera enligt dina behov
-                            OnRequest = false
-                        };
-
-                        // Spara CustomerRates i databasen
-                        _context.CustomerRates.Add(CustomerRates);
-                        await _context.SaveChangesAsync();
-                    }
-
-
-                    else if (response is ApiResponseInland apiResponseInland)
-                    {
-                        
-                    }
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError("Ett undantag inträffade: ", ex);
-                    ModelState.AddModelError(string.Empty, $"Ett undantag inträffade: {ex.Message}");
-                }
-            }
-            else
+            if (ShippingRequest == null)
             {
                 _logger.LogInformation("Ingen data bunden till ShippingRequest.");
                 ModelState.AddModelError(string.Empty, "Ingen data bunden till ShippingRequest.");
+                return Page();
             }
 
+            _logger.LogInformation(JsonConvert.SerializeObject(ShippingRequest));
+            try
+            {
+                var response = await _orderService.CalculateRatesAsync(ShippingRequest);
+
+                if (response is ApiResponse apiResponse)
+                {
+                    ApiResponse = apiResponse;
+                    
+
+                   
+
+                    _context.CustomerRates.Add(CustomerRates);
+                    await _context.SaveChangesAsync();
+                    _logger.LogInformation("Customer Rates sparades framgångsrikt.");
+                    return RedirectToPage("/NordicApi/CalculateRates"); // Antag att det finns en Success-sida.
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Ett undantag inträffade: ", ex);
+                ModelState.AddModelError(string.Empty, $"Ett undantag inträffade: {ex.Message}");
+                return Page();
+            }
             return Page();
         }
 
-        public async Task<IActionResult> OnPostSaveApiResponseAsync()
+
+        
+                
+
+
+        private async Task<string> GetCustomerNumberAsync(string userId)
         {
-            if (TempData["ApiResponse"] != null)
-            {
-                if (TempData["ApiResponse"] != null)
-                {
-                    var apiResponseData = TempData.Peek("ApiResponse") as string;
-                    if (!string.IsNullOrEmpty(apiResponseData))
-                    {
-                        ApiResponse = JsonConvert.DeserializeObject<ApiResponse>(apiResponseData);
-                        _context.ApiResponses.Add(ApiResponse);
-                        await _context.SaveChangesAsync();
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(c => c.UserId == userId);
 
-                        TempData["SuccessMessage"] = "ApiResponse sparades framgångsrikt!";
-                        return RedirectToPage("/NordicApi/CalculateRates");
-                    }
-                    else
-                    {
-                        _logger.LogError("ApiResponse data was not found in TempData.");
-                        ModelState.AddModelError(string.Empty, "ApiResponse data was lost.");
-                    }
-                }
-                else
-                {
-                    _logger.LogError("No ApiResponse to save.");
-                    ModelState.AddModelError(string.Empty, "No ApiResponse to save.");
-                }
-
-            }
-
-            return Page(); // Återvänd till samma sida för att visa meddelande eller resultat
+            return customer?.CustomerNumber;
         }
 
-        
-        
-        
-        
-        
-        
+
+
+
         //public async Task<IActionResult> OnPostCreateOrderAsync(ShippingRequest request)
         //{
         //    if (!ModelState.IsValid)

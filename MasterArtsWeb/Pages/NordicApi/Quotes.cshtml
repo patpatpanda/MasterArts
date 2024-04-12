@@ -1,36 +1,106 @@
 ﻿@page
 @model MasterArtsWeb.Pages.NordicApi.QuotesModel
-@{
-}
-<h1>Customer Rates Details for Order: @Model.CustomerOrderNumber</h1>
 
-@if (Model.CustomerRatesDetails.Any())
+<h1>Customer Rates Details</h1>
+
+@if (Model.CustomerRatesDetails != null && Model.CustomerRatesDetails.Any())
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Valid From</th>
-                <th>Valid To</th>
-                <th>Transit Time</th>
-                <th>CO2 Emissions</th>
-                <!-- Andra detaljer som behövs -->
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var rate in Model.CustomerRatesDetails)
+    foreach (var customerRate in Model.CustomerRatesDetails)
+    {
+        <div>
+            <h2>Details for Order: @customerRate.CustomerOrderNumber</h2>
+            <p>Valid From: @customerRate.ValidFrom</p>
+            <p>Valid To: @customerRate.ValidTo</p>
+            <p>Transit Time: @customerRate.TransitTime days</p>
+            <p>CO2 Emissions: @customerRate.Co2 kg</p>
+
+            <h3>Rates:</h3>
+            @if (customerRate.Rates != null && customerRate.Rates.Any())
             {
-                <tr>
-                    <td>@rate.ValidFrom</td>
-                    <td>@rate.ValidTo</td>
-                    <td>@rate.TransitTime days</td>
-                    <td>@rate.Co2 kg</td>
-                    <!-- Visa andra detaljer -->
-                </tr>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Currency</th>
+                            <th>Name</th>
+                            <th>Sum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var rate in customerRate.Rates)
+                        {
+                            <tr>
+                                <td>@rate.Currency</td>
+                                <td>@rate.Name</td>
+                                <td>@rate.Sum</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             }
-        </tbody>
-    </table>
+            else
+            {
+                <p>No rates available for this order.</p>
+            }
+
+            <h3>Totals:</h3>
+            @if (customerRate.Totals != null && customerRate.Totals.Any())
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Currency</th>
+                            <th>Sum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var total in customerRate.Totals)
+                        {
+                            <tr>
+                                <td>@total.Currency</td>
+                                <td>@total.Sum.ToString("N2")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No totals available for this order.</p>
+            }
+
+            <h3>Dimensions:</h3>
+            @if (customerRate.ShippingRequest?.Dimensions != null && customerRate.ShippingRequest.Dimensions.Any())
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Length (cm)</th>
+                            <th>Width (cm)</th>
+                            <th>Height (cm)</th>
+                            <th>Weight (kg)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var dimension in customerRate.ShippingRequest.Dimensions)
+                        {
+                            <tr>
+                                <td>@dimension.Length</td>
+                                <td>@dimension.Width</td>
+                                <td>@dimension.Height</td>
+                                <td>@dimension.Weight</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No dimensions available for this order.</p>
+            }
+        </div>
+    }
 }
 else
 {
-    <p>No customer rates found for this order.</p>
+    <p>No customer rates found for the provided order number.</p>
 }

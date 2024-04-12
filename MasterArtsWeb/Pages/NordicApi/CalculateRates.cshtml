@@ -153,37 +153,14 @@
 
         }
     
-       @* @if (Model.ApiResponse != null)
-        {
-            <form method="post" asp-page-handler="SaveApiResponse">
-                <button type="submit" class="btn btn-primary">Spara ApiResponse</button>
-            </form>
-        }
-*@
+       
+
     
-    <div>
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 50px">@TempData["SuccessMessage"]</div>
-            <script>
-                // Fade out the success message after 5 seconds
-                setTimeout(function () {
-                    var successMessage = document.getElementById("success-message");
-                    if (successMessage) {
-                        successMessage.style.display = 'none'; // Eller använd en CSS-klass för att hantera visibilitet
-                    }
-                }, 5000);
-            </script>
-        }
-
-        @if (TempData["Error"] != null)
-        {
-            <div class="alert alert-danger">@TempData["Error"]</div>
-        }
+    
     </div>
 
 
-    </div>
+   
 
 
 

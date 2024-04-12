@@ -32,12 +32,16 @@ namespace MasterArtsWeb.Pages.NordicApi
             }
 
             CustomerRatesDetails = await _context.CustomerRates
-                                        .Where(cr => cr.CustomerOrderNumber == CustomerOrderNumber)
-                                        .Include(cr => cr.Totals)
-                                        .Include(cr => cr.Rates)
-                                        .Include(cr => cr.Sailing)
-                                        .Include(cr => cr.Agent)
-                                        .ToListAsync();
+                                .Include(cr => cr.Totals)
+                                .Include(cr => cr.Rates)
+                                .Include(cr => cr.Sailing)
+                                .Include(cr => cr.Agent)
+                                .Include(cr => cr.ShippingRequest)
+                                    .ThenInclude(sr => sr.Dimensions)  // This ensures Dimensions are included
+                                .Where(cr => cr.CustomerOrderNumber == CustomerOrderNumber)
+                                .ToListAsync();
+
+
 
             if (!CustomerRatesDetails.Any())
             {
