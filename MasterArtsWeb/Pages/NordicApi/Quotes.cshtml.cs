@@ -14,7 +14,7 @@ namespace MasterArtsWeb.Pages.NordicApi
         public List<CustomerRates> CustomerRatesDetails { get; set; }
         public List<Order> CustomerOrders { get; set; }
         public string CustomerOrderNumber { get; set; }
-        
+
 
         public QuotesModel(MyDbContext context, UserManager<IdentityUser> userManager)
         {
@@ -25,7 +25,7 @@ namespace MasterArtsWeb.Pages.NordicApi
         {
             var userId = _userManager.GetUserId(User);
             CustomerOrderNumber = await GetCustomerNumberAsync(userId);
-            
+
             if (string.IsNullOrWhiteSpace(CustomerOrderNumber))
             {
                 return Page(); // Or handle the lack of a customer number appropriately

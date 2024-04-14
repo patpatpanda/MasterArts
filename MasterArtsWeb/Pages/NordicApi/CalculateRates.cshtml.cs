@@ -48,14 +48,7 @@ namespace MasterArtsWeb.Pages
         public async Task<IActionResult> OnPostAsync()
         {
             var userId = _userManager.GetUserId(User);
-            CustomerNumber = await GetCustomerNumberAsync(userId);
-
-            if (string.IsNullOrWhiteSpace(CustomerNumber))
-            {
-                _logger.LogInformation("Kunde inte hämta ett giltigt kundnummer.");
-                ModelState.AddModelError(string.Empty, "Kunde inte hämta ett giltigt kundnummer.");
-                return Page();
-            }
+            CustomerNumber = await GetCustomerNumberAsync(userId);  // Hämta CustomerNumber utan att direkt avbryta processen
 
             _logger.LogInformation($"ShippingRequest är null: {ShippingRequest == null}");
             if (ShippingRequest == null)
@@ -73,14 +66,36 @@ namespace MasterArtsWeb.Pages
                 if (response is ApiResponse apiResponse)
                 {
                     ApiResponse = apiResponse;
-                    
+                    TempData["ApiResponse"] = JsonConvert.SerializeObject(apiResponse);
+                    TempData.Keep("ApiResponse");
 
-                   
+                    // Skapa och spara CustomerRates endast om det finns ett CustomerNumber
+                    if (!string.IsNullOrWhiteSpace(CustomerNumber))
+                    {
+                        CustomerRates = new CustomerRates
+                        {
+                            ShippingRequest = ShippingRequest,
+                            Totals = ApiResponse.Totals,
+                            Rates = ApiResponse.Rates,
+                            TransitTime = ApiResponse.TransitTime,
+                            Sailing = ApiResponse.Sailing,
+                            Agent = ApiResponse.Agent,
+                            Co2 = ApiResponse.Co2,
+                            ValidFrom = DateTime.Now.ToString("yyyy-MM-dd"),
+                            ValidTo = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd"),
+                            OnRequest = false,
+                            CustomerOrderNumber = CustomerNumber  // Använda CustomerNumber som CustomerOrderNumber
+                        };
 
-                    _context.CustomerRates.Add(CustomerRates);
-                    await _context.SaveChangesAsync();
-                    _logger.LogInformation("Customer Rates sparades framgångsrikt.");
-                    return RedirectToPage("/NordicApi/CalculateRates"); // Antag att det finns en Success-sida.
+                        _context.CustomerRates.Add(CustomerRates);
+                        await _context.SaveChangesAsync();
+                        _logger.LogInformation("Customer Rates sparades framgångsrikt.");
+                    }
+                    else
+                    {
+                        _logger.LogInformation("Inget giltigt kundnummer finns, ingen CustomerRates skapas.");
+                    }
+                    return Page();
                 }
             }
             catch (Exception ex)
@@ -92,9 +107,6 @@ namespace MasterArtsWeb.Pages
             return Page();
         }
 
-
-        
-                
 
 
         private async Task<string> GetCustomerNumberAsync(string userId)
