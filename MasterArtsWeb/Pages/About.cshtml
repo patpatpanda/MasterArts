@@ -5,16 +5,6 @@
 
 
 
-<div class="lemon-2">
-    <div class="lemon"> @if (@Model.CurrentLanguage == "sv")
-    {
-       <span>OM OSS</span>
-    }
-    else
-    {
-        <span>ABOUT</span>
-    }</div>
-</div>
 
 <div class="text-center">
 <h3 class="contact adjusted-anchor-2" id="contact-id">
@@ -26,6 +16,19 @@
 
 
  </div>
+
+<div class="lemon-2">
+   
+        @if (@Model.CurrentLanguage == "sv")
+        {
+            <span>OM OSS</span>
+        }
+        else
+        {
+            <span>ABOUT</span>
+        }
+   
+</div>
 
 <form method="post" asp-page-handler="ChangeLanguage" id="languageForm">
     <div id="language-switch" class="index-lang">

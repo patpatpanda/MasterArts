@@ -2,8 +2,15 @@
 @model MasterArtsWeb.Pages.ArtServicesModel
 @{
 }
+
+<div class="text-center mille">
+<h3 class="contact adjusted-anchor-2">
+   
+ 
+</h3>
+ </div>
 <div class="lemon-2" id="contact-id">
-    <div class="lemon">
+   
         @if (@Model.CurrentLanguage == "sv")
         {
             <span>TJÄNSTER</span>
@@ -12,14 +19,8 @@
         {
             <span>SERVICES</span>
         }
-    </div>
+    
 </div>
-<div class="text-center mille">
-<h3 class="contact adjusted-anchor-2">
-   
- 
-</h3>
- </div>
 
 <form method="post" asp-page-handler="ChangeLanguage" id="languageForm">
     <div id="language-switch" class="index-lang">

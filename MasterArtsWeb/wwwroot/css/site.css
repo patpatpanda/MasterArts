@@ -70,6 +70,7 @@ header {
     border-radius: 0px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     color: #5D3B66;
+    z-index:2
 }
 
 
@@ -236,6 +237,7 @@ header {
 
 
 .lemon {
+    
     position: relative;
     display: flex;
     justify-content: center;
@@ -247,25 +249,10 @@ header {
     height: 300px;
     color: #fff;
     font-size: 2em;
+    z-index:1
 }
 
 
-.lemon-2 {
-    margin-top: 2px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-image: url('/images/golvet.webp');
-    background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
-    background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
-    background-repeat: no-repeat; /* hindrar att bilden upprepas */
-    background-color: rgba(184, 216, 245, 0.5);
-    backdrop-filter: blur(15px); /* Mindre suddig effekt */
-    -webkit-backdrop-filter: blur(15px);
-    height: 300px;
-}
 
 .logo-text {
     font-size: 24px;
@@ -533,12 +520,12 @@ h1 {
 
 
 .adjusted-anchor {
-    padding-top: 150px;
+    
     margin-top: -100px;
 }
 
 .adjusted-anchor-2 {
-    padding-top: 200px;
+    
     margin-top: -100px;
 }
 
@@ -587,14 +574,36 @@ h1 {
 }
 
 @media (max-width: 768px) {
+
+    .lemon {
+        margin-top:10px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        background-color:none;
+       
+        height: 100px;
+        color: #fff;
+        font-size: 2em;
+        z-index: 1
+    }
     .section {
         flex-direction: column; /* Ändra layout till kolumn för att stapla element vertikalt */
         padding: 20px; /* Justera padding för mindre skärmar om nödvändigt */
     }
+    .adjusted-anchor {
+        margin-top: -100px;
+        padding-top: 150px
+    }
+
+    .adjusted-anchor-2 {
+        margin-top: -100px;
+        padding-top: 200px;
+    }
 }
-.lemon-2{
-    margin-top:500px;
-}
+
 
 .section img {
     max-width: 200px; /* Adjust the max-width of the image */
@@ -890,6 +899,26 @@ input {
     .custom-container a {
         color: white;
     }
+.lemon-2 {
+    margin-top: 1px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), /* Lägger till en mörkare övertoning */
+    rgba(0, 0, 0, 0.5) ), url('/images/golvet.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(184, 216, 245, 0.5);
+    backdrop-filter: blur(15px); /* Lägger till en suddig bakgrundsfilter */
+    -webkit-backdrop-filter: blur(15px);
+    height: 300px;
+    z-index: 1; 
+    color:#fff;
+    font-size:2em;/* Sätter ett lägre z-index för att lägga den bakom andra element */
+}
 
 .s-1 {
     margin-bottom: 100px
@@ -994,7 +1023,7 @@ input {
 }
 
 @media screen and (max-width: 768px) {
-   
+    
     .navbar-collapse {
         position: absolute;
         top: 0; /* Eller annan värde som matchar din design */
@@ -1016,21 +1045,22 @@ input {
 
 
     .nav-item .dropdown-menu {
-        position: static; /* Låter dropdown ta sin naturliga plats i flödet */
-        box-shadow: none; /* Tar bort skuggan för enklare utseende */
+        position: relative; /* Behåller befintlig positionering */
+        top: -100px; /* Justerar positionen 50px uppåt */
+        box-shadow: none;
     }
-   
 
     .nav-item {
-        width: 100%; /* Låter nav-items ta full bredd för bättre åtkomst och synlighet */
+        width: 100%; /* Full bredd för bättre åtkomst och synlighet */
     }
 
-        /* Alternativ för att hantera klick istället för hover på mobil */
+        /* Hantera klick istället för hover på mobil */
         .nav-item .dropdown-toggle:active + .dropdown-menu,
         .nav-item .dropdown-toggle:focus + .dropdown-menu {
             display: block; /* Visa dropdown när aktiv/fokuserad */
-            position: absolute; /* Om du vill ha absolut positionering även på mobil */
+            position: relative; /* Fortsatt relativ positionering */
         }
+
     
     .contact {
         margin-top: 15px;
@@ -1328,12 +1358,14 @@ input {
         background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
         background-size: cover; /* Ser till att bilden täcker hela elementet */
         background-position: center; /* Centrerar bilden i elementet */
-        height: 550px;
+        height: 350px;
+        z-index:2
     }
     
     .kalle {
         height: 1px;
         background: pink;
+        z-index:2
       
     }
     #klu .kalle {
@@ -2211,6 +2243,7 @@ select {
 
 /* Responsivitet */
 @media (max-width: 768px) {
+   
     .fot {
         flex-direction: column;
         align-items: center;
@@ -2347,6 +2380,7 @@ select {
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
+   
 }
 .master-master {
     display: flex;
@@ -3540,19 +3574,10 @@ h3{
     border-radius: 25px;
     transition: all 0.3s ease;
 }
-.lemon-2 {
-    margin-top: 2px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-image: url('/images/golvet.webp');
-    background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
-    background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
-    background-repeat: no-repeat; /* hindrar att bilden upprepas */
-    background-color: rgba(184, 216, 245, 0.5);
-    backdrop-filter: blur(15px); /* Mindre suddig effekt */
-    -webkit-backdrop-filter: blur(15px);
-    height: 300px;
+
+#klu .kalle {
+    margin-bottom: 270px
+}
+.adjusted-mobil {
+    margin-top: 400px
 }
