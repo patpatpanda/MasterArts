@@ -42,7 +42,7 @@
     <div class="order-1">
         <div class="form-container-2">
 
-            <h3 class="text-center" style="color:#fff">Consignee</h3>
+            <h3 class="text-center" style="color:#333">Consignee</h3>
             <label asp-for="Order.ConsigneeName">Consignee Name</label>
             <input asp-for="Order.ConsigneeName" class="form-control" />
             <span asp-validation-for="Order.ConsigneeName" class="text-danger"></span>
@@ -87,7 +87,7 @@
 
 
         <div class="form-container-2">
-            <h3 class="text-center" style="color:#fff">Consignor</h3>
+            <h3 class="text-center" style="color:#333">Consignor</h3>
             <label asp-for="Order.ConsignorName">Consignor Name</label>
             <input asp-for="Order.ConsignorName" class="form-control" />
             <span asp-validation-for="Order.ConsignorName" class="text-danger"></span>
@@ -139,7 +139,7 @@
     
    
     <div class="form-container-2">
-        <h3 class="text-center" style="color:#fff">Details</h3>
+        <h3 class="text-center" style="color:#333">Details</h3>
            
 @*
                 <label asp-for="Order.OrderReference">Order reference</label>
@@ -236,7 +236,7 @@
 
 
         <div class="form-container-2 goods-container">
-            <h3 class="text-center" style="color:#fff">Goods</h3>
+            <h3 class="text-center" style="color:#333">Goods</h3>
            
                 @for (int i = 0; i < Model.Order.Goods.Count; i++)
                 {
@@ -334,7 +334,7 @@
     <div class="order-1">
    
         <div class="form-container-2">
-            <h3 class="text-center" style="color:#fff">Mottagare</h3>
+            <h3 class="text-center" style="color:#333">Mottagare</h3>
             <label asp-for="Order.ConsigneeName">Namn</label>
             <input asp-for="Order.ConsigneeName" class="form-control" />
             <span asp-validation-for="Order.ConsigneeName" class="text-danger"></span>
@@ -384,7 +384,7 @@
 
 
         <div class="form-container-2">
-            <h3 class="text-center" style="color:#fff">Avsändare</h3>
+            <h3 class="text-center" style="color:#333">Avsändare</h3>
             <label asp-for="Order.ConsignorName">Namn</label>
             <input asp-for="Order.ConsignorName" class="form-control" />
             <span asp-validation-for="Order.ConsignorName" class="text-danger"></span>
@@ -435,7 +435,7 @@
     <div class="order-1">
         <div class="form-container-2">
 
-            <h3 class="text-center" style="color:#fff">Detaljer</h3>
+            <h3 class="text-center" style="color:#333">Detaljer</h3>
 
 
             @*@*<label asp-for="Order.OrderReference">Orderreferens</label>
@@ -527,7 +527,7 @@
         </div>
 
         <div class="form-container-2 goods-container">
-            <h3 class="text-center" style="color:#fff">Goods</h3>
+            <h3 class="text-center" style="color:#333">Goods</h3>
             @for (int i = 0; i < Model.Order.Goods.Count; i++)
             {
                 <label asp-for="@Model.Order.Goods[@i].PackageId">PaketID<span class="required">*</span></label>
@@ -602,7 +602,7 @@
             <div class="spinner"></div>
         </div>
 
-        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button text-center" style="margin-top:20px" name="OrderSubmitButton">Send</button>
+        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button-5 text-center" style="margin-top:20px" name="OrderSubmitButton">Send</button>
     </div>
 
 </form>

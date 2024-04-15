@@ -1,4 +1,5 @@
 using MasterArtsLibrary.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -6,12 +7,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MasterArtsWeb.Pages.NordicApi
 {
+    [Authorize]
     public class QuotesModel : PageModel
     {
         private readonly MyDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
         public List<CustomerRates> CustomerRatesDetails { get; set; }
+        public CustomerRates CustomerRates { get; set; }
         public List<Order> CustomerOrders { get; set; }
         public string CustomerOrderNumber { get; set; }
 

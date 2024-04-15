@@ -2,18 +2,22 @@
 @model MasterArtsWeb.Pages.ArtServicesModel
 @{
 }
-
+<div class="lemon-2" id="contact-id">
+    <div class="lemon">
+        @if (@Model.CurrentLanguage == "sv")
+        {
+            <span>TJÄNSTER</span>
+        }
+        else
+        {
+            <span>SERVICES</span>
+        }
+    </div>
+</div>
 <div class="text-center mille">
-<h3 class="contact adjusted-anchor-2" id="contact-id">
+<h3 class="contact adjusted-anchor-2">
    
-    @if (@Model.CurrentLanguage == "sv")
-    {
-        <span>TJÄNSTER</span>
-    }
-    else
-    {
-        <span>SERVICES</span>
-    }
+ 
 </h3>
  </div>
 

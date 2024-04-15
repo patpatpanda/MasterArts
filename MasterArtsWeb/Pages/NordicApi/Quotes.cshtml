@@ -1,106 +1,197 @@
 ﻿@page
 @model MasterArtsWeb.Pages.NordicApi.QuotesModel
 
-<h1>Customer Rates Details</h1>
 
-@if (Model.CustomerRatesDetails != null && Model.CustomerRatesDetails.Any())
-{
-    foreach (var customerRate in Model.CustomerRatesDetails)
+<div class="lemon-2" id="contact-id">
+    <div class="lemon">
+        MY QUOTES
+    </div>
+</div>
+ <h3 class="contact adjusted-anchor-2" id="contact-id">
+       
+    </h3>
+
+
+
+<div class="quotes-container">
+    @foreach (var customerRate in Model.CustomerRatesDetails)
     {
-        <div>
-            <h2>Details for Order: @customerRate.CustomerOrderNumber</h2>
-            <p>Valid From: @customerRate.ValidFrom</p>
-            <p>Valid To: @customerRate.ValidTo</p>
-            <p>Transit Time: @customerRate.TransitTime days</p>
-            <p>CO2 Emissions: @customerRate.Co2 kg</p>
+        <div class="order-block">
+            <div class="keps">
+                <p>Quote number: @customerRate.Id</p>
+                <p>From: @customerRate.Sailing.FromDescription</p>
+                <p>To: @customerRate.Sailing.ToDescription</p>
+               
+            </div>
+            
+            <!-- Totals Section -->
+            <div class="transit-details">
+                <h3 class="section-heading">Totals</h3>
+                <div class="totals-table">
+                    @if (customerRate.Totals != null && customerRate.Totals.Any())
+                    {
+                        decimal sekToAdd = 3500M;
+                        decimal totalSumSEK = 0M;
+                        decimal totalSumUSD = 0M;
+                        decimal totalSumEUR = 0M;
+                        decimal usdExchangeRate = 0M;
+                        decimal eurExchangeRate = 0M;
 
-            <h3>Rates:</h3>
-            @if (customerRate.Rates != null && customerRate.Rates.Any())
-            {
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Currency</th>
-                            <th>Name</th>
-                            <th>Sum</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                        foreach (var total in customerRate.Totals)
+                        {
+                            decimal sumAsDecimal = (decimal)total.Sum; // Convert double to decimal
+
+                            if (total.Currency == "SEK")
+                            {
+                                totalSumSEK += sumAsDecimal;
+                            }
+                            else if (total.Currency == "USD")
+                            {
+                                totalSumUSD += sumAsDecimal;
+                                usdExchangeRate = total.ExchangeRate;
+                            }
+                            else if (total.Currency == "EUR")
+                            {
+                                totalSumEUR += sumAsDecimal;
+                                eurExchangeRate = total.ExchangeRate;
+                            }
+                        }
+
+                        // Add 3500 SEK to the total SEK sum and convert to USD and EUR
+                        totalSumSEK += sekToAdd;
+                        totalSumUSD += sekToAdd / usdExchangeRate;
+                        totalSumEUR += sekToAdd / eurExchangeRate;
+
+                        <div class="table-row header">
+                            <div class="table-cell">Currency</div>
+                            <div class="table-cell">Sum</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">SEK</div>
+                            <div class="table-cell">@totalSumSEK.ToString("N2")</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">USD</div>
+                            <div class="table-cell">@totalSumUSD.ToString("N2")</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">EUR</div>
+                            <div class="table-cell">@totalSumEUR.ToString("N2")</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>No totals available for this order.</p>
+                    }
+                </div>
+            </div>
+            <!-- Rates Section -->
+            <div class="transit-details">
+                <h3 class="section-heading">Rates</h3>
+                <div class="rates-table">
+                    @if (customerRate.Rates != null && customerRate.Rates.Any())
+                    {
+                        <div class="table-row header">
+                            <div class="table-cell">Currency</div>
+                            <div class="table-cell">Name</div>
+                            <div class="table-cell">Sum</div>
+                        </div>
                         @foreach (var rate in customerRate.Rates)
                         {
-                            <tr>
-                                <td>@rate.Currency</td>
-                                <td>@rate.Name</td>
-                                <td>@rate.Sum</td>
-                            </tr>
+                            <div class="table-row">
+                                <div class="table-cell">@rate.Currency</div>
+                                <div class="table-cell">@rate.Name</div>
+                                <div class="table-cell">Sum: @rate.Sum</div>
+                            </div>
                         }
-                    </tbody>
-                </table>
-            }
-            else
-            {
-                <p>No rates available for this order.</p>
-            }
+                        <div class="table-row">
+                            <div class="table-cell">SEK</div>
+                            <div class="table-cell">LOCAL SERVICE HANDLING DESTINATION</div>
+                            <div class="table-cell">Sum: 3500.00</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>No rates available for this order.</p>
+                    }
+                </div>
 
-            <h3>Totals:</h3>
-            @if (customerRate.Totals != null && customerRate.Totals.Any())
-            {
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Currency</th>
-                            <th>Sum</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var total in customerRate.Totals)
-                        {
-                            <tr>
-                                <td>@total.Currency</td>
-                                <td>@total.Sum.ToString("N2")</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            }
-            else
-            {
-                <p>No totals available for this order.</p>
-            }
 
-            <h3>Dimensions:</h3>
-            @if (customerRate.ShippingRequest?.Dimensions != null && customerRate.ShippingRequest.Dimensions.Any())
-            {
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Length (cm)</th>
-                            <th>Width (cm)</th>
-                            <th>Height (cm)</th>
-                            <th>Weight (kg)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <h3 class="section-heading">Sailing</h3>
+                <div class="transit-details">
+                    <p>Estimated Time of Arrival: @customerRate.Sailing.Eta</p>
+                    <p>Estimated Time of Departure: @customerRate.Sailing.Etd</p>
+                    <p>Gateway: @customerRate.Sailing.GatewayCode</p>
+                    <p>GatewayDescription: @customerRate.Sailing.GatewayDescription</p>
+                    <p>Vessel: @customerRate.Sailing.Vessel</p>
+                    <p>VoyageNumber: @customerRate.Sailing.VoyageNumber</p>
+                    <p>Transshipment: @customerRate.Sailing.TransshipmentDescription</p>
+
+
+                </div>
+                <h3 class="section-heading">Agent</h3>
+                <div class="transit-details">
+                    <p>Name: @customerRate.Agent.Name</p>
+                    <p>Country: @customerRate.Agent.Country</p>
+                    <p>City: @customerRate.Agent.City</p>
+                    <p>Address: @customerRate.Agent.Address</p>
+                    <p>Email: @customerRate.Agent.Email</p>
+                    <p>Zip: @customerRate.Agent.ZipCode</p>
+                    
+                    
+
+
+                </div>
+
+                <h3 class="section-heading">Package Details</h3>
+                <div class="transit-details">
+                    <p>Packages: @customerRate.ShippingRequest.Packages</p>
+                    <p>Type: @customerRate.ShippingRequest.PackageType</p>
+                    <p>Volume: @customerRate.ShippingRequest.Volume</p>
+                    <p>Weight: @customerRate.ShippingRequest.Weight</p>
+                   
+
+
+
+
+                </div>
+            </div>
+           
+            <div class="transit-details">
+                <h3 class="section-heading">Dimensions</h3>
+                <div class="dimensions-table">
+                    @if (customerRate.ShippingRequest?.Dimensions != null && customerRate.ShippingRequest.Dimensions.Any())
+                    {
+                        <div class="table-row header">
+                            <div class="table-cell">Length (cm)</div>
+                            <div class="table-cell">Width (cm)</div>
+                            <div class="table-cell">Height (cm)</div>
+                            <div class="table-cell">Weight (kg)</div>
+                        </div>
                         @foreach (var dimension in customerRate.ShippingRequest.Dimensions)
                         {
-                            <tr>
-                                <td>@dimension.Length</td>
-                                <td>@dimension.Width</td>
-                                <td>@dimension.Height</td>
-                                <td>@dimension.Weight</td>
-                            </tr>
+                            <div class="table-row">
+                                <div class="table-cell">@dimension.Length</div>
+                                <div class="table-cell">@dimension.Width</div>
+                                <div class="table-cell">@dimension.Height</div>
+                                <div class="table-cell">@dimension.Weight</div>
+                                
+                            </div>
                         }
-                    </tbody>
-                </table>
-            }
-            else
-            {
-                <p>No dimensions available for this order.</p>
-            }
+                    }
+                    else
+                    {
+                        <p>No dimensions available for this order.</p>
+                    }
+                </div>
+            </div>
         </div>
+
+
+
     }
-}
-else
-{
-    <p>No customer rates found for the provided order number.</p>
-}
+    @if (!Model.CustomerRatesDetails.Any())
+    {
+        <p>No customer rates found for the provided order number.</p>
+    }
+</div>
