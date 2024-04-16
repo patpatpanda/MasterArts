@@ -8,10 +8,9 @@
 
 html, body {
     overflow-x: hidden;
-    
     background-color: #f5f5f5; /* En mycket mjuk grå färg */
     color: #333; /* Mörkare textfärg för kontrast */
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Modern typsnitt */
+    font-family: Arial, sans-serif
 }
 
 .honeypot {
@@ -20,7 +19,18 @@ html, body {
     top: 0;
 }
 
-
+.qop-4 {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 100%; /* Anpassar bredden */
+    background-image: url('/images/123.webp');
+    background-size: 200% 200%;
+    animation: GradientShift 20s ease infinite;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    color: #5D3B66;
+    height: 700px
+}
 .center-container {
 
     display: flex;
@@ -87,10 +97,6 @@ header {
     margin-bottom: 30px;
 }
 
-
-
-
-
 .image-container {
     margin-bottom: 20px;
 }
@@ -114,7 +120,6 @@ header {
 }
 
 
-
 .kajsa-2 {
     display: none;
 }
@@ -128,20 +133,16 @@ header {
 }
 
 
-
-
-
 .services {
     display: none;
 }
 
 
 
-
 .contact {
    
     
-    color: #fff;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -154,21 +155,10 @@ header {
     /* Lägg till detta för att positionera pseudo-elementet korrekt */
 }
 
-   
-
-
-
-
-
-
 
 .about-2 {
     display: none
 }
-
-
-
-
 
 
 
@@ -193,18 +183,6 @@ header {
     transition: background-color 0.25s, color 0.15s;
     z-index: 1;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -304,7 +282,6 @@ h1 {
 }
 
 
-
 .fade-message {
     opacity: 0;
     transition: opacity 0.5s;
@@ -336,27 +313,20 @@ h1 {
     /* Lägg till en maxbredd efter behov */
 }
 
-
-
 .kek {
     margin-top: 100px;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-
-
 .a-margin {
     margin-left: 200px;
 }
-
 
 .contact-info {
     font-size: 1.5em;
     color: #FFF; /* Ändra färgen efter behov */
     margin-bottom: 15px; /* Justera nedre marginalen efter behov */
 }
-
-
 
 .slogan {
     font-size: 2em;
@@ -574,6 +544,18 @@ h1 {
 }
 
 @media (max-width: 768px) {
+    .qop-4 {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 100%; /* Anpassar bredden */
+        background-image: url('/images/123.webp');
+        background-size: 200% 200%;
+        animation: GradientShift 20s ease infinite;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        color: #5D3B66;
+        height: 500px
+    }
     .totals-table-2 {
         margin-top: 20px;
         padding: 15px;
@@ -1023,6 +1005,7 @@ input {
     backdrop-filter: blur(4px); /* Frostat glas-effekt */
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
+
 }
 
 
@@ -1099,7 +1082,7 @@ input {
     
     .contact {
         margin-top: 15px;
-        color: #fff;
+        color: #333;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1393,8 +1376,8 @@ input {
         background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
         background-size: cover; /* Ser till att bilden täcker hela elementet */
         background-position: center; /* Centrerar bilden i elementet */
-        height: 350px;
-        z-index:2
+        height: 360px;
+       
     }
     
     .kalle {
@@ -1970,18 +1953,7 @@ select {
 
 
 /* Baslayout och typografi */
-.qop-4 {
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 100%; /* Anpassar bredden */
-    background-image: url('/images/123.webp');
-    background-size: 200% 200%;
-    animation: GradientShift 10s ease infinite;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    color: #5D3B66;
-    height: 500px
-}
+
 
 .ert {
     display: flex;
@@ -2226,6 +2198,11 @@ select {
 }
 
     .cta-button:hover {
+        background-color: #2c3e50;
+        color: #ffffff;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.15);
+    }
+    .cta-button-5:hover {
         background-color: #2c3e50;
         color: #ffffff;
         box-shadow: 0 2px 15px rgba(0,0,0,0.15);
@@ -3584,3 +3561,60 @@ h3{
 .adjusted-mobil {
     margin-top: 400px
 }
+.cta-button-5 {
+    display: inline-block;
+    margin: 5px;
+    padding: 18px 34px; /* Ökad padding för större knapp */
+    background-color: #b8d8f5; /* Subtil blå färg för knapparna */
+    color: #2c3e50; /* Mörkblå text för kontrast */
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-size: 18px; /* Större textstorlek */
+}
+.center-container {
+    background: linear-gradient(to bottom, #c0c0c0 0%, #add8e6 100%);
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+.service-info {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card-icon {
+    color: #c0c0c0;
+    transition: color 0.3s;
+}
+
+    .card-icon:hover {
+        color: #add8e6;
+        transform: rotate(10deg);
+    }
+
+h3, p {
+    text-align: center;
+}
+
+button {
+    background-color: #c0c0c0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+    button:hover {
+        background-color: #add8e6;
+    }
