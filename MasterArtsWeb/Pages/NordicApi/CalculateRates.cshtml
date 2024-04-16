@@ -37,7 +37,7 @@
 
                 <div class="table-row">
                     <div class="table-cell">SEK</div>
-                    <div class="table-cell">LOCAL SERVICE HANDLING DESTINATION</div>
+                    <div class="table-cell">LOCAL SERVICE HANDLING</div>
                     <div class="table-cell">Sum: 3500.00</div>
                 </div>
             </div>
@@ -47,8 +47,9 @@
     @if (Model.ApiResponse != null)
     {
 
-        <div class="transit-details">
+        <div class="transit-details ">
             <h3 class="section-heading">Transit Details</h3>
+            
             <p><strong>Transit Time:</strong> @Model.ApiResponse.TransitTime days</p>
             <p><strong>Vessel:</strong> @Model.ApiResponse.Sailing?.Vessel</p>
             <p><strong>Voyage Number:</strong> @Model.ApiResponse.Sailing?.VoyageNumber</p>
@@ -128,7 +129,7 @@
 
         <div class="transit-details">
             <h3 class="section-heading">Totals</h3>
-            <div class="totals-table">
+            <div class="totals-table-2">
                 <div class="table-row">
                     <div class="table-cell">SEK</div>
                     <div class="table-cell">@totalSumSEK.ToString("F2")</div>

@@ -574,19 +574,28 @@ h1 {
 }
 
 @media (max-width: 768px) {
+    .totals-table-2 {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #cceeff; /* A bright light blue to draw attention */
+        border: 2px solid #003366; /* A darker blue border for emphasis */
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1); /* Adding a subtle shadow for depth */
+        border-radius: 5px;
+        width: 300px; /* Rounded corners for a modern look */
+    }
     .lemon-2 {
-        margin-top: 1px;
+        margin-top: 12px;
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
-        background-image: linear-gradient( rgba(0, 0, 0, 0.5), /* Lägger till en mörkare övertoning */
-        rgba(0, 0, 0, 0.5) ), url('/images/golvet.webp');
+        
+        
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        background-color: rgba(184, 216, 245, 0.5);
+       
         backdrop-filter: blur(15px); /* Lägger till en suddig bakgrundsfilter */
         -webkit-backdrop-filter: blur(15px);
         height: 300px;
@@ -595,7 +604,7 @@ h1 {
         color: deeppink; /* Startfärg */
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Textskugga för djup */
         animation: colorFade 8s infinite;
-        
+        font-family:bold;
         padding-bottom: 80px /* Sätter ett lägre z-index för att lägga den bakom andra element */
     }
     .lemon {
@@ -923,26 +932,27 @@ input {
         color: white;
     }
 .lemon-2 {
-    margin-top: 1px;
+    margin-top: 50px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-image: linear-gradient( rgba(0, 0, 0, 0.5), /* Lägger till en mörkare övertoning */
-    rgba(0, 0, 0, 0.5) ), url('/images/golvet.webp');
+    
+  
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: rgba(184, 216, 245, 0.5);
+    
     backdrop-filter: blur(15px); /* Lägger till en suddig bakgrundsfilter */
     -webkit-backdrop-filter: blur(15px);
     height: 300px;
     z-index: 1;
-    font-size: 2em; /* Större typsnitt för rubriken */
+    font-size: 4em; /* Större typsnitt för rubriken */
     color: deeppink; /* Startfärg */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Textskugga för djup */
     animation: colorFade 8s infinite;
+    font-family: bold;
 }
 
 .s-1 {
@@ -3311,6 +3321,7 @@ input[type="checkbox"] {
     display: table;
     width: 100%;
     border-collapse: collapse;
+    gap:33px
 }
 
 .table-row {
@@ -3320,20 +3331,17 @@ input[type="checkbox"] {
 .table-cell {
     display: table-cell;
     padding: 8px;
-    border-bottom: 1px solid #eee;
+    
 }
 
 .table-cell:nth-child(1) {
     font-weight: bold;
 }
 .transit-details {
-
-    background: linear-gradient(to right, #f0f0f0 0%, #d9d9d9 50%, #bbbbbb 100%);
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    padding: 20px;
-    max-width:800px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
+    max-width: 800px;
+   
 }
 
 
@@ -3499,60 +3507,75 @@ h3{
 
 
 .quotes-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-   
-}
+    display:grid;
+    justify-content:center;
+    
 
-.order-block {
-    width: 100%; /* Anpassa detta värde efter önskad maxbredd */
-    margin: 100px;
-    padding: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centrerar innehållet horisontellt */
+    
+    padding: 20px;
+    font-family: Arial, sans-serif;
     
 }
-.keps {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    font-family: 'Arial Narrow Bold', sans-serif;
-}
-.keps, .transit-details, .rates-table, .dimensions-table {
-    width: 100%; /* Säkerställer att dessa element tar upp hela bredden av .order-block */
-    margin-bottom: 20px;
+
+
+
+.order-block {
+    border: 2px solid silver; /* Silver border around each receipt section */
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: white;
+  
+   margin-top:200px;
 }
 
-.section-heading, .table-row {
-    width: 100%; /* Säkerställer att headings och rader expanderar till full bredd */
+.keps, .transit-details,  .rates-table, .dimensions-table {
+    border: 1px solid #b0c4de; /* Light steel blue for minor dividers */
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e6f0fa; /* Very light blue background */
+}
+
+.section-heading {
+    color: #003366; /* Dark blue for headings */
+    font-size: 1.2em;
+    margin-bottom: 5px;
 }
 
 .table-row {
     display: flex;
     justify-content: space-between;
+    margin: 5px 0;
 }
 
 .table-cell {
     flex: 1;
-    padding: 0 5px;
-    text-align: center; /* Centrerar texten inuti varje table-cell */
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ccc; /* Light gray borders for cells */
+}
+
+.table-row.header {
+    font-weight: bold;
+    background-color: #b0c4de; /* Light steel blue for header rows */
 }
 
 
-.cta-button-5 {
-    display: inline-block;
-    margin: 5px;
-    padding: 10px 18px;
-    background-color: #b8d8f5; /* Subtil blå färg för knapparna */
-    color: #2c3e50; /* Mörkblå text för kontrast */
-    text-decoration: none;
-    border-radius: 25px;
-    transition: all 0.3s ease;
+.totals-table {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #cceeff; /* A bright light blue to draw attention */
+    border: 2px solid #003366; /* A darker blue border for emphasis */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1); /* Adding a subtle shadow for depth */
+    border-radius: 5px; /* Rounded corners for a modern look */
+}
+.totals-table-2 {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #cceeff; /* A bright light blue to draw attention */
+    border: 2px solid #003366; /* A darker blue border for emphasis */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1); /* Adding a subtle shadow for depth */
+    border-radius: 5px;
+    width:700px;/* Rounded corners for a modern look */
 }
 
 #klu .kalle {

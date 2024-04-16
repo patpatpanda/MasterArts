@@ -10,17 +10,21 @@
 
 </div>
 
-
+<div class="text-center"></div>
 <div class="quotes-container">
     @foreach (var customerRate in Model.CustomerRatesDetails)
     {
         <div class="order-block">
-            <div class="keps">
-                <p>Quote number: @customerRate.Id</p>
-                <p>From: @customerRate.Sailing.FromDescription</p>
-                <p>To: @customerRate.Sailing.ToDescription</p>
-               
-            </div>
+            @if (customerRate.Sailing != null)
+            {
+                <div class="keps">
+                    <p>Quote number: @customerRate.Id</p>
+                    <p>From: @customerRate.Sailing.FromDescription</p>
+                    <p>To: @customerRate.Sailing.ToDescription</p>
+
+                </div>
+            }
+           
             
             <!-- Totals Section -->
             <div class="transit-details">
@@ -83,7 +87,7 @@
                     }
                 </div>
             </div>
-            <!-- Rates Section -->
+          
             <div class="transit-details">
                 <h3 class="section-heading">Rates</h3>
                 <div class="rates-table">
@@ -104,7 +108,7 @@
                         }
                         <div class="table-row">
                             <div class="table-cell">SEK</div>
-                            <div class="table-cell">LOCAL SERVICE HANDLING DESTINATION</div>
+                            <div class="table-cell">LOCAL SERVICE HANDLING</div>
                             <div class="table-cell">Sum: 3500.00</div>
                         </div>
                     }
@@ -114,46 +118,59 @@
                     }
                 </div>
 
+                @if (customerRate.Sailing != null)
+                {
+                    <h3 class="section-heading">Sailing</h3>
+                    <div class="transit-details">
 
-                <h3 class="section-heading">Sailing</h3>
-                <div class="transit-details">
-                    <p>Estimated Time of Arrival: @customerRate.Sailing.Eta</p>
-                    <p>Estimated Time of Departure: @customerRate.Sailing.Etd</p>
-                    <p>Gateway: @customerRate.Sailing.GatewayCode</p>
-                    <p>GatewayDescription: @customerRate.Sailing.GatewayDescription</p>
-                    <p>Vessel: @customerRate.Sailing.Vessel</p>
-                    <p>VoyageNumber: @customerRate.Sailing.VoyageNumber</p>
-                    <p>Transshipment: @customerRate.Sailing.TransshipmentDescription</p>
+                        <p>Estimated Time of Arrival: @customerRate.Sailing.Eta</p>
+                        <p>Estimated Time of Departure: @customerRate.Sailing.Etd</p>
+                        <p>Gateway: @customerRate.Sailing.GatewayCode</p>
+                        <p>GatewayDescription: @customerRate.Sailing.GatewayDescription</p>
+                        <p>Vessel: @customerRate.Sailing.Vessel</p>
+                        <p>VoyageNumber: @customerRate.Sailing.VoyageNumber</p>
+                        <p>Transshipment: @customerRate.Sailing.TransshipmentDescription</p>
 
 
-                </div>
-                <h3 class="section-heading">Agent</h3>
-                <div class="transit-details">
-                    <p>Name: @customerRate.Agent.Name</p>
-                    <p>Country: @customerRate.Agent.Country</p>
-                    <p>City: @customerRate.Agent.City</p>
-                    <p>Address: @customerRate.Agent.Address</p>
-                    <p>Email: @customerRate.Agent.Email</p>
-                    <p>Zip: @customerRate.Agent.ZipCode</p>
+                    </div>
                     
-                    
+                }
+               
+                @if (customerRate.Agent != null)
+                {
+                    <h3 class="section-heading">Agent</h3>
+                    <div class="transit-details">
+                        <p>Name: @customerRate.Agent.Name</p>
+                        <p>Country: @customerRate.Agent.Country</p>
+                        <p>City: @customerRate.Agent.City</p>
+                        <p>Address: @customerRate.Agent.Address</p>
+                        <p>Email: @customerRate.Agent.Email</p>
+                        <p>Zip: @customerRate.Agent.ZipCode</p>
 
 
-                </div>
-
-                <h3 class="section-heading">Package Details</h3>
-                <div class="transit-details">
-                    <p>Packages: @customerRate.ShippingRequest.Packages</p>
-                    <p>Type: @customerRate.ShippingRequest.PackageType</p>
-                    <p>Volume: @customerRate.ShippingRequest.Volume</p>
-                    <p>Weight: @customerRate.ShippingRequest.Weight</p>
-                   
 
 
+                    </div>
+                }
+               
+                @if (customerRate.ShippingRequest != null )
+                {
+                    <h3 class="section-heading">Package Details</h3>
+                    <div class="transit-details">
+                        <p>Packages: @customerRate.ShippingRequest.Packages</p>
+                        <p>Type: @customerRate.ShippingRequest.PackageType</p>
+                        <p>Volume: @customerRate.ShippingRequest.Volume</p>
+                        <p>Weight: @customerRate.ShippingRequest.Weight</p>
+                                 </div>
+         
+                }
 
 
-                </div>
+
             </div>
+
+
+       
            
             <div class="transit-details">
                 <h3 class="section-heading">Dimensions</h3>
