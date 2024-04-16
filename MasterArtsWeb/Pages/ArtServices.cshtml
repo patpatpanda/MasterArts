@@ -3,25 +3,18 @@
 @{
 }
 
-<div class="text-center mille">
-<h3 class="contact adjusted-anchor-2">
-   
- 
-</h3>
- </div>
-<div class="lemon-2" id="contact-id">
-   
-        @if (@Model.CurrentLanguage == "sv")
-        {
-            <span>TJÄNSTER</span>
-        }
-        else
-        {
-            <span>SERVICES</span>
-        }
-    
-</div>
+<div class="lemon-2 contact adjusted-anchor-2" id="contact-id">
 
+    @if (@Model.CurrentLanguage == "sv")
+    {
+        <span>TJÄNSTER</span>
+    }
+    else
+    {
+        <span>SERVICES</span>
+    }
+
+</div>
 <form method="post" asp-page-handler="ChangeLanguage" id="languageForm">
     <div id="language-switch" class="index-lang">
         <button type="submit" class="l-btn">SWE/ENG</button>

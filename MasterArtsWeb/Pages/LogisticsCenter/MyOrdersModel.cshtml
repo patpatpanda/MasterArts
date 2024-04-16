@@ -4,15 +4,13 @@
 @{
     ViewData["Title"] = "My Orders";
 }
-<div class="text-center mille">
-<h3 class="contact adjusted-anchor-2" id="contact-id">
-   Bookings
-</h3>
-</div>
+<div class="lemon-2 contact adjusted-anchor-2" id="contact-id">
 
-<div style="margin-top:100px;">
-    <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
+    MY ORDERS
+
 </div>
+<div style="margin-top:120px"></div>
+
 @if (Model.CustomerOrders.Any())
 {
     <div class="table-responsive">
@@ -20,9 +18,18 @@
             <thead class="thead-light">
                 <tr>
                     <th>Order Number</th>
-                    <th>Consignee Name</th>
-                    <th>Consignor Name</th>
-                    <th>Goods Details</th> <!-- Ny kolumn för detaljerade goods-uppgifter -->
+                    <th>Customer</th>
+                    <th>Order Type</th>
+                    <th>Order Reference</th>
+                    <th>Delivery Time From</th>
+                    <th>Delivery Time To</th>
+                    <th>Pick Up Time From</th>
+                    <th>Transport Mode Code</th>
+                    <th>Terms of Delivery</th>
+                    <th>Integration ID</th>
+                    <th>Consignor Details</th>
+                    <th>Consignee Details</th>
+                    <th>Goods Details</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,14 +37,38 @@
                 {
                     <tr>
                         <td>@order.CustomerOrderNumber</td>
-                        <td>@order.ConsigneeName</td>
-                        <td>@order.ConsignorName</td>
+                        <td>@order.Customer</td>
+                        <td>@order.OrderType</td>
+                        <td>@order.OrderReference</td>
+                        <td>@order.DeliveryTimeFrom</td>
+                        <td>@order.DeliveryTimeTo</td>
+                        <td>@order.PickUpTimeFrom</td>
+                        <td>@order.TransportModeCode</td>
+                        <td>@order.TermsOfDelivery</td>
+                        <td>@order.IntegrationId</td>
+                        <td>
+                            Name: @order.ConsignorName<br>
+                            Address: @order.ConsignorAddress1, @order.ConsignorAddress2<br>
+                            City: @order.ConsignorCity, Zip: @order.ConsignorZip<br>
+                            Contact: @order.ConsignorContact, Phone: @order.ConsignorPhone, Email: @order.ConsignorEmail
+                        </td>
+                        <td>
+                            Name: @order.ConsigneeName<br>
+                            Address: @order.ConsigneeAddress1, @order.ConsigneeAddress2<br>
+                            City: @order.ConsigneeCity, Zip: @order.ConsigneeZip<br>
+                            Contact: @order.ConsigneeContact, Phone: @order.ConsigneePhone, Email: @order.ConsigneeEmail
+                        </td>
                         <td>
                             <ul>
                                 @foreach (var good in order.Goods)
                                 {
                                     <li>
-                                      
+                                        Description: @good.Description<br>
+                                        Package Type: @good.PackageType,
+                                        Quantity: @good.Quantity,
+                                        Size: @good.Length x @good.Width x @good.Height cm,
+                                        Net Weight: @good.NetWeight kg,
+                                        Gross Weight: @good.GrossWeight kg
                                     </li>
                                 }
                             </ul>
@@ -48,6 +79,7 @@
         </table>
     </div>
 }
+
 
 else
 {

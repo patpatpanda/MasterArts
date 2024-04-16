@@ -3,12 +3,12 @@
 @{
 }
 
+<div class="lemon-2 contact adjusted-anchor-2" id="contact-id">
 
-<div class="text-center">
-    <h3 class="contact adjusted-anchor-2" id="contact-id">
-       LCL OCEAN
-    </h3>
+    LCL RATES
+
 </div>
+
 <div class="language-toggle text-end index-lang" style="display:none">
     <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">Svenska</button>
 </div>
@@ -21,146 +21,146 @@
 <div class="master-master shipping-cost-calculator" id="resultSection" style="margin-bottom:10px">
 
 
-        @if (Model.ApiResponse != null)
-        {
-            <div class="transit-details">
-                <h3 class="section-heading">Rates</h3>
-                <div class="rates-table">
-                    @foreach (var rate in Model.ApiResponse.Rates)
-                    {
-                        <div class="table-row">
-                            <div class="table-cell">@rate.Currency</div>
-                            <div class="table-cell">@rate.Name</div>
-                            <div class="table-cell">Sum: @rate.Sum</div>
-                        </div>
-                    }
-
+    @if (Model.ApiResponse != null)
+    {
+        <div class="transit-details">
+            <h3 class="section-heading">Rates</h3>
+            <div class="rates-table">
+                @foreach (var rate in Model.ApiResponse.Rates)
+                {
                     <div class="table-row">
-                        <div class="table-cell">SEK</div>
-                        <div class="table-cell">LOCAL SERVICE HANDLING DESTINATION</div>
-                        <div class="table-cell">Sum: 3500.00</div>
+                        <div class="table-cell">@rate.Currency</div>
+                        <div class="table-cell">@rate.Name</div>
+                        <div class="table-cell">Sum: @rate.Sum</div>
                     </div>
+                }
+
+                <div class="table-row">
+                    <div class="table-cell">SEK</div>
+                    <div class="table-cell">LOCAL SERVICE HANDLING DESTINATION</div>
+                    <div class="table-cell">Sum: 3500.00</div>
                 </div>
             </div>
-        }
+        </div>
+    }
 
-        @if (Model.ApiResponse != null)
+    @if (Model.ApiResponse != null)
+    {
+
+        <div class="transit-details">
+            <h3 class="section-heading">Transit Details</h3>
+            <p><strong>Transit Time:</strong> @Model.ApiResponse.TransitTime days</p>
+            <p><strong>Vessel:</strong> @Model.ApiResponse.Sailing?.Vessel</p>
+            <p><strong>Voyage Number:</strong> @Model.ApiResponse.Sailing?.VoyageNumber</p>
+            <p><strong>From:</strong> @Model.ApiResponse.Sailing?.FromDescription (@Model.ApiResponse.Sailing?.FromCode)</p>
+            <p><strong>To:</strong> @Model.ApiResponse.Sailing?.ToDescription (@Model.ApiResponse.Sailing?.ToCode)</p>
+            <p><strong>Transshipment:</strong> @Model.ApiResponse.Sailing?.TransshipmentDescription (@Model.ApiResponse.Sailing?.TransshipmentCode)</p>
+            <p><strong>Gateway:</strong> @Model.ApiResponse.Sailing?.GatewayDescription (@Model.ApiResponse.Sailing?.GatewayCode)</p>
+            <p><strong>Closing Date:</strong> @Model.ApiResponse.Sailing?.Closing.ToString("yyyy-MM-dd")</p>
+            <p><strong>Estimated Time of Departure:</strong> @Model.ApiResponse.Sailing?.Etd.ToString("yyyy-MM-dd")</p>
+            <p><strong>Estimated Time of Arrival:</strong> @Model.ApiResponse.Sailing?.Eta.ToString("yyyy-MM-dd")</p>
+            <p><strong>Remarks:</strong> @Model.ApiResponse.Sailing?.Remarks</p>
+
+
+        </div>
+
+    }
+
+    @if (Model.ApiResponse != null)
+    {
+        <div class="transit-details">
+            <h3 class="section-heading">Agent Details</h3>
+            <p><strong>Name:</strong> @Model.ApiResponse.Agent?.Name</p>
+            <p><strong>Address:</strong> @Model.ApiResponse.Agent?.Address</p>
+            <p><strong>Zip Code:</strong> @Model.ApiResponse.Agent?.ZipCode</p>
+            <p><strong>City:</strong> @Model.ApiResponse.Agent?.City</p>
+            <p><strong>Country:</strong> @Model.ApiResponse.Agent?.Country</p>
+
+            <p class="emission-item"><strong>CO2 Emissions:</strong> @Model.ApiResponse.Co2.ToString() kg</p>
+        </div>
+    }
+
+</div>
+
+<div class="master-master" style="margin-bottom:150px">
+
+
+
+
+
+    <h3 id="resultSection" class="result-heading"></h3>
+
+    @{
+        decimal sekToAdd = 3500M;
+        decimal totalSumSEK = 0M;
+        decimal totalSumUSD = 0M;
+        decimal totalSumEUR = 0M;
+        decimal usdExchangeRate = 0M;
+        decimal eurExchangeRate = 0M;
+    }
+
+    @if (Model.ApiResponse != null)
+    {
+        foreach (var total in Model.ApiResponse.Totals)
         {
+            decimal sumAsDecimal = (decimal)total.Sum; // Konvertera double till decimal
 
-            <div class="transit-details">
-                <h3 class="section-heading">Transit Details</h3>
-                <p><strong>Transit Time:</strong> @Model.ApiResponse.TransitTime days</p>
-                <p><strong>Vessel:</strong> @Model.ApiResponse.Sailing?.Vessel</p>
-                <p><strong>Voyage Number:</strong> @Model.ApiResponse.Sailing?.VoyageNumber</p>
-                <p><strong>From:</strong> @Model.ApiResponse.Sailing?.FromDescription (@Model.ApiResponse.Sailing?.FromCode)</p>
-                <p><strong>To:</strong> @Model.ApiResponse.Sailing?.ToDescription (@Model.ApiResponse.Sailing?.ToCode)</p>
-                <p><strong>Transshipment:</strong> @Model.ApiResponse.Sailing?.TransshipmentDescription (@Model.ApiResponse.Sailing?.TransshipmentCode)</p>
-                <p><strong>Gateway:</strong> @Model.ApiResponse.Sailing?.GatewayDescription (@Model.ApiResponse.Sailing?.GatewayCode)</p>
-                <p><strong>Closing Date:</strong> @Model.ApiResponse.Sailing?.Closing.ToString("yyyy-MM-dd")</p>
-                <p><strong>Estimated Time of Departure:</strong> @Model.ApiResponse.Sailing?.Etd.ToString("yyyy-MM-dd")</p>
-                <p><strong>Estimated Time of Arrival:</strong> @Model.ApiResponse.Sailing?.Eta.ToString("yyyy-MM-dd")</p>
-                <p><strong>Remarks:</strong> @Model.ApiResponse.Sailing?.Remarks</p>
-
-
-            </div>
-
-        }
-
-        @if (Model.ApiResponse != null)
-        {
-            <div class="transit-details">
-                <h3 class="section-heading">Agent Details</h3>
-                <p><strong>Name:</strong> @Model.ApiResponse.Agent?.Name</p>
-                <p><strong>Address:</strong> @Model.ApiResponse.Agent?.Address</p>
-                <p><strong>Zip Code:</strong> @Model.ApiResponse.Agent?.ZipCode</p>
-                <p><strong>City:</strong> @Model.ApiResponse.Agent?.City</p>
-                <p><strong>Country:</strong> @Model.ApiResponse.Agent?.Country</p>
-
-                <p class="emission-item"><strong>CO2 Emissions:</strong> @Model.ApiResponse.Co2.ToString() kg</p>
-            </div>
-        }
-
-    </div>
-
-    <div class="master-master" style="margin-bottom:150px">
-
-
-
-
-
-        <h3 id="resultSection" class="result-heading"></h3>
-
-        @{
-            decimal sekToAdd = 3500M;
-            decimal totalSumSEK = 0M;
-            decimal totalSumUSD = 0M;
-            decimal totalSumEUR = 0M;
-            decimal usdExchangeRate = 0M;
-            decimal eurExchangeRate = 0M;
-        }
-
-        @if (Model.ApiResponse != null)
-        {
-            foreach (var total in Model.ApiResponse.Totals)
+            if (total.Currency == "SEK")
             {
-                decimal sumAsDecimal = (decimal)total.Sum; // Konvertera double till decimal
-
-                if (total.Currency == "SEK")
-                {
-                    totalSumSEK += sumAsDecimal;
-                }
-                else if (total.Currency == "USD")
-                {
-                    totalSumUSD += sumAsDecimal;
-                    usdExchangeRate = total.ExchangeRate; // Antag att detta är SEK per USD
-                }
-                else if (total.Currency == "EUR")
-                {
-                    totalSumEUR += sumAsDecimal;
-                    eurExchangeRate = total.ExchangeRate; // Antag att detta är SEK per EUR
-                }
+                totalSumSEK += sumAsDecimal;
             }
+            else if (total.Currency == "USD")
+            {
+                totalSumUSD += sumAsDecimal;
+                usdExchangeRate = total.ExchangeRate; // Antag att detta är SEK per USD
+            }
+            else if (total.Currency == "EUR")
+            {
+                totalSumEUR += sumAsDecimal;
+                eurExchangeRate = total.ExchangeRate; // Antag att detta är SEK per EUR
+            }
+        }
 
-            // Lägg till 3500 SEK till den totala summan i SEK och konvertera till USD och EUR
-            totalSumSEK += sekToAdd;
-            totalSumUSD += sekToAdd / usdExchangeRate;
-            totalSumEUR += sekToAdd / eurExchangeRate;
+        // Lägg till 3500 SEK till den totala summan i SEK och konvertera till USD och EUR
+        totalSumSEK += sekToAdd;
+        totalSumUSD += sekToAdd / usdExchangeRate;
+        totalSumEUR += sekToAdd / eurExchangeRate;
 
-            <div class="transit-details">
-                <h3 class="section-heading">Totals</h3>
-                <div class="totals-table">
-                    <div class="table-row">
-                        <div class="table-cell">SEK</div>
-                        <div class="table-cell">@totalSumSEK.ToString("F2")</div>
-                        <div class="table-cell"></div> <!-- Tom cell för SEK eftersom det är basvalutan -->
-                    </div>
-                    <div class="table-row">
-                        <div class="table-cell">USD</div>
-                        <div class="table-cell">@totalSumUSD.ToString("F2")</div>
-                        <div class="table-cell">(SEK 1 = USD @usdExchangeRate.ToString("F4"))</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="table-cell">EUR</div>
-                        <div class="table-cell">@totalSumEUR.ToString("F2")</div>
-                        <div class="table-cell">(SEK 1 = EUR @eurExchangeRate.ToString("F4"))</div>
-                    </div>
+        <div class="transit-details">
+            <h3 class="section-heading">Totals</h3>
+            <div class="totals-table">
+                <div class="table-row">
+                    <div class="table-cell">SEK</div>
+                    <div class="table-cell">@totalSumSEK.ToString("F2")</div>
+                    <div class="table-cell"></div> <!-- Tom cell för SEK eftersom det är basvalutan -->
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">USD</div>
+                    <div class="table-cell">@totalSumUSD.ToString("F2")</div>
+                    <div class="table-cell">(SEK 1 = USD @usdExchangeRate.ToString("F4"))</div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">EUR</div>
+                    <div class="table-cell">@totalSumEUR.ToString("F2")</div>
+                    <div class="table-cell">(SEK 1 = EUR @eurExchangeRate.ToString("F4"))</div>
                 </div>
             </div>
+        </div>
 
 
 
 
 
-        }
-    
-       
-
-    
-    
-    </div>
+    }
 
 
-   
+
+
+
+</div>
+
+
+
 
 
 
@@ -177,7 +177,7 @@
                 <select id="importExportSelect" name="ShippingRequest.ImportExport">
                     <option value="import">Import</option>
                     <option value="export">Export</option>
-                   
+
                 </select>
             </div>
             <div class="form-col date-field">
@@ -186,27 +186,27 @@
             </div>
         </div>
     </div>
-   
-  
-   <div class="master-qop">
-       <div class="form-row">
+
+
+    <div class="master-qop">
+        <div class="form-row">
             <div class="form-col date-field">
-        <label asp-for="@Model.ShippingRequest.FromCity">From</label>
-        <input type="text" asp-for="@Model.ShippingRequest.FromCity" id="fromCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="fromCodeHelp">
+                <label asp-for="@Model.ShippingRequest.FromCity">From</label>
+                <input type="text" asp-for="@Model.ShippingRequest.FromCity" id="fromCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="fromCodeHelp">
 
-        <input type="hidden" asp-for="@Model.ShippingRequest.FromCode" id="fromCodeInput" class="locode" name="ShippingRequest.FromCode">
+                <input type="hidden" asp-for="@Model.ShippingRequest.FromCode" id="fromCodeInput" class="locode" name="ShippingRequest.FromCode">
 
-        <label asp-for="@Model.ShippingRequest.ToCity">To</label>
-        <input type="text" asp-for="@Model.ShippingRequest.ToCity" id="toCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="toCodeHelp">
+                <label asp-for="@Model.ShippingRequest.ToCity">To</label>
+                <input type="text" asp-for="@Model.ShippingRequest.ToCity" id="toCityInput" class="city-autocomplete" placeholder="City(english)" aria-describedby="toCodeHelp">
 
-        <input type="hidden" asp-for="@Model.ShippingRequest.ToCode" id="toCodeInput" class="locode" name="ShippingRequest.ToCode">
+                <input type="hidden" asp-for="@Model.ShippingRequest.ToCode" id="toCodeInput" class="locode" name="ShippingRequest.ToCode">
+
+            </div>
+        </div>
+
 
     </div>
-</div>
 
-
-        </div>
-    
 
 
 
@@ -216,7 +216,7 @@
             <label asp-for="@Model.ShippingRequest.Module">Transport Module</label>
             <select asp-for="@Model.ShippingRequest.Module">
                 <option value="ocean">Ocean</option>
-                
+
                 <!-- Additional options -->
             </select>
         </div>
@@ -224,9 +224,10 @@
             <label asp-for="@Model.ShippingRequest.Weight">Weight</label>
             <input asp-for="@Model.ShippingRequest.Weight" type="number" />
         </div>
+        
         <div class="form-col">
-            <label asp-for="@Model.ShippingRequest.Volume">Volume (m³)</label>
-            <input asp-for="@Model.ShippingRequest.Volume" type="number" step="0.01" />
+            <label asp-for="@Model.ShippingRequest.Volume">Total Volume (m³)</label>
+            <input asp-for="@Model.ShippingRequest.Volume" type="number" step="0.01" value="0" readonly id="totalVolume" />
         </div>
         <div class="form-col">
             <label asp-for="@Model.ShippingRequest.Packages">Number Of Packages</label>
@@ -246,68 +247,70 @@
                 <option value="BAG(S)">Säckar</option>
             </select>
         </div>
-        
+
     </div>
-    
+
     <!-- Hidden Inputs -->
     <input type="hidden" asp-for="@Model.ShippingRequest.Type" value="lcl" />
     <input type="hidden" asp-for="@Model.ShippingRequest.UserSelection" value="lcl" />
 
 
 
-    
 
-       <div style="margin-top:100px">
-    <h4>Dimensions</h4>
+
+    <div style="margin-top:100px">
+        <h4>Dimensions</h4>
 
         <div id="dimensionsContainerEn">
-        <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Pcs">Number Of Package</label>
-            <input asp-for="ShippingRequest.Dimensions[0].Pcs" type="number" />
+            <div id="dimensionsContainer">
+                <div>
+                    <label asp-for="ShippingRequest.Dimensions[0].Pcs">Number Of Packages</label>
+                    <input asp-for="ShippingRequest.Dimensions[0].Pcs" type="number" id="pcs" oninput="calculateVolume()" />
+                </div>
+                <div>
+                    <label asp-for="ShippingRequest.Dimensions[0].Length">Length (cm)</label>
+                    <input asp-for="ShippingRequest.Dimensions[0].Length" type="number" id="length" oninput="calculateVolume()" />
+                </div>
+                <div>
+                    <label asp-for="ShippingRequest.Dimensions[0].Width">Width (cm)</label>
+                    <input asp-for="ShippingRequest.Dimensions[0].Width" type="number" id="width" oninput="calculateVolume()" />
+                </div>
+                <div>
+                    <label asp-for="ShippingRequest.Dimensions[0].Height">Height (cm)</label>
+                    <input asp-for="ShippingRequest.Dimensions[0].Height" type="number" id="height" oninput="calculateVolume()" />
+                </div>
+                <div>
+                    <label asp-for="ShippingRequest.Dimensions[0].Weight">Actual Weight (kg)</label>
+                    <input asp-for="ShippingRequest.Dimensions[0].Weight" type="number" id="weight" oninput="calculateVolume()" />
+                </div>
+            </div>
+            <div>
+                <label asp-for="ShippingRequest.Dimensions[0].Stackable">Stackable</label>
+                <select asp-for="ShippingRequest.Dimensions[0].Stackable">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
         </div>
-        <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Length">Lenght</label>
-            <input asp-for="ShippingRequest.Dimensions[0].Length" type="number" />
-        </div>
-        <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Width">Width</label>
-            <input asp-for="ShippingRequest.Dimensions[0].Width" type="number" />
-        </div>
-        <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Height">Hight</label>
-            <input asp-for="ShippingRequest.Dimensions[0].Height" type="number" />
-        </div>
-        <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Weight">Weight</label>
-            <input asp-for="ShippingRequest.Dimensions[0].Weight" type="number" />
-        </div>
-        <div>
-            <label asp-for="ShippingRequest.Dimensions[0].Stackable">Stackable</label>
-            <select asp-for="ShippingRequest.Dimensions[0].Stackable">
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-            </select>
-        </div>
-    </div>
 
         <button type="button" class="cta-button" onclick="addDimension()">Add Dimension</button>
 
-    <br>
-    
+        <br>
+
     </div>
     <div class="sleep">
-    <div id="loadingSpinner" style="display: none;">
-        <div class="spinner"></div>
-    </div>
-    
+        <div id="loadingSpinner" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
         <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
     </div>
-    
+
 
 </form>
 
 
-<form method="post" id="contactFormSv" style="margin-top:50px;display:none" >
+<form method="post" id="contactFormSv" style="margin-top:50px;display:none">
     <div class="form-row">
         <div class="form-col date-field">
             <label asp-for="@Model.ShippingRequest.ImportExport">Import/Export</label>
@@ -317,10 +320,10 @@
             </select>
         </div>
         <div class="form-row">
-        <div class="form-col date-field">
-            <label asp-for="@Model.ShippingRequest.InlandZipCode">ZipCode</label>
-            <input asp-for="@Model.ShippingRequest.InlandZipCode">
-        </div>
+            <div class="form-col date-field">
+                <label asp-for="@Model.ShippingRequest.InlandZipCode">ZipCode</label>
+                <input asp-for="@Model.ShippingRequest.InlandZipCode">
+            </div>
         </div>
 
         <div class="form-col date-field">
@@ -424,11 +427,11 @@
         <br>
 
     </div>
-   <div class="sleep">
-    <div id="loadingSpinner" style="display: none;">
-        <div class="spinner"></div>
-    </div>
-    
+    <div class="sleep">
+        <div id="loadingSpinner" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
         <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button" text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
     </div>
 </form>
@@ -438,9 +441,26 @@
 
 @section Scripts {
     <script>
+        function calculateVolume() {
+            const densityRatio = 1.6;
+            const pcs = parseInt(document.getElementById('pcs').value) || 0;
+            const length = parseFloat(document.getElementById('length').value) || 0;
+            const width = parseFloat(document.getElementById('width').value) || 0;
+            const height = parseFloat(document.getElementById('height').value) || 0;
+            const actualWeight = parseFloat(document.getElementById('weight').value) || 0;
+
+            const volume = (length * width * height) / 1000000; // Convert cubic cm to cubic meters
+            const volumeWeight = volume * densityRatio * 1000; // Convert cubic meters to kg using density ratio
+
+            const totalVolume = volume * pcs;
+            const totalActualWeight = actualWeight * pcs;
+            const totalVolumeWeight = volumeWeight * pcs;
+
+            document.getElementById('totalVolume').value = totalVolume.toFixed(3);
+        }
         const locodes = {
-            
-            
+
+
             "GOTHENBURG": "SEGOT",
             "ABIDJAN": "CIABJ",
             "ABU DHABI": "AEAUH",
@@ -849,7 +869,7 @@
             "ZHUHAI GUANGDONG": "CNZUH",
         };
 
-       
+
 
         $(document).ready(function () {
             $('#importExportSelect').change(function () {
@@ -972,19 +992,19 @@
             };
 
             var dimensionHTML = `
-                <div id="dimension-${dimensionIndex}">
-                    <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Pcs" placeholder="${placeholders.pcs}" />
-                    <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Length" placeholder="${placeholders.length}" />
-                    <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Width" placeholder="${placeholders.width}" />
-                    <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Height" placeholder="${placeholders.height}" />
-                    <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Weight" placeholder="${placeholders.weight}" />
-                    <select name="ShippingRequest.Dimensions[${dimensionIndex}].Stackable">
-                        <option value="true">${placeholders.yes}</option>
-                        <option value="false">${placeholders.no}</option>
-                    </select>
-                    <button type="button" class="cta-button" onclick="removeDimension(${dimensionIndex})">${placeholders.removeBtn}</button>
-                </div>
-            `;
+                        <div id="dimension-${dimensionIndex}">
+                            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Pcs" placeholder="${placeholders.pcs}" />
+                            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Length" placeholder="${placeholders.length}" />
+                            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Width" placeholder="${placeholders.width}" />
+                            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Height" placeholder="${placeholders.height}" />
+                            <input type="number" name="ShippingRequest.Dimensions[${dimensionIndex}].Weight" placeholder="${placeholders.weight}" />
+                            <select name="ShippingRequest.Dimensions[${dimensionIndex}].Stackable">
+                                <option value="true">${placeholders.yes}</option>
+                                <option value="false">${placeholders.no}</option>
+                            </select>
+                            <button type="button" class="cta-button" onclick="removeDimension(${dimensionIndex})">${placeholders.removeBtn}</button>
+                        </div>
+                    `;
 
             container.insertAdjacentHTML('beforeend', dimensionHTML);
             dimensionIndex++; // Inkrementera dimensionIndex för varje ny dimension
@@ -1004,7 +1024,7 @@
 
 
 
-       
+
 
 
 

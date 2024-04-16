@@ -2,11 +2,16 @@
 @model MasterArtsWeb.Pages.LogisticsCenter.ShipmentCalculatorModel
 @{
 }
-<div class="text-center mille">
-    <h3 class="contact adjusted-anchor-2" id="contact-id">
-        ORDER
-    </h3>
+
+    
+
+
+<div class="lemon-2 contact adjusted-anchor-2" id="contact-id">
+
+    ORDER
+
 </div>
+
 <div class="language-toggle text-end index-lang">
     <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">Svenska</button>
 </div>
@@ -51,7 +56,7 @@
             <input asp-for="Order.ConsigneeAddress1" class="form-control" />
             <span asp-validation-for="Order.ConsigneeAddress1" class="text-danger"></span>
 
-            <label asp-for="Order.ConsigneeAddress2">Consignee Address 2 (Optional)</label>
+            <label asp-for="Order.ConsigneeAddress2">Consignee Address 2</label>
             <input asp-for="Order.ConsigneeAddress2" class="form-control" />
             <span asp-validation-for="Order.ConsigneeAddress2" class="text-danger"></span>
 

@@ -141,7 +141,7 @@ header {
 .contact {
    
     
-    color: #333;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -574,7 +574,30 @@ h1 {
 }
 
 @media (max-width: 768px) {
-
+    .lemon-2 {
+        margin-top: 1px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        background-image: linear-gradient( rgba(0, 0, 0, 0.5), /* Lägger till en mörkare övertoning */
+        rgba(0, 0, 0, 0.5) ), url('/images/golvet.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: rgba(184, 216, 245, 0.5);
+        backdrop-filter: blur(15px); /* Lägger till en suddig bakgrundsfilter */
+        -webkit-backdrop-filter: blur(15px);
+        height: 300px;
+        z-index: 1;
+        font-size: 2em; /* Större typsnitt för rubriken */
+        color: deeppink; /* Startfärg */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Textskugga för djup */
+        animation: colorFade 8s infinite;
+        
+        padding-bottom: 80px /* Sätter ett lägre z-index för att lägga den bakom andra element */
+    }
     .lemon {
         margin-top:10px;
         position: relative;
@@ -600,7 +623,7 @@ h1 {
 
     .adjusted-anchor-2 {
         margin-top: -100px;
-        padding-top: 200px;
+        padding-top: 300px;
     }
 }
 
@@ -915,9 +938,11 @@ input {
     backdrop-filter: blur(15px); /* Lägger till en suddig bakgrundsfilter */
     -webkit-backdrop-filter: blur(15px);
     height: 300px;
-    z-index: 1; 
-    color:#fff;
-    font-size:2em;/* Sätter ett lägre z-index för att lägga den bakom andra element */
+    z-index: 1;
+    font-size: 2em; /* Större typsnitt för rubriken */
+    color: deeppink; /* Startfärg */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Textskugga för djup */
+    animation: colorFade 8s infinite;
 }
 
 .s-1 {
@@ -1064,7 +1089,7 @@ input {
     
     .contact {
         margin-top: 15px;
-        color: #333;
+        color: #fff;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -3186,54 +3211,9 @@ input[type="checkbox"] {
 }
 
 /* Style for each label */
-#contactForm label {
-    display: block;
-    margin-bottom: 10px;
-    color: #333; /* Ljusare blå för en modern känsla */
-    
-    text-transform: uppercase; /* Lägger till en professionell touch */
-    letter-spacing: 1px; /* Ger texten mer andningsrum */
-}
-
-#contactForm input[type="text"],
-#contactForm input[type="number"],
-#contactForm input[type="date"],
-#contactForm select {
-    width: 100%;
-    padding: 15px;
-   
 
 
 
-
-
-
-
-    border-radius: 20px; /* Mer uttalad rundad kant för ett mjukare intryck */
-    box-sizing: border-box;
-    margin-bottom: 20px;
-    transition: all 0.3s ease-in-out; /* Gör interaktioner mjukare */
-    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2); /* Lägger till en subtil skugga för djup */
-    font-size: 16px; /* Gör texten mer läsbar */
-}
-
-    #contactForm input[type="text"]:focus,
-    #contactForm input[type="number"]:focus,
-    #contactForm input[type="date"]:focus,
-    #contactForm select:focus {
-        border-color: #0056b3; /* Mörkare blå för fokus */
-        box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Stärker skuggan för att indikera fokus */
-    }
-
-    #contactForm input[type="text"]:hover,
-    #contactForm input[type="number"]:hover,
-    #contactForm input[type="date"]:hover,
-    #contactForm select:hover {
-        background-color: #e7f3ff; /* Mycket ljus blå som en hover-effekt */
-       
-    }
-
-/* Style for the large action button */
 
 
 /* Base styles for the form */
@@ -3257,7 +3237,7 @@ input[type="checkbox"] {
 
 /* Adjustments for the date field to take more space */
 .date-field {
-   max-width:1200px;
+   width:400px;
    z-index:1
 }
 .goods-container {
