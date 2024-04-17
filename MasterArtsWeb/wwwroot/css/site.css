@@ -586,7 +586,7 @@ h1 {
         color: deeppink; /* Startfärg */
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Textskugga för djup */
         animation: colorFade 8s infinite;
-        font-family:bold;
+        
         padding-bottom: 80px /* Sätter ett lägre z-index för att lägga den bakom andra element */
     }
     .lemon {
@@ -934,7 +934,7 @@ input {
     color: deeppink; /* Startfärg */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Textskugga för djup */
     animation: colorFade 8s infinite;
-    font-family: bold;
+    
 }
 
 .s-1 {

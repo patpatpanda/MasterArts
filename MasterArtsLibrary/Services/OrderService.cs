@@ -199,13 +199,13 @@ namespace MasterArtsLibrary.Services
                 else
                 {
                     _logger.LogError("Servern returnerade ett fel: " + await response.Content.ReadAsStringAsync());
-                    return null; // Eller hantera det på något annat sätt
+                    return null; 
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError("Ett undantag inträffade: " + ex.Message);
-                return null; // Eller hantera det på något annat sätt
+                return null; 
             }
         }
 
@@ -288,13 +288,13 @@ namespace MasterArtsLibrary.Services
                 }
                 else
                 {
-                    // Hantera icke-lyckade svar här, t.ex. genom att logga eller kasta ett undantag
+                   
                     throw new Exception($"API call failed: {response.ReasonPhrase}");
                 }
             }
             catch (Exception ex)
             {
-                // Logga eller hantera undantag här
+               
                 throw new Exception($"An error occurred while calling the API: {ex.Message}", ex);
             }
         }

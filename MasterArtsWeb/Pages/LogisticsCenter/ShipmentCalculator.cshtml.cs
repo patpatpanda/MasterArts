@@ -32,6 +32,8 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         private readonly MyDbContext _context;
         public int OrderId { get; set; }
         public string Description { get; set; }
+        public IList<Order> Orders { get; set; }
+        public bool IsOpsUser { get; set; }
         public PartialViewResult OnGetAddGoodsForm(int index)
         {
             var newGoods = new Goods(); // Initialize your Goods model
@@ -49,6 +51,8 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         public string CustomerNumber { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            var user = await _userManager.GetUserAsync(User);
+            IsOpsUser = user != null && user.Email == "ops@artslogistics.se";
             if (id.HasValue)
             {
                 // Använd Include() för att inkludera Goods listan i den hämtade ordern
@@ -67,6 +71,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
                 Order = new Order();
             }
             return Page();
+
         }
 
 
