@@ -260,7 +260,7 @@
 
 
     <div style="margin-top:100px">
-        <h4>Dimensions</h4>
+        <h4>Dimensions (Optional)</h4>
 
         <div id="dimensionsContainerEn">
             <div id="dimensionsContainer">
@@ -284,7 +284,7 @@
                     <label asp-for="ShippingRequest.Dimensions[0].Weight">Actual Weight (kg)</label>
                     <input asp-for="ShippingRequest.Dimensions[0].Weight" type="number" id="weight" oninput="calculateVolume()" />
                 </div>
-            </div>
+            
             <div>
                 <label asp-for="ShippingRequest.Dimensions[0].Stackable">Stackable</label>
                 <select asp-for="ShippingRequest.Dimensions[0].Stackable">
@@ -307,7 +307,7 @@
         <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
     </div>
 
-
+     </div>
 </form>
 
 
