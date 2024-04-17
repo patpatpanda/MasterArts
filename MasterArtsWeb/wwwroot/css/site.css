@@ -1135,13 +1135,7 @@ input {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
 
-    .table-responsive {
-        font-size: 14px;
-    }
-
-    .table th, .table td {
-        padding: 10px;
-    }
+   
 
 
 
@@ -3572,19 +3566,7 @@ h3{
     transition: all 0.3s ease;
     font-size: 18px; /* Större textstorlek */
 }
-.center-container {
-    background: linear-gradient(to bottom, #c0c0c0 0%, #add8e6 100%);
-    color: #333;
-    font-family: 'Arial', sans-serif;
-}
 
-.service-info {
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-}
 
 .card-icon {
     color: #c0c0c0;
@@ -3596,25 +3578,24 @@ h3{
         transform: rotate(10deg);
     }
 
-h3, p {
-    text-align: center;
+.table-responsive {
+    font-size: 14px;
+    overflow-x: auto;
 }
 
-button {
-    background-color: #c0c0c0;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.3s;
+.table th, .table td {
+    padding: 10px;
 }
 
-    button:hover {
-        background-color: #add8e6;
+@media (max-width: 768px) {
+    .table thead th:nth-last-child(-n+4), /* Justera detta nummer baserat på vilka kolumner du vill dölja */
+    .table tbody td:nth-last-child(-n+4) {
+        display: none;
     }
+}
+@media (max-width: 992px) {
+    .table thead th:nth-last-child(-n+6),
+    .table tbody td:nth-last-child(-n+6) {
+        display: none;
+    }
+}

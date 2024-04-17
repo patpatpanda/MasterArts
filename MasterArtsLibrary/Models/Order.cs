@@ -60,6 +60,11 @@ namespace MasterArtsLibrary.Models
         {
             IntegrationId = Guid.NewGuid().ToString();
         }
+
+        public static implicit operator Order(List<Order> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

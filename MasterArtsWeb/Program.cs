@@ -36,6 +36,7 @@ builder.Services.AddScoped<UserManager<IdentityUser>>();
 
 
 
+
 var app = builder.Build();
 
 

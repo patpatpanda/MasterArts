@@ -47,11 +47,30 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         private readonly LanguageService _languageService;
         public string CurrentLanguage { get; set; }
         public string CustomerNumber { get; set; }
-        public void OnGet(int orderId)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-           
+            if (id.HasValue)
+            {
+                // Använd Include() för att inkludera Goods listan i den hämtade ordern
+                Order = await _context.Orders
+                                       .Include(o => o.Goods) // Inkludera Goods-listan
+                                       .FirstOrDefaultAsync(o => o.Id == id);
 
+                if (Order == null)
+                {
+                    return NotFound("Order with the specified ID not found.");
+                }
+            }
+            else
+            {
+                // Inget ID tillhandahållet, skapa en ny tom order
+                Order = new Order();
+            }
+            return Page();
         }
+
+
+
         public async Task<IActionResult> OnPostAsync()
         {
             _logger.LogInformation($"Order received: {JsonConvert.SerializeObject(Order)}");
@@ -96,6 +115,6 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             return customer?.CustomerNumber;
         }
 
-
+       
     }
 }

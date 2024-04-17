@@ -17,7 +17,7 @@
 </div>
 
 
-<div style="margin-top:100px;">
+<div class="ban">
     <a href="/Index#contact-id" class="cta-button">Back</a>
 </div>
 <form method="post" asp-page-handler="ChangeLanguage" id="languageForm">
@@ -32,7 +32,7 @@
     <div class="calculator-container" id="mr-calc" style="margin-top:70px">
         <form id="calculator-form" class="shipment-form-2">
             <div id="density-selection">
-                <label>Välj Densitet:</label>
+                <label>Densitet:</label>
                 <select id="selectedDensity" onchange="updateResults()">
                     <option value="1:6">1:6</option>
                    
@@ -62,7 +62,7 @@ else
     <div class="calculator-container" id="mr-calc" style="margin-top:70px">
         <form id="calculator-form" class="shipment-form-2">
             <div id="density-selection">
-                <label>Select Density:</label>
+                <label>Density:</label>
                 <select id="selectedDensity" onchange="updateResults()">
                     <option value="1:6">1:6</option>
                     
@@ -147,7 +147,7 @@ else
             document.getElementById('chargeableWeight').innerText = 'Chargeable Weight: ' + chargeableWeight.toFixed(2) + ' kg';
         }
 
-        // Hjälpfunktion för att extrahera och omvandla densitetsförhållandet
+        
         function extractDensityRatio(selectedDensity) {
             var ratio = 0.0;
             if (selectedDensity) {

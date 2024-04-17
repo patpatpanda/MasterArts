@@ -1,10 +1,7 @@
-﻿@page
+﻿@page 
 @model MasterArtsWeb.Pages.LogisticsCenter.ShipmentCalculatorModel
 @{
 }
-
-    
-
 
 <div class="lemon-2 contact adjusted-anchor-2" id="contact-id">
 
@@ -16,7 +13,6 @@
     <button id="languageToggleBtn" class="l-btn" onclick="toggleLanguage()">Svenska</button>
 </div>
 
-
     @if (TempData["SuccessMessage"] != null)
     {
 
@@ -24,13 +20,10 @@
     }
 <div class="buttons-container" style="margin-top:50px; text-align:center;">
     <a href="/LogisticsCenter/Calculator#contact-id" class="button-link"><i class="fas fa-calculator"></i>SHIPMENT-CALCULATOR</a>
-    <a href="/LogisticsCenter/MyOrdersModel#contact-id" class="button-link"><i class="fas fa-book"></i> BOOKINGS</a>
+    <a href="/LogisticsCenter/MyOrdersModel#contact-id" class="button-link"><i class="fas fa-book"></i> ORDERS</a>
     <a href="/NordicApi/CalculateRates#contact-id" class="button-link"><i class="fa-thin fa-anchor"></i>OCEAN LCL</a>
     <a href="/NordicApi/InlandRequest#contact-id" class="button-link"><i class="fa-thin fa-ship"></i>INLAND LCL</a>
 </div>
-
-
-
 
 
 
@@ -38,8 +31,6 @@
 
 </body>
 
-
-  
 
 <form method="post" id="contactForm" style="margin-top:100px">
 
@@ -89,8 +80,6 @@
         </div>
 
 
-
-
         <div class="form-container-2">
             <h3 class="text-center" style="color:#333">Consignor</h3>
             <label asp-for="Order.ConsignorName">Consignor Name</label>
@@ -138,10 +127,7 @@
 
     </div>
 
-
 <div class="order-1">
-    
-    
    
     <div class="form-container-2">
         <h3 class="text-center" style="color:#333">Details</h3>
@@ -245,7 +231,7 @@
            
                 @for (int i = 0; i < Model.Order.Goods.Count; i++)
                 {
-                
+                <div class="dimension-container" id="dimension-@i">
                     <label asp-for="Goods[@i].PackageId">Package ID<span class="required">*</span></label>
                 <input asp-for="@Model.Order.Goods[@i].PackageId" class="form-control"  />
                 <span asp-validation-for="@Model.Order.Goods[@i].PackageId" class="text-danger"></span>
@@ -273,9 +259,8 @@
                     <span asp-validation-for="@Model.Order.Goods[@i].PackageType" class="text-danger"></span>
 
 
-                <label asp-for="@Model.Order.Goods[@i].OrderId">Quantity<span class="required">*</span></label>
-                <input asp-for="@Model.Order.Goods[@i].OrderId" type="number" class="form-control" />
-                <span asp-validation-for="@Model.Order.Goods[@i].OrderId" class="text-danger"></span>
+                
+
 
                 <label asp-for="@Model.Order.Goods[@i].Quantity">Quantity<span class="required">*</span></label>
                 <input asp-for="@Model.Order.Goods[@i].Quantity" type="number" class="form-control"  />
@@ -306,14 +291,16 @@
                 <label asp-for="@Model.Order.Goods[@i].Remarks">Remarks</label>
                 <input asp-for="@Model.Order.Goods[@i].Remarks" class="form-control" placeholder="Ex: Fragile, Handle with care, etc..." />
                 <span asp-validation-for="@Model.Order.Goods[@i].Remarks" class="text-danger"></span>
+                    <button type="button" class="cta-button" onclick="removeDimension(@i)">Ta bort</button>
+                </div>
                 }
-            <div id="dimensionsContainerEn"  class="goods-container">
-        </div>
-        <button type="button" class="cta-button" onclick="addDimension()">Add Goods</button>
-
+                    <div id="dimensionsContainerEn" class="goods-container"></div>
+                    <button type="button" class="cta-button" onclick="addDimension()">Add Goods</button>
+                </div>
+            
         </div>
        
-</div>
+
     
        
     <div class="sleep">
@@ -598,9 +585,6 @@
            
         </div>
 
-
-       
-
     </div>
     <div class="sleep">
         <div id="loadingSpinner" style="display: none;">
@@ -615,20 +599,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    
 
     <div>
@@ -638,9 +608,6 @@
 
 
     </div>
-
-
-
 
 
 
@@ -772,15 +739,18 @@
     }
 
 
-
-
-
     function removeDimension(index) {
-        var elementToRemove = document.getElementById(`dimension-${index}`);
-        if (elementToRemove) {
-            elementToRemove.remove();
+        var element = document.getElementById('dimension-' + index);
+        if (element) {
+            element.remove();
         }
     }
+
+    // Räkna antalet befintliga dimension-container element när sidan laddas
+    window.onload = function () {
+        var existingGoods = document.querySelectorAll('.dimension-container').length;
+        dimensionIndex = existingGoods; // Startar dimensionIndex efter befintliga "Goods"
+    };
 
    
 
