@@ -5,6 +5,7 @@ using MasterArtsWeb;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
+
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using JsonSerializer = System.Text.Json.JsonSerializer;
+using System.Text.Json.Serialization;
 
 namespace MasterArtsLibrary.Services
 {
@@ -252,7 +254,8 @@ namespace MasterArtsLibrary.Services
 
                 var tokenResponseBody = await tokenResponse.Content.ReadAsStringAsync();
                 var tokenData = JsonSerializer.Deserialize<TokenResponse>(tokenResponseBody, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                var accessToken = tokenData?.Access_token;
+                var accessToken = tokenData?.AccessToken; // This should work if tokenData is not null and the JSON was parsed correctly
+
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 var orderResponse = await httpClient.PutAsJsonAsync(apiUrl + "order", order); // Se till att URL:en är korrekt
@@ -299,7 +302,94 @@ namespace MasterArtsLibrary.Services
             }
         }
 
+        public async Task<string> GetAccessToken()
+        {
+            var clientId = _configuration["UPSApi:ClientId"];
+            var clientSecret = _configuration["UPSApi:ClientSecret"];
+            var tokenUrl = _configuration["UPSApi:TokenEndpoint"];
 
+            var clientCredentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}"));
+
+            using (var requestMessage = new HttpRequestMessage(HttpMethod.Post, tokenUrl))
+            {
+                requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", clientCredentials);
+                requestMessage.Content = new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                {"grant_type", "client_credentials"}
+            });
+
+                var response = await _httpClient.SendAsync(requestMessage);
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    _logger.LogError($"Token request failed with status code {response.StatusCode} and error message: {errorContent}");
+                    return null;
+                }
+
+                var tokenResponse = await response.Content.ReadAsStringAsync();
+                var tokenData = JsonSerializer.Deserialize<Dictionary<string, string>>(tokenResponse);
+                return tokenData.ContainsKey("access_token") ? tokenData["access_token"] : null;
+            }
+        }
+
+
+            public async Task<RateResponse> GetShippingRatesAsync(RateRequest request)
+        {
+            // Retrieve the access token
+            var accessToken = await GetAccessToken();
+            if (string.IsNullOrEmpty(accessToken))
+            {
+                _logger.LogError("Failed to obtain access token.");
+                throw new InvalidOperationException("Failed to obtain access token.");
+            }
+
+            // Set up request headers and endpoint
+            var apiUrl = _configuration["UPSApi:ApiBaseUrl"];
+            var version = _configuration["UPSApi:Version"];
+            var requestOption = _configuration["UPSApi:RequestOption"];
+
+            // Bygg den fullständiga API-URL:en
+            var fullApiUrl = $"{apiUrl}/{version}/{requestOption}";
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            // Serialize the request object to JSON
+            var jsonRequest = JsonSerializer.Serialize(request);
+            var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+            try
+            {
+                // Send the request
+                var response = await _httpClient.PostAsync(fullApiUrl, content);
+
+                response.EnsureSuccessStatusCode(); // Throws an exception if the HTTP response status is an error code.
+
+                // Read and deserialize the response
+                var responseJson = await response.Content.ReadAsStringAsync();
+                var upsResponse = JsonSerializer.Deserialize<RateResponse>(responseJson);
+
+                return upsResponse;
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.LogError($"An HTTP error occurred: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"An error occurred when deserializing the response: {ex.Message}");
+                throw;
+            }
+        }
+
+        private class TokenResponse
+        {
+            [JsonPropertyName("access_token")]
+            public string AccessToken { get; set; }
+            [JsonPropertyName("token_type")]
+            public string TokenType { get; set; }
+            [JsonPropertyName("expires_in")]
+            public int ExpiresIn { get; set; }
+        }
 
     }
 }

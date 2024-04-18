@@ -8,8 +8,8 @@
 
 html, body {
     overflow-x: hidden;
-    background-color: #f5f5f5; /* En mycket mjuk grå färg */
-    color: #333; /* Mörkare textfärg för kontrast */
+    background-color: white;
+    color: #333; 
     font-family: Arial, sans-serif
 }
 
@@ -983,9 +983,7 @@ input {
     background-color: aliceblue;
 }
 
-.emo-1 {
-    width: 800px
-}
+
 
 .fot {
     display: flex;
@@ -3345,39 +3343,7 @@ input[type="checkbox"] {
     }
 
 /* Flex container styling för att placera barn vågrätt eller lodrätt baserat på skärmstorlek */
-#dimensionsContainerSv  {
-    display: flex;
-    flex-wrap: wrap; /* Ser till att element kan gå till nästa rad */
-    gap: 10px; /* Lägger till utrymme mellan element */
-}
-#dimensionsContainerEn {
-display: flex;
-flex-wrap: wrap; /* Ser till att element kan gå till nästa rad */
-gap: 10px; /* Lägger till utrymme mellan element */
-}
 
-    /* Stylar varje div inom dimensionsContainerSv för att ta upp lika mycket utrymme */
-    #dimensionsContainerSv > div {
-        flex: 1; /* Gör att varje element växer och tar lika mycket plats */
-        min-width: 120px; /* Sätter en minsta bredd för att förhindra för liten storlek på mobil */
-    }
-#dimensionsContainerEn > div {
-    flex: 1; /* Gör att varje element växer och tar lika mycket plats */
-    min-width: 120px; /* Sätter en minsta bredd för att förhindra för liten storlek på mobil */
-}
-
-/* Anpassar layouten för mobila enheter */
-@media (max-width: 1000px) {
-    #dimensionsContainerSv {
-        flex-direction: column; /* Ändrar till lodrätt layout */
-    }
-    #dimensionsContainerEn {
-        flex-direction: column; /* Ändrar till lodrätt layout */
-    }
-    .emo-1 {
-        width: 400px
-    }
-}
 /* Style for the dropdown menu */
 .nav-item .dropdown-menu {
     display: none; /* Hide dropdown by default */
@@ -3585,18 +3551,5 @@ h3{
 
 .table th, .table td {
     padding: 10px;
-}
-
-@media (max-width: 768px) {
-    .table thead th:nth-last-child(-n+4), /* Justera detta nummer baserat på vilka kolumner du vill dölja */
-    .table tbody td:nth-last-child(-n+4) {
-        display: none;
-    }
-}
-@media (max-width: 992px) {
-    .table thead th:nth-last-child(-n+6),
-    .table tbody td:nth-last-child(-n+6) {
-        display: none;
-    }
 }
 
