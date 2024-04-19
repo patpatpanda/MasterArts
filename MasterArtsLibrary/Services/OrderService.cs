@@ -19,6 +19,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using System.Text.Json.Serialization;
+using static System.Net.WebRequestMethods;
 
 namespace MasterArtsLibrary.Services
 {
@@ -333,7 +334,7 @@ namespace MasterArtsLibrary.Services
         }
 
 
-            public async Task<RateResponse> GetShippingRatesAsync(RateRequest request)
+        public async Task<RateResponse> GetShippingRatesAsync(string jsonRequest)
         {
             // Retrieve the access token
             var accessToken = await GetAccessToken();
@@ -343,24 +344,25 @@ namespace MasterArtsLibrary.Services
                 throw new InvalidOperationException("Failed to obtain access token.");
             }
 
-            // Set up request headers and endpoint
-            var apiUrl = _configuration["UPSApi:ApiBaseUrl"];
-            var version = _configuration["UPSApi:Version"];
-            var requestOption = _configuration["UPSApi:RequestOption"];
-
-            // Bygg den fullständiga API-URL:en
-            var fullApiUrl = $"{apiUrl}/{version}/{requestOption}";
+            // Set up request headers
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            // Serialize the request object to JSON
-            var jsonRequest = JsonSerializer.Serialize(request);
-            var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+            // Build the complete API URL
+
+
+            var fullApiUrl = "https://wwwcie.ups.com/api/rating/v2403/rate?requestOption=Rate";
+
+            HttpResponseMessage response = null;  // Declare response outside the try block to make it accessible in the catch block
 
             try
             {
-                // Send the request
-                var response = await _httpClient.PostAsync(fullApiUrl, content);
+                // Create StringContent from the JSON request
+                var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+                _logger.LogInformation($"Sending JSON request: {jsonRequest}");
 
+
+                // Send the request
+                response = await _httpClient.PostAsync(fullApiUrl, content);
                 response.EnsureSuccessStatusCode(); // Throws an exception if the HTTP response status is an error code.
 
                 // Read and deserialize the response
@@ -371,7 +373,9 @@ namespace MasterArtsLibrary.Services
             }
             catch (HttpRequestException ex)
             {
-                _logger.LogError($"An HTTP error occurred: {ex.Message}");
+                // Check if response is not null before accessing it
+                var errorResponse = response != null ? await response.Content.ReadAsStringAsync() : "Response was null";
+                _logger.LogError($"An HTTP error occurred: {ex.Message}, Response Content: {errorResponse}");
                 throw;
             }
             catch (Exception ex)
@@ -380,6 +384,8 @@ namespace MasterArtsLibrary.Services
                 throw;
             }
         }
+
+
 
         private class TokenResponse
         {
@@ -392,5 +398,7 @@ namespace MasterArtsLibrary.Services
         }
 
     }
+
 }
+
 

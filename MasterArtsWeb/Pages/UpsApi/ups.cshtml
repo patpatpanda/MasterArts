@@ -1,0 +1,73 @@
+﻿@page
+@model MasterArtsWeb.Pages.UpsApi.upsModel
+@{
+}
+<h1>UPS Shipping Rate Request</h1>
+
+
+<h2>UPS API Access Token Test</h2>
+
+@if (!string.IsNullOrEmpty(Model.ApiResponse))
+{
+    <p>API Response: @Model.ApiResponse</p>
+}
+<form method="post">
+    <!-- Include any necessary hidden fields or inputs here -->
+    <button type="submit">Submit Request</button>
+</form>
+
+
+@*@*<form method="post">
+    <!-- Shipper details -->
+    <h2>Shipper Details</h2>
+    <input type="text" name="RateRequest.Shipper.Name" value="ShipperName" placeholder="Shipper Name">
+    <input type="text" name="RateRequest.Shipper.ShipperNumber" value="123456789" placeholder="Shipper Number">
+    <!-- Address Line -->
+    <h3>Address</h3>
+    <input type="text" name="RateRequest.Shipper.Address.AddressLine[0]" value="ShipperAddressLine1" placeholder="Address Line 1">
+    <input type="text" name="RateRequest.Shipper.Address.AddressLine[1]" value="ShipperAddressLine2" placeholder="Address Line 2">
+    <input type="text" name="RateRequest.Shipper.Address.AddressLine[2]" value="ShipperAddressLine3" placeholder="Address Line 3">
+    <input type="text" name="RateRequest.Shipper.Address.City" value="TIMONIUM" placeholder="City">
+    <input type="text" name="RateRequest.Shipper.Address.StateProvinceCode" value="MD" placeholder="State/Province Code">
+    <input type="text" name="RateRequest.Shipper.Address.PostalCode" value="21093" placeholder="Postal Code">
+    <input type="text" name="RateRequest.Shipper.Address.CountryCode" value="US" placeholder="Country Code">
+    <!-- ShipTo details -->
+    <h2>ShipTo Details</h2>
+    <input type="text" name="RateRequest.ShipTo.Name" value="ShipToName" placeholder="ShipTo Name">
+    <!-- Address Line -->
+    <h3>Address</h3>
+    <input type="text" name="RateRequest.ShipTo.Address.AddressLine[0]" value="ShipToAddressLine1" placeholder="Address Line 1">
+    <input type="text" name="RateRequest.ShipTo.Address.AddressLine[1]" value="ShipToAddressLine2" placeholder="Address Line 2">
+    <input type="text" name="RateRequest.ShipTo.Address.AddressLine[2]" value="ShipToAddressLine3" placeholder="Address Line 3">
+    <input type="text" name="RateRequest.ShipTo.Address.City" value="Alpharetta" placeholder="City">
+    <input type="text" name="RateRequest.ShipTo.Address.StateProvinceCode" value="GA" placeholder="State/Province Code">
+    <input type="text" name="RateRequest.ShipTo.Address.PostalCode" value="30005" placeholder="Postal Code">
+    <input type="text" name="RateRequest.ShipTo.Address.CountryCode" value="US" placeholder="Country Code">
+    <!-- Package details -->
+    <h2>Package Details</h2>
+    <select name="RateRequest.Package.PackagingType.Code" required>
+        <option value="02" selected>Package</option>
+        <option value="01">UPS Letter</option>
+        <option value="03">UPS Tube</option>
+    </select>
+    <input type="text" name="RateRequest.NumOfPieces" value="1" placeholder="Number of Pieces">
+    <!-- Package Weight -->
+    <input type="hidden" name="RateRequest.Package.PackageWeight.UnitOfMeasurement.Code" value="LBS">
+    <input type="text" name="RateRequest.Package.PackageWeight.Weight" value="1" placeholder="Package Weight (lbs)">
+    <!-- Dimensions -->
+    <input type="hidden" name="RateRequest.Package.Dimensions.UnitOfMeasurement.Code" value="IN">
+    <input type="text" name="RateRequest.Package.Dimensions.Length" value="5" placeholder="Length (in)">
+    <input type="text" name="RateRequest.Package.Dimensions.Width" value="5" placeholder="Width (in)">
+    <input type="text" name="RateRequest.Package.Dimensions.Height" value="5" placeholder="Height (in)">
+    <!-- Service Code -->
+    <h2>Service Details</h2>
+    <select name="RateRequest.Service.Code" required>
+        <option value="03" selected>Ground</option>
+        <option value="01">Next Day Air</option>
+        <option value="02">2nd Day Air</option>
+        <!-- Add more services as required -->
+    </select>
+    <!-- Submit button -->
+    <button type="submit">Submit</button>
+</form>
+*@

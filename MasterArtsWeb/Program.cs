@@ -20,6 +20,12 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<LanguageService>();
 
 builder.Services.AddScoped<OrderService>();
+builder.Services.AddHttpClient("UPSClient", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["UPSApi:ApiBaseUrl"]);
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
 
 
 builder.Services.AddScoped<IEmailSender, EmailSender>();
