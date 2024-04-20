@@ -11,13 +11,15 @@ namespace MasterArtsWeb.Pages.UpsApi
         private readonly OrderService _upsRateService; // Make sure this service is correctly injected and configured
         [BindProperty]
         public RateRequest RateRequest { get; set; } // This should bind to the form data
-
+        public RateResponse Response { get; set; }
         public string ApiResponse { get; set; }
         public string FormattedResponse { get; set; }
         private readonly IHttpClientFactory _httpClientFactory;
-        public upsModel(OrderService upsRateService)
+        private readonly ILogger<CalculateRatesModel> _logger;
+        public upsModel(OrderService upsRateService,  ILogger<CalculateRatesModel> logger )
         {
             _upsRateService = upsRateService;
+            _logger = logger;
         }
 
         public void OnGet()
@@ -83,29 +85,32 @@ namespace MasterArtsWeb.Pages.UpsApi
             var options = new JsonSerializerOptions
             {
                 WriteIndented = true,
-                PropertyNamingPolicy = null  // Use PascalCase as defined in your models
+                PropertyNamingPolicy = null // Ensure PascalCase in JSON output
             };
 
             var jsonRequest = JsonSerializer.Serialize(new { RateRequest = rateRequest }, options);
 
             try
             {
-                var response = await _upsRateService.GetShippingRatesAsync(jsonRequest);
-                var apiResponse = JsonSerializer.Serialize(response, options);
-                var formattedResponse = FormatResponse(response);
-
-                ViewData["ApiResponse"] = apiResponse;
-                ViewData["FormattedResponse"] = formattedResponse;
+                Response = await _upsRateService.GetShippingRatesAsync(jsonRequest);
+                if (Response == null)
+                {
+                    _logger.LogError("Response from GetShippingRatesAsync is null.");
+                    ViewData["ErrorResponse"] = "Failed to retrieve valid response.";
+                }
+                else
+                {
+                    ViewData["ApiResponse"] = JsonSerializer.Serialize(Response, new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = null });
+                }
             }
             catch (Exception ex)
             {
-                ViewData["Error"] = $"An error occurred: {ex.Message}";
-                ModelState.AddModelError(string.Empty, ex.Message);
+                ViewData["ErrorResponse"] = $"An unexpected error occurred: {ex.Message}";
             }
 
-            return Page(); // Return the page to display results or errors
-        }
-
+            return Page();
+        
+    }
 
         private string FormatResponse(object response)
         {

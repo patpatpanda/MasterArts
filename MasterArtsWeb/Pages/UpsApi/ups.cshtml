@@ -4,13 +4,29 @@
 }
 <h1>UPS Shipping Rate Request</h1>
 
-
-<h2>UPS API Access Token Test</h2>
-
-@if (!string.IsNullOrEmpty(Model.ApiResponse))
+@if (Model.Response != null && Model.Response.Details != null)
 {
-    <p>API Response: @Model.ApiResponse</p>
+    <div>
+        <h3>Rate Response Details</h3>
+        <p>Status Code: @Model.Response.Details.Response.ResponseStatus.Code</p>
+        <p>Status Description: @Model.Response.Details.Response.ResponseStatus.Description</p>
+
+        @if (Model.Response.Details.RatedShipment != null)
+        {
+            <p>Service Code: @Model.Response.Details.RatedShipment.Service.Code</p>
+            <p>Service Description: @Model.Response.Details.RatedShipment.Service.Description</p>
+
+            <h4>Charges</h4>
+            <p>Total Charges: @Model.Response.Details.RatedShipment.TotalCharges.MonetaryValue @Model.Response.Details.RatedShipment.TotalCharges.CurrencyCode</p>
+        }
+    </div>
 }
+else
+{
+    <p>No data available or parsing failed.</p>
+}
+
+
 <form method="post">
     <!-- Include any necessary hidden fields or inputs here -->
     <button type="submit">Submit Request</button>

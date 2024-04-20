@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MasterArtsLibrary.Models
@@ -13,14 +14,25 @@ namespace MasterArtsLibrary.Models
 
     public class RateResponse
     {
-        public ResponseDetails Response { get; set; }
-        public List<RatedShipment> RatedShipment { get; set; }
+        [JsonPropertyName("RateResponse")]
+        public RateResponseDetails Details { get; set; }
     }
+
+    public class RateResponseDetails
+    {
+        [JsonPropertyName("Response")]
+        public ResponseDetails Response { get; set; }
+
+        [JsonPropertyName("RatedShipment")]
+        public RatedShipment RatedShipment { get; set; }
+    }
+
+    // Ensure all other classes also correctly map the JSON property names using JsonPropertyName if needed.
 
     public class ResponseDetails
     {
         public ResponseStatus ResponseStatus { get; set; }
-        public List<Alert> Alerts { get; set; }
+        public List<Alert> Alert { get; set; }
         public TransactionReference TransactionReference { get; set; }
     }
 
@@ -32,22 +44,35 @@ namespace MasterArtsLibrary.Models
 
     public class Alert
     {
-        public string? Code { get; set; }
-        public string? Description { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
     }
-
-    public class RatedShipment
+     public class RatedShipment
     {
-        public Service? Service { get; set; }
-        public string? RateChart { get; set; }
-        public BillingWeight? BillingWeight { get; set; }
-        public Charge? TransportationCharges { get; set; }
-        public Charge? BaseServiceCharge { get; set; }
-        public List<Charge>? ItemizedCharges { get; set; }
-        public Charge? TotalCharges { get; set; }
-        public Charge? TotalChargesWithTaxes { get; set; }
+        public Service Service { get; set; }
+        public List<RatedShipmentAlert> RatedShipmentAlert { get; set; }
+        public BillingWeight BillingWeight { get; set; }
+        public Charge TransportationCharges { get; set; }
+        public Charge BaseServiceCharge { get; set; }
+        public Charge ServiceOptionsCharges { get; set; }
+        public Charge TotalCharges { get; set; }
+        public List<RatedPackage> RatedPackage { get; set; }
+    }
+    public class RatedShipmentAlert
+    {
+        public string Code { get; set; }
+        public string Description { get; set; }
     }
 
+    public class RatedPackage
+    {
+        public Charge TransportationCharges { get; set; }
+        public Charge BaseServiceCharge { get; set; }
+        public Charge ServiceOptionsCharges { get; set; }
+        public Charge TotalCharges { get; set; }
+        public string Weight { get; set; }
+        public BillingWeight BillingWeight { get; set; }
+    }
     public class Service
     {
         public string? Code { get; set; }

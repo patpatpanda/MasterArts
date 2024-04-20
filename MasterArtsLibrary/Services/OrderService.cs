@@ -346,13 +346,7 @@ namespace MasterArtsLibrary.Services
 
             // Set up request headers
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
-            // Build the complete API URL
-
-
             var fullApiUrl = "https://wwwcie.ups.com/api/rating/v2403/rate?requestOption=Rate";
-
-            HttpResponseMessage response = null;  // Declare response outside the try block to make it accessible in the catch block
 
             try
             {
@@ -360,31 +354,32 @@ namespace MasterArtsLibrary.Services
                 var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
                 _logger.LogInformation($"Sending JSON request: {jsonRequest}");
 
-
                 // Send the request
-                response = await _httpClient.PostAsync(fullApiUrl, content);
+                HttpResponseMessage response = await _httpClient.PostAsync(fullApiUrl, content);
                 response.EnsureSuccessStatusCode(); // Throws an exception if the HTTP response status is an error code.
 
                 // Read and deserialize the response
                 var responseJson = await response.Content.ReadAsStringAsync();
-                var upsResponse = JsonSerializer.Deserialize<RateResponse>(responseJson);
+                _logger.LogInformation($"Received JSON response: {responseJson}");
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = null // Ensures JSON properties are mapped exactly as defined in your model
+                };
+                var upsResponse = JsonSerializer.Deserialize<RateResponse>(responseJson, options);
 
                 return upsResponse;
             }
             catch (HttpRequestException ex)
             {
-                // Check if response is not null before accessing it
-                var errorResponse = response != null ? await response.Content.ReadAsStringAsync() : "Response was null";
-                _logger.LogError($"An HTTP error occurred: {ex.Message}, Response Content: {errorResponse}");
+                _logger.LogError($"An HTTP error occurred: {ex.Message}");
                 throw;
             }
-            catch (Exception ex)
+            catch (System.Text.Json.JsonException ex)
             {
-                _logger.LogError($"An error occurred when deserializing the response: {ex.Message}");
+                _logger.LogError($"JSON parsing error: {ex.Message}");
                 throw;
             }
         }
-
 
 
         private class TokenResponse
