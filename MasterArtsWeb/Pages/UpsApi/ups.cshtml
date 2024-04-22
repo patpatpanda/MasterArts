@@ -2,88 +2,201 @@
 @model MasterArtsWeb.Pages.UpsApi.upsModel
 @{
 }
-<h1>UPS Shipping Rate Request</h1>
 
-@if (Model.Response != null && Model.Response.Details != null)
+
+
+
+
+
+<form method="post">
+    <h2>Shipper Information</h2>
+    <div>
+        <label>Name:</label>
+        <input type="text" asp-for="RateRequest.Shipment.Shipper.Name" required />
+        <span asp-validation-for="RateRequest.Shipment.Shipper.Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Address Line 1:</label>
+        <input type="text" asp-for="RateRequest.Shipment.Shipper.Address.AddressLine[0]" required />
+        <span asp-validation-for="RateRequest.Shipment.Shipper.Address.AddressLine[0]" class="text-danger"></span>
+        <label>Address Line 2:</label>
+        <input type="text" asp-for="RateRequest.Shipment.Shipper.Address.AddressLine[1]" />
+        <span asp-validation-for="RateRequest.Shipment.Shipper.Address.AddressLine[1]" class="text-danger"></span>
+        <label>Address Line 3:</label>
+        <input type="text" asp-for="RateRequest.Shipment.Shipper.Address.AddressLine[2]" />
+        <span asp-validation-for="RateRequest.Shipment.Shipper.Address.AddressLine[2]" class="text-danger"></span>
+    </div>
+    <div>
+        <label>City:</label>
+        <input type="text" asp-for="RateRequest.Shipment.Shipper.Address.City" required />
+        <span asp-validation-for="RateRequest.Shipment.Shipper.Address.City" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Postal Code:</label>
+        <input type="text" asp-for="RateRequest.Shipment.Shipper.Address.PostalCode" required />
+        <span asp-validation-for="RateRequest.Shipment.Shipper.Address.PostalCode" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Country Code:</label>
+        <input type="text" asp-for="RateRequest.Shipment.Shipper.Address.CountryCode" required />
+        <span asp-validation-for="RateRequest.Shipment.Shipper.Address.CountryCode" class="text-danger"></span>
+    </div>
+
+    <h2>Ship To Information</h2>
+    <div>
+        <label>Name:</label>
+        <input type="text" asp-for="RateRequest.Shipment.ShipTo.Name" required />
+        <span asp-validation-for="RateRequest.Shipment.ShipTo.Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Address Line 1:</label>
+        <input type="text" asp-for="RateRequest.Shipment.ShipTo.Address.AddressLine[0]" required />
+        <span asp-validation-for="RateRequest.Shipment.ShipTo.Address.AddressLine[0]" class="text-danger"></span>
+        <label>Address Line 2:</label>
+        <input type="text" asp-for="RateRequest.Shipment.ShipTo.Address.AddressLine[1]" />
+        <span asp-validation-for="RateRequest.Shipment.ShipTo.Address.AddressLine[1]" class="text-danger"></span>
+        <label>Address Line 3:</label>
+        <input type="text" asp-for="RateRequest.Shipment.ShipTo.Address.AddressLine[2]" />
+        <span asp-validation-for="RateRequest.Shipment.ShipTo.Address.AddressLine[2]" class="text-danger"></span>
+    </div>
+    <div>
+        <label>City:</label>
+        <input type="text" asp-for="RateRequest.Shipment.ShipTo.Address.City" required />
+        <span asp-validation-for="RateRequest.Shipment.ShipTo.Address.City" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Postal Code:</label>
+        <input type="text" asp-for="RateRequest.Shipment.ShipTo.Address.PostalCode" required />
+        <span asp-validation-for="RateRequest.Shipment.ShipTo.Address.PostalCode" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Country Code:</label>
+        <input type="text" asp-for="RateRequest.Shipment.ShipTo.Address.CountryCode" required />
+        <span asp-validation-for="RateRequest.Shipment.ShipTo.Address.CountryCode" class="text-danger"></span>
+    </div>
+  
+    <h2>Service Details</h2>
+    <div>
+        <label>Service Code:</label>
+        <select asp-for="RateRequest.Shipment.Service.Code" required>
+            <option value="01">Next Day Air</option>
+            <option value="02">2nd Day Air</option>
+            <option value="03">Ground</option>
+            <option value="12">3 Day Select</option>
+            <option value="13">Next Day Air Saver</option>
+            <option value="14">UPS Next Day Air Early</option>
+            <option value="59">2nd Day Air A.M.</option>
+            <option value="75">UPS Heavy Goods</option>
+            <option value="07">Worldwide Express</option>
+            <option value="08">Worldwide Expedited</option>
+            <option value="11">Standard</option>
+            <option value="54">Worldwide Express Plus</option>
+            <option value="65">Saver</option>
+            <option value="96">UPS Worldwide Express Freight</option>
+            <option value="71">UPS Worldwide Express Freight Midday</option>
+        </select>
+    </div>
+   
+        <h2>Package Details</h2>
+        <div>
+            <label>Number of Pieces:</label>
+            <input type="number" asp-for="RateRequest.Shipment.NumOfPieces" min="1" required />
+        </div>
+        <div>
+            <label>Packaging Type:</label>
+            <select asp-for="RateRequest.Shipment.Package.PackagingType.Code" required>
+                <option value="01">UPS Letter</option>
+                <option value="02">Package</option>
+                <option value="03">Tube</option>
+                <option value="04">Pak</option>
+                <option value="21">Express Box</option>
+                <option value="24">25KG Box</option>
+                <option value="25">10KG Box</option>
+                <option value="30">Pallet</option>
+                <option value="2a">Small Express Box</option>
+                <option value="2b">Medium Express Box</option>
+                <option value="2c">Large Express Box</option>
+            </select>
+        </div>
+
+    <div>
+        <label>Length (CM):</label>
+        <input type="number" asp-for="RateRequest.Shipment.Package.Dimensions.Length" required />
+        <span asp-validation-for="RateRequest.Shipment.Package.Dimensions.Length" class="text-danger"></span>
+        <label>Width (CM):</label>
+        <input type="number" asp-for="RateRequest.Shipment.Package.Dimensions.Width" required />
+        <span asp-validation-for="RateRequest.Shipment.Package.Dimensions.Width" class="text-danger"></span>
+        <label>Height (CM):</label>
+        <input type="number" asp-for="RateRequest.Shipment.Package.Dimensions.Height" required />
+        <span asp-validation-for="RateRequest.Shipment.Package.Dimensions.Height" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Weight (KGS):</label>
+        <input type="number" asp-for="RateRequest.Shipment.Package.PackageWeight.Weight" required />
+        <span asp-validation-for="RateRequest.Shipment.Package.PackageWeight.Weight" class="text-danger"></span>
+    </div>
+
+    <div>
+        <button type="submit">Submit Rate Request</button>
+    </div>
+</form>
+
+
+
+ 
+
+
+<h2>UPS Rate Response Details</h2>
+
+@if (Model.Response?.Details != null)
 {
     <div>
-        <h3>Rate Response Details</h3>
-        <p>Status Code: @Model.Response.Details.Response.ResponseStatus.Code</p>
-        <p>Status Description: @Model.Response.Details.Response.ResponseStatus.Description</p>
+        <h3>Response Status</h3>
+        <p>Code: @Model.Response.Details.Response.ResponseStatus.Code</p>
+        <p>Description: @Model.Response.Details.Response.ResponseStatus.Description</p>
 
-        @if (Model.Response.Details.RatedShipment != null)
+        @if (Model.Response.Details.Response.Alert?.Any() == true)
         {
-            <p>Service Code: @Model.Response.Details.RatedShipment.Service.Code</p>
-            <p>Service Description: @Model.Response.Details.RatedShipment.Service.Description</p>
-
-            <h4>Charges</h4>
-            <p>Total Charges: @Model.Response.Details.RatedShipment.TotalCharges.MonetaryValue @Model.Response.Details.RatedShipment.TotalCharges.CurrencyCode</p>
+            <h4>Alerts</h4>
+            foreach (var alert in Model.Response.Details.Response.Alert)
+            {
+                <p>Alert Code: @alert.Code - @alert.Description</p>
+            }
         }
+
+        <h3>Rated Shipment Details</h3>
+        @if (Model.Response.Details.RatedShipment != null)
+{
+    <p>Service Code: @Model.Response.Details.RatedShipment.Service.Code</p>
+    <p>Service Description: @Model.Response.Details.RatedShipment.Service.Description</p>
+    
+    
+        decimal originalCharge = decimal.Parse(Model.Response.Details.RatedShipment.TotalCharges.MonetaryValue);
+        decimal increasedCharge = originalCharge * 1.3m; // Öka med 30%
+        string formattedIncreasedCharge = increasedCharge.ToString("F2"); // Format to two decimal places
+   
+    <p>Total Charges: @formattedIncreasedCharge @Model.Response.Details.RatedShipment.TotalCharges.CurrencyCode</p>
+
+    @if (Model.Response.Details.RatedShipment.RatedShipmentAlert?.Any() == true)
+    {
+        <h4>Shipment Alerts</h4>
+        foreach (var shipmentAlert in Model.Response.Details.RatedShipment.RatedShipmentAlert)
+        {
+            <p>Alert Code: @shipmentAlert.Code - @shipmentAlert.Description</p>
+        }
+    }
+}
+
     </div>
 }
 else
 {
-    <p>No data available or parsing failed.</p>
+    <p>No data available or parsing failed. Check the logs for more details.</p>
 }
 
 
-<form method="post">
-    <!-- Include any necessary hidden fields or inputs here -->
-    <button type="submit">Submit Request</button>
-</form>
 
 
-@*@*<form method="post">
-    <!-- Shipper details -->
-    <h2>Shipper Details</h2>
-    <input type="text" name="RateRequest.Shipper.Name" value="ShipperName" placeholder="Shipper Name">
-    <input type="text" name="RateRequest.Shipper.ShipperNumber" value="123456789" placeholder="Shipper Number">
-    <!-- Address Line -->
-    <h3>Address</h3>
-    <input type="text" name="RateRequest.Shipper.Address.AddressLine[0]" value="ShipperAddressLine1" placeholder="Address Line 1">
-    <input type="text" name="RateRequest.Shipper.Address.AddressLine[1]" value="ShipperAddressLine2" placeholder="Address Line 2">
-    <input type="text" name="RateRequest.Shipper.Address.AddressLine[2]" value="ShipperAddressLine3" placeholder="Address Line 3">
-    <input type="text" name="RateRequest.Shipper.Address.City" value="TIMONIUM" placeholder="City">
-    <input type="text" name="RateRequest.Shipper.Address.StateProvinceCode" value="MD" placeholder="State/Province Code">
-    <input type="text" name="RateRequest.Shipper.Address.PostalCode" value="21093" placeholder="Postal Code">
-    <input type="text" name="RateRequest.Shipper.Address.CountryCode" value="US" placeholder="Country Code">
-    <!-- ShipTo details -->
-    <h2>ShipTo Details</h2>
-    <input type="text" name="RateRequest.ShipTo.Name" value="ShipToName" placeholder="ShipTo Name">
-    <!-- Address Line -->
-    <h3>Address</h3>
-    <input type="text" name="RateRequest.ShipTo.Address.AddressLine[0]" value="ShipToAddressLine1" placeholder="Address Line 1">
-    <input type="text" name="RateRequest.ShipTo.Address.AddressLine[1]" value="ShipToAddressLine2" placeholder="Address Line 2">
-    <input type="text" name="RateRequest.ShipTo.Address.AddressLine[2]" value="ShipToAddressLine3" placeholder="Address Line 3">
-    <input type="text" name="RateRequest.ShipTo.Address.City" value="Alpharetta" placeholder="City">
-    <input type="text" name="RateRequest.ShipTo.Address.StateProvinceCode" value="GA" placeholder="State/Province Code">
-    <input type="text" name="RateRequest.ShipTo.Address.PostalCode" value="30005" placeholder="Postal Code">
-    <input type="text" name="RateRequest.ShipTo.Address.CountryCode" value="US" placeholder="Country Code">
-    <!-- Package details -->
-    <h2>Package Details</h2>
-    <select name="RateRequest.Package.PackagingType.Code" required>
-        <option value="02" selected>Package</option>
-        <option value="01">UPS Letter</option>
-        <option value="03">UPS Tube</option>
-    </select>
-    <input type="text" name="RateRequest.NumOfPieces" value="1" placeholder="Number of Pieces">
-    <!-- Package Weight -->
-    <input type="hidden" name="RateRequest.Package.PackageWeight.UnitOfMeasurement.Code" value="LBS">
-    <input type="text" name="RateRequest.Package.PackageWeight.Weight" value="1" placeholder="Package Weight (lbs)">
-    <!-- Dimensions -->
-    <input type="hidden" name="RateRequest.Package.Dimensions.UnitOfMeasurement.Code" value="IN">
-    <input type="text" name="RateRequest.Package.Dimensions.Length" value="5" placeholder="Length (in)">
-    <input type="text" name="RateRequest.Package.Dimensions.Width" value="5" placeholder="Width (in)">
-    <input type="text" name="RateRequest.Package.Dimensions.Height" value="5" placeholder="Height (in)">
-    <!-- Service Code -->
-    <h2>Service Details</h2>
-    <select name="RateRequest.Service.Code" required>
-        <option value="03" selected>Ground</option>
-        <option value="01">Next Day Air</option>
-        <option value="02">2nd Day Air</option>
-        <!-- Add more services as required -->
-    </select>
-    <!-- Submit button -->
-    <button type="submit">Submit</button>
-</form>
-*@
+
+
+

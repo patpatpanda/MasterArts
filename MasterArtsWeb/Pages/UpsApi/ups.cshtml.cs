@@ -1,3 +1,4 @@
+﻿using DocumentFormat.OpenXml.Bibliography;
 using MasterArtsLibrary.Models;
 using MasterArtsLibrary.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +13,11 @@ namespace MasterArtsWeb.Pages.UpsApi
         [BindProperty]
         public RateRequest RateRequest { get; set; } // This should bind to the form data
         public RateResponse Response { get; set; }
-        public string ApiResponse { get; set; }
+        
         public string FormattedResponse { get; set; }
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger<CalculateRatesModel> _logger;
-        public upsModel(OrderService upsRateService,  ILogger<CalculateRatesModel> logger )
+        public upsModel(OrderService upsRateService, ILogger<CalculateRatesModel> logger)
         {
             _upsRateService = upsRateService;
             _logger = logger;
@@ -24,98 +25,55 @@ namespace MasterArtsWeb.Pages.UpsApi
 
         public void OnGet()
         {
-            
+
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var rateRequest = new RateRequest
+            if (!ModelState.IsValid)
             {
-                Request = new RequestDetails
+                // Loggar alla fel i ModelState
+                foreach (var entry in ModelState)
                 {
-                    TransactionReference = new TransactionReference { CustomerContext = "CustomerContext" }
-                },
-                Shipment = new Shipment
-                {
-                    Shipper = new Party
+                    if (entry.Value.Errors.Count > 0)
                     {
-                        Name = "ShipperName",
-                        Address = new Address
+                        _logger.LogError($"Errors for {entry.Key}:");
+                        foreach (var error in entry.Value.Errors)
                         {
-                            AddressLine = new List<string> { "ShipperAddressLine1", "ShipperAddressLine2", "ShipperAddressLine3" },
-                            City = "TIMONIUM",
-                            StateProvinceCode = "MD",
-                            PostalCode = "21093",
-                            CountryCode = "US"
-                        }
-                    },
-                    ShipTo = new Party
-                    {
-                        Name = "ShipToName",
-                        Address = new Address
-                        {
-                            AddressLine = new List<string> { "ShipToAddressLine1", "ShipToAddressLine2", "ShipToAddressLine3" },
-                            City = "Alpharetta",
-                            StateProvinceCode = "GA",
-                            PostalCode = "30005",
-                            CountryCode = "US"
-                        }
-                    },
-                    Service = new ServiceDetails { Code = "03", Description = "Ground" },
-                    NumOfPieces = "1",
-                    Package = new PackageDetails
-                    {
-                        PackagingType = new PackagingType { Code = "02", Description = "Packaging" },
-                        Dimensions = new Dimensions
-                        {
-                            UnitOfMeasurement = new UnitOfMeasurement { Code = "IN", Description = "Inches" },
-                            Length = "5",
-                            Width = "5",
-                            Height = "5"
-                        },
-                        PackageWeight = new PackageWeight
-                        {
-                            UnitOfMeasurement = new UnitOfMeasurement { Code = "LBS", Description = "Pounds" },
-                            Weight = "1"
+                            _logger.LogError(error.ErrorMessage);
                         }
                     }
                 }
-            };
+            }
 
-            var options = new JsonSerializerOptions
+                try
             {
-                WriteIndented = true,
-                PropertyNamingPolicy = null // Ensure PascalCase in JSON output
-            };
+                var options = new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = null };
+                var jsonRequest = JsonSerializer.Serialize(new { this.RateRequest }, options);
 
-            var jsonRequest = JsonSerializer.Serialize(new { RateRequest = rateRequest }, options);
+                // Send to UPS service and handle the response
+                // Assuming _upsRateService.GetShippingRatesAsync() is ready to process this jsonRequest
+                var response = await _upsRateService.GetShippingRatesAsync(jsonRequest);
 
-            try
-            {
-                Response = await _upsRateService.GetShippingRatesAsync(jsonRequest);
-                if (Response == null)
+                if (response != null)
                 {
-                    _logger.LogError("Response from GetShippingRatesAsync is null.");
-                    ViewData["ErrorResponse"] = "Failed to retrieve valid response.";
+                    // Assuming the `Responses` property is meant to hold the deserialized response object
+                    Response = response; // Set the response to the property that holds the RateResponse
+                    ViewData["ApiResponse"] = JsonSerializer.Serialize(response, options);
                 }
                 else
                 {
-                    ViewData["ApiResponse"] = JsonSerializer.Serialize(Response, new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = null });
+                    _logger.LogError("No response received from the UPS service.");
+                    ViewData["ErrorResponse"] = "Failed to retrieve a valid response from the service.";
                 }
             }
             catch (Exception ex)
             {
+                _logger.LogError($"An unexpected error occurred: {ex.Message}");
                 ViewData["ErrorResponse"] = $"An unexpected error occurred: {ex.Message}";
             }
 
             return Page();
-        
-    }
-
-        private string FormatResponse(object response)
-        {
-            // Format the response in a way that is suitable for display or further processing
-            return response.ToString();  // Placeholder: implement actual formatting logic based on response structure
         }
     }
-}
+    }
