@@ -16,37 +16,47 @@
         {
         }
 
-        public class RateResponse
-        {
-            [JsonPropertyName("RateResponse")]
-            public RateResponseDetails Details { get; set; }
-        }
+    public class RateResponse
+    {
+        [JsonPropertyName("RateResponse")]
+        public RateResponseDetails Details { get; set; }
+    }
 
-        public class RateResponseDetails
-        {
-            [JsonPropertyName("Response")]
-            public ResponseDetails Response { get; set; }
+    public class RateResponseDetails
+    {
+        [JsonPropertyName("Response")]
+        public ResponseDetails Response { get; set; }
 
-            [JsonPropertyName("RatedShipment")]
-            public RatedShipment RatedShipment { get; set; }
-        }
+        [JsonPropertyName("RatedShipment")]
+        public RatedShipment RatedShipment { get; set; }
 
-        // Ensure all other classes also correctly map the JSON property names using JsonPropertyName if needed.
+        [JsonPropertyName("TotalChargesWithTaxes")] // Lägg till detta
+        public TotalChargesWithTaxes TotalChargesWithTaxes { get; set; }
+    }
 
-        public class ResponseDetails
-        {
-            public ResponseStatus ResponseStatus { get; set; }
-            public List<Alert> Alert { get; set; }
-            public TransactionReference TransactionReference { get; set; }
-        }
+    public class ResponseDetails
+    {
+        public ResponseStatus ResponseStatus { get; set; }
+        public List<Alert> Alert { get; set; }
+        public TransactionReference TransactionReference { get; set; }
+    }
 
-        public class ResponseStatus
-        {
-            public string Code { get; set; }
-            public string Description { get; set; }
-        }
+    public class TotalChargesWithTaxes
+    {
+        public string CurrencyCode { get; set; }
+        public string MonetaryValue { get; set; }
+    }
 
-        public class Alert
+    public class ResponseStatus
+    {
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+
+    // Andra klasser behöver inte ändras om de inte relaterar till TotalChargesWithTaxes.
+
+
+    public class Alert
         {
             public string Code { get; set; }
             public string Description { get; set; }
@@ -60,7 +70,8 @@
             public Charge BaseServiceCharge { get; set; }
             public Charge ServiceOptionsCharges { get; set; }
             public Charge TotalCharges { get; set; }
-            public List<RatedPackage> RatedPackage { get; set; }
+           
+       
         }
         public class RatedShipmentAlert
         {
@@ -82,7 +93,7 @@
             public string? Code { get; set; }
             public string? Description { get; set; }
         }
-
+    
         public class BillingWeight
         {
             public UnitOfMeasurement? UnitOfMeasurement { get; set; }
@@ -102,13 +113,14 @@
 
 
 
-        public class RateRequest
-        {
-            public RequestDetails Request { get; set; } = new RequestDetails();
-            public Shipment Shipment { get; set; } = new Shipment();
-        }
+    public class RateRequest
+    {
+        public RequestDetails Request { get; set; } = new RequestDetails();
+        public Shipment Shipment { get; set; } = new Shipment();
+        public TaxInformationIndicator TaxInformationIndicator { get; set; } = new TaxInformationIndicator();
+    }
 
-        public class RequestDetails
+    public class RequestDetails
         {
             public TransactionReference? TransactionReference { get; set; } = new TransactionReference();
         }
@@ -123,7 +135,7 @@
             public Party Shipper { get; set; }
             public Party ShipTo { get; set; }
             public ServiceDetails Service { get; set; }
-            public string NumOfPieces { get; set; }
+            public string? NumOfPieces { get; set; }
             public PackageDetails Package { get; set; }
         }
 
@@ -138,7 +150,7 @@
             public List<string> AddressLine { get; set; }
             public string City { get; set; }
            
-            public string PostalCode { get; set; }
+            public string? PostalCode { get; set; }
             public string CountryCode { get; set; }
         }
 
@@ -190,8 +202,11 @@
             [JsonProperty("Weight")]
             public string Weight { get; set; }
         }
-
-        public class UnitOfMeasurement
+     public class TaxInformationIndicator
+    {
+        public bool IncludeTaxes { get; set; } = true; // Indicator for including tax information
+    }
+    public class UnitOfMeasurement
         {
             [JsonProperty("Code")]
             public string Code { get; set; }

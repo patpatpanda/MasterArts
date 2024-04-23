@@ -8,8 +8,8 @@
 
 html, body {
     overflow-x: hidden;
-    background-color: white;
-    color: #333; 
+    background-color: #f4f4f4;
+    color: #333;
     font-family: Arial, sans-serif
 }
 
@@ -3465,12 +3465,6 @@ h3{
    margin-top:200px;
 }
 
-.keps, .transit-details,  .rates-table, .dimensions-table {
-    border: 1px solid #b0c4de; /* Light steel blue for minor dividers */
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #e6f0fa; /* Very light blue background */
-}
 
 .section-heading {
     color: #003366; /* Dark blue for headings */
@@ -3553,3 +3547,111 @@ h3{
     padding: 10px;
 }
 
+.shipper-info-form {
+   
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0px 4px 8px #b8d8f5;
+    backdrop-filter: blur(4px); /* Frostat glas-effekt */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
+}
+
+
+h2.form-heading {
+    font-size: 1.5em;
+    color: #351c15; /* UPS Brown */
+    margin-bottom: 20px;
+}
+
+.field-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+    .field-group label {
+        flex: 0 0 180px; /* Fixed width for labels */
+        margin-right: 20px;
+        text-align: right;
+        color: #666;
+    }
+
+input[type="text"],
+input[type="number"],
+select {
+    flex: 1;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+        border-color: #ffbb00; /* UPS Gold */
+        outline: none;
+        background-color: #fffbea; /* Light UPS Gold */
+    }
+
+button.submit-rate-request {
+    width: 100%;
+    background-color: #351c15; /* UPS Brown */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    button.submit-rate-request:hover {
+        background-color: #4b2e17; /* Darker UPS Brown */
+    }
+
+.error-message {
+    color: #d30c16; /* UPS Red, for visibility on errors */
+    font-size: 0.85em;
+}
+
+@media (min-width: 768px) {
+    .field-group {
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 1024px) {
+    .field-group {
+        flex-wrap: wrap;
+    }
+}
+.hidden-customer-context {
+    display: none;
+}
+.charge-container {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+    .charge-container p {
+        font-size: 1.2em; /* Större textstorlek */
+        color: #4CAF50; /* Grön färg för att betona viktiga siffror */
+        font-weight: bold; /* Fetstil */
+    }
+
+        /* Övrig dekorativ stil */
+        .charge-container p:before {
+            content: "💰"; /* Emoji eller ikon före prisinformation */
+            font-size: 1.5em;
+            display: block;
+            margin-bottom: 10px;
+        }

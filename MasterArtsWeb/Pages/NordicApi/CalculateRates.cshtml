@@ -170,7 +170,7 @@
 <link rel="stylesheet" href="style.css">
 
 
-<form method="post" id="contactForm" style="margin-top:200px;">
+<form method="post" id="contactForm" class="shipper-info-form"  style="margin-top:200px;">
     <div class="master-qop">
         <div class="form-row">
             <div class="form-col date-field">
@@ -260,7 +260,7 @@
 
 
     <div style="margin-top:100px">
-        <h4>Dimensions (Optional)</h4>
+        <h2 class="section-heading">Dimensions (Optional)</h2>
 
         <div id="dimensionsContainerEn">
             <div id="dimensionsContainer">
@@ -308,134 +308,8 @@
     </div>
 
      </div>
-</form>
+  </form>
 
-
-<form method="post" id="contactFormSv" style="margin-top:50px;display:none">
-    <div class="form-row">
-        <div class="form-col date-field">
-            <label asp-for="@Model.ShippingRequest.ImportExport">Import/Export</label>
-            <select asp-for="@Model.ShippingRequest.ImportExport">
-                <option value="import">Import</option>
-                <option value="export">Export</option>
-            </select>
-        </div>
-        <div class="form-row">
-            <div class="form-col date-field">
-                <label asp-for="@Model.ShippingRequest.InlandZipCode">ZipCode</label>
-                <input asp-for="@Model.ShippingRequest.InlandZipCode">
-            </div>
-        </div>
-
-        <div class="form-col date-field">
-            <label asp-for="@Model.ShippingRequest.Date">Datum</label>
-            <input asp-for="@Model.ShippingRequest.Date" type="date" />
-        </div>
-    </div>
-
-    <div class="form-row" style="margin-top:100px">
-        <div class="form-col">
-            <label for="fromCity">From City</label>
-            <input type="text" class="city-autocomplete" placeholder="City(engelska)" aria-describedby="fromCodeHelp">
-            <input type="hidden" class="locode" name="ShippingRequest.FromCode">
-        </div>
-        <div class="form-col">
-            <label for="toCity">To City</label>
-            <input type="text" class="city-autocomplete" placeholder="City(engelska)" aria-describedby="toCodeHelp">
-            <input type="hidden" class="locode" name="ShippingRequest.ToCode">
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-col">
-            <label asp-for="@Model.ShippingRequest.Module">Transport Module</label>
-            <select asp-for="@Model.ShippingRequest.Module">
-                <option value="ocean">Sjö</option>
-
-                <!-- Additional options -->
-            </select>
-        </div>
-        <div class="form-col">
-            <label asp-for="@Model.ShippingRequest.Weight">Vikt</label>
-            <input asp-for="@Model.ShippingRequest.Weight" type="number" />
-        </div>
-        <div class="form-col">
-            <label asp-for="@Model.ShippingRequest.Volume">Volym (m³)</label>
-            <input asp-for="@Model.ShippingRequest.Volume" type="number" step="0.01" />
-        </div>
-        <div class="form-col">
-            <label asp-for="@Model.ShippingRequest.Packages">Antal paket</label>
-            <input type="number" asp-for="@Model.ShippingRequest.Packages" />
-        </div>
-        <div class="form-col">
-            <label asp-for="@Model.ShippingRequest.PackageType">Pakettyp</label>
-            <select asp-for="@Model.ShippingRequest.PackageType">
-                <option value="PALLET(S)">Pall(ar)</option>
-                <option value="CARTON(S)">Kartong(er)</option>
-                <option value="CRATE(S)">Trälådor</option>
-                <option value="DRUM(S)">Fat</option>
-                <option value="BUNDLE(S)">Buntar</option>
-                <option value="PIECE(S)">Styckegods</option>
-                <option value="CONTAINER(S)">Fraktcontainrar</option>
-                <option value="ROLL(S)">Rullar</option>
-                <option value="BAG(S)">Säckar</option>
-            </select>
-        </div>
-
-    </div>
-
-    <!-- Hidden Inputs -->
-    <input type="hidden" asp-for="@Model.ShippingRequest.Type" value="lcl" />
-    <input type="hidden" asp-for="@Model.ShippingRequest.UserSelection" value="lcl" />
-
-
-    <div>
-        <h4>Dimensioner</h4>
-
-        <div id="dimensionsContainerSv">
-            <div>
-                <label asp-for="ShippingRequest.Dimensions[0].Pcs">Antal stycken</label>
-                <input asp-for="ShippingRequest.Dimensions[0].Pcs" type="number" />
-            </div>
-            <div>
-                <label asp-for="ShippingRequest.Dimensions[0].Length">Längd</label>
-                <input asp-for="ShippingRequest.Dimensions[0].Length" type="number" />
-            </div>
-            <div>
-                <label asp-for="ShippingRequest.Dimensions[0].Width">Bredd</label>
-                <input asp-for="ShippingRequest.Dimensions[0].Width" type="number" />
-            </div>
-            <div>
-                <label asp-for="ShippingRequest.Dimensions[0].Height">Höjd</label>
-                <input asp-for="ShippingRequest.Dimensions[0].Height" type="number" />
-            </div>
-            <div>
-                <label asp-for="ShippingRequest.Dimensions[0].Weight">Vikt</label>
-                <input asp-for="ShippingRequest.Dimensions[0].Weight" type="number" />
-            </div>
-            <div>
-                <label asp-for="ShippingRequest.Dimensions[0].Stackable">Stackbar</label>
-                <select asp-for="ShippingRequest.Dimensions[0].Stackable">
-                    <option value="true">Ja</option>
-                    <option value="false">Nej</option>
-                </select>
-            </div>
-        </div>
-
-
-        <button type="button" class="cta-button" onclick="addDimension()">Lägg till Dimension</button>
-
-        <br>
-
-    </div>
-    <div class="sleep">
-        <div id="loadingSpinner" style="display: none;">
-            <div class="spinner"></div>
-        </div>
-
-        <button id="loginButton" onclick="startLoginProcess()" type="submit" class="cta-button" text-center" style="margin-top:20px" name="OrderSubmitButton">Calculate</button>
-    </div>
-</form>
 
 
 

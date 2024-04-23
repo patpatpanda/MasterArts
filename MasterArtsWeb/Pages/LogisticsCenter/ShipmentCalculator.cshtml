@@ -23,6 +23,7 @@
     <a href="/LogisticsCenter/MyOrdersModel#contact-id" class="button-link"><i class="fas fa-book"></i> ORDERS</a>
     <a href="/NordicApi/CalculateRates#contact-id" class="button-link"><i class="fa-thin fa-anchor"></i>OCEAN LCL</a>
     <a href="/NordicApi/InlandRequest#contact-id" class="button-link"><i class="fa-thin fa-ship"></i>INLAND LCL</a>
+     <a href="/UpsApi/ups#contact-id" class="button-link"><i class="fas fa-calculator"></i>UPS COURIER</a>
     @if (Model.IsOpsUser)
     {
         <a asp-page="/LogisticsCenter/AllOrders" class="btn btn-primary">View All Orders</a>
@@ -43,7 +44,7 @@
     <div class="order-1">
         <div class="form-container-2">
 
-            <h3 class="text-center" style="color:#333">Consignee</h3>
+             <h2 class="section-heading">Consignee</h2>
             <label asp-for="Order.ConsigneeName">Consignee Name</label>
             <input asp-for="Order.ConsigneeName" class="form-control" />
             <span asp-validation-for="Order.ConsigneeName" class="text-danger"></span>
@@ -86,7 +87,7 @@
 
 
         <div class="form-container-2">
-            <h3 class="text-center" style="color:#333">Consignor</h3>
+             <h2 class="section-heading">Consignor</h2>
             <label asp-for="Order.ConsignorName">Consignor Name</label>
             <input asp-for="Order.ConsignorName" class="form-control" />
             <span asp-validation-for="Order.ConsignorName" class="text-danger"></span>
@@ -135,7 +136,7 @@
 <div class="order-1">
    
     <div class="form-container-2">
-        <h3 class="text-center" style="color:#333">Details</h3>
+         <h2 class="section-heading">Details</h2>
            
 @*
                 <label asp-for="Order.OrderReference">Order reference</label>
@@ -232,7 +233,7 @@
 
 
         <div class="form-container-2 goods-container">
-            <h3 class="text-center" style="color:#333">Goods</h3>
+            <h2 class="section-heading">Goods</h2>
            
                 @for (int i = 0; i < Model.Order.Goods.Count; i++)
                 {
