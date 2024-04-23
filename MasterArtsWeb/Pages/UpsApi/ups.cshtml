@@ -568,10 +568,7 @@
     </div>
    
         <h2 class="section-heading">Package Details</h2>
-@*<div class="field-group number-of-pieces">
-    <label>Number of Pieces:</label>
-    <input type="number" asp-for="RateRequest.Shipment.NumOfPieces" min="1" class="input-number-of-pieces" />
-</div>*@
+
 <div class="field-group packaging-type">
     <label>Packaging Type:</label>
     <select asp-for="RateRequest.Shipment.Package.PackagingType.Code" class="select-packaging-type">
@@ -611,82 +608,55 @@
 
 <div class="master-master shipping-cost-calculator">
     <h3 id="resultSection"></h3>
+<h2>UPS Rate Response Details</h2>
 
-    @if (!string.IsNullOrEmpty(ViewData["ErrorResponse"] as string))
-{
-    <div class="alert alert-danger" role="alert">
-        @ViewData["ErrorResponse"]
-    </div>
-}
 @if (Model.Response?.Details != null)
 {
-    
-        
+    <div>
+        <h3>Response Status</h3>
+        <p>Code: @Model.Response.Details.Response.ResponseStatus.Code</p>
+        <p>Description: @Model.Response.Details.Response.ResponseStatus.Description</p>
 
         @if (Model.Response.Details.Response.Alert?.Any() == true)
         {
-          
+            <h4>Alerts</h4>
             foreach (var alert in Model.Response.Details.Response.Alert)
             {
-              
+                <p>Alert Code: @alert.Code - @alert.Description</p>
             }
         }
 
-@if (Model.Response.Details.RatedShipment != null)
+        <h3>Rated Shipment Details</h3>
+       @if (Model.Response.Details.RatedShipment != null)
 {
-    var isValidNumber = decimal.TryParse(Model.Response.Details.RatedShipment.TotalCharges.MonetaryValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal originalCharge);
-    if (isValidNumber)
-    {
-        string formattedOriginalCharge = originalCharge.ToString("F2", CultureInfo.InvariantCulture); // Formatera till två decimaler
-        <div class="charge-container">
-            <p>Total Charges: @formattedOriginalCharge @Model.Response.Details.RatedShipment.TotalCharges.CurrencyCode</p>
-        </div>
-    }
+    <p>Service Code: @Model.Response.Details.RatedShipment.Service.Code</p>
+    <p>Service Description: @Model.Response.Details.RatedShipment.Service.Description</p>
+    
+    // Parsing the original charge
+    decimal originalCharge = decimal.Parse(Model.Response.Details.RatedShipment.TotalCharges.MonetaryValue, CultureInfo.InvariantCulture);
+    string formattedOriginalCharge = originalCharge.ToString("F2"); // Format to two decimal places
 
-    else
-    {
-        <div class="charge-container">
-            <p>Error calculating charges.</p>
-        </div>
-    }
-}
+    <p>Total Charges: @formattedOriginalCharge @Model.Response.Details.RatedShipment.TotalCharges.CurrencyCode</p>
 
-}
-@if (Model.Response?.Details != null)
-{
-    // Kontrollera om TotalChargesWithTaxes finns
-    if (Model.Response.Details.TotalChargesWithTaxes != null)
+    @if (Model.Response.Details.RatedShipment.RatedShipmentAlert?.Any() == true)
     {
-        // Extrahera MonetaryValue från TotalChargesWithTaxes
-        var isValidNumber = decimal.TryParse(Model.Response.Details.TotalChargesWithTaxes.MonetaryValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal totalChargesWithTaxes);
-        if (isValidNumber)
+        <h4>Shipment Alerts</h4>
+        foreach (var shipmentAlert in Model.Response.Details.RatedShipment.RatedShipmentAlert)
         {
-            // Formatera priset
-            string formattedTotalChargesWithTaxes = totalChargesWithTaxes.ToString("F2", CultureInfo.InvariantCulture); // Formatera till två decimaler
-
-            // Visa det totala priset med skatter
-            <div class="charge-container">
-                <p>Total Charges With Taxes: @formattedTotalChargesWithTaxes @Model.Response.Details.TotalChargesWithTaxes.CurrencyCode</p>
-            </div>
-        }
-        else
-        {
-            // Visa ett meddelande om det uppstår ett fel vid formatering av priset
-            <div class="charge-container">
-                <p>Error formatting total charges with taxes.</p>
-            </div>
+            <p>Alert Code: @shipmentAlert.Code - @shipmentAlert.Description</p>
         }
     }
-    else
-    {
-        // Visa ett meddelande om skatteinformationen inte är tillgänglig
-        <div class="charge-container">
-            <p>No charges with taxes found.</p>
-        </div>
-    }
 }
 
+
+    </div>
+}
+else
+{
+    <p>No data available or parsing failed. Check the logs for more details.</p>
+}
 </div>
+
 
 
 

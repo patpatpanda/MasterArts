@@ -2,19 +2,19 @@
 
 
 
-    using Newtonsoft.Json;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Text.Json.Serialization;
-    using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
-    namespace MasterArtsLibrary.Models
+namespace MasterArtsLibrary.Models
+{
+    public class Ups
     {
-        public class Ups
-        {
-        }
+    }
 
     public class RateResponse
     {
@@ -29,10 +29,9 @@
 
         [JsonPropertyName("RatedShipment")]
         public RatedShipment RatedShipment { get; set; }
-
-        [JsonPropertyName("TotalChargesWithTaxes")] // Lägg till detta
-        public TotalChargesWithTaxes TotalChargesWithTaxes { get; set; }
     }
+
+    // Ensure all other classes also correctly map the JSON property names using JsonPropertyName if needed.
 
     public class ResponseDetails
     {
@@ -41,70 +40,60 @@
         public TransactionReference TransactionReference { get; set; }
     }
 
-    public class TotalChargesWithTaxes
-    {
-        public string CurrencyCode { get; set; }
-        public string MonetaryValue { get; set; }
-    }
-
     public class ResponseStatus
     {
         public string Code { get; set; }
         public string Description { get; set; }
     }
 
-    // Andra klasser behöver inte ändras om de inte relaterar till TotalChargesWithTaxes.
-
-
     public class Alert
-        {
-            public string Code { get; set; }
-            public string Description { get; set; }
-        }
-        public class RatedShipment
-        {
-            public Service Service { get; set; }
-            public List<RatedShipmentAlert> RatedShipmentAlert { get; set; }
-            public BillingWeight BillingWeight { get; set; }
-            public Charge TransportationCharges { get; set; }
-            public Charge BaseServiceCharge { get; set; }
-            public Charge ServiceOptionsCharges { get; set; }
-            public Charge TotalCharges { get; set; }
-           
-       
-        }
-        public class RatedShipmentAlert
-        {
-            public string Code { get; set; }
-            public string Description { get; set; }
-        }
+    {
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+    public class RatedShipment
+    {
+        public Service Service { get; set; }
+        public List<RatedShipmentAlert> RatedShipmentAlert { get; set; }
+        public BillingWeight BillingWeight { get; set; }
+        public Charge TransportationCharges { get; set; }
+        public Charge BaseServiceCharge { get; set; }
+        public Charge ServiceOptionsCharges { get; set; }
+        public Charge TotalCharges { get; set; }
+        public List<RatedPackage> RatedPackage { get; set; }
+    }
+    public class RatedShipmentAlert
+    {
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
 
-        public class RatedPackage
-        {
-            public Charge TransportationCharges { get; set; }
-            public Charge BaseServiceCharge { get; set; }
-            public Charge ServiceOptionsCharges { get; set; }
-            public Charge TotalCharges { get; set; }
-            public string Weight { get; set; }
-            public BillingWeight BillingWeight { get; set; }
-        }
-        public class Service
-        {
-            public string? Code { get; set; }
-            public string? Description { get; set; }
-        }
-    
-        public class BillingWeight
-        {
-            public UnitOfMeasurement? UnitOfMeasurement { get; set; }
-            public string? Weight { get; set; }
-        }
+    public class RatedPackage
+    {
+        public Charge TransportationCharges { get; set; }
+        public Charge BaseServiceCharge { get; set; }
+        public Charge ServiceOptionsCharges { get; set; }
+        public Charge TotalCharges { get; set; }
+        public string Weight { get; set; }
+        public BillingWeight BillingWeight { get; set; }
+    }
+    public class Service
+    {
+        public string? Code { get; set; }
+        public string? Description { get; set; }
+    }
 
-        public class Charge
-        {
-            public string? CurrencyCode { get; set; }
-            public string? MonetaryValue { get; set; }
-        }
+    public class BillingWeight
+    {
+        public UnitOfMeasurement? UnitOfMeasurement { get; set; }
+        public string? Weight { get; set; }
+    }
+
+    public class Charge
+    {
+        public string? CurrencyCode { get; set; }
+        public string? MonetaryValue { get; set; }
+    }
 
 
 
@@ -117,108 +106,100 @@
     {
         public RequestDetails Request { get; set; } = new RequestDetails();
         public Shipment Shipment { get; set; } = new Shipment();
-        public TaxInformationIndicator TaxInformationIndicator { get; set; } = new TaxInformationIndicator();
     }
 
     public class RequestDetails
-        {
-            public TransactionReference? TransactionReference { get; set; } = new TransactionReference();
-        }
-
-        public class TransactionReference
-        {
-            public string? CustomerContext { get; set; }
-        }
-
-        public class Shipment
-        {
-            public Party Shipper { get; set; }
-            public Party ShipTo { get; set; }
-            public ServiceDetails Service { get; set; }
-            public string? NumOfPieces { get; set; }
-            public PackageDetails Package { get; set; }
-        }
-
-        public class Party
-        {
-            public string Name { get; set; }
-            public Address Address { get; set; }
-        }
-
-        public class Address
-        {
-            public List<string> AddressLine { get; set; }
-            public string City { get; set; }
-           
-            public string? PostalCode { get; set; }
-            public string CountryCode { get; set; }
-        }
-
-
-
-        public class PackageDetails
-        {
-            public PackagingType PackagingType { get; set; }
-            public Dimensions Dimensions { get; set; }
-            public PackageWeight PackageWeight { get; set; }
-        }
-        public class ServiceDetails
-        {
-            public string Code { get; set; }
-            public string Description { get; set; }
-        }
-
-
-
-        public class PackagingType
-        {
-            [JsonProperty("Code")]
-            public string Code { get; set; }
-
-            [JsonProperty("Description")]
-            public string Description { get; set; }
-        }
-
-        public class Dimensions
-        {
-            [JsonProperty("UnitOfMeasurement")]
-            public UnitOfMeasurement UnitOfMeasurement { get; set; } = new UnitOfMeasurement { Code = "CM", Description = "Centimeters" };
-
-            [JsonProperty("Length")]
-            public string Length { get; set; }
-
-            [JsonProperty("Width")]
-            public string Width { get; set; }
-
-            [JsonProperty("Height")]
-            public string Height { get; set; }
-        }
-
-        public class PackageWeight
-        {
-            [JsonProperty("UnitOfMeasurement")]
-            public UnitOfMeasurement UnitOfMeasurement { get; set; } = new UnitOfMeasurement { Code = "KGS", Description = "Kilograms" };
-
-            [JsonProperty("Weight")]
-            public string Weight { get; set; }
-        }
-     public class TaxInformationIndicator
     {
-        public bool IncludeTaxes { get; set; } = true; // Indicator for including tax information
+        public TransactionReference? TransactionReference { get; set; } = new TransactionReference();
     }
+
+    public class TransactionReference
+    {
+        public string? CustomerContext { get; set; }
+    }
+
+    public class Shipment
+    {
+        public Party Shipper { get; set; }
+        public Party ShipTo { get; set; }
+        public ServiceDetails Service { get; set; }
+        public string NumOfPieces { get; set; }
+        public PackageDetails Package { get; set; }
+    }
+
+    public class Party
+    {
+        public string Name { get; set; }
+        public Address Address { get; set; }
+    }
+
+    public class Address
+    {
+        public List<string> AddressLine { get; set; }
+        public string City { get; set; }
+
+        public string PostalCode { get; set; }
+        public string CountryCode { get; set; }
+    }
+
+
+
+    public class PackageDetails
+    {
+        public PackagingType PackagingType { get; set; }
+        public Dimensions Dimensions { get; set; }
+        public PackageWeight PackageWeight { get; set; }
+    }
+    public class ServiceDetails
+    {
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+
+
+
+    public class PackagingType
+    {
+        [JsonProperty("Code")]
+        public string Code { get; set; }
+
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+    }
+
+    public class Dimensions
+    {
+        [JsonProperty("UnitOfMeasurement")]
+        public UnitOfMeasurement UnitOfMeasurement { get; set; } = new UnitOfMeasurement { Code = "CM", Description = "Centimeters" };
+
+        [JsonProperty("Length")]
+        public string Length { get; set; }
+
+        [JsonProperty("Width")]
+        public string Width { get; set; }
+
+        [JsonProperty("Height")]
+        public string Height { get; set; }
+    }
+
+    public class PackageWeight
+    {
+        [JsonProperty("UnitOfMeasurement")]
+        public UnitOfMeasurement UnitOfMeasurement { get; set; } = new UnitOfMeasurement { Code = "KGS", Description = "Kilograms" };
+
+        [JsonProperty("Weight")]
+        public string Weight { get; set; }
+    }
+
     public class UnitOfMeasurement
-        {
-            [JsonProperty("Code")]
-            public string Code { get; set; }
+    {
+        [JsonProperty("Code")]
+        public string Code { get; set; }
 
-            [JsonProperty("Description")]
-            public string Description { get; set; }
-        }
-
-        // You can reuse the Service and TotalCharges classes if they match the response structure
-
+        [JsonProperty("Description")]
+        public string Description { get; set; }
     }
 
+    // You can reuse the Service and TotalCharges classes if they match the response structure
 
-
-
+}
