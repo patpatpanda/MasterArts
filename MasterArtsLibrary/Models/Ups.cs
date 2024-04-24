@@ -51,7 +51,7 @@ namespace MasterArtsLibrary.Models
         public string Code { get; set; }
         public string Description { get; set; }
     }
-     public class RatedShipment
+    public class RatedShipment
     {
         public Service Service { get; set; }
         public List<RatedShipmentAlert> RatedShipmentAlert { get; set; }
@@ -60,10 +60,8 @@ namespace MasterArtsLibrary.Models
         public Charge BaseServiceCharge { get; set; }
         public Charge ServiceOptionsCharges { get; set; }
         public Charge TotalCharges { get; set; }
-        public TotalChargesWithTaxes TotalChargesWithTaxes { get; set; } // Lägg till denna rad
         public List<RatedPackage> RatedPackage { get; set; }
     }
-
     public class RatedShipmentAlert
     {
         public string Code { get; set; }
@@ -101,11 +99,6 @@ namespace MasterArtsLibrary.Models
 
 
 
-    public class TotalChargesWithTaxes
-    {
-        public string CurrencyCode { get; set; }
-        public string MonetaryValue { get; set; }
-    }
 
 
 
@@ -113,7 +106,6 @@ namespace MasterArtsLibrary.Models
     {
         public RequestDetails Request { get; set; } = new RequestDetails();
         public Shipment Shipment { get; set; } = new Shipment();
-        public bool TaxInformationIndicator { get; set; } = true;
     }
 
     public class RequestDetails

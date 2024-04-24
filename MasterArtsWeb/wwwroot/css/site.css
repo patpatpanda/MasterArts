@@ -142,7 +142,7 @@ header {
 
 
 .contact {
-   
+   margin-top:20px;
     
     color: #333;
     display: flex;
@@ -531,6 +531,8 @@ h1 {
 }
 
 @media (max-width: 768px) {
+
+    
     .qop-4 {
         margin: 20px auto;
         padding: 20px;
@@ -564,7 +566,7 @@ h1 {
     }
 
     .adjusted-anchor-2 {
-        margin-top: -100px;
+        margin-top: 400px;
         padding-top: 300px;
     }
 }
@@ -1006,9 +1008,9 @@ input {
             position: relative; /* Fortsatt relativ positionering */
         }
 
-    
+
     .contact {
-       
+        margin-top: 20px;
         color: #333;
         display: flex;
         justify-content: center;
@@ -3459,10 +3461,10 @@ h3{
 
 .shipper-info-form {
    
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 20px auto;
     padding: 20px;
-    box-shadow: 0px 4px 8px #b8d8f5;
+   
     backdrop-filter: blur(4px); /* Frostat glas-effekt */
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
@@ -3509,7 +3511,7 @@ select {
 
 button.submit-rate-request {
     width: 100%;
-    background-color: #351c15; /* UPS Brown */
+    background-color: #b8d8f5; /* UPS Brown */
     color: white;
     padding: 10px;
     border: none;
@@ -3519,7 +3521,7 @@ button.submit-rate-request {
 }
 
     button.submit-rate-request:hover {
-        background-color: #4b2e17; /* Darker UPS Brown */
+        background-color: lightgray; /* Darker UPS Brown */
     }
 
 .error-message {
@@ -3541,15 +3543,7 @@ button.submit-rate-request {
 .hidden-customer-context {
     display: none;
 }
-.master-master {
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 600px;
-    margin: auto;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+
 
 .response-container {
     background-color: white;
@@ -3709,13 +3703,7 @@ button.submit-rate-request {
     border-radius: 5px;
     font-weight: bold;
 }
-.shipping-calculator-wrapper {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    font-family: 'Arial', sans-serif;
-}
+
 
 .section-title {
     color: #333;
@@ -3745,6 +3733,7 @@ button.submit-rate-request {
 }
 .lemon-2 {
     margin-top: 12px;
+    margin-bottom:20px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -3755,8 +3744,8 @@ button.submit-rate-request {
     background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
     background-size: 200% 200%;
     animation: colorShift 8s ease-in-out infinite;
-    font-size: 2em;
-    color: white;
+    font-size: 3em;
+    color: #333;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin-top: 20px;
     box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);

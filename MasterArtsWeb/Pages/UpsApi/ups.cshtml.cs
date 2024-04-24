@@ -48,7 +48,7 @@ namespace MasterArtsWeb.Pages.UpsApi
             try
             {
                 // Ange TaxInformationIndicator
-                RateRequest.TaxInformationIndicator = true; // Se till att detta värde alltid är satt
+            
 
                 var options = new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = null };
                 var jsonRequest = JsonSerializer.Serialize(new { RateRequest }, options);

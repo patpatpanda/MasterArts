@@ -18,7 +18,6 @@
 <div class="ban">
     <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
 </div>
-
 <div class="master-master shipping-cost-calculator">
     <h3 id="resultSection"></h3>
 
@@ -41,7 +40,7 @@
             }
         </div>
     }
-</div>
+
 <form method="post" class="shipper-info-form">
    <h2 class="section-heading">Shipper</h2>
     <div class="hidden-customer-context">
@@ -602,6 +601,14 @@
 </div>
 
 <div class="field-group package-dimensions">
+        <label asp-for="RateRequest.Shipment.Package.PackageWeight.Weight">Weight</label>
+     <input type="number" asp-for="RateRequest.Shipment.Package.PackageWeight.Weight"/>
+    <span asp-validation-for="RateRequest.Shipment.Package.PackageWeight.Weight" class="error-message"></span>
+
+        <label asp-for="RateRequest.Shipment.NumOfPieces">Pieces</label>
+     <input type="number" asp-for="RateRequest.Shipment.NumOfPieces" />
+  <span asp-validation-for="RateRequest.Shipment.NumOfPieces" class="error-message"></span>
+
     <label>Length (CM):</label>
     <input type="number" asp-for="RateRequest.Shipment.Package.Dimensions.Length" class="input-length" />
     <span asp-validation-for="RateRequest.Shipment.Package.Dimensions.Length" class="error-message"></span>
@@ -612,11 +619,7 @@
     <input type="number" asp-for="RateRequest.Shipment.Package.Dimensions.Height" class="input-height"/>
     <span asp-validation-for="RateRequest.Shipment.Package.Dimensions.Height" class="error-message"></span>
 </div>
-<div class="field-group package-weight">
-    <label>Weight (KGS):</label>
-    <input type="number" asp-for="RateRequest.Shipment.Package.PackageWeight.Weight" class="input-weight"/>
-    <span asp-validation-for="RateRequest.Shipment.Package.PackageWeight.Weight" class="error-message"></span>
-</div>
+
 
 <div class="submit-button-container">
     <button type="submit" class="submit-rate-request">Submit Rate Request</button>
@@ -626,7 +629,6 @@
 
 
 
- 
 
 
 
@@ -636,57 +638,54 @@
 
 
 
-@section Scripts {
-    <script>
 
-     document.addEventListener('DOMContentLoaded', function () {
-    var postalCodeInputs = document.querySelectorAll('.input-postal-code');
-    postalCodeInputs.forEach(function(input) {
-        input.addEventListener('input', function () {
-            // Replace non-digit characters with an empty string
-            this.value = this.value.replace(/\D/g, '');
-        });
-    });
-});
+    @section Scripts {
+        <script>
 
-        $(document).ready(function () {
-            // Iterera över varje p-element inuti din div och lägg till fade-in-klassen med en fördröjning
-            $('.shipping-cost-calculator div p').each(function (i) {
-                $(this).css('animation-delay', `${i * 0.2}s`); // 0.1s fördröjning mellan varje rad
-                $(this).addClass('fade-in');
+            document.addEventListener('DOMContentLoaded', function () {
+                var postalCodeInputs = document.querySelectorAll('.input-postal-code');
+                postalCodeInputs.forEach(function (input) {
+                    input.addEventListener('input', function () {
+                        // Replace non-digit characters with an empty string
+                        this.value = this.value.replace(/\D/g, '');
+                    });
+                });
             });
-        });
 
-        function startLoginProcess() {
-            document.getElementById('loadingSpinner').style.display = 'block';
-            document.getElementById('loadingSpinner2').style.display = 'block';
-            // Antag att `login` är funktionen som hanterar inloggningsprocessen.
-            login().then(() => {
-                document.getElementById('loadingSpinner').style.display = 'none';
+            $(document).ready(function () {
+                // Iterera över varje p-element inuti din div och lägg till fade-in-klassen med en fördröjning
+                $('.shipping-cost-calculator div p').each(function (i) {
+                    $(this).css('animation-delay', `${i * 0.2}s`); // 0.1s fördröjning mellan varje rad
+                    $(this).addClass('fade-in');
+                });
             });
-        }
 
-        window.onload = function () {
-            var resultSection = document.getElementById('resultSection');
-            if (resultSection) {
-                resultSection.scrollIntoView({ behavior: 'smooth' });
+            function startLoginProcess() {
+                document.getElementById('loadingSpinner').style.display = 'block';
+                document.getElementById('loadingSpinner2').style.display = 'block';
+                // Antag att `login` är funktionen som hanterar inloggningsprocessen.
+                login().then(() => {
+                    document.getElementById('loadingSpinner').style.display = 'none';
+                });
             }
-        };
 
-       
-      
-         $(document).ready(function() {
-        $('.select2').select2({
-            placeholder: "Select a country",
-            allowClear: true
-        });
-    });
+            window.onload = function () {
+                var resultSection = document.getElementById('resultSection');
+                if (resultSection) {
+                    resultSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            };
 
 
 
-    </script>
-}
+            $(document).ready(function () {
+                $('.select2').select2({
+                    placeholder: "Select a country",
+                    allowClear: true
+                });
+            });
 
 
 
-
+        </script>
+    }
