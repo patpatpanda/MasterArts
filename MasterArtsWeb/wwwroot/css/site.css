@@ -66,7 +66,7 @@ header {
     background-repeat: no-repeat; /* Hindrar att bilden upprepas */
 }
 
-    
+
 .kalle {
     position: relative;
     background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
@@ -75,13 +75,15 @@ header {
     background-size: cover; /* Gör så att bilden täcker hela bredden (och eventuellt höjden) */
     background-position: center; /* Centrerar bilden så viktiga delar inte klipps bort */
     background-repeat: no-repeat; /* hindrar att bilden upprepas */
-    
+
 
     border-radius: 0px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    color: #5D3B66;
-    z-index:2
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
+    animation: shiftColor 5s infinite;
 }
+
+
+
 
 
 
@@ -214,21 +216,6 @@ header {
 
 
 
-.lemon {
-    
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-    background-color: rgba(184, 216, 245, 0.5);
-    backdrop-filter: blur(15px); /* Mindre suddig effekt */
-    -webkit-backdrop-filter: blur(15px);
-    height: 300px;
-    color: #fff;
-    font-size: 2em;
-    z-index:1
-}
 
 
 
@@ -565,44 +552,8 @@ h1 {
         border-radius: 5px;
         width: 300px; /* Rounded corners for a modern look */
     }
-    .lemon-2 {
-        margin-top: 12px;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        
-        
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-       
-        backdrop-filter: blur(15px); /* Lägger till en suddig bakgrundsfilter */
-        -webkit-backdrop-filter: blur(15px);
-        height: 300px;
-        z-index: 1;
-        font-size: 2em; /* Större typsnitt för rubriken */
-        color: deeppink; /* Startfärg */
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Textskugga för djup */
-        animation: colorFade 8s infinite;
-        
-        padding-bottom: 80px /* Sätter ett lägre z-index för att lägga den bakom andra element */
-    }
-    .lemon {
-        margin-top:10px;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 400px;
-        background-color:none;
-       
-        height: 100px;
-        color: #fff;
-        font-size: 2em;
-        z-index: 1
-    }
+   
+   
     .section {
         flex-direction: column; /* Ändra layout till kolumn för att stapla element vertikalt */
         padding: 20px; /* Justera padding för mindre skärmar om nödvändigt */
@@ -913,29 +864,7 @@ input {
     .custom-container a {
         color: white;
     }
-.lemon-2 {
-    margin-top: 50px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    
-  
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    backdrop-filter: blur(15px); /* Lägger till en suddig bakgrundsfilter */
-    -webkit-backdrop-filter: blur(15px);
-    height: 300px;
-    z-index: 1;
-    font-size: 4em; /* Större typsnitt för rubriken */
-    color: deeppink; /* Startfärg */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Textskugga för djup */
-    animation: colorFade 8s infinite;
-    
-}
+
 
 .s-1 {
     margin-bottom: 100px
@@ -1079,7 +1008,7 @@ input {
 
     
     .contact {
-        margin-top: 15px;
+       
         color: #333;
         display: flex;
         justify-content: center;
@@ -2065,7 +1994,7 @@ select {
     /* En mjuk gradient från lila till en djupare lila */
     padding: 40px;
     border-radius: 12px; /* Rundade hörn */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Lägg till en subtil skugga för djup */
+   
     width: 800px; /* Maxbredd för formuläret */
     margin: 40px auto; /* Centrera och ge lite utrymme ovanför och under */
     color: #333; /* Vit textfärg för kontrast mot den mörka bakgrunden */
@@ -3177,12 +3106,7 @@ input[type="checkbox"] {
     }
 
 /* Base styles for the form */
-#contactForm {
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-   
-}
+
 
 /* Style for each form field container */
 .form-container-2 div {
@@ -3297,15 +3221,8 @@ input[type="checkbox"] {
     display: table-row;
 }
 
-.table-cell {
-    display: table-cell;
-    padding: 8px;
-    
-}
 
-.table-cell:nth-child(1) {
-    font-weight: bold;
-}
+
 .transit-details {
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
@@ -3325,9 +3242,7 @@ input[type="checkbox"] {
 
 
 
-.table-cell:nth-child(1) {
-    font-weight: bold;
-}
+
 
 /* Add additional styles to match the specific colors and fonts from the image as needed. */
 
@@ -3478,12 +3393,7 @@ h3{
     margin: 5px 0;
 }
 
-.table-cell {
-    flex: 1;
-    text-align: center;
-    padding: 5px;
-    border: 1px solid #ccc; /* Light gray borders for cells */
-}
+
 
 .table-row.header {
     font-weight: bold;
@@ -3631,27 +3541,255 @@ button.submit-rate-request {
 .hidden-customer-context {
     display: none;
 }
-.charge-container {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 15px;
-    max-width: 400px;
-    margin: 20px auto;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-align: center;
+.master-master {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-    .charge-container p {
-        font-size: 1.2em; /* Större textstorlek */
-        color: #4CAF50; /* Grön färg för att betona viktiga siffror */
-        font-weight: bold; /* Fetstil */
+.response-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.total-charges p {
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #e8f4e5;
+    border-left: 5px solid #4CAF50;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.charge {
+    font-size: 24px;
+    color: #27ae60;
+}
+
+.currency {
+    font-size: 16px;
+    color: #555;
+    font-style: italic;
+}
+
+.totals-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.totals-title {
+    color: #333;
+    background-color: #e9ecef;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.totals-table {
+    width: 100%;
+}
+
+.totals-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.totals-cell {
+    flex: 1;
+    text-align: center;
+    padding: 8px 10px;
+    font-size: 16px;
+}
+
+.currency-cell {
+    font-weight: bold;
+    color: #27ae60; /* Green to emphasize currency */
+}
+
+.amount-cell {
+    font-weight: bold;
+    color: #333; /* Dark color for amount to ensure readability */
+}
+
+.rate-cell {
+    font-style: italic;
+    color: #555; /* Slightly lighter color to differentiate rate information */
+}
+.shipping-calculator-wrapper {
+   
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 10px;
+    
+    font-family: 'Arial', sans-serif;
+}
+
+.section-title {
+    color: #333;
+    background-color: #e9ecef;
+    padding: 10px 15px;
+    border-radius: 5px;
+   
+    margin-top: 20px;
+}
+
+.rate-details-section, .transit-details-section, .agent-details-section {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 1px 10px rgba(0,0,0,0.05);
+}
+
+.rate-table, .totals-table-2 {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.rate-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.rate-cell {
+    flex: 1;
+    padding: 5px 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.co2-emission-highlight {
+    color: #28a745;
+    font-size: 16px;
+}
+.quotes-container {
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+
+.order-block {
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.sailing-details, .rates-section, .totals-section {
+    margin-top: 15px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.rates-title, .totals-title {
+    color: #333;
+    background-color: #e9ecef;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.shipping-calculator-wrapper {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.section-title {
+    color: #333;
+    background-color: #e9ecef;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.inland-details-section {
+    
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+   
+}
+
+.detail-item {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+    padding: 5px;
+    border-left: 3px solid #4CAF50;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+.lemon-2 {
+    margin-top: 12px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
+    background-size: 200% 200%;
+    animation: colorShift 8s ease-in-out infinite;
+    font-size: 2em;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
+    animation: shiftColor 5s infinite;
+}
+
+@keyframes shiftColor {
+    0%, 100% {
+        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.9); /* Steel Blue */
     }
 
-        /* Övrig dekorativ stil */
-        .charge-container p:before {
-            content: "💰"; /* Emoji eller ikon före prisinformation */
-            font-size: 1.5em;
-            display: block;
-            margin-bottom: 10px;
-        }
+    25% {
+        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.8); /* Sky Blue */
+    }
+
+    50% {
+        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.2); /* Light Steel Blue */
+    }
+
+    75% {
+        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.5); /* Silver */
+    }
+}
+
+
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg) translate(-50%, -50%);
+    }
+
+    to {
+        transform: rotate(360deg) translate(-50%, -50%);
+    }
+}
+

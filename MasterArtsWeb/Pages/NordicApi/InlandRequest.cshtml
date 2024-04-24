@@ -15,24 +15,22 @@
 <div class="ban">
     <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
 </div>
-<div class="master-master shipping-cost-calculator">
-    <h3 id="resultSection"></h3>
+<div class="master-master shipping-calculator-wrapper">
+    <h3 id="resultSection" class="section-title"></h3>
 
     @if (Model.ApiResponseInland != null)
     {
-        <div class="transit-details">
-            <p>Total: @Model.ApiResponseInland.total</p>
-            <p>USD Exchange Rate: @Model.ApiResponseInland.usdExchangeRate</p>
-            <p>EUR Exchange Rate: @Model.ApiResponseInland.eurExchangeRate</p>
-            <p>Currency: @Model.ApiResponseInland.currency</p>
-            <p>Fuel Surcharge: @Model.ApiResponseInland.fuelSurcharge</p>
-            <p>Fuel Surcharge Percentage: @Model.ApiResponseInland.fuelSurchargePercentage</p>
-            <p>CO2: @Model.ApiResponseInland.co2</p>
-            <p>Zip Code: @Model.ApiResponseInland.zipCode</p>
-            <p>City: @Model.ApiResponseInland.city</p>
+        <div class="inland-details-section">
+            <p class="detail-item"><strong>Total:</strong> @Model.ApiResponseInland.total</p>
+            <p class="detail-item"><strong>USD Exchange Rate:</strong> @Model.ApiResponseInland.usdExchangeRate</p>
+            <p class="detail-item"><strong>EUR Exchange Rate:</strong> @Model.ApiResponseInland.eurExchangeRate</p>
+            <p class="detail-item"><strong>Currency:</strong> @Model.ApiResponseInland.currency</p>
+            <p class="detail-item"><strong>Fuel Surcharge:</strong> @Model.ApiResponseInland.fuelSurcharge</p>
+            <p class="detail-item"><strong>Fuel Surcharge Percentage:</strong> @Model.ApiResponseInland.fuelSurchargePercentage</p>
+            <p class="detail-item"><strong>CO2:</strong> @Model.ApiResponseInland.co2</p>
+            <p class="detail-item"><strong>Zip Code:</strong> @Model.ApiResponseInland.zipCode</p>
+            <p class="detail-item"><strong>City:</strong> @Model.ApiResponseInland.city</p>
         </div>
-
-
     }
 </div>
 

@@ -5,9 +5,9 @@
 
 
 <div class="lemon-2 contact adjusted-anchor-2" id="contact-id">
-
+    
   MY QUOTES
-
+   
 </div>
 
 <div class="text-center"></div>
@@ -17,18 +17,16 @@
         <div class="order-block">
             @if (customerRate.Sailing != null)
             {
-                <div class="keps">
+                <div class="sailing-details">
                     <p>Quote number: @customerRate.Id</p>
                     <p>From: @customerRate.Sailing.FromDescription</p>
                     <p>To: @customerRate.Sailing.ToDescription</p>
-
                 </div>
             }
-           
-            
+
             <!-- Totals Section -->
-            <div class="transit-details">
-                <h3 class="section-heading">Totals</h3>
+            <div class="totals-section">
+                <h3 class="totals-title">Totals</h3>
                 <div class="totals-table">
                     @if (customerRate.Totals != null && customerRate.Totals.Any())
                     {
@@ -64,21 +62,21 @@
                         totalSumUSD += sekToAdd / usdExchangeRate;
                         totalSumEUR += sekToAdd / eurExchangeRate;
 
-                        <div class="table-row header">
-                            <div class="table-cell">Currency</div>
-                            <div class="table-cell">Sum</div>
+                        <div class="totals-row header">
+                            <div class="totals-cell currency-cell">Currency</div>
+                            <div class="totals-cell amount-cell">Sum</div>
                         </div>
-                        <div class="table-row">
-                            <div class="table-cell">SEK</div>
-                            <div class="table-cell">@totalSumSEK.ToString("N2")</div>
+                        <div class="totals-row">
+                            <div class="totals-cell currency-cell">SEK</div>
+                            <div class="totals-cell amount-cell">@totalSumSEK.ToString("N2")</div>
                         </div>
-                        <div class="table-row">
-                            <div class="table-cell">USD</div>
-                            <div class="table-cell">@totalSumUSD.ToString("N2")</div>
+                        <div class="totals-row">
+                            <div class="totals-cell currency-cell">USD</div>
+                            <div class="totals-cell amount-cell">@totalSumUSD.ToString("N2")</div>
                         </div>
-                        <div class="table-row">
-                            <div class="table-cell">EUR</div>
-                            <div class="table-cell">@totalSumEUR.ToString("N2")</div>
+                        <div class="totals-row">
+                            <div class="totals-cell currency-cell">EUR</div>
+                            <div class="totals-cell amount-cell">@totalSumEUR.ToString("N2")</div>
                         </div>
                     }
                     else
@@ -87,29 +85,30 @@
                     }
                 </div>
             </div>
-          
-            <div class="transit-details">
-                <h3 class="section-heading">Rates</h3>
+
+            <!-- Rates Section -->
+            <div class="rates-section">
+                <h3 class="rates-title">Rates</h3>
                 <div class="rates-table">
                     @if (customerRate.Rates != null && customerRate.Rates.Any())
                     {
-                        <div class="table-row header">
-                            <div class="table-cell">Currency</div>
-                            <div class="table-cell">Name</div>
-                            <div class="table-cell">Sum</div>
+                        <div class="rates-row header">
+                            <div class="rates-cell">Currency</div>
+                            <div class="rates-cell">Name</div>
+                            <div class="rates-cell">Sum</div>
                         </div>
                         @foreach (var rate in customerRate.Rates)
                         {
-                            <div class="table-row">
-                                <div class="table-cell">@rate.Currency</div>
-                                <div class="table-cell">@rate.Name</div>
-                                <div class="table-cell">Sum: @rate.Sum</div>
+                            <div class="rates-row">
+                                <div class="rates-cell">@rate.Currency</div>
+                                <div class="rates-cell">@rate.Name</div>
+                                <div class="rates-cell">Sum: @rate.Sum</div>
                             </div>
                         }
-                        <div class="table-row">
-                            <div class="table-cell">SEK</div>
-                            <div class="table-cell">LOCAL SERVICE HANDLING</div>
-                            <div class="table-cell">Sum: 3500.00</div>
+                        <div class="rates-row">
+                            <div class="rates-cell">SEK</div>
+                            <div class="rates-cell">LOCAL SERVICE HANDLING</div>
+                            <div class="rates-cell">Sum: 3500.00</div>
                         </div>
                     }
                     else
@@ -117,96 +116,7 @@
                         <p>No rates available for this order.</p>
                     }
                 </div>
-
-                @if (customerRate.Sailing != null)
-                {
-                    <h3 class="section-heading">Sailing</h3>
-                    <div class="transit-details">
-
-                        <p>Estimated Time of Arrival: @customerRate.Sailing.Eta</p>
-                        <p>Estimated Time of Departure: @customerRate.Sailing.Etd</p>
-                        <p>Gateway: @customerRate.Sailing.GatewayCode</p>
-                        <p>GatewayDescription: @customerRate.Sailing.GatewayDescription</p>
-                        <p>Vessel: @customerRate.Sailing.Vessel</p>
-                        <p>VoyageNumber: @customerRate.Sailing.VoyageNumber</p>
-                        <p>Transshipment: @customerRate.Sailing.TransshipmentDescription</p>
-
-
-                    </div>
-                    
-                }
-               
-                @if (customerRate.Agent != null)
-                {
-                    <h3 class="section-heading">Agent</h3>
-                    <div class="transit-details">
-                        <p>Name: @customerRate.Agent.Name</p>
-                        <p>Country: @customerRate.Agent.Country</p>
-                        <p>City: @customerRate.Agent.City</p>
-                        <p>Address: @customerRate.Agent.Address</p>
-                        <p>Email: @customerRate.Agent.Email</p>
-                        <p>Zip: @customerRate.Agent.ZipCode</p>
-
-
-
-
-                    </div>
-                }
-               
-                @if (customerRate.ShippingRequest != null )
-                {
-                    <h3 class="section-heading">Package Details</h3>
-                    <div class="transit-details">
-                        <p>Packages: @customerRate.ShippingRequest.Packages</p>
-                        <p>Type: @customerRate.ShippingRequest.PackageType</p>
-                        <p>Volume: @customerRate.ShippingRequest.Volume</p>
-                        <p>Weight: @customerRate.ShippingRequest.Weight</p>
-                                 </div>
-         
-                }
-
-
-
-            </div>
-
-
-       
-           
-            <div class="transit-details">
-                <h3 class="section-heading">Dimensions</h3>
-                <div class="dimensions-table">
-                    @if (customerRate.ShippingRequest?.Dimensions != null && customerRate.ShippingRequest.Dimensions.Any())
-                    {
-                        <div class="table-row header">
-                            <div class="table-cell">Length (cm)</div>
-                            <div class="table-cell">Width (cm)</div>
-                            <div class="table-cell">Height (cm)</div>
-                            <div class="table-cell">Weight (kg)</div>
-                        </div>
-                        @foreach (var dimension in customerRate.ShippingRequest.Dimensions)
-                        {
-                            <div class="table-row">
-                                <div class="table-cell">@dimension.Length</div>
-                                <div class="table-cell">@dimension.Width</div>
-                                <div class="table-cell">@dimension.Height</div>
-                                <div class="table-cell">@dimension.Weight</div>
-                                
-                            </div>
-                        }
-                    }
-                    else
-                    {
-                        <p>No dimensions available for this order.</p>
-                    }
-                </div>
             </div>
         </div>
-
-
-
-    }
-    @if (!Model.CustomerRatesDetails.Any())
-    {
-        <p>No customer rates found for the provided order number.</p>
     }
 </div>

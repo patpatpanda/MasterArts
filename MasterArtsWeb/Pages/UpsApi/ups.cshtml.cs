@@ -45,20 +45,18 @@ namespace MasterArtsWeb.Pages.UpsApi
                     }
                 }
             }
-
-                try
+            try
             {
+                // Ange TaxInformationIndicator
+                RateRequest.TaxInformationIndicator = true; // Se till att detta värde alltid är satt
+
                 var options = new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = null };
-                var jsonRequest = JsonSerializer.Serialize(new { this.RateRequest }, options);
+                var jsonRequest = JsonSerializer.Serialize(new { RateRequest }, options);
 
-                // Send to UPS service and handle the response
-                // Assuming _upsRateService.GetShippingRatesAsync() is ready to process this jsonRequest
                 var response = await _upsRateService.GetShippingRatesAsync(jsonRequest);
-
                 if (response != null)
                 {
-                    // Assuming the `Responses` property is meant to hold the deserialized response object
-                    Response = response; // Set the response to the property that holds the RateResponse
+                    Response = response;
                     ViewData["ApiResponse"] = JsonSerializer.Serialize(response, options);
                 }
                 else

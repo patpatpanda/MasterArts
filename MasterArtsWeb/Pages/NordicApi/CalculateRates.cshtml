@@ -16,74 +16,7 @@
     <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
 </div>
 
-
-
-<div class="master-master shipping-cost-calculator" id="resultSection" style="margin-bottom:10px">
-
-
-    @if (Model.ApiResponse != null)
-    {
-        <div class="transit-details">
-            <h3 class="section-heading">Rates</h3>
-            <div class="rates-table">
-                @foreach (var rate in Model.ApiResponse.Rates)
-                {
-                    <div class="table-row">
-                        <div class="table-cell">@rate.Currency</div>
-                        <div class="table-cell">@rate.Name</div>
-                        <div class="table-cell">Sum: @rate.Sum</div>
-                    </div>
-                }
-
-                <div class="table-row">
-                    <div class="table-cell">SEK</div>
-                    <div class="table-cell">LOCAL SERVICE HANDLING</div>
-                    <div class="table-cell">Sum: 3500.00</div>
-                </div>
-            </div>
-        </div>
-    }
-
-    @if (Model.ApiResponse != null)
-    {
-
-        <div class="transit-details ">
-            <h3 class="section-heading">Transit Details</h3>
-            
-            <p><strong>Transit Time:</strong> @Model.ApiResponse.TransitTime days</p>
-            <p><strong>Vessel:</strong> @Model.ApiResponse.Sailing?.Vessel</p>
-            <p><strong>Voyage Number:</strong> @Model.ApiResponse.Sailing?.VoyageNumber</p>
-            <p><strong>From:</strong> @Model.ApiResponse.Sailing?.FromDescription (@Model.ApiResponse.Sailing?.FromCode)</p>
-            <p><strong>To:</strong> @Model.ApiResponse.Sailing?.ToDescription (@Model.ApiResponse.Sailing?.ToCode)</p>
-            <p><strong>Transshipment:</strong> @Model.ApiResponse.Sailing?.TransshipmentDescription (@Model.ApiResponse.Sailing?.TransshipmentCode)</p>
-            <p><strong>Gateway:</strong> @Model.ApiResponse.Sailing?.GatewayDescription (@Model.ApiResponse.Sailing?.GatewayCode)</p>
-            <p><strong>Closing Date:</strong> @Model.ApiResponse.Sailing?.Closing.ToString("yyyy-MM-dd")</p>
-            <p><strong>Estimated Time of Departure:</strong> @Model.ApiResponse.Sailing?.Etd.ToString("yyyy-MM-dd")</p>
-            <p><strong>Estimated Time of Arrival:</strong> @Model.ApiResponse.Sailing?.Eta.ToString("yyyy-MM-dd")</p>
-            <p><strong>Remarks:</strong> @Model.ApiResponse.Sailing?.Remarks</p>
-
-
-        </div>
-
-    }
-
-    @if (Model.ApiResponse != null)
-    {
-        <div class="transit-details">
-            <h3 class="section-heading">Agent Details</h3>
-            <p><strong>Name:</strong> @Model.ApiResponse.Agent?.Name</p>
-            <p><strong>Address:</strong> @Model.ApiResponse.Agent?.Address</p>
-            <p><strong>Zip Code:</strong> @Model.ApiResponse.Agent?.ZipCode</p>
-            <p><strong>City:</strong> @Model.ApiResponse.Agent?.City</p>
-            <p><strong>Country:</strong> @Model.ApiResponse.Agent?.Country</p>
-
-            <p class="emission-item"><strong>CO2 Emissions:</strong> @Model.ApiResponse.Co2.ToString() kg</p>
-        </div>
-    }
-
-</div>
-
-<div class="master-master" style="margin-bottom:150px">
+<div class="master-master" style="margin-bottom:10px">
 
 
 
@@ -127,23 +60,23 @@
         totalSumUSD += sekToAdd / usdExchangeRate;
         totalSumEUR += sekToAdd / eurExchangeRate;
 
-        <div class="transit-details">
-            <h3 class="section-heading">Totals</h3>
-            <div class="totals-table-2">
-                <div class="table-row">
-                    <div class="table-cell">SEK</div>
-                    <div class="table-cell">@totalSumSEK.ToString("F2")</div>
-                    <div class="table-cell"></div> <!-- Tom cell för SEK eftersom det är basvalutan -->
+        <div class="totals-section">
+            <h3 class="totals-title">Totals</h3>
+            <div class="totals-table">
+                <div class="totals-row">
+                    <div class="totals-cell currency-cell">SEK</div>
+                    <div class="totals-cell amount-cell">@totalSumSEK.ToString("F2")</div>
+                    <div class="totals-cell"></div> <!-- Empty cell for SEK since it is the base currency -->
                 </div>
-                <div class="table-row">
-                    <div class="table-cell">USD</div>
-                    <div class="table-cell">@totalSumUSD.ToString("F2")</div>
-                    <div class="table-cell">(SEK 1 = USD @usdExchangeRate.ToString("F4"))</div>
+                <div class="totals-row">
+                    <div class="totals-cell currency-cell">USD</div>
+                    <div class="totals-cell amount-cell">@totalSumUSD.ToString("F2")</div>
+                    <div class="totals-cell rate-cell">(SEK 1 = USD @usdExchangeRate.ToString("F4"))</div>
                 </div>
-                <div class="table-row">
-                    <div class="table-cell">EUR</div>
-                    <div class="table-cell">@totalSumEUR.ToString("F2")</div>
-                    <div class="table-cell">(SEK 1 = EUR @eurExchangeRate.ToString("F4"))</div>
+                <div class="totals-row">
+                    <div class="totals-cell currency-cell">EUR</div>
+                    <div class="totals-cell amount-cell">@totalSumEUR.ToString("F2")</div>
+                    <div class="totals-cell rate-cell">(SEK 1 = EUR @eurExchangeRate.ToString("F4"))</div>
                 </div>
             </div>
         </div>
@@ -159,6 +92,54 @@
 
 
 </div>
+
+<div class="shipping-calculator-wrapper" id="resultSection">
+
+    @if (Model.ApiResponse != null)
+    {
+        <div class="rate-details-section">
+            <h3 class="section-title">Rates</h3>
+            <div class="rate-table">
+                @foreach (var rate in Model.ApiResponse.Rates)
+                {
+                    <div class="rate-row">
+                        <div class="rate-cell">@rate.Currency</div>
+                        <div class="rate-cell">@rate.Name</div>
+                        <div class="rate-cell">Sum: @rate.Sum</div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="transit-details-section">
+            <h3 class="section-title">Transit Details</h3>
+            <p><strong>Transit Time:</strong> @Model.ApiResponse.TransitTime days</p>
+            <p><strong>Vessel:</strong> @Model.ApiResponse.Sailing?.Vessel</p>
+            <p><strong>Voyage Number:</strong> @Model.ApiResponse.Sailing?.VoyageNumber</p>
+            <p><strong>From:</strong> @Model.ApiResponse.Sailing?.FromDescription (@Model.ApiResponse.Sailing?.FromCode)</p>
+            <p><strong>To:</strong> @Model.ApiResponse.Sailing?.ToDescription (@Model.ApiResponse.Sailing?.ToCode)</p>
+            <p><strong>Transshipment:</strong> @Model.ApiResponse.Sailing?.TransshipmentDescription (@Model.ApiResponse.Sailing?.TransshipmentCode)</p>
+            <p><strong>Gateway:</strong> @Model.ApiResponse.Sailing?.GatewayDescription (@Model.ApiResponse.Sailing?.GatewayCode)</p>
+            <p><strong>Closing Date:</strong> @Model.ApiResponse.Sailing?.Closing.ToString("yyyy-MM-dd")</p>
+            <p><strong>Estimated Time of Departure:</strong> @Model.ApiResponse.Sailing?.Etd.ToString("yyyy-MM-dd")</p>
+            <p><strong>Estimated Time of Arrival:</strong> @Model.ApiResponse.Sailing?.Eta.ToString("yyyy-MM-dd")</p>
+            <p><strong>Remarks:</strong> @Model.ApiResponse.Sailing?.Remarks</p>
+        </div>
+
+        <div class="agent-details-section">
+            <h3 class="section-title">Agent Details</h3>
+            <p><strong>Name:</strong> @Model.ApiResponse.Agent?.Name</p>
+            <p><strong>Address:</strong> @Model.ApiResponse.Agent?.Address</p>
+            <p><strong>Zip Code:</strong> @Model.ApiResponse.Agent?.ZipCode</p>
+            <p><strong>City:</strong> @Model.ApiResponse.Agent?.City</p>
+            <p><strong>Country:</strong> @Model.ApiResponse.Agent?.Country</p>
+            <p class="co2-emission-highlight"><strong>CO2 Emissions:</strong> @Model.ApiResponse.Co2.ToString() kg</p>
+        </div>
+    }
+
+</div>
+
+
 
 
 

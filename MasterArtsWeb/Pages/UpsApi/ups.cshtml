@@ -19,6 +19,29 @@
     <a href="/LogisticsCenter/ShipmentCalculator#contact-id" class="cta-button">Back</a>
 </div>
 
+<div class="master-master shipping-cost-calculator">
+    <h3 id="resultSection"></h3>
+
+    @if (Model.Response?.Details != null)
+    {
+        <div class="response-container">
+
+            @if (Model.Response.Details.RatedShipment != null)
+            {
+                // Parsing the original charge
+                decimal originalCharge = decimal.Parse(Model.Response.Details.RatedShipment.TotalCharges.MonetaryValue, CultureInfo.InvariantCulture);
+                decimal chargeWithTax = originalCharge * 1.80m; // Adding 80%
+                string formattedChargeWithTax = chargeWithTax.ToString("F2"); // Format to two decimal places
+
+                <div class="total-charges">
+                    <p>Total Charges (excluding VAT and taxes): <span class="charge">@formattedChargeWithTax</span> <span class="currency">@Model.Response.Details.RatedShipment.TotalCharges.CurrencyCode</span></p>
+                </div>
+
+
+            }
+        </div>
+    }
+</div>
 <form method="post" class="shipper-info-form">
    <h2 class="section-heading">Shipper</h2>
     <div class="hidden-customer-context">
@@ -606,56 +629,8 @@
  
 
 
-<div class="master-master shipping-cost-calculator">
-    <h3 id="resultSection"></h3>
-<h2>UPS Rate Response Details</h2>
-
-@if (Model.Response?.Details != null)
-{
-    <div>
-        <h3>Response Status</h3>
-        <p>Code: @Model.Response.Details.Response.ResponseStatus.Code</p>
-        <p>Description: @Model.Response.Details.Response.ResponseStatus.Description</p>
-
-        @if (Model.Response.Details.Response.Alert?.Any() == true)
-        {
-            <h4>Alerts</h4>
-            foreach (var alert in Model.Response.Details.Response.Alert)
-            {
-                <p>Alert Code: @alert.Code - @alert.Description</p>
-            }
-        }
-
-        <h3>Rated Shipment Details</h3>
-       @if (Model.Response.Details.RatedShipment != null)
-{
-    <p>Service Code: @Model.Response.Details.RatedShipment.Service.Code</p>
-    <p>Service Description: @Model.Response.Details.RatedShipment.Service.Description</p>
-    
-    // Parsing the original charge
-    decimal originalCharge = decimal.Parse(Model.Response.Details.RatedShipment.TotalCharges.MonetaryValue, CultureInfo.InvariantCulture);
-    string formattedOriginalCharge = originalCharge.ToString("F2"); // Format to two decimal places
-
-    <p>Total Charges: @formattedOriginalCharge @Model.Response.Details.RatedShipment.TotalCharges.CurrencyCode</p>
-
-    @if (Model.Response.Details.RatedShipment.RatedShipmentAlert?.Any() == true)
-    {
-        <h4>Shipment Alerts</h4>
-        foreach (var shipmentAlert in Model.Response.Details.RatedShipment.RatedShipmentAlert)
-        {
-            <p>Alert Code: @shipmentAlert.Code - @shipmentAlert.Description</p>
-        }
-    }
-}
 
 
-    </div>
-}
-else
-{
-    <p>No data available or parsing failed. Check the logs for more details.</p>
-}
-</div>
 
 
 
