@@ -3752,7 +3752,8 @@ button.submit-rate-request {
 
 @keyframes shiftColor {
     0%, 100% {
-        box-shadow: 0 10px 30px rgba(173, 216, 230, 0.9); /* Baby blue with high opacity */
+        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.2);
+         /* Baby blue with high opacity */
     }
 
     25% {
@@ -3760,11 +3761,11 @@ button.submit-rate-request {
     }
 
     50% {
-        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.2); /* Silver with low opacity for a subtle effect */
+        box-shadow: 0 10px 30px rgba(173, 216, 230, 0.9); /* Silver with low opacity for a subtle effect */
     }
 
     75% {
-        box-shadow: 0 10px 30px rgba(173, 216, 230, 0.5); /* Baby blue with moderate opacity */
+        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.2); /* Baby blue with moderate opacity */
     }
 }
 
