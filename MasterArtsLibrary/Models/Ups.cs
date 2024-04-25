@@ -123,19 +123,19 @@ namespace MasterArtsLibrary.Models
         public Party Shipper { get; set; }
         public Party ShipTo { get; set; }
         public ServiceDetails Service { get; set; }
-        public string NumOfPieces { get; set; }
-        public PackageDetails Package { get; set; }
+       
+        public List<Package> Package { get; set; } = new List<Package>();
     }
 
     public class Party
     {
-        public string Name { get; set; }
+       
         public Address Address { get; set; }
     }
 
     public class Address
     {
-        public List<string> AddressLine { get; set; }
+       
         public string City { get; set; }
 
         public string PostalCode { get; set; }
@@ -144,7 +144,7 @@ namespace MasterArtsLibrary.Models
 
 
 
-    public class PackageDetails
+    public class Package
     {
         public PackagingType PackagingType { get; set; }
         public Dimensions Dimensions { get; set; }
@@ -163,8 +163,7 @@ namespace MasterArtsLibrary.Models
         [JsonProperty("Code")]
         public string Code { get; set; }
 
-        [JsonProperty("Description")]
-        public string Description { get; set; }
+        
     }
 
     public class Dimensions

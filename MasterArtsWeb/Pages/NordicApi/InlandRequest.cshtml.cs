@@ -1,12 +1,14 @@
 using MasterArtsLibrary.Models;
 using MasterArtsLibrary.Services;
 using MasterArtsLibrary.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 
 namespace MasterArtsWeb.Pages.NordicApi
 {
+    [Authorize]
     public class InlandRequestModel : PageModel
     {
         

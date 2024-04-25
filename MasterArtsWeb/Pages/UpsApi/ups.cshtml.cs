@@ -1,17 +1,19 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
 using MasterArtsLibrary.Models;
 using MasterArtsLibrary.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 
 namespace MasterArtsWeb.Pages.UpsApi
 {
+    [Authorize]
     public class upsModel : PageModel
     {
         private readonly OrderService _upsRateService; // Make sure this service is correctly injected and configured
         [BindProperty]
-        public RateRequest RateRequest { get; set; } // This should bind to the form data
+        public RateRequest RateRequest { get; set; } = new RateRequest();
         public RateResponse Response { get; set; }
         
         public string FormattedResponse { get; set; }

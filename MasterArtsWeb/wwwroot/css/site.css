@@ -142,7 +142,7 @@ header {
 
 
 .contact {
-   margin-top:20px;
+   margin-top:80px;
     
     color: #333;
     display: flex;
@@ -566,7 +566,7 @@ h1 {
     }
 
     .adjusted-anchor-2 {
-        margin-top: 400px;
+        margin-top: -100px;
         padding-top: 300px;
     }
 }
@@ -1010,7 +1010,7 @@ input {
 
 
     .contact {
-        margin-top: 20px;
+        margin-top: 80px;
         color: #333;
         display: flex;
         justify-content: center;
@@ -1299,7 +1299,7 @@ input {
         background-image: url('/images/297806d1-9b20-4b4a-b1ee-72045cc0b297.webp');
         background-size: cover; /* Ser till att bilden täcker hela elementet */
         background-position: center; /* Centrerar bilden i elementet */
-        height: 360px;
+        height: 400px;
        
     }
     
@@ -2594,7 +2594,7 @@ input[type="checkbox"] {
 
 .index-lang {
     z-index: 1;
-    margin-top: 10px;
+    margin-top: 60px;
     margin-right: 100px
 }
 /* Grundläggande styling för att centrera och ge sidan ett modernt utseende */
@@ -3461,7 +3461,7 @@ h3{
 
 .shipper-info-form {
    
-    max-width: 1500px;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
    
@@ -3471,43 +3471,7 @@ h3{
 }
 
 
-h2.form-heading {
-    font-size: 1.5em;
-    color: #351c15; /* UPS Brown */
-    margin-bottom: 20px;
-}
 
-.field-group {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-}
-
-    .field-group label {
-        flex: 0 0 180px; /* Fixed width for labels */
-        margin-right: 20px;
-        text-align: right;
-        color: #666;
-    }
-
-input[type="text"],
-input[type="number"],
-select {
-    flex: 1;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-}
-
-    input[type="text"]:focus,
-    input[type="number"]:focus,
-    select:focus {
-        border-color: #ffbb00; /* UPS Gold */
-        outline: none;
-        background-color: #fffbea; /* Light UPS Gold */
-    }
 
 button.submit-rate-request {
     width: 100%;
@@ -3642,7 +3606,27 @@ button.submit-rate-request {
    
     margin-top: 20px;
 }
+.remove-button {
+    background-color: #ff6347; /* Ljus röd färg för att signalera en borttagningshandling */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    outline: none; /* Tar bort blå outline som visas vid klick */
+    margin-top: 4px;
+}
 
+    .remove-button:hover {
+        background-color: #d9534f; /* Mörkare röd när användaren hovrar över knappen */
+    }
+
+    .remove-button:focus {
+        box-shadow: 0 0 0 2px rgba(255, 99, 71, 0.5); /* Lägger till en subtil skugga när knappen är i fokus */
+    }
 .rate-details-section, .transit-details-section, .agent-details-section {
     background-color: #ffffff;
     padding: 15px;
@@ -3751,22 +3735,36 @@ button.submit-rate-request {
     box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
     animation: shiftColor 5s infinite;
 }
+.reload-page-button {
+    background-color: #007bff; /* Välj en passande färg som matchar din webbplats färgschema */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .reload-page-button:hover {
+        background-color: #0056b3; /* Mörkare nyans vid hover */
+    }
 
 @keyframes shiftColor {
     0%, 100% {
-        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.9); /* Steel Blue */
+        box-shadow: 0 10px 30px rgba(173, 216, 230, 0.9); /* Baby blue with high opacity */
     }
 
     25% {
-        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.8); /* Sky Blue */
+        box-shadow: 0 10px 30px rgba(173, 216, 230, 0.8); /* Slightly reduced opacity */
     }
 
     50% {
-        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.2); /* Light Steel Blue */
+        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.2); /* Silver with low opacity for a subtle effect */
     }
 
     75% {
-        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.5); /* Silver */
+        box-shadow: 0 10px 30px rgba(173, 216, 230, 0.5); /* Baby blue with moderate opacity */
     }
 }
 

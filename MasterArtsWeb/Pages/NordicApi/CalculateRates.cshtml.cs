@@ -1,6 +1,7 @@
 using DocumentFormat.OpenXml.Drawing.Charts;
 using MasterArtsLibrary.Models;
 using MasterArtsLibrary.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,6 +14,7 @@ using Order = MasterArtsLibrary.Models.Order;
 
 namespace MasterArtsWeb.Pages
 {
+    [Authorize]
     public class CalculateRatesModel : PageModel
     {
         private readonly HttpClient _client;

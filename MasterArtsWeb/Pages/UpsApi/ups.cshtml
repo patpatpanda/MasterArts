@@ -40,7 +40,8 @@
             }
         </div>
     }
-
+</div>
+    
 <form method="post" class="shipper-info-form">
    <h2 class="section-heading">Shipper</h2>
     <div class="hidden-customer-context">
@@ -48,20 +49,8 @@
         <input type="text" id="customerContext" name="RateRequest.Request.TransactionReference.CustomerContext" value="RandomText123" class="input-customer-context" />
     </div>
 
-    <div class="field-group shipper-name">
-        <label>Name:</label>
-        <input type="text" asp-for="RateRequest.Shipment.Shipper.Name" class="input-shipper-name" />
-        <span asp-validation-for="RateRequest.Shipment.Shipper.Name" class="error-message"></span>
-    </div>
-    <div class="field-group shipper-address">
-        <label>Address Line 1:</label>
-        <input type="text" asp-for="RateRequest.Shipment.Shipper.Address.AddressLine[0]" class="input-address-line1" />
-        <span asp-validation-for="RateRequest.Shipment.Shipper.Address.AddressLine[0]" class="error-message"></span>
-        <label>Address Line 2:</label>
-        <input type="text" asp-for="RateRequest.Shipment.Shipper.Address.AddressLine[1]" class="input-address-line2" />
-        <label>Address Line 3:</label>
-        <input type="text" asp-for="RateRequest.Shipment.Shipper.Address.AddressLine[2]" class="input-address-line3" />
-    </div>
+   
+        
     <div class="field-group shipper-city">
         <label>City:</label>
         <input type="text" asp-for="RateRequest.Shipment.Shipper.Address.City" class="input-city" />
@@ -309,20 +298,8 @@
     <span asp-validation-for="RateRequest.Shipment.Shipper.Address.CountryCode" class="error-message"></span>
 </div>
      <h2 class="section-heading">Ship To</h2>
-    <div class="field-group shipper-name">
-        <label>Name:</label>
-        <input type="text" asp-for="RateRequest.Shipment.ShipTo.Name" class="input-shipper-name" />
-        <span asp-validation-for="RateRequest.Shipment.ShipTo.Name" class="error-message"></span>
-    </div>
-    <div class="field-group shipper-address">
-        <label>Address Line 1:</label>
-        <input type="text" asp-for="RateRequest.Shipment.ShipTo.Address.AddressLine[0]" class="input-address-line1" />
-        <span asp-validation-for="RateRequest.Shipment.ShipTo.Address.AddressLine[0]" class="error-message"></span>
-        <label>Address Line 2:</label>
-        <input type="text" asp-for="RateRequest.Shipment.ShipTo.Address.AddressLine[1]" class="input-address-line2" />
-        <label>Address Line 3:</label>
-        <input type="text" asp-for="RateRequest.Shipment.ShipTo.Address.AddressLine[2]" class="input-address-line3" />
-    </div>
+   
+    
     <div class="field-group shipper-city">
         <label>City:</label>
         <input type="text" asp-for="RateRequest.Shipment.ShipTo.Address.City" class="input-city" />
@@ -588,59 +565,91 @@
            
         </select>
     </div>
-   
+        
+
         <h2 class="section-heading">Package Details</h2>
 
-<div class="field-group packaging-type">
-    <label>Packaging Type:</label>
-    <select asp-for="RateRequest.Shipment.Package.PackagingType.Code" class="select-packaging-type">
-       
-        <option value="02">Package</option>
-       
-    </select>
-</div>
-
-<div class="field-group package-dimensions">
-        <label asp-for="RateRequest.Shipment.Package.PackageWeight.Weight">Weight</label>
-     <input type="number" asp-for="RateRequest.Shipment.Package.PackageWeight.Weight"/>
-    <span asp-validation-for="RateRequest.Shipment.Package.PackageWeight.Weight" class="error-message"></span>
-
-        <label asp-for="RateRequest.Shipment.NumOfPieces">Pieces</label>
-     <input type="number" asp-for="RateRequest.Shipment.NumOfPieces" />
-  <span asp-validation-for="RateRequest.Shipment.NumOfPieces" class="error-message"></span>
-
-    <label>Length (CM):</label>
-    <input type="number" asp-for="RateRequest.Shipment.Package.Dimensions.Length" class="input-length" />
-    <span asp-validation-for="RateRequest.Shipment.Package.Dimensions.Length" class="error-message"></span>
-    <label>Width (CM):</label>
-    <input type="number" asp-for="RateRequest.Shipment.Package.Dimensions.Width" class="input-width" />
-    <span asp-validation-for="RateRequest.Shipment.Package.Dimensions.Width" class="error-message"></span>
-    <label>Height (CM):</label>
-    <input type="number" asp-for="RateRequest.Shipment.Package.Dimensions.Height" class="input-height"/>
-    <span asp-validation-for="RateRequest.Shipment.Package.Dimensions.Height" class="error-message"></span>
-</div>
 
 
-<div class="submit-button-container">
-    <button type="submit" class="submit-rate-request">Submit Rate Request</button>
-</div>
+        <div id="packagesContainer">
+            @for (int i = 0; i < Model.RateRequest.Shipment.Package.Count; i++)
+            {
+                <div class="package-section">
+                     <div class="field-group packaging-type">
+                <label>Packaging Type:</label>
+                <select asp-for="@Model.RateRequest.Shipment.Package[i].PackagingType.Code" class="select-packaging-type">
+                   
+                    <option value="02">Package</option>
+                  
+                </select>
+            </div>
+                    <label asp-for="@Model.RateRequest.Shipment.Package[i].PackageWeight.Weight">Weight</label>
+                    <input asp-for="@Model.RateRequest.Shipment.Package[i].PackageWeight.Weight" class="form-control" />
+                    <span asp-validation-for="@Model.RateRequest.Shipment.Package[i].PackageWeight.Weight" class="text-danger"></span>
+
+                    <label asp-for="@Model.RateRequest.Shipment.Package[i].Dimensions.Length">Length (CM):</label>
+                    <input asp-for="@Model.RateRequest.Shipment.Package[i].Dimensions.Length" class="form-control input-length" />
+                    <span asp-validation-for="@Model.RateRequest.Shipment.Package[i].Dimensions.Length" class="text-danger"></span>
+
+                    <label asp-for="@Model.RateRequest.Shipment.Package[i].Dimensions.Width">Width (CM):</label>
+                    <input asp-for="@Model.RateRequest.Shipment.Package[i].Dimensions.Width" class="form-control input-width" />
+                    <span asp-validation-for="@Model.RateRequest.Shipment.Package[i].Dimensions.Width" class="text-danger"></span>
+
+                    <label asp-for="@Model.RateRequest.Shipment.Package[i].Dimensions.Height">Height (CM):</label>
+                    <input asp-for="@Model.RateRequest.Shipment.Package[i].Dimensions.Height" class="form-control input-height" />
+                    <span asp-validation-for="@Model.RateRequest.Shipment.Package[i].Dimensions.Height" class="text-danger"></span>
+                </div>
+            }
+        </div>
+        <button type="button" class="cta-button" onclick="addPackage()">Lägg till paket</button>
+        <button type="submit" class="submit-rate-request">Submit Rate Request</button>
+    <button type="button" onclick="reloadPage()" class="reload-page-button">Clear all</button>
+
 </form>
-
-
-
-
-
-
-
-
-
-
 
 
 
 
     @section Scripts {
         <script>
+
+        function reloadPage() {
+            window.location.reload(true);  // true här tvingar browsern att ladda om sidan från servern, inte från cacheminnet
+        }
+    function addPackage() {
+        var container = document.getElementById("packagesContainer");
+        var packageCount = container.children.length;
+        var div = document.createElement("div");
+        div.id = "package" + packageCount;
+        div.innerHTML = `
+            <div class="field-group packaging-type">
+                <label>Packaging Type:</label>
+                <select name="RateRequest.Shipment.Package[${packageCount}].PackagingType.Code" class="select-packaging-type">
+                    <option value="02" selected>Package</option>
+                </select>
+            </div>
+            <label>Weight:</label>
+            <input type="number" name="RateRequest.Shipment.Package[${packageCount}].PackageWeight.Weight"/>
+            <label>Length (CM):</label>
+            <input type="number" name="RateRequest.Shipment.Package[${packageCount}].Dimensions.Length"/>
+            <label>Width (CM):</label>
+            <input type="number" name="RateRequest.Shipment.Package[${packageCount}].Dimensions.Width"/>
+            <label>Height (CM):</label>
+            <input type="number" name="RateRequest.Shipment.Package[${packageCount}].Dimensions.Height"/>
+                    <button type="button" class="remove-button" onclick="removePackage(this.parentNode)">Remove</button>
+
+        `;
+        container.appendChild(div);
+    }
+
+    function removePackage(element) {
+        element.parentNode.removeChild(element);
+    }
+
+
+
+
+
 
             document.addEventListener('DOMContentLoaded', function () {
                 var postalCodeInputs = document.querySelectorAll('.input-postal-code');
