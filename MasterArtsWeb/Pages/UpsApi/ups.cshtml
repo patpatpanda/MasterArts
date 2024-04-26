@@ -603,7 +603,8 @@
         </div>
         <button type="button" class="cta-button" onclick="addPackage()">Lägg till paket</button>
         <button type="submit" class="submit-rate-request">Submit Rate Request</button>
-    <button type="button" onclick="reloadPage()" class="reload-page-button">Clear all</button>
+    <a asp-page-handler="ClearForm" class="btn cta-button" style="margin-top:16px">Clear Form</a>
+
 
 </form>
 
@@ -614,7 +615,12 @@
         <script>
 
         function reloadPage() {
-            window.location.reload(true);  // true här tvingar browsern att ladda om sidan från servern, inte från cacheminnet
+            // Nollställ alla lokalt lagrade data här
+            localStorage.clear();  // Raderar all data i localStorage
+            sessionStorage.clear();  // Raderar all data i sessionStorage
+
+            // Ladda om sidan från servern
+            window.location.reload(true);
         }
     function addPackage() {
         var container = document.getElementById("packagesContainer");

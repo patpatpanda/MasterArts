@@ -38,7 +38,9 @@ html, body {
     align-items: center;
     width: 100%;
     margin-top: 100px;
+
 }
+
 
 .fot {
     display: flex;
@@ -78,8 +80,8 @@ header {
 
 
     border-radius: 0px;
-    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
-    animation: shiftColor 5s infinite;
+    
+    
 }
 
 
@@ -211,7 +213,7 @@ header {
     margin: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px;
-    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
+    background: linear-gradient(270deg, #e6e6e6, #cccccc, #f2f2f2, #d9d9d9);
 }
 
 
@@ -3440,10 +3442,7 @@ h3{
 }
 
 
-.card-icon {
-    color: #c0c0c0;
-    transition: color 0.3s;
-}
+
 
     .card-icon:hover {
         color: #add8e6;
@@ -3715,26 +3714,32 @@ button.submit-rate-request {
     background-color: #f0f0f0;
     border-radius: 4px;
 }
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
 .lemon-2 {
-    margin-top: 12px;
-    margin-bottom:20px;
+    margin-top: 7px; /* Uppdaterat för att undvika upprepning av margin-top */
+    margin-bottom: 20px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 300px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
-    background-size: 200% 200%;
-    animation: colorShift 8s ease-in-out infinite;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    
     font-size: 3em;
     color: #333;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    margin-top: 20px;
-    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
-    animation: shiftColor 5s infinite;
 }
+
+
 .reload-page-button {
     background-color: #007bff; /* Välj en passande färg som matchar din webbplats färgschema */
     color: white;
@@ -3746,38 +3751,56 @@ button.submit-rate-request {
     transition: background-color 0.3s;
 }
 
+
+
     .reload-page-button:hover {
         background-color: #0056b3; /* Mörkare nyans vid hover */
     }
 
-@keyframes shiftColor {
-    0%, 100% {
-        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.2);
-         /* Baby blue with high opacity */
-    }
 
-    25% {
-        box-shadow: 0 10px 30px rgba(173, 216, 230, 0.8); /* Slightly reduced opacity */
-    }
 
-    50% {
-        box-shadow: 0 10px 30px rgba(173, 216, 230, 0.9); /* Silver with low opacity for a subtle effect */
-    }
 
-    75% {
-        box-shadow: 0 10px 30px rgba(192, 192, 192, 0.2); /* Baby blue with moderate opacity */
-    }
+    .buttons-container {
+    margin-top: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Skapar mellanrum mellan knapparna */
 }
 
-
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg) translate(-50%, -50%);
-    }
-
-    to {
-        transform: rotate(360deg) translate(-50%, -50%);
-    }
+.button-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007BFF; /* Ljusblå färg, anpassa efter ditt tema */
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.button-link i {
+    margin-right: 8px; /* Lägg till utrymme mellan ikonen och texten */
+}
+
+.button-link:hover, .button-link:focus {
+    background-color: #0056b3; /* Mörkare blå färg när man hovrar eller fokuserar */
+    transform: translateY(-2px); /* Ger en liten lyft-effekt när knappen hovras */
+    color: #ffffff;
+}
+
+/* Responsiv stil */
+@media (max-width: 600px) {
+    .buttons-container {
+        flex-direction: column;
+    }
+    .button-link {
+        width: 80%; /* Fullbredd på mindre skärmar */
+        margin: 10px auto; /* Centrera och lägg till vertikalt utrymme */
+    }
+}

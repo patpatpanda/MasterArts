@@ -25,9 +25,12 @@ namespace MasterArtsWeb.Pages.UpsApi
             _logger = logger;
         }
 
-        public void OnGet()
+        public void OnGetClearForm()
         {
+            // Anta att Model.RateRequest.Shipment.Package är en lista, återställ den
+            RateRequest.Shipment.Package.Clear();
 
+            RedirectToPage();
         }
 
         public async Task<IActionResult> OnPostAsync()
