@@ -3734,9 +3734,7 @@ button.submit-rate-request {
     width: 100%;
     height: 200px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(-45deg, #C0C0C0, #A9A9A9, #808080, #C0C0C0);
-    background-size: 400% 400%;
-    animation: gradientShift 8s ease infinite;
+    background: linear-gradient(-45deg, #D3D3D3, #BEBEBE, #A9A9A9, #D3D3D3); /* Uppdaterade ljusare färger */
     font-size: 3em;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(50, 50, 50, 0.7);
@@ -3748,6 +3746,7 @@ button.submit-rate-request {
         transform: scale(1.05); /* Förstorar lite vid hover */
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7); /* Intensivare skugga vid hover */
     }
+
 
 @keyframes gradientShift {
     0% {
