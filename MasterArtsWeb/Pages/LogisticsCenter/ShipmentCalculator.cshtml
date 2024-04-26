@@ -18,12 +18,13 @@
 
         <div class="alert alert-success fade-message text-center" id="success-message" style="margin-top: 10px">@TempData["SuccessMessage"]</div>
     }
-<div class="buttons-container" style="margin-top:50px; text-align:center;">
-    <a href="/LogisticsCenter/Calculator#contact-id" class="button-link"><i class="fas fa-calculator"></i>SHIPMENT-CALCULATOR</a>
-    <a href="/LogisticsCenter/MyOrdersModel#contact-id" class="button-link"><i class="fas fa-book"></i> ORDERS</a>
-    <a href="/NordicApi/CalculateRates#contact-id" class="button-link"><i class="fa-thin fa-anchor"></i>OCEAN LCL</a>
-    <a href="/NordicApi/InlandRequest#contact-id" class="button-link"><i class="fa-thin fa-ship"></i>INLAND LCL</a>
-     <a href="/UpsApi/ups#contact-id" class="button-link"><i class="fas fa-calculator"></i>UPS COURIER</a>
+<div class="cool-btns" style="margin-top: 50px; text-align: center;">
+    <a href="/LogisticsCenter/Calculator#contact-id" class="cool-link"><i class="fas fa-calculator"></i> SHIPMENT CALCULATOR</a>
+    <a href="/LogisticsCenter/MyOrdersModel#contact-id" class="cool-link"><i class="fas fa-book"></i> ORDERS</a>
+    <a href="/NordicApi/CalculateRates#contact-id" class="cool-link"><i class="fa-thin fa-anchor"></i> OCEAN LCL</a>
+    <a href="/NordicApi/InlandRequest#contact-id" class="cool-link"><i class="fa-thin fa-ship"></i> INLAND LCL</a>
+    <a href="/UpsApi/ups#contact-id" class="cool-link"><i class="fas fa-truck"></i> UPS COURIER</a>
+    <a href="/UpsApi/ups#contact-id" class="cool-link"><i class="fas fa-calculator"></i>UPS COURIER</a>
     @if (Model.IsOpsUser)
     {
         <a asp-page="/LogisticsCenter/AllOrders" class="btn btn-primary">View All Orders</a>

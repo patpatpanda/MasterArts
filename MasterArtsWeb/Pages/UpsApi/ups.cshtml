@@ -24,22 +24,30 @@
     @if (Model.Response?.Details != null)
     {
         <div class="response-container">
-
             @if (Model.Response.Details.RatedShipment != null)
             {
                 // Parsing the original charge
                 decimal originalCharge = decimal.Parse(Model.Response.Details.RatedShipment.TotalCharges.MonetaryValue, CultureInfo.InvariantCulture);
-                decimal chargeWithTax = originalCharge * 1.80m; // Adding 80%
-                string formattedChargeWithTax = chargeWithTax.ToString("F2"); // Format to two decimal places
+
+                // Calculate total weight of the shipment
+                decimal totalWeight = 0;
+                foreach (var package in Model.RateRequest.Shipment.Package)
+                {
+                    totalWeight += decimal.Parse(package.PackageWeight.Weight);
+                }
+
+                // Determine the markup based on total weight
+                decimal markupRate = totalWeight > 50 ? 1.80m  : 2.20m; // 220% for > 50 kg (original + 120% markup), 180% for <= 50 kg (original + 80% markup)
+                decimal chargeWithTax = originalCharge * markupRate;
+                string formattedChargeWithTax = chargeWithTax.ToString("F2");
 
                 <div class="total-charges">
                     <p>Total Charges (excluding VAT and taxes): <span class="charge">@formattedChargeWithTax</span> <span class="currency">@Model.Response.Details.RatedShipment.TotalCharges.CurrencyCode</span></p>
                 </div>
-
-
             }
         </div>
     }
+
 </div>
     
 <form method="post" class="shipper-info-form">
@@ -558,9 +566,7 @@
            
             
             <option value="07">Worldwide Express</option>
-            <option value="08">Worldwide Expedited</option>
-            <option value="11">Standard</option>
-            <option value="54">Worldwide Express Plus</option>
+           
             <option value="65">Saver</option>
            
         </select>

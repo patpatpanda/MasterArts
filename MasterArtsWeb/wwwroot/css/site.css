@@ -935,7 +935,7 @@ input {
     box-shadow: 0px 4px 8px #b8d8f5;
     backdrop-filter: blur(4px); /* Frostat glas-effekt */
     border: 1px solid rgba(255, 255, 255, 0.25);
-    background: linear-gradient(to right, #eeeeee 0%, #cccccc 100%);
+    
 
 }
 
@@ -3725,18 +3725,42 @@ button.submit-rate-request {
 }
 
 .lemon-2 {
-    margin-top: 7px; /* Uppdaterat för att undvika upprepning av margin-top */
+    margin-top: 3px;
     margin-bottom: 20px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    
+    height: 200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(-45deg, #C0C0C0, #A9A9A9, #808080, #C0C0C0);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
     font-size: 3em;
-    color: #333;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(50, 50, 50, 0.7);
+    border-radius: 20px; /* Lägger till böjd ram */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease; /* För mjuk övergång vid hover */
+}
+
+    .lemon-2:hover {
+        transform: scale(1.05); /* Förstorar lite vid hover */
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7); /* Intensivare skugga vid hover */
+    }
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 
@@ -3803,4 +3827,26 @@ button.submit-rate-request {
         width: 80%; /* Fullbredd på mindre skärmar */
         margin: 10px auto; /* Centrera och lägg till vertikalt utrymme */
     }
+}
+.cool-btns .cool-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    background: linear-gradient(145deg, #cfcfcf, #9a9a9a);
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #a7a7a7;
+}
+
+    .cool-btns .cool-link:hover {
+        background: linear-gradient(145deg, #a7a7a7, #767676);
+        transform: translateY(-2px);
+        box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.25);
+    }
+
+.cool-btns i {
+    margin-right: 8px;
 }
