@@ -3733,19 +3733,16 @@ button.submit-rate-request {
     align-items: center;
     width: 100%;
     height: 200px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(-45deg, #D3D3D3, #BEBEBE, #A9A9A9, #D3D3D3); /* Uppdaterade ljusare färger */
+    
+   /* Uppdaterade ljusare färger */
     font-size: 3em;
-    color: #fff;
+    color: #333;
     text-shadow: 2px 2px 4px rgba(50, 50, 50, 0.7);
     border-radius: 20px; /* Lägger till böjd ram */
     transition: transform 0.3s ease-out, box-shadow 0.3s ease; /* För mjuk övergång vid hover */
 }
 
-    .lemon-2:hover {
-        transform: scale(1.05); /* Förstorar lite vid hover */
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7); /* Intensivare skugga vid hover */
-    }
+    
 
 
 @keyframes gradientShift {

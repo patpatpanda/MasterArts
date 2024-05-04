@@ -13,9 +13,10 @@
 </div>
 <div style="margin-top:120px"></div>
 
-
+<!-- Kontrollerar om det finns några kundordrar att visa -->
 @if (Model.CustomerOrders.Any())
 {
+    <!-- Tabell för att visa orderinformation på ett responsivt sätt -->
     <div class="table-responsive">
         <table class="table table-hover">
             <thead class="thead-light">
@@ -37,6 +38,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Itererar över varje order och visar dess detaljer -->
                 @foreach (var order in Model.CustomerOrders)
                 {
                     <tr>

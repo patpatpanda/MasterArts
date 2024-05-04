@@ -21,29 +21,40 @@ public class MyOrdersModel : PageModel
         _userManager = userManager;
     }
 
+    // Metoden OnGetAsync hämtar användarens kundnummer och
+    // visar tidigare beställningar om kundnummer är tillgängligt.
+    // Om kundnummer saknas, returneras sidan för att hantera situationen.
     public async Task<IActionResult> OnGetAsync()
     {
-        var userId = _userManager.GetUserId(User);
-        CustomerNumber = await GetCustomerNumberAsync(userId);
-        Order.Customer = CustomerNumber;
+        var userId = _userManager.GetUserId(User); // Hämtar användarens ID
+        CustomerNumber = await GetCustomerNumberAsync(userId); 
+        // Hämtar kundnummer med hjälp av användarens ID
+
+        // Hanterar situationer där kundnummer saknas
         if (string.IsNullOrWhiteSpace(CustomerNumber))
         {
-            return Page(); // Or handle the lack of a customer number appropriately
+            return Page(); // Returnerar sidan
         }
 
+        // Hämtar kundens tidigare beställningar från databasen
         CustomerOrders = await _context.Orders
                                 .Where(o => o.Customer == CustomerNumber)
-                                .Include(o => o.Goods) // Inkludera Goods i varje Order
-                                .ToListAsync();
+                                // Hämtar beställningar för specifik kund
+                                .Include(o => o.Goods) // Inkluderar varor i varje order
+                                .ToListAsync(); // Konverterar till lista
 
-        return Page();
+        return Page(); // Returnerar sidan
     }
 
+   
+    // Metoden GetCustomerNumberAsync hämtar kundnummer baserat på användar-ID
     public async Task<string> GetCustomerNumberAsync(string userId)
     {
+        // Hämtar kundens information från databasen baserat på användar-ID
         var customer = await _context.Customers
             .FirstOrDefaultAsync(c => c.UserId == userId);
 
-        return customer?.CustomerNumber;
+        return customer?.CustomerNumber; // Returnerar kundnummer om det finns, annars null
     }
+
 }

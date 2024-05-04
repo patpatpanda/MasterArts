@@ -225,8 +225,10 @@ namespace MasterArtsLibrary.Services
 
             using (var httpClient = _httpClientFactory.CreateClient())
             {
-                var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}"));
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+                var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes
+                    ($"{clientId}:{clientSecret}"));
+                httpClient.DefaultRequestHeaders.Authorization = 
+                    new AuthenticationHeaderValue("Basic", credentials);
 
                 var tokenRequestData = new Dictionary<string, string>
             {
@@ -238,7 +240,9 @@ namespace MasterArtsLibrary.Services
                 HttpResponseMessage tokenResponse;
                 try
                 {
-                    tokenResponse = await httpClient.PostAsync($"{_configuration.GetSection("CISApi:TokenEndpoint").Value}", new FormUrlEncodedContent(tokenRequestData));
+                    tokenResponse = await httpClient.PostAsync
+                        ($"{_configuration.GetSection("CISApi:TokenEndpoint").Value}",
+                        new FormUrlEncodedContent(tokenRequestData));
                 }
                 catch (HttpRequestException e)
                 {
@@ -249,17 +253,22 @@ namespace MasterArtsLibrary.Services
                 if (!tokenResponse.IsSuccessStatusCode)
                 {
                     var errorContent = await tokenResponse.Content.ReadAsStringAsync();
-                    _logger.LogError($"Tokenförfrågan misslyckades med statuskod {tokenResponse.StatusCode} och felmeddelande: {errorContent}");
+                    _logger.LogError($"Tokenförfrågan misslyckades med statuskod " +
+                        $"{tokenResponse.StatusCode} och felmeddelande: {errorContent}");
                     return;
                 }
 
                 var tokenResponseBody = await tokenResponse.Content.ReadAsStringAsync();
-                var tokenData = JsonSerializer.Deserialize<TokenResponse>(tokenResponseBody, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                var accessToken = tokenData?.AccessToken; // This should work if tokenData is not null and the JSON was parsed correctly
+                var tokenData = JsonSerializer.Deserialize<TokenResponse>
+                    (tokenResponseBody, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                var accessToken = tokenData?.AccessToken;
+                // This should work if tokenData is not null and the JSON was parsed correctly
 
 
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-                var orderResponse = await httpClient.PutAsJsonAsync(apiUrl + "order", order); // Se till att URL:en är korrekt
+                httpClient.DefaultRequestHeaders.Authorization
+                    = new AuthenticationHeaderValue("Bearer", accessToken);
+                var orderResponse = await httpClient.PutAsJsonAsync(apiUrl + "order", order);
+                // Se till att URL:en är korrekt
 
                 if (orderResponse.IsSuccessStatusCode)
                 {
@@ -271,7 +280,9 @@ namespace MasterArtsLibrary.Services
                 else
                 {
                     var errorContent = await orderResponse.Content.ReadAsStringAsync();
-                    _logger.LogError($"Skapande av order misslyckades med statuskod {orderResponse.StatusCode} och felmeddelande: {errorContent}");
+                    _logger.LogError
+                        ($"Skapande av order misslyckades med statuskod" +
+                        $" {orderResponse.StatusCode} och felmeddelande: {errorContent}");
                 }
             }
         }

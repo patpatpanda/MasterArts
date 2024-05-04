@@ -51,13 +51,11 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         public string CustomerNumber { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            var user = await _userManager.GetUserAsync(User);
-            IsOpsUser = user != null && user.Email == "ops@artslogistics.se";
             if (id.HasValue)
             {
-                // Använd Include() för att inkludera Goods listan i den hämtade ordern
+                // Hämtar en order med dess varor om ett ID tillhandahålls
                 Order = await _context.Orders
-                                       .Include(o => o.Goods) // Inkludera Goods-listan
+                                       .Include(o => o.Goods)
                                        .FirstOrDefaultAsync(o => o.Id == id);
 
                 if (Order == null)
@@ -67,35 +65,41 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             }
             else
             {
-                // Inget ID tillhandahållet, skapa en ny tom order
+                // Skapar en ny tom order om inget ID tillhandahålls
                 Order = new Order();
             }
             return Page();
-
         }
 
 
 
+        // Metoden OnPostAsync() hanterar HTTP POST-förfrågningar
+        // från beställningsformuläret.
+        // Den loggar informationen om mottagen order och
+        // försöker skapa ordern i det externa API:et.
+        // Om modellen är giltig, skickas beställningen
+        // till API:et och användaren omdirigeras till en annan sida.
         public async Task<IActionResult> OnPostAsync()
         {
             _logger.LogInformation($"Order received: {JsonConvert.SerializeObject(Order)}");
 
-           
-            
+            // Växlar språket
             CurrentLanguage = _languageService.ToggleLanguage();
             ViewData["Language"] = CurrentLanguage;
 
+            // Kontrollerar om modellen är giltig
             if (ModelState.IsValid)
             {
                 _logger.LogInformation($"Order received: {JsonConvert.SerializeObject(Order)}");
 
+                // Skapar ordern i det externa API:et
                 await _orderService.CreateOrderInApi(Order);
-                //var recipientEmail = Order.Consignor.ConsignorEmail;
-                //await _orderService.SendOrderConfirmationEmail(recipientEmail, Order);
 
+                // Meddelande om framgång och omdirigering
                 TempData["SuccessMessage"] = "Your order has been sent";
                 return RedirectToPage("/LogisticsCenter/ShipmentCalculator");
             }
+        
             else
             {
                 // Om modellen är ogiltig, logga valideringsfel och återvänd till sidan

@@ -148,8 +148,7 @@ namespace MasterArtsLibrary.Models
         [JsonProperty("routingCode")]
         public string? RoutingCode { get; set; }
        
-        [JsonProperty("inlandZipCode")]
-        public string? InlandZipCode { get; set; }
+        
 
         [JsonProperty("packages")]
         public int? Packages { get; set; }

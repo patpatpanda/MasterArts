@@ -43,7 +43,8 @@
                 <!-- Objekt kommer att läggas till här -->
             </div>
 
-            <button type="button" class="btn btn-secondary" onclick="addItem()">Lägg till objekt</button>
+            <button type="button" class="btn btn-secondary" 
+            onclick="addItem()">Lägg till objekt</button>
 
             <div class="results-container">
                 <p id="totalVolume">Total volym: 0 m³</p>
@@ -52,7 +53,8 @@
                 <p id="chargeableWeight">Debiterbar vikt: 0 kg</p>
             </div>
 
-            <button type="button" class="btn btn-secondary" onclick="resetCalculator()">Reset Calculator</button>
+            <button type="button" class="btn btn-secondary" 
+            onclick="resetCalculator()">Reset Calculator</button>
 
         </form>
     </div>
@@ -73,7 +75,8 @@ else
                 <!-- Objekt kommer att läggas till här -->
             </div>
 
-            <button type="button" class="btn btn-secondary" onclick="addItem()">Add Item</button>
+            <button type="button" class="btn btn-secondary" 
+            onclick="addItem()">Add Item</button>
 
             <div class="results-container">
                 <p id="totalVolume">Total Volume: 0 m³</p>
@@ -81,7 +84,8 @@ else
                 <p id="totalActualWeight">Total Actual Weight: 0 kg</p>
                 <p id="chargeableWeight">Chargeable Weight: 0 kg</p>
             </div>
-            <button type="button" class="btn btn-secondary" onclick="resetCalculator()">Reset Calculator</button>
+            <button type="button" class="btn btn-secondary" 
+            onclick="resetCalculator()">Reset Calculator</button>
 
         </form>
     </div>
@@ -98,19 +102,24 @@ else
             div.className = "shipment-item";
             div.innerHTML = `
                     <label>Length (cm):</label>
-                    <input type="text" name="Items[${index}].Length" onchange="updateResults()" />
+                    <input type="text" name="Items[${index}].Length"
+                    onchange="updateResults()" />
 
                     <label>Width (cm):</label>
-                    <input type="text" name="Items[${index}].Width" onchange="updateResults()" />
+                    <input type="text" name="Items[${index}].Width"
+                    onchange="updateResults()" />
 
                     <label>Height (cm):</label>
-                    <input type="text" name="Items[${index}].Height" onchange="updateResults()" />
+                    <input type="text" name="Items[${index}].Height"
+                    onchange="updateResults()" />
 
                     <label>Actual weight (kg):</label>
-                    <input type="text" name="Items[${index}].ActualWeight" onchange="updateResults()" />
+                    <input type="text" name="Items[${index}].ActualWeight"
+                    onchange="updateResults()" />
 
                     <label>Pieces:</label>
-                    <input type="number" name="Items[${index}].Pieces" onchange="updateResults()" />
+                    <input type="number" name="Items[${index}].Pieces"
+                    onchange="updateResults()" />
                 `;
 
             container.appendChild(div);
@@ -120,34 +129,37 @@ else
         function updateResults() {
             var items = document.querySelectorAll('.shipment-item');
             var totalVolume = 0, totalActualWeight = 0, totalVolumeWeight = 0;
-
             var selectedDensityValue = document.getElementById('selectedDensity').value;
             var densityRatio = extractDensityRatio(selectedDensityValue);
-
             items.forEach(function (item) {
-                var length = parseFloat(item.querySelector('input[name*=".Length"]').value) || 0;
-                var width = parseFloat(item.querySelector('input[name*=".Width"]').value) || 0;
-                var height = parseFloat(item.querySelector('input[name*=".Height"]').value) || 0;
-                var actualWeight = parseFloat(item.querySelector('input[name*=".ActualWeight"]').value) || 0;
-                var pieces = parseInt(item.querySelector('input[name*=".Pieces"]').value) || 1;
-
+                var length = parseFloat(item.querySelector
+                    ('input[name*=".Length"]').value) || 0;
+                var width = parseFloat(item.querySelector
+                    ('input[name*=".Width"]').value) || 0;
+                var height = parseFloat(item.querySelector
+                    ('input[name*=".Height"]').value) || 0;
+                var actualWeight = parseFloat(item.querySelector
+                    ('input[name*=".ActualWeight"]').value) || 0;
+                var pieces = parseInt(item.querySelector
+                    ('input[name*=".Pieces"]').value) || 1;
                 var volume = (length * width * height) / 1000000;
                 var volumeWeight = volume * densityRatio * 1000;
-
                 totalVolume += volume * pieces;
                 totalActualWeight += actualWeight * pieces;
                 totalVolumeWeight += volumeWeight * pieces;
             });
-
             var chargeableWeight = Math.max(totalVolumeWeight, totalActualWeight);
 
-            document.getElementById('totalVolume').innerText = 'Total Volume: ' + totalVolume.toFixed(2) + ' m³';
-            document.getElementById('totalVolumeWeight').innerText = 'Total Volume Weight: ' + totalVolumeWeight.toFixed(2) + ' kg';
-            document.getElementById('totalActualWeight').innerText = 'Total Actual Weight: ' + totalActualWeight.toFixed(2) + ' kg';
-            document.getElementById('chargeableWeight').innerText = 'Chargeable Weight: ' + chargeableWeight.toFixed(2) + ' kg';
+            document.getElementById('totalVolume').innerText = 
+            'Total Volume: ' + totalVolume.toFixed(2) + ' m³';
+            document.getElementById('totalVolumeWeight').innerText = 
+            'Total Volume Weight: ' + totalVolumeWeight.toFixed(2) + ' kg';
+            document.getElementById('totalActualWeight').innerText = 
+            'Total Actual Weight: ' + totalActualWeight.toFixed(2) + ' kg';
+            document.getElementById('chargeableWeight').innerText = 
+            'Chargeable Weight: ' + chargeableWeight.toFixed(2) + ' kg';
         }
 
-        
         function extractDensityRatio(selectedDensity) {
             var ratio = 0.0;
             if (selectedDensity) {
@@ -162,23 +174,22 @@ else
             }
             return ratio;
         }
-
-
     function resetCalculator() {
         // Återställer densitetsval till det första alternativet
         document.getElementById('selectedDensity').selectedIndex = 0;
-
         // Rensar alla tillagda objekt
         var container = document.getElementById("items-container");
         container.innerHTML = '';
-
         // Återställer resultaten till 0
-        document.getElementById('totalVolume').innerText = 'Total Volume: 0 m³';
-        document.getElementById('totalVolumeWeight').innerText = 'Total Volume Weight: 0 kg';
-        document.getElementById('totalActualWeight').innerText = 'Total Actual Weight: 0 kg';
-        document.getElementById('chargeableWeight').innerText = 'Chargeable Weight: 0 kg';
+        document.getElementById('totalVolume').innerText = 
+        'Total Volume: 0 m³';
+        document.getElementById('totalVolumeWeight').innerText = 
+        'Total Volume Weight: 0 kg';
+        document.getElementById('totalActualWeight').innerText = 
+        'Total Actual Weight: 0 kg';
+        document.getElementById('chargeableWeight').innerText = 
+        'Chargeable Weight: 0 kg';
     }
-
     </script>
 
 
