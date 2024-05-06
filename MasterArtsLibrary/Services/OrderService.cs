@@ -49,9 +49,6 @@ namespace MasterArtsLibrary.Services
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authValue);
         }
 
-        public OrderService(IHttpClientFactory object1, ILogger<OrderService> object2, IConfiguration object3)
-        {
-        }
 
         public async Task SendOrderConfirmationEmail(string recipientEmail, Order order)
         {

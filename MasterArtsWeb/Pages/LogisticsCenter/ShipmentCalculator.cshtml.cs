@@ -15,11 +15,11 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
     public class ShipmentCalculatorModel : PageModel
     {
 
-        public ShipmentCalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory, OrderService orderService, UserManager<IdentityUser> userManager, MyDbContext context, ILogger<ShipmentCalculatorModel> logger, IConfiguration configuration)
+        public ShipmentCalculatorModel(IOrderService @object, IHttpClientFactory clientFactory, IOrderService orderService, UserManager<IdentityUser> userManager, MyDbContext context, ILogger<ShipmentCalculatorModel> logger, IConfiguration configuration)
 
         {
             _clientFactory = clientFactory;
-            _languageService = languageService;
+           
             _orderService = orderService;
             _userManager = userManager;
             _context = context;
@@ -27,7 +27,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             _configuration = configuration;
         }
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly OrderService _orderService;
+        private readonly IOrderService _orderService;
         private readonly ILogger<ShipmentCalculatorModel> _logger;
         [BindProperty]
         public Order Order { get; set; } = new Order();
@@ -49,7 +49,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
 
         public CurrencyExchangeRates CurrencyData { get; set; }
         public string BaseCurrency { get; set; } = "SEK";
-        private readonly LanguageService _languageService;
+       
         public string CurrentLanguage { get; set; }
         public string CustomerNumber { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -87,7 +87,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             _logger.LogInformation($"Order received: {JsonConvert.SerializeObject(Order)}");
 
             // Växlar språket
-            CurrentLanguage = _languageService.ToggleLanguage();
+            
             ViewData["Language"] = CurrentLanguage;
 
             // Kontrollerar om modellen är giltig
