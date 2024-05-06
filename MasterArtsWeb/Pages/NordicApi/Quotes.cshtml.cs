@@ -14,7 +14,7 @@ namespace MasterArtsWeb.Pages.NordicApi
         private readonly UserManager<IdentityUser> _userManager;
 
         public List<CustomerRates> CustomerRatesDetails { get; set; }
-        public CustomerRates CustomerRates { get; set; }
+       
         public List<Order> CustomerOrders { get; set; }
         public string CustomerOrderNumber { get; set; }
 

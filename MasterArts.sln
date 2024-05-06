@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterArtsWeb", "MasterArts
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterArtsLibrary", "MasterArtsLibrary\MasterArtsLibrary.csproj", "{CAD9DF9A-2C2A-4FDD-BCE3-F74E05009BDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterTest", "MasterTest\MasterTest.csproj", "{2849347D-2A35-490D-AB0C-8F0C1180C9D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CAD9DF9A-2C2A-4FDD-BCE3-F74E05009BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAD9DF9A-2C2A-4FDD-BCE3-F74E05009BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAD9DF9A-2C2A-4FDD-BCE3-F74E05009BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2849347D-2A35-490D-AB0C-8F0C1180C9D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2849347D-2A35-490D-AB0C-8F0C1180C9D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2849347D-2A35-490D-AB0C-8F0C1180C9D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2849347D-2A35-490D-AB0C-8F0C1180C9D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace MasterArtsWeb.Pages.LogisticsCenter
 {
@@ -14,7 +15,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
     public class ShipmentCalculatorModel : PageModel
     {
 
-        public ShipmentCalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory, OrderService orderService, UserManager<IdentityUser> userManager, MyDbContext context, ILogger<ShipmentCalculatorModel> logger)
+        public ShipmentCalculatorModel(LanguageService languageService, IHttpClientFactory clientFactory, OrderService orderService, UserManager<IdentityUser> userManager, MyDbContext context, ILogger<ShipmentCalculatorModel> logger, IConfiguration configuration)
 
         {
             _clientFactory = clientFactory;
@@ -23,6 +24,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
             _userManager = userManager;
             _context = context;
             _logger = logger;
+            _configuration = configuration;
         }
         private readonly UserManager<IdentityUser> _userManager;
         private readonly OrderService _orderService;
@@ -31,6 +33,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         public Order Order { get; set; } = new Order();
         private readonly MyDbContext _context;
         public int OrderId { get; set; }
+        private readonly IConfiguration _configuration;
         public string Description { get; set; }
         public IList<Order> Orders { get; set; }
         public bool IsOpsUser { get; set; }

@@ -12,15 +12,17 @@ namespace MasterArtsWeb.Pages
     public class ContactModel : PageModel
     {
 
-        public string CurrentLanguage { get; set; }
+       
         private readonly IEmailSender _emailSender;
-        private readonly LanguageService _languageService;
+        
         [BindProperty]
         public ContactFormModel Input { get; set; }
-        public ContactModel(IEmailSender emailSender, LanguageService languageService)
+        public ControllerContext ControllerContext { get; set; }
+
+        public ContactModel(IEmailSender emailSender)
         {
             _emailSender = emailSender;
-            _languageService = languageService;
+            
         }
         public void OnGet()
         {
