@@ -10,5 +10,7 @@ namespace MasterArtsLibrary.Services
     public interface IOrderService
     {
         Task CreateOrderInApi(Order order);
+        Task<string> GetAccessToken();
+
     }
 }

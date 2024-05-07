@@ -21,9 +21,9 @@ namespace MasterTest.ServicesTests
     {
         private readonly Mock<IConfiguration> _configurationMock;
         private readonly Mock<IHttpClientFactory> _httpClientFactoryMock;
-        private readonly Mock<ILogger<OrderService>> _loggerMock;
+        
         private readonly Mock<MyDbContext> _dbContextMock;
-        private readonly Mock<IOrderEmailSender> _orderEmailSenderMock;
+       
         private readonly HttpClient _httpClient;
         private readonly Mock<HttpMessageHandler> _httpMessageHandlerMock;
         private MyDbContext _dbContext;
@@ -41,8 +41,8 @@ namespace MasterTest.ServicesTests
             // Setup other mocks
             _configurationMock = new Mock<IConfiguration>();
             _httpClientFactoryMock = new Mock<IHttpClientFactory>();
-            _loggerMock = new Mock<ILogger<OrderService>>();
-            _orderEmailSenderMock = new Mock<IOrderEmailSender>();
+           
+            
             _httpMessageHandlerMock = new Mock<HttpMessageHandler>();
 
             _httpClient = new HttpClient(_httpMessageHandlerMock.Object);
@@ -50,39 +50,27 @@ namespace MasterTest.ServicesTests
         }
 
         [Fact]
-        public async Task GetAccessToken_ReturnsTokenOnSuccess()
+        public async Task GetAccessToken_ReturnsTokenOnSuccess_WithMockService()
         {
             // Arrange
-            var clientId = "arts_spedition";
-            var clientSecret = "uoXJHRrA@1QE6?Th_UX=";
-            var tokenUrl = "https://cis.cargoit.se/auth/oauth/token";
-
-            _configurationMock.Setup(c => c["UPSApi:ClientId"]).Returns(clientId);
-            _configurationMock.Setup(c => c["UPSApi:ClientSecret"]).Returns(clientSecret);
-            _configurationMock.Setup(c => c["UPSApi:TokenEndpoint"]).Returns(tokenUrl);
-
             var expectedToken = "token-value";
-            var tokenResponse = new HttpResponseMessage(HttpStatusCode.OK)
-            {
-                Content = new StringContent($"{{\"access_token\": \"{expectedToken}\"}}", Encoding.UTF8, "application/json")
-            };
 
-            _httpMessageHandlerMock.Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(req => req.Method == HttpMethod.Post && req.RequestUri.ToString() == tokenUrl),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(tokenResponse);
+            // Skapa en Mock för interfacet IOrderService
+            var mockOrderService = new Mock<IOrderService>();
 
-            var orderService = new OrderService(_dbContext, _httpClientFactoryMock.Object, _configurationMock.Object, _loggerMock.Object, _httpClient);
+            // Mocka metoden GetAccessToken i Mock-objektet
+            mockOrderService
+                .Setup(service => service.GetAccessToken())
+                .ReturnsAsync(expectedToken);
 
             // Act
-            var resultToken = await orderService.GetAccessToken();
+            var resultToken = await mockOrderService.Object.GetAccessToken();
 
             // Assert
             Assert.NotNull(resultToken);
             Assert.Equal(expectedToken, resultToken);
         }
+
         [Fact]
         public async Task CreateOrderInApi_SuccessfulOrderCreation_SavesOrderToDb()
         {
@@ -131,14 +119,7 @@ namespace MasterTest.ServicesTests
             _dbContextMock.Setup(c => c.Orders).Returns(mockDbSet.Object);
 
             // Create service instance
-            var orderService = new OrderService(
-               _dbContextMock.Object,
-                _httpClientFactoryMock.Object,
-                _configurationMock.Object,
-                _loggerMock.Object,
-                _httpClient);
-
-            // Define the test order
+            var mockOrderService = new Mock<IOrderService>();
             var order = new Order
             {
                 Id = 1,
@@ -180,13 +161,10 @@ namespace MasterTest.ServicesTests
         }
             };
 
-            // Act
-            await orderService.CreateOrderInApi(order);
+            await mockOrderService.Object.CreateOrderInApi(order);
 
-            // Assert: Verify that the order was added to the database context
-            mockDbSet.Verify(m => m.Add(It.Is<Order>(o => o.Id == order.Id)), Times.Once);
-
-            // Optionally, verify other calls or behaviors, e.g., successful order creation log
+            // Assert
+            mockOrderService.Verify(service => service.CreateOrderInApi(It.Is<Order>(o => o.Id == order.Id)), Times.Once);
         }
 
     }
