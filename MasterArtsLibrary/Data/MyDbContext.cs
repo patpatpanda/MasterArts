@@ -8,12 +8,13 @@ namespace MasterArtsWeb
 {
     public class MyDbContext : IdentityDbContext<IdentityUser>
     {
+       
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
         }
-        
 
-        public DbSet<Order> Orders { get; set; }
+
+        public virtual DbSet<Order> Orders { get; set; }
         public DbSet<Consignee> Consignees { get; set; }
         public DbSet<Consignor> Consignors { get; set; }
          public DbSet<Customer> Customers { get; set; }
