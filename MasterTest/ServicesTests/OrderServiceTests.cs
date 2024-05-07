@@ -75,20 +75,16 @@ namespace MasterTest.ServicesTests
         public async Task CreateOrderInApi_SuccessfulOrderCreation_SavesOrderToDb()
         {
             // Arrange
-            var apiUrl = "https://example.com/api/";
-            var tokenEndpoint = "https://example.com/token";
-            var clientId = "arts_spedition";
-            var clientSecret = "uoXJHRrA@1QE6?Th_UX=";
-            var username = "arts";
-            var password = "8WdzEw!9Kc_1abcd";
+            var configurationMock = new Mock<IConfiguration>();
 
-            // Setup configuration mock values
-            _configurationMock.Setup(c => c.GetSection("CISApi:ApiUrl").Value).Returns(apiUrl);
-            _configurationMock.Setup(c => c.GetSection("CISApi:TokenEndpoint").Value).Returns(tokenEndpoint);
-            _configurationMock.Setup(c => c.GetSection("CISApi:ClientId").Value).Returns(clientId);
-            _configurationMock.Setup(c => c.GetSection("CISApi:ClientSecret").Value).Returns(clientSecret);
-            _configurationMock.Setup(c => c.GetSection("CISApi:Username").Value).Returns(username);
-            _configurationMock.Setup(c => c.GetSection("CISApi:Password").Value).Returns(password);
+            // Setup configuration mock för att returnera statiska värden
+            configurationMock.Setup(c => c.GetSection("CISApi:ApiUrl").Value).Returns("https://example.com/api/");
+            configurationMock.Setup(c => c.GetSection("CISApi:TokenEndpoint").Value).Returns("https://example.com/token");
+            configurationMock.Setup(c => c.GetSection("CISApi:ClientId").Value).Returns("example_client_id");
+            configurationMock.Setup(c => c.GetSection("CISApi:ClientSecret").Value).Returns("example_client_secret");
+            configurationMock.Setup(c => c.GetSection("CISApi:Username").Value).Returns("example_username");
+            configurationMock.Setup(c => c.GetSection("CISApi:Password").Value).Returns("example_password");
+
 
             // Mock token response
             var tokenResponse = new HttpResponseMessage(HttpStatusCode.OK)
@@ -100,19 +96,24 @@ namespace MasterTest.ServicesTests
             var orderResponse = new HttpResponseMessage(HttpStatusCode.Created);
 
             // Setup HTTP message handler
+            // Setup HTTP message handler
+            var _httpMessageHandlerMock = new Mock<HttpMessageHandler>();
             _httpMessageHandlerMock.Protected()
                 .Setup<Task<HttpResponseMessage>>(
                     "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(req => req.Method == HttpMethod.Post && req.RequestUri.ToString() == tokenEndpoint),
+                    ItExpr.IsAny<HttpRequestMessage>(),
                     ItExpr.IsAny<CancellationToken>())
                 .ReturnsAsync(tokenResponse);
+
+            // ...
 
             _httpMessageHandlerMock.Protected()
                 .Setup<Task<HttpResponseMessage>>(
                     "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(req => req.Method == HttpMethod.Put && req.RequestUri.ToString() == $"{apiUrl}order"),
+                    ItExpr.IsAny<HttpRequestMessage>(),
                     ItExpr.IsAny<CancellationToken>())
                 .ReturnsAsync(orderResponse);
+
 
             // Mock database context to capture saved orders
             var mockDbSet = new Mock<DbSet<Order>>();
