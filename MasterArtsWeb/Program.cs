@@ -27,7 +27,6 @@ builder.Services.AddHttpClient("UPSClient", client =>
 });
 
 
-
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IOrderEmailSender, EmailSender>();
 builder.Services.AddTransient<DataInitializer>();

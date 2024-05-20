@@ -15,12 +15,12 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
     public class ShipmentCalculatorModel : PageModel
     {
 
-        public ShipmentCalculatorModel(IOrderService @object, IHttpClientFactory clientFactory, IOrderService orderService, UserManager<IdentityUser> userManager, MyDbContext context, ILogger<ShipmentCalculatorModel> logger, IConfiguration configuration)
+        public ShipmentCalculatorModel( IHttpClientFactory clientFactory, UserManager<IdentityUser> userManager, MyDbContext context, ILogger<ShipmentCalculatorModel> logger, IConfiguration configuration)
 
         {
             _clientFactory = clientFactory;
            
-            _orderService = orderService;
+          
             _userManager = userManager;
             _context = context;
             _logger = logger;
