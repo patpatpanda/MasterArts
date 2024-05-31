@@ -15,19 +15,18 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
     public class ShipmentCalculatorModel : PageModel
     {
 
-        public ShipmentCalculatorModel( IHttpClientFactory clientFactory, UserManager<IdentityUser> userManager, MyDbContext context, ILogger<ShipmentCalculatorModel> logger, IConfiguration configuration)
-
+        public ShipmentCalculatorModel(IHttpClientFactory clientFactory, UserManager<IdentityUser> userManager, MyDbContext context, ILogger<ShipmentCalculatorModel> logger, IConfiguration configuration, OrderService orderService)
         {
             _clientFactory = clientFactory;
-           
-          
             _userManager = userManager;
             _context = context;
             _logger = logger;
             _configuration = configuration;
+            _orderService = orderService; // Initialisera _orderService
         }
+
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IOrderService _orderService;
+        private readonly OrderService _orderService;
         private readonly ILogger<ShipmentCalculatorModel> _logger;
         [BindProperty]
         public Order Order { get; set; } = new Order();
@@ -84,10 +83,14 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
         // till API:et och användaren omdirigeras till en annan sida.
         public async Task<IActionResult> OnPostAsync()
         {
+            if (Order == null)
+            {
+                Order = new Order(); // Säkerställ att Order inte är null
+            }
+
             _logger.LogInformation($"Order received: {JsonConvert.SerializeObject(Order)}");
 
             // Växlar språket
-            
             ViewData["Language"] = CurrentLanguage;
 
             // Kontrollerar om modellen är giltig
@@ -102,7 +105,6 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
                 TempData["SuccessMessage"] = "Your order has been sent";
                 return RedirectToPage("/LogisticsCenter/ShipmentCalculator");
             }
-        
             else
             {
                 // Om modellen är ogiltig, logga valideringsfel och återvänd till sidan
@@ -118,6 +120,7 @@ namespace MasterArtsWeb.Pages.LogisticsCenter
                 return Page();
             }
         }
+
 
         public async Task<string> GetCustomerNumberAsync(string userId)
         {
