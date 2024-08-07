@@ -2,13 +2,11 @@
 
 @model IndexModel
 
+<body id="klu">
+</body>
 
+<h3 class="goStart adjusted-anchor" id="index-id"></h3>
 
-<body id="klu"></body>
-
-    <h3 class="goStart adjusted-anchor" id="index-id"></h3>
-
-    
 <form method="post" asp-page-handler="ChangeLanguage" id="languageForm">
     <div id="language-switch" class="index-lang">
         <button type="submit" class="l-btn">SWE/ENG</button>
@@ -18,7 +16,6 @@
 <div class="text-center" style="margin-bottom:100px">
     @if (TempData["NotValidCode"] != null)
     {
-
         <div class="" id="success-message" style="margin-top: 50px">@TempData["NotValidCode"]</div>
     }
     @if (@Model.CurrentLanguage == "sv")
@@ -35,15 +32,11 @@
             <p>Observera: Spårning är endast tillgänglig för LCL-sändningar. För andra typer av sändningar, besök följande sida.</p>
             <a href="https://www.track-trace.com/" target="_blank" class="cta-button">Andra sändningar</a>
         </div>
-
-
     }
-
-
     else
     {
         <form method="post" asp-page-handler="Track">
-    <div class="form-group" style="max-width: 500px; margin: auto;">
+            <div class="form-group" style="max-width: 500px; margin: auto;">
                 <label for="trackingCode">Tracking Code:</label>
                 <input type="text" id="trackingCode" name="trackingCode" class="form-control" />
             </div>
@@ -55,189 +48,72 @@
             <a href="https://www.track-trace.com/" target="_blank" class="cta-button">Other shipments</a>
         </div>
     }
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <div class="text-center">
-@if (Model.TrackResponse != null)
-{
-    <div id="transportDetails" style="margin-top:20px;margin-bottom:100px">
-        <h2>Transport Details</h2>
-        <p>Consignment Number: @Model.TrackResponse.ConsignmentNumber</p>
-        <p>Last Event: @Model.TrackResponse.LastEvent</p>
-        <p>Module: @Model.TrackResponse.Module</p>
-        <p>Type: @Model.TrackResponse.Type</p>
-        <p>Direction: @Model.TrackResponse.Direction</p>
-        <p>BL Number: @Model.TrackResponse.BlNumber</p>
-        <p>ETA: @Model.TrackResponse.Eta</p>
-        <p>ETD: @Model.TrackResponse.Etd</p>
-        <p>Port of Loading: @Model.TrackResponse.PortOfLoading (@Model.TrackResponse.PortOfLoadingCode)</p>
-        <p>Port of Discharge: @Model.TrackResponse.PortOfDischarge (@Model.TrackResponse.PortOfDischargeCode)</p>
-        <p>Final Destination: @Model.TrackResponse.FinalDestination</p>
-        <p>Vessel: @Model.TrackResponse.Vessel</p>
-        <p>Container Number: @Model.TrackResponse.ContainerNumber</p>
-        <p>Client Reference: @Model.TrackResponse.ClientReference</p>
-        <p>Packages: @Model.TrackResponse.Packages</p>
-        <p>Weight: @Model.TrackResponse.Weight kg</p>
-        <p>Volume: @Model.TrackResponse.Volume m³</p>
-        <p>Last Event Code: @Model.TrackResponse.LastEventCode</p>
-        <p>Last Event Date and Time: @Model.TrackResponse.LastEventDateTime</p>
-        <form method="post" asp-page-handler="Clear">
-            <button type="submit" class="btn btn-warning">Rensa information</button>
-        </form>
-        @if (Model.TrackResponse.Events != null && Model.TrackResponse.Events.Any())
-        {
-            <h3>Event History</h3>
-            <ul>
-                @foreach (var eventItem in Model.TrackResponse.Events)
-                {
-                    <li>@eventItem.DateTime.ToString("yyyy-MM-dd HH:mm:ss") - @eventItem.Name (@eventItem.Code)</li>
-                }
-            </ul>
-        }
-
-        
-
-    </div>
-    
-}
+    @if (Model.TrackResponse != null)
+    {
+        <div id="transportDetails" style="margin-top:20px;margin-bottom:100px">
+            <h2>Transport Details</h2>
+            <p>Consignment Number: @Model.TrackResponse.ConsignmentNumber</p>
+            <p>Last Event: @Model.TrackResponse.LastEvent</p>
+            <p>Module: @Model.TrackResponse.Module</p>
+            <p>Type: @Model.TrackResponse.Type</p>
+            <p>Direction: @Model.TrackResponse.Direction</p>
+            <p>BL Number: @Model.TrackResponse.BlNumber</p>
+            <p>ETA: @Model.TrackResponse.Eta</p>
+            <p>ETD: @Model.TrackResponse.Etd</p>
+            <p>Port of Loading: @Model.TrackResponse.PortOfLoading (@Model.TrackResponse.PortOfLoadingCode)</p>
+            <p>Port of Discharge: @Model.TrackResponse.PortOfDischarge (@Model.TrackResponse.PortOfDischargeCode)</p>
+            <p>Final Destination: @Model.TrackResponse.FinalDestination</p>
+            <p>Vessel: @Model.TrackResponse.Vessel</p>
+            <p>Container Number: @Model.TrackResponse.ContainerNumber</p>
+            <p>Client Reference: @Model.TrackResponse.ClientReference</p>
+            <p>Packages: @Model.TrackResponse.Packages</p>
+            <p>Weight: @Model.TrackResponse.Weight kg</p>
+            <p>Volume: @Model.TrackResponse.Volume m³</p>
+            <p>Last Event Code: @Model.TrackResponse.LastEventCode</p>
+            <p>Last Event Date and Time: @Model.TrackResponse.LastEventDateTime</p>
+            <form method="post" asp-page-handler="Clear">
+                <button type="submit" class="btn btn-warning">Rensa information</button>
+            </form>
+            @if (Model.TrackResponse.Events != null && Model.TrackResponse.Events.Any())
+            {
+                <h3>Event History</h3>
+                <ul>
+                    @foreach (var eventItem in Model.TrackResponse.Events)
+                    {
+                        <li>@eventItem.DateTime.ToString("yyyy-MM-dd HH:mm:ss") - @eventItem.Name (@eventItem.Code)</li>
+                    }
+                </ul>
+            }
+        </div>
+    }
 </div>
 
-
-
-<!-- Visa transportinformation här om den finns -->
-
-    <div class="kajsa">
-    
-
-        <div class="card">
-            <a href="/ArtServices#air" class="card-link" stlye=" text-decoration: none;">
-                <div class="card-body text-center">
-                    <i class="fa-sharp fa-thin fa-plane card-icon" style="margin-bottom:10px"></i>
-                    <h5 class="card-title">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                FLYG
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                AIR
-                            </span>
-                        }
-                    </h5>
-                    <p class="card-text">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                Hjälper er med flyg leverans<br>
-
-
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                Assisting you with air freight delivery<br>
-
-                            </span>
-                        }
-                    </p>
-                </div>
-            </a>
-        </div>
-
-
-        <div class="card">
-            <a href="/ArtServices#road" class="card-link" stlye=" text-decoration: none;">
-                <div class="card-body text-center">
-
-                <i class="fa-sharp fa-thin fa-truck-front card-icon" style="margin-bottom:10px"></i>
-                    <h5 class="card-title">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-                            <span>VÄG</span>
-                        }
-                        else
-                        {
-                            <span>ROAD</span>
-                        }
-                    </h5>
-                    <p class="card-text">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-                            <span>
-                                Hjälper er med lastbilsservice <br>
-
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                Assisting you with truckservice <br>
-
-                            </span>
-                        }
-                    </p>
-
-                </div>
-            </a>
-        </div>
-
+<div class="kajsa">
     <div class="card">
-        <a href="/ArtServices#train" class="card-link" stlye=" text-decoration: none;">
+        <a href="/ArtServices#air" class="card-link" style="text-decoration: none;">
             <div class="card-body text-center">
-                <i class="fa-sharp fa-thin fa-train card-icon" style="margin-bottom:10px"></i>
+                <i class="fas fa-plane card-icon" style="margin-bottom:10px"></i>
                 <h5 class="card-title">
                     @if (@Model.CurrentLanguage == "sv")
                     {
-
-                        <span>
-                            TÅG
-                        </span>
+                        <span>FLYG</span>
                     }
                     else
                     {
-                        <span>
-                            TRAIN
-                        </span>
+                        <span>AIR</span>
                     }
                 </h5>
                 <p class="card-text">
                     @if (@Model.CurrentLanguage == "sv")
                     {
-
-                        <span>
-                            Hjälper er med järnvägstransport<br>
-
-
-                        </span>
+                        <span>Hjälper er med flyg leverans<br></span>
                     }
                     else
                     {
-                        <span>
-                            Assisting you with railway shipment<br>
-
-                        </span>
+                        <span>Assisting you with air freight delivery<br></span>
                     }
                 </p>
             </div>
@@ -245,178 +121,179 @@
     </div>
 
     <div class="card">
-        <a href="/ArtServices#sea" class="card-link" stlye=" text-decoration: none;">
+        <a href="/ArtServices#road" class="card-link" style="text-decoration: none;">
             <div class="card-body text-center">
-                <i class="fa-sharp fa-thin fa-ship card-icon" style="margin-bottom:10px"></i>
+                <i class="fas fa-truck card-icon" style="margin-bottom:10px"></i>
                 <h5 class="card-title">
                     @if (@Model.CurrentLanguage == "sv")
                     {
-
-                        <span>
-                            SJÖFART
-                        </span>
+                        <span>VÄG</span>
                     }
                     else
                     {
-                        <span>
-                            SEA
-                        </span>
+                        <span>ROAD</span>
                     }
                 </h5>
                 <p class="card-text">
                     @if (@Model.CurrentLanguage == "sv")
                     {
-
-                        <span>
-                            Hjälper er med full container sändning
-
-                        </span>
+                        <span>Hjälper er med lastbilsservice <br></span>
                     }
                     else
                     {
-                        <span>
-                            Assisting you with full container shipment
-                        </span>
+                        <span>Assisting you with truck service <br></span>
                     }
                 </p>
             </div>
         </a>
     </div>
 
-    
-
-</div>
-    <div class="kajsa">
-
-        <div class="card">
-        <a href="/ArtServices#special-2" class="card-link" stlye=" text-decoration: none;">
-                <div class="card-body text-center">
-                <i class="fa-thin fa-clipboard-list card-icon" style="margin-bottom:10px"></i>
-                    <h5 class="card-title">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                           PROJEKTLOGISTIK
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                               PROJECT-LOGISTICS
-                            </span>
-                        }
-                    </h5>
-                    <p class="card-text">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                Hjälper er projektlogistik
-
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                Assisting you with project logistics
-                            </span>
-                        }
-                    </p>
-                </div>
-            </a>
-        </div>
-       
-
-        <div class="card">
-            <a href="/ArtServices#courier" class="card-link" stlye=" text-decoration: none;">
-                <div class="card-body text-center">
-                <i class="fa-thin fa-person-carry-box card-icon" style="margin-bottom:10px"></i>
-                    <h5 class="card-title">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                KURIR
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                COURIER
-                            </span>
-                        }
-                    </h5>
-                    <p class="card-text">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                Hjälper er med kurir leverans <br>
-
-
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                Assisting you with courier delivery<br>
-
-                            </span>
-                        }
-                    </p>
-                </div>
-            </a>
-        </div>
-
-
-        <div class="card">
-            <a href="/ArtServices#express" class="card-link" stlye=" text-decoration: none;">
-                <div class="card-body text-center">
-                <i class="fa-sharp fa-thin fa-truck-clock card-icon" style="margin-bottom:10px"></i>
-                    <h5 class="card-title">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                EXPRESS
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                EXPRESS
-                            </span>
-                        }
-                    </h5>
-                    <p class="card-text">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                Hjälper er med expressleverans<br>
-
-
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                Assisting you with express delivery<br>
-
-                            </span>
-                        }
-                    </p>
-                </div>
-            </a>
-
-        </div>
-
-
-        <div class="card">
-            <a href="/ArtServices#special" class="card-link" style="text-decoration: none;">
+    <div class="card">
+        <a href="/ArtServices#train" class="card-link" style="text-decoration: none;">
             <div class="card-body text-center">
-                <i class="fa-thin fa-wand-magic-sparkles card-icon" style="margin-bottom:12px"></i>
+                <i class="fas fa-train card-icon" style="margin-bottom:10px"></i>
+                <h5 class="card-title">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>TÅG</span>
+                    }
+                    else
+                    {
+                        <span>TRAIN</span>
+                    }
+                </h5>
+                <p class="card-text">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Hjälper er med järnvägstransport<br></span>
+                    }
+                    else
+                    {
+                        <span>Assisting you with railway shipment<br></span>
+                    }
+                </p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="/ArtServices#sea" class="card-link" style="text-decoration: none;">
+            <div class="card-body text-center">
+                <i class="fas fa-ship card-icon" style="margin-bottom:10px"></i>
+                <h5 class="card-title">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>SJÖFART</span>
+                    }
+                    else
+                    {
+                        <span>SEA</span>
+                    }
+                </h5>
+                <p class="card-text">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Hjälper er med full container sändning</span>
+                    }
+                    else
+                    {
+                        <span>Assisting you with full container shipment</span>
+                    }
+                </p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="kajsa">
+    <div class="card">
+        <a href="/ArtServices#special-2" class="card-link" style="text-decoration: none;">
+            <div class="card-body text-center">
+                <i class="fas fa-clipboard-list card-icon" style="margin-bottom:10px"></i>
+                <h5 class="card-title">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>PROJEKTLOGISTIK</span>
+                    }
+                    else
+                    {
+                        <span>PROJECT-LOGISTICS</span>
+                    }
+                </h5>
+                <p class="card-text">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Hjälper er projektlogistik</span>
+                    }
+                    else
+                    {
+                        <span>Assisting you with project logistics</span>
+                    }
+                </p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="/ArtServices#courier" class="card-link" style="text-decoration: none;">
+            <div class="card-body text-center">
+                <i class="fas fa-user card-icon" style="margin-bottom:10px"></i>
+                <h5 class="card-title">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>KURIR</span>
+                    }
+                    else
+                    {
+                        <span>COURIER</span>
+                    }
+                </h5>
+                <p class="card-text">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Hjälper er med kurir leverans <br></span>
+                    }
+                    else
+                    {
+                        <span>Assisting you with courier delivery<br></span>
+                    }
+                </p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="/ArtServices#express" class="card-link" style="text-decoration: none;">
+            <div class="card-body text-center">
+                <i class="fas fa-truck-fast card-icon" style="margin-bottom:10px"></i>
+                <h5 class="card-title">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>EXPRESS</span>
+                    }
+                    else
+                    {
+                        <span>EXPRESS</span>
+                    }
+                </h5>
+                <p class="card-text">
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Hjälper er med expressleverans<br></span>
+                    }
+                    else
+                    {
+                        <span>Assisting you with express delivery<br></span>
+                    }
+                </p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="/ArtServices#special" class="card-link" style="text-decoration: none;">
+            <div class="card-body text-center">
+                <i class="fas fa-wand-magic card-icon" style="margin-bottom:12px"></i>
                 <h5 class="card-title">
                     @if (@Model.CurrentLanguage == "sv")
                     {
@@ -438,375 +315,17 @@
                     }
                 </p>
             </div>
-            </a>
-        </div>
-
-
-    </div>
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="kajsa-2">
-
-    <div class="card">
-        <a href="/ArtServices#air" class="card-link" stlye=" text-decoration: none;">
-            <div class="card-body text-center">
-                <i class="fa-sharp fa-thin fa-plane card-icon" style="margin-bottom:14px"></i>
-                <h5 class="card-title">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-
-                        <span>
-                            FLYG
-                        </span>
-                    }
-                    else
-                    {
-                        <span>
-                            AIR
-                        </span>
-                    }
-                </h5>
-                <p class="card-text">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-
-                        <span>
-                            Hjälper er med flyg leverans<br>
-
-
-                        </span>
-                    }
-                    else
-                    {
-                        <span>
-                            Assisting you with air freight delivery<br>
-
-                        </span>
-                    }
-                </p>
-            </div>
         </a>
     </div>
-
-    <div class="card">
-        <a href="/ArtServices#road" class="card-link" stlye=" text-decoration: none;">
-            <div class="card-body text-center">
-
-                <i class="fa-sharp fa-thin fa-truck-front card-icon" style="margin-bottom:14px"></i>
-                <h5 class="card-title">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-                        <span>VÄG</span>
-                    }
-                    else
-                    {
-                        <span>ROAD</span>
-                    }
-                </h5>
-                <p class="card-text">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-                        <span>
-                            Hjälper er med lastbilsservice <br>
-
-                        </span>
-                    }
-                    else
-                    {
-                        <span>
-                            Assisting you with truckservice <br>
-
-                        </span>
-                    }
-                </p>
-
-            </div>
-        </a>
-    </div>
-</div>
-    <div class="kajsa-2">
-
-        <div class="card">
-            <a href="/ArtServices#train" class="card-link" stlye=" text-decoration: none;">
-                <div class="card-body text-center">
-                <i class="fa-sharp fa-thin fa-train card-icon" style="margin-bottom:14px"></i>
-                    <h5 class="card-title">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                TÅG
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                TRAIN
-                            </span>
-                        }
-                    </h5>
-                    <p class="card-text">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                Hjälper er med järnvägstransport<br>
-
-
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                Assisting you with railway shipment<br>
-
-                            </span>
-                        }
-                    </p>
-                </div>
-            </a>
-        </div>
-
-        <div class="card">
-            <a href="/ArtServices#sea" class="card-link" stlye=" text-decoration: none;">
-                <div class="card-body text-center">
-                <i class="fa-sharp fa-thin fa-ship card-icon" style="margin-bottom:14px"></i>
-                    <h5 class="card-title">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                SJÖFART
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                SEA
-                            </span>
-                        }
-                    </h5>
-                    <p class="card-text">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                Hjälper er med full container sändning
-
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                Assisting you with full container shipment
-                            </span>
-                        }
-                    </p>
-                </div>
-            </a>
-        </div>
-    </div>
-
-  
-    
-
-
-
-    <div class="kajsa-mobil">
-
-<div class="kajsa-2">
-
-
-    
-
-
-
-    <div class="card">
-        <a href="/ArtServices#courier" class="card-link" stlye=" text-decoration: none;">
-            <div class="card-body text-center">
-                    <i class="fa-thin fa-person-carry-box card-icon" style="margin-bottom:14px"></i>
-                <h5 class="card-title">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-
-                        <span>
-                            KURIR
-                        </span>
-                    }
-                    else
-                    {
-                        <span>
-                            COURIER
-                        </span>
-                    }
-                </h5>
-                <p class="card-text">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-
-                        <span>
-                            Hjälper er med kurir leverans <br>
-
-
-                        </span>
-                    }
-                    else
-                    {
-                        <span>
-                            Assisting you with courier delivery<br>
-
-                        </span>
-                    }
-                </p>
-            </div>
-        </a>
-    </div>
-
-
-    <div class="card">
-        <a href="/ArtServices#express" class="card-link" stlye=" text-decoration: none;">
-            <div class="card-body text-center">
-                    <i class="fa-sharp fa-thin fa-truck-clock card-icon" style="margin-bottom:14px"></i>
-                <h5 class="card-title">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-
-                        <span>
-                            EXPRESS
-                        </span>
-                    }
-                    else
-                    {
-                        <span>
-                            EXPRESS
-                        </span>
-                    }
-                </h5>
-                <p class="card-text">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-
-                        <span>
-                            Hjälper er med expressleverans<br>
-
-
-                        </span>
-                    }
-                    else
-                    {
-                        <span>
-                            Assisting you with express delivery<br>
-
-                        </span>
-                    }
-                </p>
-            </div>
-        </a>
-    </div>
-
-
-    </div>
-    <div class="kajsa-2">
-        <div class="card">
-            <a href="/ArtServices#special-2" class="card-link" stlye=" text-decoration: none;">
-                <div class="card-body text-center">
-                    <i class="fa-thin fa-clipboard-list card-icon" style="margin-bottom:14px"></i>
-                    <h5 class="card-title">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                PROJEKTLOGISTIK
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                PROJECT-LOGISTICS
-                            </span>
-                        }
-                    </h5>
-                    <p class="card-text">
-                        @if (@Model.CurrentLanguage == "sv")
-                        {
-
-                            <span>
-                                Hjälper er projektlogistik
-
-                            </span>
-                        }
-                        else
-                        {
-                            <span>
-                                Assisting you with project logistics
-                            </span>
-                        }
-                    </p>
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="/ArtServices#special" class="card-link">
-                <div class="card-body text-center">
-                <i class="fa-thin fa-wand-magic-sparkles card-icon" style="margin-bottom:14px"></i>
-                <h4 class="card-title">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-                        <span>ANPASSANDE TJÄNSTER</span>
-                    }
-                    else
-                    {
-                        <span>CUSTOMIZED</span>
-                    }
-                </h4>
-                <p class="card-text">
-                    @if (@Model.CurrentLanguage == "sv")
-                    {
-                        <span>För viktigare leveranser</span>
-                    }
-                    else
-                    {
-                        <span>For more critical deliveries</span>
-                    }
-                </p>
-                </div>
-            </a>
-        </div>
-    </div>
-
 </div>
 
 <div class="center-container">
-<div class="asdf">
-        <div class="qop-4">
-            
-        </div>
+    <div class="asdf">
+        <div class="qop-4"></div>
         <div class="text-center ert konstnarlig-text">
             @if (@Model.CurrentLanguage == "sv")
             {
                 <h2>För oss är logistik en konst</h2>
-
                 <p>Vi är specialister som hjälper företag att effektivisera sin leveranskedja genom rådgivning, transporter och tredjepartslogistik. Som en extern projekt- och logistikpartner med helhetslösningar ser vi till att dokument, handlingar och gods finns på rätt plats vid utsatt tid, allt i nära samarbete med noggrant utvalda partners. Hos oss får du branschens bästa pris och personlig service utöver det vanliga. Trenden att företag outsourcar logistikfunktionen och fokuserar på sin kärnverksamhet växer allt starkare. Utmana oss. Vi behärskar konsten att leverera!</p>
             }
             else
@@ -815,190 +334,163 @@
                 <span>We are specialists who assist companies in streamlining their supply chain through consultancy, transportation, and third-party logistics. As an external project and logistics partner with comprehensive solutions, we ensure that documents, records, and goods are in the right place at the specified time, all in close collaboration with carefully selected partners. With us, you get the industry's best price and personalized service beyond the ordinary. The trend of companies outsourcing the logistics function and focusing on their core operations is growing stronger. Challenge us. We master the art of delivery!</span>
             }
         </div>
-        </div>
     </div>
-        <div class="center-container">
-            <div class="service-info">
-        <div class="mysan text-center shipping-cost-calculator">
-
-
-                    <div style="margin-bottom: 20px;">
-                        <i class="fa-sharp fa-thin fa-people-carry-box card-icon"></i>
-                        <h3>
-                            @if (@Model.CurrentLanguage == "sv")
-                            {
-
-                                <span>Extern Transportörsnätverk</span>
-                            }
-                            else
-                            {
-                                <span>External Carrier Network</span>
-                            }
-                        </h3>
-                        <p>
-                            @if (@Model.CurrentLanguage == "sv")
-                            {
-
-                                <span>Vi utnyttjar ett omfattande nätverk av pålitliga externa transportörer, noggrant utvalda för deras pålitlighet och överensstämmelse med kvalitetstjänststandarder.</span>
-                            }
-                            else
-                            {
-                                <span>We leverage a vast network of reputable external carriers, carefully selected for their reliability and adherence to quality service standards.</span>
-                            }
-                        </p>
-
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                <i class="fa-thin fa-network-wired card-icon"></i>
-                        <h3>
-                            @if (@Model.CurrentLanguage == "sv")
-                            {
-                                <span>Flexibilitet och Skalbarhet</span>
-                            }
-                            else
-                            {
-                                <span>Flexibility and Scalability</span>
-                            }
-                        </h3>
-                        <p>
-                            @if (@Model.CurrentLanguage == "sv")
-                            {
-                                <span>Med vår modell får du fördelen av flexibilitet. Oavsett om du behöver transportera små eller stora volymer kan vårt nätverk av externa transportörer anpassa sig till dina behov och säkerställa en skalbar lösning.</span>
-                            }
-                            else
-                            {
-                                <span>With our model, you gain the advantage of flexibility. Whether you need to transport small or large volumes, our network of external carriers can adapt to your requirements, ensuring a scalable solution.</span>
-                            }
-                        </p>
-
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                        <i class="fa-light fa-money-check-dollar card-icon"></i>
-                        <h3>
-                            @if (@Model.CurrentLanguage == "sv")
-                            {
-                                <span>Kostnadseffektiva Lösningar</span>
-                            }
-                            else
-                            {
-                                <span>Cost-Effective Solutions</span>
-                            }
-                        </h3>
-                        <p>
-                            @if (@Model.CurrentLanguage == "sv")
-                            {
-                                <span>Genom att använda externa transportörer kan vi optimera kostnaderna och erbjuda konkurrenskraftiga priser för våra väglogistiktjänster. Detta kostnadseffektiva tillvägagångssätt möjliggör effektiv resursallokering.</span>
-                            }
-                            else
-                            {
-                                <span>By utilizing external carriers, we can optimize costs and provide competitive pricing for our road logistics services. This cost-effective approach allows you to allocate resources efficiently.</span>
-                            }
-                        </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                        <i class="fa-sharp fa-thin fa-person-carry-box card-icon"></i>
-                        <h3>
-                            @if (@Model.CurrentLanguage == "sv")
-                            {
-                                <span>Pålitliga och Tidiga Leveranser</span>
-                            }
-                            else
-                            {
-                                <span>Reliable and Timely Deliveries</span>
-                            }
-                        </h3>
-                        <p>
-                            @if (@Model.CurrentLanguage == "sv")
-                            {
-                                <span>Vår åtagande till pålitlighet innebär att du kan lita på oss för att leverera dina varor i tid. Vi samarbetar nära med vårt nätverk av transportörer för att säkerställa punktlighet och konsekvens i att uppfylla leveransdeadlines.</span>
-                            }
-                            else
-                            {
-                                <span>Our commitment to reliability means you can trust us to deliver your goods on time. We work closely with our network of carriers to ensure punctuality and consistency in meeting delivery deadlines.</span>
-                            }
-                        </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                        <i class="fa-sharp fa-thin fa-vacuum-robot card-icon"></i>
-                        <h3>
-                            @if (@Model.CurrentLanguage == "sv")
-                            {
-                                <span>Avancerad Spårning och Kommunikation</span>
-                            }
-                            else
-                            {
-                                <span>Advanced Tracking and Communication</span>
-                            }
-                        </h3>
-                        <p>
-                            @if (@Model.CurrentLanguage == "sv")
-                            {
-                                <span>Vi använder avancerade spårningssystem och kommunikationsverktyg för att hålla dig informerad om statusen för dina försändelser i realtid. Denna transparens förbättrar synligheten och möjliggör bättre beslutsfattande.</span>
-                            }
-                            else
-                            {
-                                <span>We utilize advanced tracking systems and communication tools to keep you informed about the status of your shipments in real-time. This transparency enhances visibility and allows for better decision-making.</span>
-                            }
-                        </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                        <i class="fa-sharp fa-thin fa-face-saluting card-icon"></i>
-                        <h3>
-                            @if (@Model.CurrentLanguage == "sv")
-                            {
-                                <span>Skräddarsydda Lösningar</span>
-                            }
-                            else
-                            {
-                                <span>Customized Solutions</span>
-                            }
-                        </h3>
-                        <p>
-                            @if (@Model.CurrentLanguage == "sv")
-                            {
-                                <span>Varje kund är unik, liksom deras logistikbehov. Vårt team samarbetar nära med dig för att förstå dina specifika krav, vilket gör att vi kan skräddarsy våra logistiklösningar för att möta dina individuella behov.</span>
-                            }
-                            else
-                            {
-                                <span>Every client is unique, and so are their logistics needs. Our team works closely with you to understand your specific requirements, allowing us to tailor our  logistics solutions to meet your individual demands.</span>
-                            }
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-
-   
-
 </div>
 
+<div class="center-container">
+    <div class="service-info">
+        <div class="mysan text-center shipping-cost-calculator">
+            <div style="margin-bottom: 20px;">
+                <i class="fas fa-people-carry card-icon"></i>
+                <h3>
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Extern Transportörsnätverk</span>
+                    }
+                    else
+                    {
+                        <span>External Carrier Network</span>
+                    }
+                </h3>
+                <p>
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Vi utnyttjar ett omfattande nätverk av pålitliga externa transportörer, noggrant utvalda för deras pålitlighet och överensstämmelse med kvalitetstjänststandarder.</span>
+                    }
+                    else
+                    {
+                        <span>We leverage a vast network of reputable external carriers, carefully selected for their reliability and adherence to quality service standards.</span>
+                    }
+                </p>
+            </div>
 
+            <div style="margin-bottom: 20px;">
+                <i class="fas fa-network-wired card-icon"></i>
+                <h3>
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Flexibilitet och Skalbarhet</span>
+                    }
+                    else
+                    {
+                        <span>Flexibility and Scalability</span>
+                    }
+                </h3>
+                <p>
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Med vår modell får du fördelen av flexibilitet. Oavsett om du behöver transportera små eller stora volymer kan vårt nätverk av externa transportörer anpassa sig till dina behov och säkerställa en skalbar lösning.</span>
+                    }
+                    else
+                    {
+                        <span>With our model, you gain the advantage of flexibility. Whether you need to transport small or large volumes, our network of external carriers can adapt to your requirements, ensuring a scalable solution.</span>
+                    }
+                </p>
+            </div>
 
+            <div style="margin-bottom: 20px;">
+                <i class="fas fa-dollar-sign card-icon"></i>
+                <h3>
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Kostnadseffektiva Lösningar</span>
+                    }
+                    else
+                    {
+                        <span>Cost-Effective Solutions</span>
+                    }
+                </h3>
+                <p>
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Genom att använda externa transportörer kan vi optimera kostnaderna och erbjuda konkurrenskraftiga priser för våra väglogistiktjänster. Detta kostnadseffektiva tillvägagångssätt möjliggör effektiv resursallokering.</span>
+                    }
+                    else
+                    {
+                        <span>By utilizing external carriers, we can optimize costs and provide competitive pricing for our road logistics services. This cost-effective approach allows you to allocate resources efficiently.</span>
+                    }
+                </p>
+            </div>
 
+            <div style="margin-bottom: 20px;">
+                <i class="fas fa-check card-icon"></i>
+                <h3>
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Pålitliga och Tidiga Leveranser</span>
+                    }
+                    else
+                    {
+                        <span>Reliable and Timely Deliveries</span>
+                    }
+                </h3>
+                <p>
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Vår åtagande till pålitlighet innebär att du kan lita på oss för att leverera dina varor i tid. Vi samarbetar nära med vårt nätverk av transportörer för att säkerställa punktlighet och konsekvens i att uppfylla leveransdeadlines.</span>
+                    }
+                    else
+                    {
+                        <span>Our commitment to reliability means you can trust us to deliver your goods on time. We work closely with our network of carriers to ensure punctuality and consistency in meeting delivery deadlines.</span>
+                    }
+                </p>
+            </div>
 
+            <div style="margin-bottom: 20px;">
+                <i class="fas fa-truck-moving card-icon"></i>
+                <h3>
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Avancerad Spårning och Kommunikation</span>
+                    }
+                    else
+                    {
+                        <span>Advanced Tracking and Communication</span>
+                    }
+                </h3>
+                <p>
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Vi använder avancerade spårningssystem och kommunikationsverktyg för att hålla dig informerad om statusen för dina försändelser i realtid. Denna transparens förbättrar synligheten och möjliggör bättre beslutsfattande.</span>
+                    }
+                    else
+                    {
+                        <span>We utilize advanced tracking systems and communication tools to keep you informed about the status of your shipments in real-time. This transparency enhances visibility and allows for better decision-making.</span>
+                    }
+                </p>
+            </div>
 
-
-
-
-
-
-
-
-
-
-
+            <div style="margin-bottom: 20px;">
+                <i class="fas fa-cogs card-icon"></i>
+                <h3>
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Skräddarsydda Lösningar</span>
+                    }
+                    else
+                    {
+                        <span>Customized Solutions</span>
+                    }
+                </h3>
+                <p>
+                    @if (@Model.CurrentLanguage == "sv")
+                    {
+                        <span>Varje kund är unik, liksom deras logistikbehov. Vårt team samarbetar nära med dig för att förstå dina specifika krav, vilket gör att vi kan skräddarsy våra logistiklösningar för att möta dina individuella behov.</span>
+                    }
+                    else
+                    {
+                        <span>Every client is unique, and so are their logistics needs. Our team works closely with you to understand your specific requirements, allowing us to tailor our logistics solutions to meet your individual demands.</span>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div>
     <button id="totop-arrow">
-        <i class="fa-solid fa-arrow-up"></i>
+        <i class="fas fa-arrow-up"></i>
     </button>
-
-
 </div>
 
 

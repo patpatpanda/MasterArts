@@ -1,0 +1,15 @@
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\bin\Debug\net7.0\MasterArtsLibrary.deps.json
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\bin\Debug\net7.0\MasterArtsLibrary.runtimeconfig.json
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\bin\Debug\net7.0\MasterArtsLibrary.dll
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\bin\Debug\net7.0\MasterArtsLibrary.pdb
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\obj\Debug\net7.0\MasterArtsLibrary.csproj.AssemblyReference.cache
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\obj\Debug\net7.0\MasterArtsLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\obj\Debug\net7.0\MasterArtsLibrary.AssemblyInfoInputs.cache
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\obj\Debug\net7.0\MasterArtsLibrary.AssemblyInfo.cs
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\obj\Debug\net7.0\MasterArtsLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\obj\Debug\net7.0\MasterArtsLibrary.sourcelink.json
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\obj\Debug\net7.0\MasterArtsLibrary.dll
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\obj\Debug\net7.0\refint\MasterArtsLibrary.dll
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\obj\Debug\net7.0\MasterArtsLibrary.pdb
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\obj\Debug\net7.0\MasterArtsLibrary.genruntimeconfig.cache
+C:\Users\Nils-\source\repos\MasterArts\MasterArtsLibrary\obj\Debug\net7.0\ref\MasterArtsLibrary.dll
