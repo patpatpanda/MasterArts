@@ -1,3 +1,24 @@
 # Ignore all appsettings.json files
 **/appsettings.json
 **/appsettings.*.json
+# Ignore Visual Studio specific files
+.vs/
+
+# Ignore build results
+bin/
+obj/
+
+# Ignore project-specific user settings
+*.user
+*.suo
+
+# Ignore Razor specific files
+project.razor.vs.json
+
+# Ignore static web assets
+staticwebassets*.json
+
+# Ignore NuGet files
+*.nuget.dgspec.json
+*.nuget.props.json
+project.assets.json
